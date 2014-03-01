@@ -17,9 +17,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: the-tournament_development
+  database: tnmt_development
   pool: 5
-  username: the-tournament
+  username: tnmt
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -46,15 +46,15 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: the-tournament_test
+  database: tnmt_test
   pool: 5
-  username: the-tournament
+  username: tnmt
   password:
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: the-tournament_production
+  database: tnmt_production
   pool: 5
-  username: the-tournament
+  username: tnmt
   password:
