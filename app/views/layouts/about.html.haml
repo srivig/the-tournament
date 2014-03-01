@@ -17,35 +17,18 @@
     = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
     = javascript_include_tag "application"
 
-
-  %body
-    .navbar.navbar-default.navbar-static-top
-      .container
-        %button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse")
-          %span.icon-bar
-          %span.icon-bar
-          %span.icon-bar
-        %a.navbar-brand(href="#")
-          = image_tag("logo_w.png", alt: "THE TOURNAMENT")
-        .nav-collapse.collapse.navbar-responsive-collapse
-          %ul.nav.navbar-nav
-            %li= link_to "Link 1", "/path1"
-            %li= link_to "Link 2", "/path2"
-            %li= link_to "Link 3", "/path3"
-            %li= link_to "Link 3", "/path3"
+  %body#about-page
+    = nav_bar responsive: true, fixed: :top, brand: image_tag("logo_w.png") do
+      = menu_group do
+        %li= link_to "About", "static_pages#about"
+        %li= link_to "Examples", "static_pages#about"
+        %li= link_to "Feature", "static_pages#about"
+        %li= link_to "Plan/Price", "static_pages#about"
+        %li= link_to "FAQ", "static_pages#about"
 
     .container
       .row
-        .col-lg-9
-          = bootstrap_flash
+        .col-lg-12
           = yield
-        .col-lg-3
-          .well.sidebar-nav
-            %h3 Sidebar
-            %ul.nav.nav-list
-              %li.nav-header Sidebar
-              %li= link_to "Link 1", "/path1"
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
-      %footer
-        %p &copy; Company 2014
+      %footer.text-center
+        %p &copy; THE TOURNAMENT  2014 All Rights Reserved.
