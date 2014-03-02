@@ -7,7 +7,7 @@ class Game < ActiveRecord::Base
   accepts_nested_attributes_for :game_records
 
   validates_associated :game_records
-  validates :tournament_id, presence: true
+  validates :tournament_id, presence: true, on: :update
   validates :bracket, presence: true, inclusion: {in: [1,2,3]}
   validates :round, presence: true, numericality: {only_integer: true}
   validates :match, presence: true, numericality: {only_integer: true}

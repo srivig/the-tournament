@@ -3,7 +3,7 @@ class Player < ActiveRecord::Base
   has_many :game_records
   has_many :games, through: :game_records
 
-  validates :tournament_id, presence: true
+  validates :tournament_id, presence: true, on: :update
   validates :seed, presence: true, numericality: {only_integer: true}
   validates :name, presence: true, length: {maximum: 100}
   validates :group, length: {maximum: 100}, allow_nil: true
