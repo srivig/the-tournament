@@ -41,6 +41,7 @@ class TournamentsController < ApplicationController
 
   def create
     @tournament = Tournament.new(tournament_params)
+    @tournament.user = current_user || User.find(1) # add as an guest user if not logged in
 
     # add tmp players
     for i in 1..@tournament.size do
