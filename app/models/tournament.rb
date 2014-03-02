@@ -1,7 +1,7 @@
 class Tournament < ActiveRecord::Base
-  has_many :games
   belongs_to :user
-  has_many :players
+  has_many :games, dependent: :destroy
+  has_many :players, dependent: :destroy
   accepts_nested_attributes_for :players
   accepts_nested_attributes_for :games
 

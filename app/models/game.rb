@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class Game < ActiveRecord::Base
-  has_many :game_records
+  has_many :game_records, dependent: :destroy
   has_many :players, through: :game_records
   belongs_to :tournament
   accepts_nested_attributes_for :game_records
