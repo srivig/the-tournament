@@ -1,2 +1,41 @@
-%h1 Games#index
-%p Find me in app/views/games/index.html.haml
+=link_to sanitize('<i class="icon-reply"></i> ') + '大会トップへ戻る', tournament_path(@tournament), class: 'btn btn-default'
+
+%section#show
+  %h1.clearfix
+    =@tournament.title
+    %small @#{@tournament.place}
+
+%section
+  %h1.headline
+    %i.icon.icon-list-alt
+    試合結果の更新
+
+  - @tournament.round_num.downto(1) do |i|
+    - if i == @tournament.round_num
+      .panel.panel-danger
+        .panel-heading 決勝ラウンド
+        %ul.list-group
+          - @tournament.games.where(round: i).each do |game|
+            %li.clearfix.list-group-item
+              - if game.match == 1
+                決勝：
+              - else
+                ３位決定戦：
+
+              - if game.game_records.present?
+                #{game.game_records.first.player.name} - #{game.game_records.last.player.name}
+                = link_to t('Edit'), edit_game_path(game), class: 'btn btn-primary btn-sm pull-right'
+              - else
+                (TBD)
+    - else
+      .panel.panel-default
+        .panel-heading #{i}回戦
+        %ul.list-group
+          - @tournament.games.where(round: i).each do |game|
+            %li.clearfix.list-group-item
+              第#{game.match}試合：
+              - if game.game_records.present?
+                #{game.game_records.first.player.name} - #{game.game_records.last.player.name}
+                = link_to t('Edit'), edit_game_path(game), class: 'btn btn-primary btn-sm pull-right'
+              - else
+                (TBD)

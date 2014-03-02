@@ -13,7 +13,7 @@
   %h1.clearfix
     =@tournament.title
     %small @#{@tournament.place}
-    .btn-group.pull-right
+    .btn-group.pull-right.btn-group-sm
       %button.btn.btn-primary(type="button") 編集
       %button.btn.btn-primary.dropdown-toggle(type="button" data-toggle="dropdown")
         %span.caret
@@ -34,11 +34,6 @@
   %p
     =@tournament.desc
 
-  /
-    %div
-      =link_to t('.edit', :default => t("helpers.links.edit")), edit_tournament_path(@tournament), class: 'btn btn-default'
-      =link_to t('Players'), tournament_players_path(@tournament), class: 'btn btn-primary'
-      =link_to t('Games'), tournament_games_path(@tournament), class: 'btn btn-primary'
 
 %section
   %h1.headline
@@ -50,15 +45,20 @@
 %section
   %h1.headline
     %i.icon.icon-list-alt
-    試合組み合わせ
+    対戦表
 
   - @tournament.round_num.downto(1) do |i|
     - if i == @tournament.round_num
       .panel.panel-danger
-        .panel-heading 決勝
+        .panel-heading 決勝ラウンド
         %div.list-group
           - @tournament.games.where(round: i).each do |game|
-            %a.list-group-item(href="#")
+            %a.clearfix.list-group-item(href="#")
+              - if game.match == 1
+                決勝：
+              - else
+                ３位決定戦：
+
               - if game.game_records.present?
                 #{game.game_records.first.player.name} - #{game.game_records.last.player.name}
               - else
@@ -68,9 +68,20 @@
         .panel-heading #{i}回戦
         %div.list-group
           - @tournament.games.where(round: i).each do |game|
-            %a.list-group-item(href="#")
+            %a.clearfix.list-group-item(href="#")
+              第#{game.match}試合：
               - if game.game_records.present?
                 #{game.game_records.first.player.name} - #{game.game_records.last.player.name}
               - else
                 (TBD)
+
+
+%section
+  %h1.headline
+    %i.icon.icon-group
+    メンバー表
+  %div.list-group
+    - @tournament.players.order(seed: :asc).each do |player|
+      %a.list-group-item(href="#")
+        = player.name
 

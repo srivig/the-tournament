@@ -1,13 +1,11 @@
 = simple_form_for @tournament, html: {class: 'form-horizontal'} do |f|
-  %h3 新規トーナメント作成
-  %div
-    = f.input :title, label: '大会名'
-    = f.input :desc, label: '大会の説明など'
-    = f.input :place, label: '開催地'
-    = f.input :size, label: '参加者数', collection: Array[4,8,16]
-    = f.input :user_id, as: :hidden, input_html: {value: current_user.id}
+  = f.input :title, label: '大会名'
+  = f.input :desc, label: '大会の説明など'
+  = f.input :place, label: '開催地'
+  = f.input :size, label: '参加者数', collection: Array[4,8,16]
+  = f.input :user_id, as: :hidden, input_html: {value: current_user.id}
 
   .form-group
     .col-sm-6.col-sm-offset-2
       = f.button :submit, class: 'btn-danger'
-      = link_to t('.cancel', default: t("helpers.links.cancel")), tournament_path
+      = link_to t('.cancel', default: t("helpers.links.cancel")), tournaments_path
