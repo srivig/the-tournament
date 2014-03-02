@@ -2,8 +2,18 @@ class Tournament < ActiveRecord::Base
   belongs_to :user
   has_many :games, dependent: :destroy
   has_many :players, dependent: :destroy
+
   accepts_nested_attributes_for :players
   accepts_nested_attributes_for :games
+
+  validates_associated :games
+  validates_associated :players
+  validates :user_id, presence: true
+  validates :size, presence: true, inclusion: {in: [4,8,16]}
+  validates :type, numericality: {only_integer: true}, allow_nil: true
+  validates :title, presence: true, length: {maximum: 100}
+  validates :place, length: {maximum: 100}, allow_nil: true
+  validates :desc, length: {maximum: 500}, allow_nil: true
 
   after_create :set_first_rounds
 

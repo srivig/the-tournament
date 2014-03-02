@@ -3,7 +3,15 @@ class Game < ActiveRecord::Base
   has_many :game_records, dependent: :destroy
   has_many :players, through: :game_records
   belongs_to :tournament
+
   accepts_nested_attributes_for :game_records
+
+  validates_associated :game_records
+  validates :tournament_id, presence: true
+  validates :bracket, presence: true, inclusion: {in: [1,2,3]}
+  validates :round, presence: true, numericality: {only_integer: true}
+  validates :match, presence: true, numericality: {only_integer: true}
+  validates :bye, inclusion: {in: [true, false]}, allow_nil: true
 
   # before_update :clear_parent_games, if: :winner_changed?
   after_update :set_parent_game, if: lambda{ self.finished? }, unless: lambda{ self.final? }
