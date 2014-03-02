@@ -1,5 +1,7 @@
 %section#top
   =image_tag("top-logo.png", alt:'THE TOURNAMENT')
+  %p
+    =link_to "さっそく使ってみる", "static_pages/index", class: 'btn btn-danger btn-lg'
 
 %section#about
   %h1.hide About
@@ -29,6 +31,9 @@
 %section#examples
   %h1
     %span Examples
+  %p.text-center
+    実際に作成したトーナメント表を随時追加していきます。
+/
   .row
     .col-lg-3
       .thumbnail
@@ -168,7 +173,9 @@
   %h1
     %span FAQ
   %p.text-center
-    質問・ご要望などあればいつでもご連絡ください。
+    質問・ご要望などあればいつでもご連絡ください。<br>
+    info[at]notsobad.jp
+/
   %ul.list-group
     %li.list-group-item これはどういうサービスなんですか？
     %li.list-group-item THE TOURAMENTは、トーナメント形式の大会を簡単に管理し、きれいなトーナメント表を作成することができるサービスです。

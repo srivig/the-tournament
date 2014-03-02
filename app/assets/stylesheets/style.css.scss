@@ -35,8 +35,12 @@ $screen-md-min: 751px;
 * Navbar
 *****************************************************************/
 .navbar {
-  margin-bottom: 0;
   border: 0px;
+  & > .container {
+    padding-right: 0;
+    padding-left: 0;
+    width: 100%;
+  }
 }
 .navbar-default .navbar-brand {
   padding: 15px 30px;
@@ -57,9 +61,18 @@ $screen-md-min: 751px;
 * About
 *****************************************************************/
 #about-page {
-  .container {
+  .navbar { margin-bottom: 0; }
+  & > .container {
     padding: 0;
     width: 100%;
+    overflow: hidden;
+    & > .row {
+      margin-left: 0;
+      margin-right: 0;
+      & > .col-lg-12 {
+        padding: 0;
+      }
+    }
   }
   section {
     margin-bottom: 120px;
@@ -83,10 +96,13 @@ $screen-md-min: 751px;
     width: 100%;
     background: $WET-ASPHALT;
     text-align: center;
-    padding: 150px 0 120px 0;
+    padding: 150px 0 100px 0;
     color: #fff;
     font-size: 22px;
-    img { max-width: 100%; }
+    img {
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
   }
 
   #about {
@@ -134,3 +150,34 @@ $screen-md-min: 751px;
 }
 
 
+
+#show {
+  h1 {
+    font-size: 24px;
+    padding: 7px 0;
+    border-top: 4px solid #333;
+    border-bottom: 4px solid #333;
+  }
+}
+
+#tournament {
+  overflow: scroll;
+  .label {
+    font-weight: normal;
+    font-size: 100%;
+    line-height: normal;
+    color: #333;
+  }
+}
+.headline {
+  font-size: 20px;
+    line-height: 15px;
+    margin-top: 70px;
+    margin-bottom: 30px;
+    text-align: center;
+    span {
+      background: #fff;
+      padding: 0 20px;
+    }
+  @include stripes;
+}

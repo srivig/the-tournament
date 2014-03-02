@@ -1,0 +1,59 @@
+%section
+  %ol.breadcrumb
+    %li
+      %a(href="#") Home
+    %li
+      %a(href="#") Tournament
+    %li
+      %a(href="#") Soccer
+    %li
+      %a.active(href="#") 第14回全国高校サッカー選手権大会
+
+%section#show
+  %h1
+    第14回全国高校サッカー選手権大会
+    %small @滋賀県
+  %ul.list-inline
+    %li
+      %span.label.label-warning サッカー
+    %li
+      %span.label.label-warning 高校
+    %li
+      %span.label.label-warning スポーツ
+    %li
+      %span.label.label-warning 滋賀県
+  %p
+    長い歴史を誇る高校サッカー最高峰の大会です。全国の高校生たちがこの大会の頂点を目指して厳しい練習にも耐え、日夜努力を続けています。
+
+%section
+  %h1.headline
+    %span Brackets
+  .clearfix
+    #tournament.col-lg-12
+
+%section
+  %h1.headline
+    %span Games
+  .panel.panel-danger
+    .panel-heading 決勝ラウンド
+    -# .panel-body
+    -#   %p
+    -#     決勝戦：12月24日13：00〜<br>
+    -#     3位決定戦：　12月24日17:00〜
+    %div.list-group
+      %a.list-group-item(href="#") 決勝戦： Team1 - Team2
+      %a.list-group-item(href="#") 3位決定戦： Team3 - Team4
+
+  .panel.panel-default
+    .panel-heading 準決勝
+    %div.list-group
+      %a.list-group-item(href="#") 第1試合： Team1 - Team2
+      %a.list-group-item(href="#") 第2試合： Team3 - Team4
+
+  .panel.panel-default
+    .panel-heading ベスト8
+    %div.list-group
+      %a.list-group-item(href="#") 第1試合： Team1 - Team2
+      %a.list-group-item(href="#") 第2試合： Team3 - Team4
+      %a.list-group-item(href="#") 第3試合： Team1 - Team2
+      %a.list-group-item(href="#") 第4試合： Team3 - Team4
