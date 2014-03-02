@@ -1,2 +1,5 @@
-%h1 Tournaments#edit
-%p Find me in app/views/tournaments/edit.html.haml
+- model_class = Tournament
+- title = "#{model_class.model_name.human.titleize} Edit"
+- provide(:title, title)
+
+= render :partial => "form"

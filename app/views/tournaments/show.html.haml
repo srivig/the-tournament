@@ -1,2 +1,76 @@
-%h1 Tournaments#show
-%p Find me in app/views/tournaments/show.html.haml
+%section
+  %ol.breadcrumb
+    %li
+      %a(href="#") Home
+    %li
+      %a(href="#") スポーツ
+    %li
+      %a(href="#") サッカー
+    %li
+      %a.active(href="#") 第14回全国高校サッカー選手権大会
+
+%section#show
+  %h1.clearfix
+    =@tournament.title
+    %small @#{@tournament.place}
+    .btn-group.pull-right
+      %button.btn.btn-primary(type="button") 編集
+      %button.btn.btn-primary.dropdown-toggle(type="button" data-toggle="dropdown")
+        %span.caret
+      %ul.dropdown-menu(role="menu")
+        %li=link_to '基本情報の編集', edit_tournament_path
+        %li=link_to '参加者情報の編集', tournament_players_path(@tournament)
+        %li=link_to '試合結果の編集', tournament_games_path(@tournament)
+
+  %ul.list-inline
+    %li
+      %span.label.label-warning サッカー
+    %li
+      %span.label.label-warning 高校
+    %li
+      %span.label.label-warning スポーツ
+    %li
+      %span.label.label-warning 滋賀県
+  %p
+    =@tournament.desc
+
+  /
+    %div
+      =link_to t('.edit', :default => t("helpers.links.edit")), edit_tournament_path(@tournament), class: 'btn btn-default'
+      =link_to t('Players'), tournament_players_path(@tournament), class: 'btn btn-primary'
+      =link_to t('Games'), tournament_games_path(@tournament), class: 'btn btn-primary'
+
+%section
+  %h1.headline
+    %i.icon.icon-trophy
+    トーナメント表
+  .clearfix
+    #tournament.col-lg-12
+
+%section
+  %h1.headline
+    %i.icon.icon-list-alt
+    試合組み合わせ
+
+  - @tournament.round_num.downto(1) do |i|
+    - if i == @tournament.round_num
+      .panel.panel-danger
+        .panel-heading 決勝
+        %div.list-group
+          - @tournament.games.where(round: i).each do |game|
+            %a.list-group-item(href="#")
+              - if game.game_records.present?
+                #{game.game_records.first.player.name} - #{game.game_records.last.player.name}
+              - else
+                (TBD)
+    - else
+      .panel.panel-default
+        .panel-heading #{i}回戦
+        %div.list-group
+          - @tournament.games.where(round: i).each do |game|
+            %a.list-group-item(href="#")
+              - if game.game_records.present?
+                #{game.game_records.first.player.name} - #{game.game_records.last.player.name}
+              - else
+                (TBD)
+
