@@ -1,7 +1,7 @@
 %section#top
   =image_tag("top-logo.png", alt:'THE TOURNAMENT')
   %p
-    =link_to "さっそく使ってみる", "static_pages/index", class: 'btn btn-danger btn-lg'
+    =link_to "さっそく使ってみる（無料）", "static_pages/index", class: 'btn btn-danger btn-lg'
 
 %section#about
   %h1.hide About
@@ -78,8 +78,7 @@
     %span Feature
   %p
     SuperBETAなのでまだまだほとんどの機能が開発中です。<br>
-    要望の強い機能からがんばって開発しますので、<br>
-    希望があればページ下部に記載されている連絡先までご連絡ください。
+    要望の強い機能からがんばって開発しますので、希望があればお気軽にご連絡ください。
   .row
     .col-lg-2
       .thumbnail
@@ -161,13 +160,18 @@
 %section#plan
   %h1
     %span Plan/Price
-  %p.text-center
-    %strong.text-danger 無料
-  %p.text-center
-    SuperBETAでの提供中は、すべての機能を無料でお使いいただけます。<br>
-    ただしこの期間に作成されたデータについては、将来的に保持されない可能性があります。
-  %p.text-center
-    どうしてもなくしたくない大事な記録があれば、別途ご連絡いただければできるだけ対応いたします。
+  %div.text-center
+    %p
+      %strong.text-danger 無料
+    %p
+      SuperBETAでの提供中は、すべての機能を無料でお使いいただけます。<br>
+      （正式リリース後も無料のプランは提供する予定です）
+    %p
+      =link_to "さっそく使ってみる（無料）", "static_pages/index", class: 'btn btn-danger btn-lg'
+    %p
+      %small
+        ※SuperBETAの期間中に作成されたデータについては、将来的に保持されない可能性があります。<br>
+        なくしたくない大事な記録があれば、別途ご連絡いただければできるだけ対応いたします。
 
 %section#faq
   %h1
