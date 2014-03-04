@@ -1,7 +1,7 @@
 %section
   %ol.breadcrumb
     %li
-      %a(href="#") Home
+      =link_to 'Home', root_path
     %li
       %a(href="#") スポーツ
     %li
@@ -24,13 +24,13 @@
 
   %ul.list-inline
     %li
-      %span.label.label-warning サッカー
+      %span.label.label-default サッカー
     %li
-      %span.label.label-warning 高校
+      %span.label.label-default 高校
     %li
-      %span.label.label-warning スポーツ
+      %span.label.label-default スポーツ
     %li
-      %span.label.label-warning 滋賀県
+      %span.label.label-default 滋賀県
   %p
     =@tournament.desc
 

@@ -22,7 +22,7 @@
   %body
     = nav_bar responsive: true, brand: image_tag("logo_w.png", alt: "THE TOURNAMENT") do
       %p.navbar-text
-        %span.label.label-danger NEW!
+        %span.label.label-warning NEW!
         「THE TOURNAMENT」のSuperBETA版をリリースしました！
 
     .container
@@ -39,5 +39,16 @@
               %li= link_to "Link 2", "/path2"
               %li= link_to "Link 3", "/path3"
             = link_to "トーナメントの新規作成", 'static_pages/show', class: 'btn btn-danger btn-block btn-lg'
+
+          %h4
+            %i.icon.icon-search
+            トーナメント検索
+          .input-group
+            %input.form-control(type="text" placeholder="大会名、キーワード")
+            %span.input-group-btn
+              %button.btn.btn-default(type="button")
+                -# %i.icon.icon-search
+                検索
+
       %footer.text-center
         %p &copy; THE TOURNAMENT  2014 All Rights Reserved.
