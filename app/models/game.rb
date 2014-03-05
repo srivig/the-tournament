@@ -13,38 +13,48 @@ class Game < ActiveRecord::Base
   validates :match, presence: true, numericality: {only_integer: true}
   validates :bye, inclusion: {in: [true, false]}, allow_nil: true
 
-  # before_update :clear_parent_games, if: :winner_changed?
+  before_update :clear_parent_games, if: :winner_changed?
   after_update :set_parent_game, if: lambda{ self.finished? }, unless: lambda{ self.final? }
 
   def clear_parent_games
+    p self.round
+    p self.match
   end
 
   def winner_changed?
-    # self.game_records.find_by(winner: true).try(:player) == self.winner
+    self.game_records.first.winner_changed? || self.game_records.second.winner_changed?
+  end
+
+  #ペアになるgameを取得(決勝ラウンドではペアがないので除外)
+  def pair
+    unless self.final?
+      pair_match_id = (self.match%2 == 1) ? self.match+1 : self.match-1
+      pair = self.tournament.games.find_by(bracket: 1, round: self.round, match: pair_match_id)
+    end
+  end
+
+  #親gameを取得(決勝ラウンドでは親がないので除外)
+  def parent
+    unless self.final?
+      parent_match_id = (self.match%2 == 1) ? (self.match+1)/2 : (self.match)/2
+      parent = self.tournament.games.find_by(bracket: 1, round: self.round+1, match: parent_match_id)
+    end
   end
 
   def set_parent_game
-    #相方のgameを取得
-    pair_match_id = (self.match%2 == 1) ? self.match+1 : self.match-1
-    pair = self.tournament.games.find_by(bracket: 1, round: self.round, match: pair_match_id)
-
-    #親gameを取得
-    parent_match_id = (self.match%2 == 1) ? (self.match+1)/2 : (self.match)/2
-    parent = self.tournament.games.find_by(bracket: 1, round: self.round+1, match: parent_match_id)
-
     #相方も処理済みで親gameのgame_recordsがまだなければ作成
-    if pair.finished? && parent.game_records.blank?
+    if self.pair.finished? && self.parent.game_records.blank?
       # add game_records!
-      players = Array[pair.winner]
+      players = Array[self.pair.winner]
       (self.match%2 == 1) ? players.unshift(self.winner) : players.push(self.winner)
       for i in 1..2
-        parent.game_records.create(player: players[i-1], record_num: i)
+        self.parent.game_records.create(player: players[i-1], record_num: i)
       end
 
       # semi-finalのときは3rd placeのも作成
       if self.semi_final?
         third_place = self.tournament.games.find_by(bracket:1, round:self.round+1, match:2)
-        players = Array[pair.loser]
+        players = Array[self.pair.loser]
         (self.match%2 == 1) ? players.unshift(self.loser) : players.push(self.loser)
         for i in 1..2
           third_place.game_records.create(player: players[i-1], record_num: i)
