@@ -31,24 +31,53 @@
           = bootstrap_flash
           = yield
         .col-lg-3
-          .well.sidebar-nav
-            %h3 Sidebar
-            %ul.nav.nav-list
-              %li.nav-header Sidebar
-              %li= link_to "Link 1", "/path1"
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
-            = link_to "トーナメントの新規作成", new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
+          -# Profile
+          %section.well.sidebar-nav.text-center
+            =profile_img(current_user)
+            %strong= current_user.email
+          -# New Button
+          %section
+            = link_to sanitize("<i class='icon icon-plus'></i> ")+"トーナメントの新規作成", new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
+          -# Search
+          %section
+            %h4
+              %i.icon.icon-search
+              トーナメント検索
+            .input-group
+              %input.form-control(type="text" placeholder="大会名、キーワード")
+              %span.input-group-btn
+                %button.btn.btn-default(type="button")
+                  検索
+          -# Category
+          %section
+            %h4
+              %i.icon.icon-star
+              注目されている大会
+            %ul.media-list
+              %li.media
+                %a.pull-left(href="#")
+                  =image_tag("small-4.png")
+                .media-body
+                  %h4.media-heading 第3回自転車大レース
+                  %p 超注目の大会です。
+              %li.media
+                %a.pull-left(href="#")
+                  =image_tag("small-5.png")
+                .media-body
+                  %h4.media-heading ポケモンカードバトルトーナメント
+                  %p 超注目の大会です。
+          -# Category
+          %section
+            %h4
+              %i.icon.icon-tags
+              カテゴリ・キーワード
+            %ul
+              %li サッカー
+              %li 高校
+              %li 全国大会
+              %li バスケットボール
+              %li スポーツ
 
-          %h4
-            %i.icon.icon-search
-            トーナメント検索
-          .input-group
-            %input.form-control(type="text" placeholder="大会名、キーワード")
-            %span.input-group-btn
-              %button.btn.btn-default(type="button")
-                -# %i.icon.icon-search
-                検索
 
       %footer.text-center
         %p &copy; THE TOURNAMENT  2014 All Rights Reserved.
