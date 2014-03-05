@@ -4,4 +4,8 @@ module ApplicationHelper
     img_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
     image_tag(img_url, alt: user.email, class: 'img-circle')
   end
+
+  def panelheading(i)
+    {class: "panel-danger"}
+  end
 end

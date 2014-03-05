@@ -1,0 +1,13 @@
+.panel.panel-default
+  %table.table
+    - tournament.players.order(seed: :asc).each do |player|
+      %tr
+        %td= player.seed
+        %td
+          = player.name
+          - if player.group.present?
+            (#{player.group})
+        %td
+          - if editable
+            = link_to t('Edit'), edit_player_path(player), class: 'btn btn-primary btn-sm pull-right'
+

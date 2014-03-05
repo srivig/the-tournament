@@ -9,9 +9,4 @@
   %h1.headline
     %i.icon.icon-group
     参加者情報の更新
-
-  %ul.list-group
-    - @tournament.players.order(seed: :asc).each do |player|
-      %li.list-group-item.clearfix
-        = player.name
-        = link_to t('Edit'), edit_player_path(player), class: 'btn btn-primary btn-sm pull-right'
+  = render partial: "layouts/member_list", locals: {tournament: @tournament, editable: true}
