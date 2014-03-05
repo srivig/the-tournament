@@ -51,37 +51,65 @@
     - if i == @tournament.round_num
       .panel.panel-danger
         .panel-heading 決勝ラウンド
-        %div.list-group
+        %table.table
           - @tournament.games.where(round: i).each do |game|
-            %a.clearfix.list-group-item(href="#")
-              - if game.match == 1
-                決勝：
-              - else
-                ３位決定戦：
-
+            %tr
+              %td
+                - if game.match == 1
+                  決勝
+                - else
+                  ３位決定戦
               - if game.game_records.present?
-                #{game.game_records.first.player.name} - #{game.game_records.last.player.name}
+                %td.text-right
+                  #{game.game_records.first.player.name}
+                - if game.finished?
+                  %td.text-right.text-danger
+                    #{game.game_records.first.score}
+                %td.text-center -
+                - if game.finished?
+                  %td.text-left.text-danger
+                    #{game.game_records.last.score}
+                %td.text-left
+                  #{game.game_records.last.player.name}
               - else
-                (TBD)
+                %td (TBD)
+                %td -
+                %td (TBD)
+              %td.text-right 2014年3月2日 14:00
+
     - else
       .panel.panel-default
         .panel-heading #{i}回戦
-        %div.list-group
+        %table.table
           - @tournament.games.where(round: i).each do |game|
-            %a.clearfix.list-group-item(href="#")
-              第#{game.match}試合：
+            %tr
+              %td 第#{game.match}試合
               - if game.game_records.present?
-                #{game.game_records.first.player.name} - #{game.game_records.last.player.name}
+                %td.text-right
+                  #{game.game_records.first.player.name}
+                - if game.finished?
+                  %td.text-right.text-danger
+                    #{game.game_records.first.score}
+                %td.text-center -
+                - if game.finished?
+                  %td.text-left.text-danger
+                    #{game.game_records.last.score}
+                %td.text-left
+                  #{game.game_records.last.player.name}
               - else
-                (TBD)
-
+                %td (TBD)
+                %td -
+                %td (TBD)
+              %td.text-right 2014年3月2日 14:00
 
 %section
   %h1.headline
     %i.icon.icon-group
     メンバー表
-  %div.list-group
-    - @tournament.players.order(seed: :asc).each do |player|
-      %a.list-group-item(href="#")
-        = player.name
+  .panel.panel-default
+    %table.table
+      - @tournament.players.order(seed: :asc).each do |player|
+        %tr
+          %td= player.seed
+          %td= player.name
 
