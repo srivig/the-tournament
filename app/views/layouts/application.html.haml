@@ -34,16 +34,17 @@
           -# Profile
           %section.well.sidebar-nav.text-center
             =profile_img(current_user)
-            %strong= current_user.email
-          -# New Button
-          %section
-            = link_to sanitize("<i class='icon icon-plus'></i> ")+"トーナメントの新規作成", new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
+            %p
+              %strong= current_user.email
+              %br
+              %small (#{link_to 'ログアウト', root_path})
+            = link_to sanitize("<i class='icon icon-plus'></i> ")+"大会の新規作成", new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
           -# Search
           %section
             %h4
               %i.icon.icon-search
-              トーナメント検索
-            .input-group
+              大会検索
+            .input-group.well
               %input.form-control(type="text" placeholder="大会名、キーワード")
               %span.input-group-btn
                 %button.btn.btn-default(type="button")
@@ -53,7 +54,7 @@
             %h4
               %i.icon.icon-star
               注目されている大会
-            %ul.media-list
+            %ul.media-list.well
               %li.media
                 %a.pull-left(href="#")
                   =image_tag("small-4.png")
@@ -71,7 +72,7 @@
             %h4
               %i.icon.icon-tags
               カテゴリ・キーワード
-            %ul
+            %ul.well
               %li サッカー
               %li 高校
               %li 全国大会

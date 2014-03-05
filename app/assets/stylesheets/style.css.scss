@@ -155,9 +155,6 @@ $screen-md-min: 751px;
 /*****************************************************************
 * Sidebar
 *****************************************************************/
-.col-lg-3 {
-  section { margin-bottom: 30px; }
-}
 
 
 /*****************************************************************
@@ -192,4 +189,9 @@ $screen-md-min: 751px;
   font-size: 20px;
   margin-top: 50px;
   margin-bottom: 20px;
+}
+
+.table tr > td:first-child {
+  width: 90px;
+  border-right: 1px solid #efefef;
 }
