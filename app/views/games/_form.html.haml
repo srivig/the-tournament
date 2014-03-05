@@ -1,9 +1,27 @@
-= simple_form_for @game, html: {class: 'form-horizontal'} do |f|
-  = f.simple_fields_for :game_records do |r|
-    = r.association :player, disabled: true
-    = r.input :score
+= simple_form_for @game do |f|
+  .row
+    .col-lg-1.col-lg-push-5.text-center
+      - 5.times do
+        %br
+      %i.icon.icon-minus
+    = f.simple_fields_for :game_records, f.object.game_records.order(:record_num) do |r|
+      - offset = 'col-lg-pull-1' if r.object.record_num == 1
+      .col-lg-5.text-center{class: offset}
+        - panel = (r.object.winner == true) ? 'panel-danger' : 'panel-default'
+        .panel{class: panel}
+          .panel-heading
+            %h4= r.object.player.name
+            %small
+              - if r.object.player.group.present?
+                (#{r.object.player.group})
+              - else
+                \(--)
+          %ul.list-group
+            %li.list-group-item.clearfix= r.input :score
+            = r.association :player, as: :hidden
+            = r.input :winner, as: :hidden
 
   .form-group
-    .col-sm-6.col-sm-offset-2
-      = f.button :submit, class: 'btn-danger'
-      -# = link_to t('.cancel', default: t("helpers.links.cancel")), tournament_games_path(@game.tournament)
+    -# = f.simple_fields_for
+
+  = f.button :submit, class: 'btn-danger'
