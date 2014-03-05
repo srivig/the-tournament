@@ -2,4 +2,15 @@
 - title = "#{model_class.model_name.human.titleize} Edit"
 - provide(:title, title)
 
-= render :partial => "form"
+=link_to sanitize('<i class="icon-reply"></i> ') + '参加者一覧へ戻る', tournament_players_path(@player.tournament), class: 'btn btn-default'
+
+%section
+  %h1.title.clearfix
+    =@player.tournament.title
+    %small @#{@player.tournament.place}
+
+%section
+  %h1.headline
+    %i.icon.icon-group
+    参加者情報の更新
+  = render :partial => "form"

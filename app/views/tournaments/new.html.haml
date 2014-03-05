@@ -2,5 +2,13 @@
 - title = "New #{model_class.model_name.human.titleize}"
 - provide(:title, title)
 
-%h3 新規トーナメント作成
-= render :partial => "form"
+=link_to sanitize('<i class="icon-reply"></i> ') + 'HOMEに戻る', tournaments_path, class: 'btn btn-default'
+
+%section
+  %h1.title.clearfix New Tournament
+
+%section
+  %h1.headline
+    %i.icon.icon-list-alt
+    トーナメント情報の新規登録
+  = render :partial => "form"

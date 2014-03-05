@@ -1,5 +1,9 @@
 .panel.panel-default
   %table.table
+    %tr
+      %th 参加番号
+      %th 名前(所属)
+      %th
     - tournament.players.order(seed: :asc).each do |player|
       %tr
         %td= player.seed
@@ -9,5 +13,5 @@
             (#{player.group})
         %td
           - if editable
-            = link_to t('Edit'), edit_player_path(player), class: 'btn btn-primary btn-sm pull-right'
+            = link_to '編集する', edit_player_path(player), class: 'btn btn-primary btn-sm pull-right'
 
