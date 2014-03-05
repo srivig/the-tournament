@@ -13,12 +13,11 @@ class Game < ActiveRecord::Base
   validates :match, presence: true, numericality: {only_integer: true}
   validates :bye, inclusion: {in: [true, false]}, allow_nil: true
 
-  before_update :clear_parent_games, if: :winner_changed?
+  before_update :reset_ancestors, if: :winner_changed?
   after_update :set_parent_game, if: lambda{ self.finished? }, unless: lambda{ self.final? }
 
-  def clear_parent_games
-    p self.round
-    p self.match
+  def reset_ancestors
+    self.ancestors.map{|game| game.game_records.delete_all }
   end
 
   def winner_changed?
@@ -41,6 +40,18 @@ class Game < ActiveRecord::Base
     end
   end
 
+  # 先祖game(直系の親たち)を取得(include third-place playoff)
+  def ancestors
+    ancestors = Array.new
+    game = self
+    while game.parent.present?
+      ancestors << game.parent
+      game = game.parent
+    end
+    ancestors << self.tournament.third_place unless self.final?
+    ancestors
+  end
+
   def set_parent_game
     #相方も処理済みで親gameのgame_recordsがまだなければ作成
     if self.pair.finished? && self.parent.game_records.blank?
@@ -53,11 +64,10 @@ class Game < ActiveRecord::Base
 
       # semi-finalのときは3rd placeのも作成
       if self.semi_final?
-        third_place = self.tournament.games.find_by(bracket:1, round:self.round+1, match:2)
         players = Array[self.pair.loser]
         (self.match%2 == 1) ? players.unshift(self.loser) : players.push(self.loser)
         for i in 1..2
-          third_place.game_records.create(player: players[i-1], record_num: i)
+          self.tournament.third_place.game_records.create(player: players[i-1], record_num: i)
         end
       end
     end
@@ -65,10 +75,6 @@ class Game < ActiveRecord::Base
 
   def finished?
     self.winner.present?
-  end
-
-  def joined_by?(player)
-    self.users.include?(player)
   end
 
   def winner
@@ -85,11 +91,5 @@ class Game < ActiveRecord::Base
 
   def final?
     self.round == self.tournament.round_num
-  end
-
-  def opponent(player)
-    if self.joined_by?(player)
-      self.game_records.where.not(user_id: current_user.id).first.try(:player)
-    end
   end
 end

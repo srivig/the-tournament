@@ -32,4 +32,9 @@ class Tournament < ActiveRecord::Base
   def round_num
     Math.log2(self.size).to_i  #=> return 3 rounds for 8 players (2**3=8)
   end
+
+  # return a game of the third-place playoff
+  def third_place
+    Game.find_by(tournament: self, bracket:1, round:self.round_num, match:2)
+  end
 end
