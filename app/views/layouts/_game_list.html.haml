@@ -30,7 +30,7 @@
             %td
             %td (TBD)
           %td.text-right
-            - if editable
+            - if editable && game.game_records.present?
               = link_to t('Edit'), edit_game_path(game), class: 'btn btn-primary btn-sm pull-right'
-            - else
-              2014年3月2日 14:00
+            -# - else
+            -#   2014年3月2日 14:00
