@@ -33,12 +33,18 @@
         .col-lg-3
           -# Profile
           %section.well.sidebar-nav.text-center
-            =profile_img(current_user)
-            %p
-              %strong= current_user.email
-              %br
-              %small (#{link_to 'ログアウト', root_path})
-            = link_to sanitize("<i class='icon icon-plus'></i> ")+"大会の新規作成", new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
+            - if current_user
+              =profile_img(current_user)
+              %p
+                %strong= current_user.try(:email)
+                %br
+                %small (#{link_to 'ログアウト', destroy_user_session_path, method: :delete})
+              = link_to sanitize("<i class='icon icon-plus'></i> ")+"大会の新規作成", new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
+            - else
+              %p
+                = image_tag("http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y", class: "img-circle")
+              = link_to "会員登録(無料)", new_user_registration_path, class: 'btn btn-danger btn-block btn-lg'
+              %small (#{link_to 'ログイン', new_user_session_path})
           -# Search
           %section
             %h4
