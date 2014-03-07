@@ -19,14 +19,21 @@ $ ->
       winner_inputs = $('.game_game_records_winner input')
       winner_inputs[0].value = winner_inputs[1].value = ""
       # divのclassをセット
-      $('.panel').removeClass('panel-danger').addClass('panel-default')
+      $('.panel').removeClass('panel-warning').addClass('panel-default')
+      # iconのclassをリセット
+      $('.panel-heading i').removeClass('icon-trophy icon-remove')
 
       # 引き分けじゃなかったら勝者セット
       if winner != 2
         $('.game_game_records_winner input')[winner].value = true
         $('.game_game_records_winner input')[1-winner].value = false
-        $('.panel').eq(winner).addClass('panel-danger')
+        $('.panel').eq(winner).addClass('panel-warning')
+        $('.panel-heading i').eq(winner).addClass('icon-trophy')
+        $('.panel-heading i').eq(1-winner).addClass('icon-remove')
+    # 数字はいってなかったらwinnerとかリセット
     else
+      console.log $('.panel-heading i')
+      $('.panel-heading i').removeClass('icon-trophy icon-remove')
       $('.game_game_records_winner input').value = false
       $('.panel').removeClass('panel-danger').addClass('panel-default')
 

@@ -7,21 +7,24 @@
     = f.simple_fields_for :game_records, f.object.game_records.order(:record_num) do |r|
       - offset = 'col-lg-pull-1' if r.object.record_num == 1
       .col-lg-5.text-center{class: offset}
-        - panel = (r.object.winner == true) ? 'panel-danger' : 'panel-default'
+        - panel = (r.object.winner == true) ? 'panel-warning' : 'panel-default'
         .panel{class: panel}
           .panel-heading
-            %h4= r.object.player.name
-            %small
-              - if r.object.player.group.present?
-                (#{r.object.player.group})
-              - else
-                \(--)
+            - if @game.finished?
+              - icon = (r.object.winner == true) ? 'icon-trophy' : 'icon-remove'
+              %i.icon.icon-2x{class: icon}
+            - else
+              %i.icon.icon-2x
+            %h4
+              = r.object.player.name
+              %small
+                - if r.object.player.group.present?
+                  (#{r.object.player.group})
+                - else
+                  \(--)
           %ul.list-group
             %li.list-group-item.clearfix= r.input :score
             = r.association :player, as: :hidden
             = r.input :winner, as: :hidden
-
-  .form-group
-    -# = f.simple_fields_for
 
   = f.button :submit, class: 'btn-danger'
