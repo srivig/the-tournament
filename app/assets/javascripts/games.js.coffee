@@ -26,4 +26,7 @@ $ ->
         $('.game_game_records_winner input')[winner].value = true
         $('.game_game_records_winner input')[1-winner].value = false
         $('.panel').eq(winner).addClass('panel-danger')
+    else
+      $('.game_game_records_winner input').value = false
+      $('.panel').removeClass('panel-danger').addClass('panel-default')
 

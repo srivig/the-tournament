@@ -15,7 +15,10 @@ class Tournament < ActiveRecord::Base
   validates :place, length: {maximum: 100}, allow_nil: true
   validates :desc, length: {maximum: 500}, allow_nil: true
 
+  default_scope {order(created_at: :desc)}
+
   after_create :set_first_rounds
+
 
   def set_first_rounds
     self.games.where(bracket: 1, round: 1).each do |game|
