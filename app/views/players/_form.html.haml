@@ -1,9 +1,12 @@
 = simple_form_for @player, html: {class: 'form-horizontal'} do |f|
-  = f.input :seed, label: '登録番号', disabled: true
+  .form-group
+    %label.col-sm-2.control-label 登録番号
+    .col-sm-6
+      %p.form-control-static= f.object.seed
+  = f.input :seed, as: :hidden
   = f.input :name, label: '名前'
   = f.input :group, label: '所属など'
 
   .form-group
     .col-sm-6.col-sm-offset-2
       = f.button :submit, class: 'btn-danger'
-      -# = link_to t('.cancel', default: t("helpers.links.cancel")), tournament_players_path(@player.tournament)
