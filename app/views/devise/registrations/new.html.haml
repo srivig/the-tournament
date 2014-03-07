@@ -1,0 +1,14 @@
+=link_to sanitize('<i class="icon-reply"></i> ') + 'HOMEに戻る', tournaments_path, class: 'btn btn-default'
+%section
+  %h1.title ユーザー登録
+
+%section
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal'}) do |f|
+    = f.error_notification
+    .form-inputs
+      = f.input :email, :required => true, :autofocus => true
+      = f.input :password, :required => true
+      = f.input :password_confirmation, :required => true
+    .form-actions.col-sm-6.col-sm-offset-2
+      %div= f.button :submit, "Sign up", class: 'btn-primary'
+      = render "devise/shared/links"
