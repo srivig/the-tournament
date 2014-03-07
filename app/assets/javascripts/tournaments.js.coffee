@@ -3,16 +3,17 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  createBracket = ->
-    d = new $.Deferred
-    $('#tournament').bracket(init: gon.tournament_data)
-    d.resolve()
+  if(typeof gon != 'undefined')
+    createBracket = ->
+      d = new $.Deferred
+      $('#tournament').bracket(init: gon.tournament_data)
+      d.resolve()
 
-  hideDecimal = ->
-    jQuery.each($('.score'), ->
-      if !isNaN(this.innerText)
-        this.innerText = Math.floor(this.innerText)
-    )
+    hideDecimal = ->
+      jQuery.each($('.score'), ->
+        if !isNaN(this.innerText)
+          this.innerText = Math.floor(this.innerText)
+      )
 
-  createBracket().done(hideDecimal())
+    createBracket().done(hideDecimal())
 
