@@ -20,11 +20,12 @@
   %body#about-page
     = nav_bar responsive: true, fixed: :top, brand: image_tag("logo_w.png") do
       = menu_group do
-        %li= link_to "About", "static_pages#about"
-        %li= link_to "Examples", "static_pages#about"
-        %li= link_to "Feature", "static_pages#about"
-        %li= link_to "Plan/Price", "static_pages#about"
-        %li= link_to "FAQ", "static_pages#about"
+        %li= link_to "Top", "#top"
+        %li= link_to "About", "#about"
+        %li= link_to "Examples", "#examples"
+        %li= link_to "Feature", "#feature"
+        %li= link_to "Plan/Price", "#plan"
+        %li= link_to "FAQ", "#faq"
 
     .container
       .row
