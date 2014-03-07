@@ -19,13 +19,12 @@ class GamesController < ApplicationController
   # PATCH/PUT /games/1
   # PATCH/PUT /games/1.json
   def update
-    set_winner
-
     respond_to do |format|
       if @game.update(game_params)
         format.html { redirect_to tournament_games_path(@game.tournament), notice: 'Game was successfully updated.' }
         format.json { head :no_content }
       else
+        p @game.errors
         flash.now[:alert] = "Failed on saving the game."
         format.html { render action: 'edit' }
         format.json { render json: @game.errors, status: :unprocessable_entity }

@@ -82,7 +82,7 @@ class Game < ActiveRecord::Base
   end
 
   def loser
-    self.game_records.find_by(winner: nil).player if self.winner.present?
+    self.game_records.find_by(winner: false).try(:player) if self.winner.present?
   end
 
   def semi_final?
