@@ -1,17 +1,23 @@
-.panel.panel-default
-  %table.table
-    %tr
-      %th 参加番号
-      %th 名前(所属)
-      %th
-    - tournament.players.order(seed: :asc).each do |player|
+= simple_form_for @tournament, html: {class: 'form-horizontal'} do |f|
+  .panel.panel-default
+    %table.table
       %tr
-        %td= player.seed
-        %td
-          = player.name
-          - if player.group.present?
-            (#{player.group})
-        %td
+        %th 参加番号
+        %th 名前
+        %th 所属
+      = f.simple_fields_for :players, f.object.players.order(:seed) do |r|
+        %tr
+          = r.input :seed, as: :hidden
+          %td
+            %p.form-control-static= r.object.seed
           - if editable
-            = link_to '編集する', edit_player_path(player), class: 'btn btn-primary btn-sm pull-right'
+            %td= r.input :name, label: false
+            %td= r.input :group, label: false
+          - else
+            %td
+              %p.form-control-static= r.object.name
+            %td
+              %p.form-control-static= r.object.group
+  - if editable
+    = f.button :submit, class: 'btn-danger'
 

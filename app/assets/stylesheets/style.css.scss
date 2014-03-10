@@ -197,3 +197,14 @@ section { margin-bottom: 30px; }
   width: 90px;
   border-right: 1px solid #efefef;
 }
+
+
+/*****************************************************************
+* MemberList
+*****************************************************************/
+#member-list {
+  .form-horizontal .form-group {
+    margin: 0;
+    .col-sm-6 { width: 100%; }
+  }
+}

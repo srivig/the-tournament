@@ -6,7 +6,7 @@ class Tournament < ActiveRecord::Base
   accepts_nested_attributes_for :players
   accepts_nested_attributes_for :games
 
-  validates_associated :games
+  validates_associated :games, on: :create
   validates_associated :players
   validates :user_id, presence: true
   validates :size, presence: true, inclusion: {in: [4,8,16]}

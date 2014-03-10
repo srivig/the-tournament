@@ -5,26 +5,9 @@
     =@tournament.title
     %small @#{@tournament.place}
 
-%section
+%section#member-list
   %h1.headline
     %i.icon.icon-group
     参加者一覧
     -# =link_to sanitize('<i class="icon icon-paper-clip"></i> ')+'CSVアップロード', '#', class: 'btn btn-warning btn-sm pull-right'
-  -# = render partial: "layouts/member_list", locals: {tournament: @tournament, editable: true}
-
-  .panel.panel-default
-    %table.table
-      %tr
-        %th 参加番号
-        %th 名前
-        %th 所属
-        %th
-      = simple_form_for @tournament, html: {class: 'form-horizontal'} do |f|
-        = f.simple_fields_for :players, f.object.players.order(:seed) do |r|
-          %tr
-            = r.input :seed, as: :hidden
-            %td
-              %p.form-control-static= r.object.seed
-            %td= r.input :name, label: false
-            %td= r.input :group, label: false
-            %td
+  = render partial: "layouts/member_list", locals: {tournament: @tournament, editable: true}
