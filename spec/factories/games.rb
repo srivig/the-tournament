@@ -2,32 +2,23 @@
 
 FactoryGirl.define do
   factory :game do
-    association :party
-    rule "Eight-ball"
+    association :tournament
+    bracket 1
+    round 1
+    match 1
 
-    after(:build) do |game|
-      game.game_records << build(:game_record, user: create(:user))
-      game.game_records << build(:win_record, user: create(:user))
+    factory :game_with_empty_records do
+      after(:build) do |game|
+        game.game_records << build(:game_record, player: create(:player), record_num:1)
+        game.game_records << build(:game_record, player: create(:player), record_num:2)
+      end
     end
-  end
 
-  factory :game_with_no_winner, class: Game do
-    association :party
-    rule "Eight-ball"
-
-    after(:build) do |game|
-      game.game_records << build(:game_record, user: create(:user))
-      game.game_records << build(:game_record, user: create(:user))
-    end
-  end
-
-  factory :game_with_two_winners, class: Game do
-    association :party
-    rule "Eight-ball"
-
-    after(:build) do |game|
-      game.game_records << build(:win_record, user: create(:user))
-      game.game_records << build(:win_record, user: create(:user))
+    factory :game_with_winner do
+      after(:build) do |game|
+        game.game_records << build(:win_record, player: create(:player), record_num:1)
+        game.game_records << build(:lose_record, player: create(:player),record_num:2)
+      end
     end
   end
 end

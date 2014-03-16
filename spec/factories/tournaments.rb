@@ -5,10 +5,5 @@ FactoryGirl.define do
     association :user
     title {Faker::Company.name}
     size 8
-
-    # after(:build) do |game|
-    #   game.game_records << build(:game_record, user: create(:user))
-    #   game.game_records << build(:win_record, user: create(:user))
-    # end
   end
 end
