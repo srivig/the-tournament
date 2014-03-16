@@ -29,7 +29,13 @@
   .list-group
     - @tournaments.each do |tournament|
       =link_to tournament_path(tournament), class: 'list-group-item clearfix' do
-        %h4.list-group-item-heading
+        - if tournament.id == 1
+          %span.label.label-warning サッカー
+        - elsif tournament.id == 4
+          %span.label.label-default その他
+        - else
+          %span.label.label-info ボードゲーム
+        %span.list-group-item-heading
           = tournament.title
           %i.icon.icon-angle-right.pull-right
-        %small.list-group-item-text= tournament.desc
+        %small (2014.3.12)
