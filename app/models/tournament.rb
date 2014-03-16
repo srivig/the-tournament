@@ -17,8 +17,26 @@ class Tournament < ActiveRecord::Base
 
   default_scope {order(created_at: :desc)}
 
+  before_create :create_players, :create_games
   after_create :set_first_rounds
 
+  def create_players
+    for i in 1..self.size do
+      self.players.build(name: "Player#{i}", seed: i)
+    end
+  end
+
+  def create_games
+    # winner bracket
+    for i in 1..self.round_num do
+      match_num = self.size / (2**i)
+      match_num.times do |k|
+        self.games.build(bracket:1, round:i, match:k+1)
+      end
+    end
+    # 3rd place consolidation
+    self.games.build(bracket:1, round: self.round_num, match:2)
+  end
 
   def set_first_rounds
     self.games.where(bracket: 1, round: 1).each do |game|

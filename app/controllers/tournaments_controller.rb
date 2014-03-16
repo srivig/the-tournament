@@ -40,23 +40,8 @@ class TournamentsController < ApplicationController
 
   def create
     @tournament = Tournament.new(tournament_params)
-    @tournament.user = current_user || User.find(1) # add as an guest user if not logged in
-
-    # add tmp players
-    for i in 1..@tournament.size do
-      @tournament.players.build(name: "Player#{i}", seed: i)
-    end
-
-    # construct games
-      # winner bracket
-      for i in 1..@tournament.round_num do
-        match_num = @tournament.size / (2**i)
-        match_num.times do |k|
-          @tournament.games.build(bracket:1, round:i, match:k+1)
-        end
-      end
-      # 3rd place consolidation
-      @tournament.games.build(bracket:1, round: @tournament.round_num, match:2)
+    @tournament.user = current_user
+    # @tournament.user = current_user || User.find(1) # add as an guest user if not logged in
 
     respond_to do |format|
       if @tournament.save
