@@ -1,6 +1,10 @@
 class TournamentsController < ApplicationController
   def index
-    @tournaments = Tournament.all
+    if params[:q]
+      @tournaments = Tournament.where('title LIKE ? AND detail LIKE ?', "%{#{params[:q]}}%", "%{#{params[:q]}}%")
+    else
+      @tournaments = Tournament.limit(10)
+    end
   end
 
   def show

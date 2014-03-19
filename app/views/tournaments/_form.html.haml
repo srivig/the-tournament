@@ -1,6 +1,6 @@
 = simple_form_for @tournament, html: {class: 'form-horizontal'} do |f|
   = f.input :title, label: '大会名'
-  = f.input :desc, label: '大会の説明など'
+  = f.input :detail, label: '大会の説明など'
   = f.input :place, label: '開催地'
 
   - if @tournament.new_record?
