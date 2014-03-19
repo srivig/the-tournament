@@ -6,7 +6,7 @@ $ ->
   $('.game_game_records_score input').change ->
     # どっちもスコア入ってるかチェック
     scores = [Number($('.game_game_records_score input')[0].value), Number($('.game_game_records_score input')[1].value)]
-    if scores[0] && scores[1]
+    if (scores[0] != "") && (scores[1] != "")
       # 点数比較して勝者を決定
       if scores[0] > scores[1]
         winner = 0
