@@ -1,32 +1,19 @@
+=link_to sanitize('<i class="icon-reply"></i> ') + 'HOMEに戻る', root_path, class: 'btn btn-default'
 %section
-  #carousel.carousel.slide(data-ride="carousel")
-    <!-- Indicators -->
-    %ol.carousel-indicators
-      -# %li.active(data-target="#carousel" data-slide-to="0")
-      -# %li(data-target="#carousel" data-slide-to="1")
-    <!-- Wrapper for slides -->
-    .carousel-inner
-      .item.active
-        =image_tag("index-top.png")
-        .carousel-caption
-          THE TOURNAMENTは、トーナメント形式の大会運営をサポートします。
-      -# .item
-      -#   =image_tag("index-top.png")
-      -#   .carousel-caption
-      -#     スポーツ、ボードゲームなど様々な用途に利用できます。
-    <!-- Controls -->
-    -# %a.left.carousel-control(href="#carousel" data-slide="prev")
-    -#   %span.glyphicon.glyphicon-chevron-left
-    -# %a.right.carousel-control(href="#carousel" data-slide="next")
-    -#   %span.glyphicon.glyphicon-chevron-right
-
+  %h1.title.clearfix 大会をさがす
 
 
 %section
   %h1.headline
-    %i.icon.icon-exclamation-sign
-    新着トーナメント
+    - if params[:q].present?
+      %i.icon.icon-search
+      "#{params[:q]}"の検索結果
+    - else
+      %i.icon.icon-bell-alt
+      すべてのトーナメント
   .list-group
+    - if @tournaments.blank?
+      .list-group-item No Tournament was found for "#{params[:q]}".
     - @tournaments.each do |tournament|
       =link_to tournament_path(tournament), class: 'list-group-item clearfix' do
         - if tournament.id == 1

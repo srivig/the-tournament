@@ -1,5 +1,5 @@
 TheTournament::Application.routes.draw do
-  root to: "tournaments#index"
+  root to: "static_pages#top"
   devise_for :users
   match 'about', to: 'static_pages#about', via: :get
   resources :tournaments do

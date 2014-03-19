@@ -50,11 +50,12 @@
             %h4
               %i.icon.icon-search
               大会検索
-            .input-group.well
-              %input.form-control(type="text" placeholder="大会名、キーワード")
-              %span.input-group-btn
-                %button.btn.btn-default(type="button")
-                  検索
+            = form_tag('/tournaments', method: :get) do
+              .input-group.well
+                = text_field_tag(:q, '', class:"form-control", placeholder:'大会名、キーワード')
+                -# %input.form-control(type="text" placeholder="大会名、キーワード")
+                %span.input-group-btn
+                  = submit_tag("検索", class:"btn btn-default")
           -# Category
           %section
             %h4

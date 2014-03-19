@@ -1,0 +1,41 @@
+%section
+  #carousel.carousel.slide(data-ride="carousel")
+    <!-- Indicators -->
+    %ol.carousel-indicators
+      -# %li.active(data-target="#carousel" data-slide-to="0")
+      -# %li(data-target="#carousel" data-slide-to="1")
+    <!-- Wrapper for slides -->
+    .carousel-inner
+      .item.active
+        =image_tag("index-top.png")
+        .carousel-caption
+          THE TOURNAMENTは、トーナメント形式の大会運営をサポートします。
+      -# .item
+      -#   =image_tag("index-top.png")
+      -#   .carousel-caption
+      -#     スポーツ、ボードゲームなど様々な用途に利用できます。
+    <!-- Controls -->
+    -# %a.left.carousel-control(href="#carousel" data-slide="prev")
+    -#   %span.glyphicon.glyphicon-chevron-left
+    -# %a.right.carousel-control(href="#carousel" data-slide="next")
+    -#   %span.glyphicon.glyphicon-chevron-right
+
+
+%section
+  %h1.headline
+    %i.icon.icon-bell-alt
+    新着トーナメント
+  .list-group
+    - @tournaments.each do |tournament|
+      =link_to tournament_path(tournament), class: 'list-group-item clearfix' do
+        - if tournament.id == 1
+          %span.label.label-warning サッカー
+        - elsif tournament.id == 4
+          %span.label.label-default その他
+        - else
+          %span.label.label-info ボードゲーム
+        %span.list-group-item-heading
+          = tournament.title
+          %i.icon.icon-angle-right.pull-right
+        %small (2014.3.12)
+  = link_to sanitize("<i class='icon icon-double-angle-right'></i>")+' もっとみる', tournaments_path, class: "pull-right"
