@@ -28,12 +28,8 @@
   .list-group
     - @tournaments.each do |tournament|
       =link_to tournament_path(tournament), class: 'list-group-item clearfix' do
-        - if tournament.id == 1
-          %span.label.label-warning サッカー
-        - elsif tournament.id == 4
-          %span.label.label-default その他
-        - else
-          %span.label.label-info ボードゲーム
+        - if tournament.created_at > 3.days.ago
+          %span.label.label-warning New!
         %span.list-group-item-heading
           = tournament.title
           %i.icon.icon-angle-right.pull-right

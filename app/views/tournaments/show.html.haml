@@ -1,14 +1,12 @@
-%div
-  %ol.breadcrumb
-    %li
-      =link_to 'Home', root_path
-    %li
-      %a(href="#") スポーツ
-    %li
-      %a(href="#") サッカー
-    %li
-      %a.active(href="#") 第14回全国高校サッカー選手権大会
+/
+  %div
+    %ol.breadcrumb
+      %li
+        =link_to 'HOME', root_path
+      %li
+        %a.active(href="#")= @tournament.title
 
+=link_to sanitize('<i class="icon-reply"></i> ') + 'HOMEに戻る', root_path, class: 'btn btn-default'
 %section
   %h1.title.clearfix
     =@tournament.title
@@ -23,15 +21,16 @@
           %li=link_to sanitize('<i class="icon-user"></i> ')+'参加者情報の更新', tournament_players_path(@tournament)
           %li=link_to sanitize('<i class="icon-list-alt"></i> ')+'試合結果の更新', tournament_games_path(@tournament)
 
-  %ul.list-inline
-    %li
-      %span.label.label-default サッカー
-    %li
-      %span.label.label-default 高校
-    %li
-      %span.label.label-default スポーツ
-    %li
-      %span.label.label-default 滋賀県
+  /
+    %ul.list-inline
+      %li
+        %span.label.label-default サッカー
+      %li
+        %span.label.label-default 高校
+      %li
+        %span.label.label-default スポーツ
+      %li
+        %span.label.label-default 滋賀県
   %p
     =@tournament.detail
 
