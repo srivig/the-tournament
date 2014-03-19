@@ -20,5 +20,12 @@ FactoryGirl.define do
         game.game_records << build(:lose_record, player: create(:player),record_num:2)
       end
     end
+
+    factory :game_with_invalid_winner do
+      after(:build) do |game|
+        game.game_records << build(:win_record, player: create(:player), record_num:1, score:1)
+        game.game_records << build(:lose_record, player: create(:player),record_num:2, score:2)
+      end
+    end
   end
 end

@@ -4,9 +4,11 @@ FactoryGirl.define do
   factory :game_record do
     association :player
     association :game
+    score 0
     record_num 1
 
     factory :win_record do
+      score 1
       winner true
     end
 

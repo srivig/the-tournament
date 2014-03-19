@@ -24,7 +24,6 @@ class GamesController < ApplicationController
         format.html { redirect_to tournament_games_path(@game.tournament), notice: 'Game was successfully updated.' }
         format.json { head :no_content }
       else
-        p @game.errors
         flash.now[:alert] = "Failed on saving the game."
         format.html { render action: 'edit' }
         format.json { render json: @game.errors, status: :unprocessable_entity }

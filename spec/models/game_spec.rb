@@ -211,6 +211,19 @@ describe Game do
     end
   end
 
+  describe 'has_valid_winner' do
+    before :each do
+      @game = create(:game_with_winner)
+      @game.game_records.find_by(winner: true).winner = false
+    end
+
+    it 'should not be valid without winner' do
+      pending 'cannot test has_valid_winner'
+      @game.save!
+      # expect(@game.game_records).to
+    end
+  end
+
   describe 'reset ancestors'
 
   describe 'set parent game'
