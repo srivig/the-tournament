@@ -60,19 +60,17 @@
             %h4
               %i.icon.icon-star
               注目されている大会
+            - popular = [3,2]
             %ul.media-list.well
-              %li.media
-                %a.pull-left(href="#")
-                  =image_tag("small-4.png")
-                .media-body
-                  %h4.media-heading 第3回自転車大レース
-                  %p 超注目の大会です。
-              %li.media
-                %a.pull-left(href="#")
-                  =image_tag("small-5.png")
-                .media-body
-                  %h4.media-heading ポケモンカードバトルトーナメント
-                  %p 超注目の大会です。
+              - popular.each do |i|
+                - tournament = Tournament.find(i)
+                %li.media
+                  .pull-left
+                    =image_tag("small-#{7-i}.png")
+                  .media-body
+                    %h4.media-heading
+                      = link_to "#{tournament.title}", tournament_path(tournament.id)
+                    %p= tournament.desc
           -# Category
           %section
             %h4
