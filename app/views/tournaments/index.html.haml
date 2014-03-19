@@ -20,5 +20,5 @@
         %span.list-group-item-heading
           = tournament.title
           %i.icon.icon-angle-right.pull-right
-        %small (2014.3.12)
+          %small (#{tournament.created_at.strftime("%Y.%m.%d")})
     = paginate @tournaments

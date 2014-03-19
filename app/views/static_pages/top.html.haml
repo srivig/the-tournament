@@ -33,5 +33,5 @@
         %span.list-group-item-heading
           = tournament.title
           %i.icon.icon-angle-right.pull-right
-        %small (2014.3.12)
+        %small (#{tournament.created_at.strftime("%Y.%m.%d")})
   = link_to sanitize("<i class='icon icon-double-angle-right'></i>")+' もっとみる', tournaments_path, class: "pull-right"
