@@ -1,4 +1,5 @@
 class TournamentsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     if params[:q]
       @tournaments = Tournament.where('title LIKE ? OR detail LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%").page(params[:page]).per(15)

@@ -52,9 +52,4 @@ class GamesController < ApplicationController
     def game_params
       params.require(:game).permit(:id, :tournament_id, :bracket, :round, :match, game_records_attributes: [:id, :player_id, :score, :winner])
     end
-
-    def set_winner
-      win_record =  game_params[:game_records_attributes].sort_by{|k,v| v["score"]}.reverse.first[0]
-      params["game"]["game_records_attributes"][win_record]["winner"] = true
-    end
 end
