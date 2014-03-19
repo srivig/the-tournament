@@ -2,7 +2,6 @@
 %section
   %h1.title.clearfix 大会をさがす
 
-
 %section
   %h1.headline
     - if params[:q].present?
@@ -26,3 +25,4 @@
           = tournament.title
           %i.icon.icon-angle-right.pull-right
         %small (2014.3.12)
+    = paginate @tournaments

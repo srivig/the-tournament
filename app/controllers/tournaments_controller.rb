@@ -1,9 +1,9 @@
 class TournamentsController < ApplicationController
   def index
     if params[:q]
-      @tournaments = Tournament.where('title LIKE ? OR detail LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%")
+      @tournaments = Tournament.where('title LIKE ? OR detail LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%").page(params[:page]).per(15)
     else
-      @tournaments = Tournament.limit(10)
+      @tournaments = Tournament.all.page(params[:page]).per(15)
     end
   end
 
@@ -80,6 +80,6 @@ class TournamentsController < ApplicationController
 
   private
     def tournament_params
-      params.require(:tournament).permit(:id, :title, :user_id, :desc, :place, :size, players_attributes: [:id, :name, :group])
+      params.require(:tournament).permit(:id, :title, :user_id, :detail, :place, :size, players_attributes: [:id, :name, :group])
     end
 end

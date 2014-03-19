@@ -13,7 +13,7 @@ class Tournament < ActiveRecord::Base
   validates :type, numericality: {only_integer: true}, allow_nil: true
   validates :title, presence: true, length: {maximum: 100}
   validates :place, length: {maximum: 100}, allow_nil: true
-  validates :desc, length: {maximum: 500}, allow_nil: true
+  validates :detail, length: {maximum: 500}, allow_nil: true
 
   default_scope {order(created_at: :desc)}
 
