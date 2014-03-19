@@ -31,46 +31,18 @@
 %section#examples
   %h1
     %span Examples
-  %p.text-center
-    実際に作成したトーナメント表を随時追加していきます。
-/
   .row
-    .col-lg-3
-      .thumbnail
-        =image_tag("example-1.png")
-        .caption
-          %h3 Thumbnail label
-          %p ...
-          %p
-            %a(href="#" class="btn btn-primary" role="button") Button
-            %a(href="#" class="btn btn-default" role="button") Button
-    .col-lg-3
-      .thumbnail
-        =image_tag("example-2.png")
-        .caption
-          %h3 Thumbnail label
-          %p ...
-          %p
-            %a(href="#" class="btn btn-primary" role="button") Button
-            %a(href="#" class="btn btn-default" role="button") Button
-    .col-lg-3
-      .thumbnail
-        =image_tag("example-3.png")
-        .caption
-          %h3 Thumbnail label
-          %p ...
-          %p
-            %a(href="#" class="btn btn-primary" role="button") Button
-            %a(href="#" class="btn btn-default" role="button") Button
-    .col-lg-3
-      .thumbnail
-        =image_tag("example-4.png")
-        .caption
-          %h3 Thumbnail label
-          %p ...
-          %p
-            %a(href="#" class="btn btn-primary" role="button") Button
-            %a(href="#" class="btn btn-default" role="button") Button
+    .col-lg-1
+    .col-lg-5#tournament
+    .col-lg-5
+      %h2
+        = link_to(tournament_path(1)) do
+          AFC U-22選手権
+          %small @オマーン
+      %p
+        AFC U-22アジアカップ（英: AFC U-22 Asian Cup）は、アジアサッカー連盟（AFC）が主催する、22歳以下のナショナルチームによるサッカーの大陸選手権大会である。 この大会は2年に1回開催され、第1回大会は2014年1月11日から1月26日（予選は2012年）に開催された。また2015年の第2回大会は、2016年のオリンピックにおける男子サッカーのアジア予選を兼ねる予定である。
+      = link_to sanitize("<i class='icon icon-double-angle-right'></i>")+' この大会の詳細をみる', tournament_path(1), class: 'btn btn-primary'
+
 
 
 %section#feature

@@ -52,7 +52,7 @@
               大会検索
             = form_tag('/tournaments', method: :get) do
               .input-group.well
-                = text_field_tag(:q, '', class:"form-control", placeholder:'大会名、キーワード')
+                = text_field_tag(:q, params[:q], class:"form-control", placeholder:'大会名、キーワード')
                 -# %input.form-control(type="text" placeholder="大会名、キーワード")
                 %span.input-group-btn
                   = submit_tag("検索", class:"btn btn-default")
