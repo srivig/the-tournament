@@ -1,0 +1,11 @@
+language: ruby
+rvm:
+  - 2.0.0
+before_script:
+  - psql -c "CREATE ROLE tnmt WITH CREATEDB LOGIN" -U postgres
+deploy:
+  provider: heroku
+  app:
+    master: the-tournament
+  api_key:
+    secure: AwIEWo1N2yFX8gLH/GkZLv7VifkdLx+hrTJPJS+bGJerrY756kLifQI5CKWvWnUAi+hpcdJHg+mOqyacoHouTxTnKhSP9PJi2ZrbqTzUfhp2qCgh/vOaFwacKOll6agDgSgsx7e9SdwFjJ34U+LT/Ky4dx9nfNn6fCbqu6b9dZs=

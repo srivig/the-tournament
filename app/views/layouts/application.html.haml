@@ -20,6 +20,7 @@
 
 
   %body
+    = render partial: "layouts/analytics" if Rails.env.production?
     = nav_bar responsive: true, brand: image_tag("logo_w.png", alt: "THE TOURNAMENT") do
       %p.navbar-text
         %span.label.label-warning NEW!
