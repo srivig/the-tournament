@@ -68,7 +68,6 @@ pickle-email-*.html
 .secret
 config/secrets.yml
 .env
-.travis.yml
 
 ## Environment normalisation:
 /.bundle
