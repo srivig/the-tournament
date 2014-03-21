@@ -37,12 +37,6 @@ class TournamentsController < ApplicationController
       'teams' => teams,
       'results' => results
     }
-    # gon.tournament_data ||= Hash.new
-    # gon.tournament_data["#{@tournament.id}"] = {
-    #   'teams' => teams,
-    #   'results' => results
-    # }
-    # p "comes here"
   end
 
   def new
