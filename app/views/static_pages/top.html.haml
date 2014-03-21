@@ -27,7 +27,7 @@
     新着トーナメント
   .list-group
     - @tournaments.each do |tournament|
-      =link_to tournament_path(tournament), class: 'list-group-item clearfix' do
+      =link_to tournament_path(tournament), class: 'list-group-item clearfix', data:{no_turbolink:true} do
         - if tournament.created_at > 3.days.ago
           %span.label.label-warning New!
         %span.list-group-item-heading
