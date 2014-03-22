@@ -71,7 +71,7 @@
                 %li.media
                   .media-body
                     %h4.media-heading
-                      = link_to "#{tournament.title}", tournament_path(tournament.id)
+                      = link_to "#{tournament.title}", tournament_path(tournament.id), data:{no_turbolink:true}
                     %p= tournament.detail
           -# Category
           /
