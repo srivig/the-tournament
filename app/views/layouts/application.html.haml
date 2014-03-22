@@ -69,8 +69,6 @@
               - popular.each do |i|
                 - tournament = Tournament.find(i)
                 %li.media
-                  .pull-left
-                    =image_tag("small-#{7-i}.png")
                   .media-body
                     %h4.media-heading
                       = link_to "#{tournament.title}", tournament_path(tournament.id)

@@ -79,6 +79,14 @@ class TournamentsController < ApplicationController
     end
   end
 
+  def destroy
+    @tournament = Tournament.find(params[:id])
+    @tournament.destroy
+    respond_to do |format|
+      format.html { redirect_to tournaments_path }
+      format.json { head :no_content }
+    end
+  end
 
   private
     def tournament_params

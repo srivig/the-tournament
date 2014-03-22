@@ -8,9 +8,11 @@
   %h1.title.clearfix
     =@tournament.title
     %small @#{@tournament.place}
+    =link_to sanitize('<i class="icon-trash"></i> ')+'大会を削除する', tournament_path(@tournament), confirm: '大会データを削除します。本当によろしいですか？', method: :delete, class: 'btn btn-sm btn-warning pull-right'
 
 %section
   %h1.headline
     %i.icon.icon-cog
     トーナメント情報の更新
   = render :partial => "form"
+

@@ -20,6 +20,7 @@
           %li=link_to sanitize('<i class="icon-cog"></i> ')+'基本情報の更新', edit_tournament_path
           %li=link_to sanitize('<i class="icon-user"></i> ')+'参加者情報の更新', tournament_players_path(@tournament)
           %li=link_to sanitize('<i class="icon-list-alt"></i> ')+'試合結果の更新', tournament_games_path(@tournament)
+          -# %li=link_to sanitize('<i class="icon-trash"></i> ')+'大会を削除する', tournament_path(@tournament), confirm: '大会データを削除します。本当によろしいですか？', method: :delete
 
   /
     %ul.list-inline
