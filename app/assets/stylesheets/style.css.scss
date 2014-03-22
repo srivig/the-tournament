@@ -33,6 +33,22 @@ $screen-md-min: 751px;
 section { margin-bottom: 30px; }
 
 
+/* Bootstrap modification */
+input[type="checkbox"] {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  width: auto;
+  &.form-control {
+    height: auto;
+    &:focus {
+     border-color: transparent;
+     box-shadow: none;
+     -webkit-box-shadow: none;
+    }
+  }
+}
+
+
 /*****************************************************************
 * Navbar
 *****************************************************************/

@@ -37,6 +37,7 @@ class TournamentsController < ApplicationController
       'teams' => teams,
       'results' => results
     }
+    gon.skip_consolation_round = !@tournament.consolation_round
   end
 
   def new
@@ -81,6 +82,6 @@ class TournamentsController < ApplicationController
 
   private
     def tournament_params
-      params.require(:tournament).permit(:id, :title, :user_id, :detail, :place, :size, players_attributes: [:id, :name, :group])
+      params.require(:tournament).permit(:id, :title, :user_id, :detail, :place, :size, :consolation_round, players_attributes: [:id, :name, :group])
     end
 end

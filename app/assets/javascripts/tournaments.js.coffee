@@ -3,10 +3,13 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  if(typeof gon != 'undefined')
+  if (typeof gon != 'undefined') && ($('#tournament').length)
     createBracket = ->
       d = new $.Deferred
-      $('#tournament').bracket(init: gon.tournament_data)
+      $('#tournament').bracket({
+        skipConsolationRound: gon.skip_consolation_round,
+        init: gon.tournament_data
+      })
       d.resolve()
 
     hideDecimal = ->
