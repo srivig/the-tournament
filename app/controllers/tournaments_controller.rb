@@ -24,7 +24,7 @@ class TournamentsController < ApplicationController
         if game.winner.present? && (game.game_records.first.score == game.game_records.last.score)
           win_record = game.game_records.find_by(winner: true)
           tmp = Array[win_record.score, win_record.score + 0.1]
-          tmp.reverse if win_record.record_num == 1
+          tmp.reverse! if win_record.record_num == 1
           round_res << tmp
         else
           round_res << game.game_records.map{|m| m.score}.to_a

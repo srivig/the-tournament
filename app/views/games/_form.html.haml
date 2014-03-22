@@ -26,8 +26,17 @@
           %ul.list-group
             %li.list-group-item.clearfix
               %div.clearfix= r.input :score, label:false, input_html:{value: r.object.score || 0}
-              -# %div.clearfix= r.input :winner, as: :boolean, inline_label: 'Winner', label: false, wrapper_html:{class:'text-left'}
             = r.association :player, as: :hidden
             = r.input :winner, as: :hidden
+
+  %div.mb-30
+    %small ※同点の場合は以下から手動で勝者を選択してください。
+    .row
+      .col-xs-6
+        %select#winner-select.form-control(disabled)
+          %option(value="0") --
+          - @game.game_records.each do |r|
+            %option(value="#{r.record_num}")= r.player.name
+
 
   = f.button :submit, class: 'btn-danger'
