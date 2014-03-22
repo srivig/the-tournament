@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20140322073931) do
     t.integer  "game_id"
     t.integer  "player_id"
     t.integer  "record_num"
-    t.integer  "score"
+    t.integer  "score",      default: 0
     t.boolean  "winner"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -15,6 +15,7 @@
               %i.icon.icon-2x{class: icon}
             - else
               %i.icon.icon-2x
+            %br
             %h4
               = r.object.player.name
               %small
@@ -23,7 +24,9 @@
                 - else
                   \(--)
           %ul.list-group
-            %li.list-group-item.clearfix= r.input :score
+            %li.list-group-item.clearfix
+              %div.clearfix= r.input :score, label:false, input_html:{value: r.object.score || 0}
+              -# %div.clearfix= r.input :winner, as: :boolean, inline_label: 'Winner', label: false, wrapper_html:{class:'text-left'}
             = r.association :player, as: :hidden
             = r.input :winner, as: :hidden
 
