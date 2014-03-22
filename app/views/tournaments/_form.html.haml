@@ -2,7 +2,7 @@
   = f.input :title, label: '大会名'
   = f.input :detail, label: '大会の説明など'
   = f.input :place, label: '開催地'
-  = f.input :consolation_round, label: '３位決定戦', inline_label: '３位決定戦を実施する'
+  = f.input :consolation_round, label: '３位決定戦', inline_label: '３位決定戦を実施する', as: :boolean
 
   - if @tournament.new_record?
     = f.input :size, label: '参加者数', collection: Array[4,8,16]
