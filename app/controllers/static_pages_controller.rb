@@ -31,7 +31,6 @@ class StaticPagesController < ApplicationController
       'teams' => teams,
       'results' => results
     }
-    p @tournament
   end
 
   def top
