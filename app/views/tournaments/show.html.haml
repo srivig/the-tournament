@@ -1,39 +1,4 @@
-/
-  %div
-    %ol.breadcrumb
-      %li
-        =link_to 'HOME', root_path
-      %li
-        %a.active(href="#")= @tournament.title
-
-=link_to sanitize('<i class="icon-reply"></i> ') + 'HOMEに戻る', root_path, class: 'btn btn-default'
-%section
-  %h1.title.clearfix
-    =@tournament.title
-    %small @#{@tournament.place}
-    - if @tournament.user == current_user
-      .btn-group.pull-right.btn-group-sm
-        %button.btn.btn-primary(type="button") 大会情報を更新する
-        %button.btn.btn-primary.dropdown-toggle(type="button" data-toggle="dropdown")
-          %span.caret
-        %ul.dropdown-menu(role="menu")
-          %li=link_to sanitize('<i class="icon-cog"></i> ')+'基本情報の更新', edit_tournament_path
-          %li=link_to sanitize('<i class="icon-user"></i> ')+'参加者情報の更新', tournament_players_path(@tournament)
-          %li=link_to sanitize('<i class="icon-list-alt"></i> ')+'試合結果の更新', tournament_games_path(@tournament)
-          -# %li=link_to sanitize('<i class="icon-trash"></i> ')+'大会を削除する', tournament_path(@tournament), confirm: '大会データを削除します。本当によろしいですか？', method: :delete
-
-  /
-    %ul.list-inline
-      %li
-        %span.label.label-default サッカー
-      %li
-        %span.label.label-default 高校
-      %li
-        %span.label.label-default スポーツ
-      %li
-        %span.label.label-default 滋賀県
-  %p
-    =@tournament.detail
+= render partial: "shared/tournament_info", locals: {tournament:@tournament, active:1}
 
 %section
   %h1.headline
@@ -41,17 +6,3 @@
     トーナメント表
   .clearfix
     #tournament.col-lg-12
-
-%section
-  %h1.headline
-    %i.icon.icon-list-alt
-    対戦表
-  = render partial: "layouts/game_list", locals: {tournament: @tournament, editable: false}
-
-
-%section
-  %h1.headline
-    %i.icon.icon-group
-    メンバー表
-  = render partial: "layouts/member_list", locals: {tournament: @tournament, editable: false}
-

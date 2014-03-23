@@ -19,7 +19,7 @@
     = javascript_include_tag "application"
 
   %body#about-page
-    = render partial: "layouts/analytics" if Rails.env.production?
+    = render partial: "shared/analytics" if Rails.env.production?
     = nav_bar responsive: true, fixed: :top, brand: image_tag("logo_w.png") do
       = menu_group do
         %li= link_to "Top", "#top"

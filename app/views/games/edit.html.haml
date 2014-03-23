@@ -1,15 +1,8 @@
-- model_class = Game
-- title = "#{model_class.model_name.human.titleize} Edit"
-- provide(:title, title)
-
-=link_to sanitize('<i class="icon-reply"></i> ') + '試合一覧へ戻る', tournament_games_path(@game.tournament), class: 'btn btn-default'
-
-%section
-  %h1.title.clearfix
-    =@game.tournament.title
-    %small @#{@game.tournament.place}
+= render partial: "shared/tournament_info", locals: {tournament:@game.tournament, active:2}
 
 %section#game-edit
+  %div
+    = link_to sanitize("<i class='icon icon-reply'></i> ")+'試合一覧に戻る', tournament_games_path(@game.tournament), class:'btn btn-default'
   %h1.headline
     %i.icon.icon-list-alt
     試合情報の更新

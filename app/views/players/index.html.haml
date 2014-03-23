@@ -1,13 +1,9 @@
-=link_to sanitize('<i class="icon-reply"></i> ') + '大会トップへ戻る', tournament_path(@tournament), class: 'btn btn-default'
-
-%section
-  %h1.title.clearfix
-    =@tournament.title
-    %small @#{@tournament.place}
+= render partial: "shared/tournament_info", locals: {tournament:@tournament, active:3}
 
 %section#member-list
   %h1.headline
     %i.icon.icon-group
-    参加者一覧
+    メンバー表
     -# =link_to sanitize('<i class="icon icon-paper-clip"></i> ')+'CSVアップロード', '#', class: 'btn btn-warning btn-sm pull-right'
-  = render partial: "layouts/member_list", locals: {tournament: @tournament, editable: true}
+  - editable = (current_user == @tournament.user) ? true : false
+  = render partial: "shared/member_list", locals: {tournament: @tournament, editable: editable}

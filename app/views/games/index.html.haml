@@ -1,13 +1,9 @@
-=link_to sanitize('<i class="icon-reply"></i> ') + '大会トップへ戻る', tournament_path(@tournament), class: 'btn btn-default', data:{no_turbolink:true}
-
-%section
-  %h1.title.clearfix
-    =@tournament.title
-    %small @#{@tournament.place}
+= render partial: "shared/tournament_info", locals: {tournament:@tournament, active:2}
 
 %section
   %h1.headline
     %i.icon.icon-list-alt
-    試合結果の更新
-  = render partial: "layouts/game_list", locals: {tournament: @tournament, editable: true}
+    対戦表
+  - editable = (current_user == @tournament.user) ? true : false
+  = render partial: "shared/game_list", locals: {tournament: @tournament, editable: editable}
 
