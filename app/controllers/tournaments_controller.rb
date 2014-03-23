@@ -69,7 +69,7 @@ class TournamentsController < ApplicationController
     @tournament = Tournament.find(params[:id])
     respond_to do |format|
       if @tournament.update(tournament_params)
-        format.html { redirect_to @tournament, notice: 'Tournament was successfully updated.' }
+        format.html { redirect_to edit_tournament_path(@tournament), notice: 'Tournament was successfully updated.' }
         format.json { head :no_content }
       else
         flash.now[:alert] = "Failed on saving the tournament."
@@ -90,6 +90,6 @@ class TournamentsController < ApplicationController
 
   private
     def tournament_params
-      params.require(:tournament).permit(:id, :title, :user_id, :detail, :place, :size, :consolation_round, players_attributes: [:id, :name, :group])
+      params.require(:tournament).permit(:id, :title, :user_id, :detail, :place, :size, :consolation_round, :tag_list, players_attributes: [:id, :name, :group])
     end
 end

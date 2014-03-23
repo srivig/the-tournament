@@ -1,4 +1,6 @@
 class Tournament < ActiveRecord::Base
+  acts_as_taggable
+
   belongs_to :user
   has_many :games, dependent: :destroy
   has_many :players, dependent: :destroy
@@ -57,5 +59,12 @@ class Tournament < ActiveRecord::Base
   # return a game of the third-place playoff
   def third_place
     Game.find_by(tournament: self, bracket:1, round:self.round_num, match:2)
+  end
+
+  def category
+    self.tag_list.each do |tag|
+      category = Category.find_by(tag_name: tag)
+      return category if category.present?
+    end
   end
 end

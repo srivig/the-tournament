@@ -22,3 +22,5 @@ $ ->
 
     createBracket().done(hideDecimal())
 
+  if $('#tournament_tag_list').length
+    $('#tournament_tag_list').tagsInput({'width':'100%', 'height':'auto'})

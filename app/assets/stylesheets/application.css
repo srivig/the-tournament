@@ -10,5 +10,6 @@
  *
  *= require_self
  *= require jquery.bracket.min
+ *= require jquery.tagsinput.css
  *= require_tree .
  */

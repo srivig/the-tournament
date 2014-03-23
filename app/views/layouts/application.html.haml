@@ -59,7 +59,7 @@
                 -# %input.form-control(type="text" placeholder="大会名、キーワード")
                 %span.input-group-btn
                   = submit_tag("検索", class:"btn btn-default")
-          -# Category
+          -# Pick Up
           %section
             %h4
               %i.icon.icon-star
@@ -74,17 +74,13 @@
                       = link_to "#{tournament.title}", tournament_path(tournament.id), data:{no_turbolink:true}
                     %p= tournament.detail
           -# Category
-          /
-            %section
-              %h4
-                %i.icon.icon-tags
-                カテゴリ・キーワード
-              %ul.well
-                %li サッカー
-                %li 高校
-                %li 全国大会
-                %li バスケットボール
-                %li スポーツ
+          %section
+            %h4
+              %i.icon.icon-tags
+              タグ
+            .well
+              - tag_cloud(Tournament.tag_counts_on(:tags), %w(css1 css2 css3 css4)) do |tag, css_class|
+                = link_to tag.name, { controller: "tournaments", action: "index", tag_name: tag.name }, class: css_class
 
 
       %footer.text-center

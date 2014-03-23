@@ -48,6 +48,20 @@ input[type="checkbox"] {
     }
   }
 }
+#carousel {
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* Tags Input modification */
+div.tagsinput {
+  width: 100%;
+  height: auto;
+}
+.css1 { font-size: 1.0em; }
+.css2 { font-size: 1.2em; }
+.css3 { font-size: 1.4em; }
+.css4 { font-size: 1.6em; }
 
 
 /*****************************************************************
@@ -193,7 +207,7 @@ input[type="checkbox"] {
 }
 
 #tournament, #tournament-sample {
-  overflow: scroll;
+  overflow: auto;
   .label {
     font-weight: normal;
     font-size: 100%;

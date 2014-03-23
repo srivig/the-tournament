@@ -2,14 +2,17 @@
   = f.input :title, label: '大会名'
   = f.input :detail, label: '大会の説明など'
   = f.input :place, label: '開催地'
-  = f.input :consolation_round, label: '３位決定戦', inline_label: '３位決定戦を実施する', as: :boolean
 
   - disabled =  (@tournament.new_record?) ? false : true
   = f.input :size, label: '参加者数', collection: Array[4,8,16], disabled: disabled
 
+  = f.input :consolation_round, label: '３位決定戦', inline_label: '３位決定戦を実施する', as: :boolean
+  = f.input :tag_list, label: 'タグ'
+
   .form-group
     .col-sm-6.col-sm-offset-2
       = f.button :submit, class: 'btn-danger'
-  .form-group
-    .col-sm-6.col-sm-offset-2
-      =link_to '大会を削除する', tournament_path(@tournament), confirm: '大会データを削除します。本当によろしいですか？', method: :delete
+  - if @tournament.persisted?
+    .form-group
+      .col-sm-6.col-sm-offset-2
+        =link_to '大会を削除する', tournament_path(@tournament), confirm: '大会データを削除します。本当によろしいですか？', method: :delete

@@ -18,6 +18,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'quiet_assets'
 gem 'kaminari'
 gem 'gon'
+gem 'acts-as-taggable-on'
 
 #Bootstrap
 gem 'therubyracer', platforms: :ruby
