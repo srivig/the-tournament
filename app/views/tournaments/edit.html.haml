@@ -1,18 +1,7 @@
-- model_class = Tournament
-- title = "#{model_class.model_name.human.titleize} Edit"
-- provide(:title, title)
-
-=link_to sanitize('<i class="icon-reply"></i> ') + '大会トップへ戻る', tournament_path(@tournament), class: 'btn btn-default'
-
-%section
-  %h1.title.clearfix
-    =@tournament.title
-    %small @#{@tournament.place}
-    =link_to sanitize('<i class="icon-trash"></i> ')+'大会を削除する', tournament_path(@tournament), confirm: '大会データを削除します。本当によろしいですか？', method: :delete, class: 'btn btn-sm btn-warning pull-right'
+= render partial: "shared/tournament_info", locals: {tournament:@tournament, active:4}
 
 %section
   %h1.headline
     %i.icon.icon-cog
-    トーナメント情報の更新
+    大会の基本情報
   = render :partial => "form"
-

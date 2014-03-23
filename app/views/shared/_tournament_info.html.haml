@@ -9,26 +9,17 @@
   %h1.title.clearfix
     =tournament.title
     %small @#{tournament.place}
-    - if tournament.user == current_user
-      .btn-group.pull-right.btn-group-sm
-        %button.btn.btn-primary(type="button") 大会情報を更新する
-        %button.btn.btn-primary.dropdown-toggle(type="button" data-toggle="dropdown")
-          %span.caret
-        %ul.dropdown-menu(role="menu")
-          %li=link_to sanitize('<i class="icon-cog"></i> ')+'基本情報の更新', edit_tournament_path(tournament)
-          %li=link_to sanitize('<i class="icon-user"></i> ')+'参加者情報の更新', tournament_players_path(tournament)
-          %li=link_to sanitize('<i class="icon-list-alt"></i> ')+'試合結果の更新', tournament_games_path(tournament)
-          -# %li=link_to sanitize('<i class="icon-trash"></i> ')+'大会を削除する', tournament_path(tournament), confirm: '大会データを削除します。本当によろしいですか？', method: :delete
+    %small.pull-right= tournament.created_at.strftime("%Y.%m.%d")
 
-  %ul.list-inline
-    %li
-      %span.label.label-default サッカー
-    %li
-      %span.label.label-default 高校
-    %li
-      %span.label.label-default スポーツ
-    %li
-      %span.label.label-default 滋賀県
+  -# %ul.list-inline
+  -#   %li
+  -#     %span.label.label-default サッカー
+  -#   %li
+  -#     %span.label.label-default 高校
+  -#   %li
+  -#     %span.label.label-default スポーツ
+  -#   %li
+  -#     %span.label.label-default 滋賀県
   %p
     =tournament.detail
 
@@ -39,3 +30,6 @@
     =link_to '対戦表', tournament_games_path(tournament)
   %li{class: (active==3) ? 'active' : ''}
     =link_to 'メンバー表', tournament_players_path(tournament)
+  - if tournament.user == current_user
+    %li{class: (active==4) ? 'active' : ''}
+      =link_to '大会の基本情報', edit_tournament_path(tournament)
