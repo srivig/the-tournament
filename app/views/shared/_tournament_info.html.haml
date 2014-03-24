@@ -3,10 +3,10 @@
     %li
       =link_to 'HOME', root_path
     - if tournament.category.present?
-      %li= tournament.category.category_name
-      %li= tournament.category.tag_name
+      %li= link_to tournament.category.category_name, tournaments_path(category: tournament.category.category_name)
+      %li= link_to tournament.category.tag_name, tournaments_path(tag: tournament.category.tag_name)
     - else
-      %li その他
+      %li= link_to 'その他', tournaments_path(category: 'others')
     %li
       =link_to tournament.title, tournament_path(tournament)
 
@@ -19,7 +19,8 @@
   %ul.list-inline
     - tournament.tag_list.each do |tag|
       %li
-        %span.label.label-warning= tag
+        = link_to tournaments_path(tag: tag), class:'no-underline' do
+          %span.label.label-warning= tag
   %p
     =tournament.detail
 

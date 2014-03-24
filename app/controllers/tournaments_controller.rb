@@ -3,6 +3,11 @@ class TournamentsController < ApplicationController
   def index
     if params[:q]
       @tournaments = Tournament.where('title LIKE ? OR detail LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%").page(params[:page]).per(15)
+    elsif params[:tag]
+      @tournaments = Tournament.tagged_with(params[:tag]).page(params[:page]).per(15)
+    elsif params[:category]
+      tags = Category.where(category_name: params[:category]).map(&:tag_name)
+      @tournaments = Tournament.tagged_with(tags, any:true).page(params[:page]).per(15)
     else
       @tournaments = Tournament.all.page(params[:page]).per(15)
     end

@@ -7,9 +7,15 @@
     - if params[:q].present?
       %i.icon.icon-search
       "#{params[:q]}"の検索結果
+    - elsif params[:tag].present?
+      %i.icon.icon-tags
+      "#{params[:tag]}"タグのついた大会
+    - elsif params[:category].present?
+      %i.icon.icon-folder-close
+      "#{params[:category]}"カテゴリの大会
     - else
       %i.icon.icon-bell-alt
-      すべてのトーナメント
+      すべての大会
   .list-group
     - if @tournaments.blank?
       .list-group-item No Tournament was found for "#{params[:q]}".

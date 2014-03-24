@@ -14,6 +14,7 @@ Category.create([
   {tag_name:'バドミントン',     category_name: 'スポーツ'},
   {tag_name:'柔道',             category_name: 'スポーツ'},
   {tag_name:'卓球',             category_name: 'スポーツ'},
+  {tag_name:'ビリヤード',             category_name: 'スポーツ'},
   {tag_name:'MAGIC THE GATHERING', category_name: 'ゲーム'},
   {tag_name:'将棋',                category_name: 'ゲーム'},
   {tag_name:'人狼',                category_name: 'ゲーム'}
