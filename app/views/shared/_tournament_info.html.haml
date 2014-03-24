@@ -26,7 +26,7 @@
 
 %ul.nav.nav-tabs.mb-30
   %li{class: (active==1) ? 'active' : ''}
-    =link_to 'トーナメント表', tournament_path(tournament)
+    =link_to 'トーナメント表', tournament_path(tournament), data:{no_turbolink:true}
   %li{class: (active==2) ? 'active' : ''}
     =link_to '対戦表', tournament_games_path(tournament)
   %li{class: (active==3) ? 'active' : ''}
