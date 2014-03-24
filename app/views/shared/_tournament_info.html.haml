@@ -5,6 +5,8 @@
     - if tournament.category.present?
       %li= tournament.category.category_name
       %li= tournament.category.tag_name
+    - else
+      %li その他
     %li
       =link_to tournament.title, tournament_path(tournament)
 

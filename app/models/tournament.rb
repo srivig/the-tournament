@@ -66,5 +66,6 @@ class Tournament < ActiveRecord::Base
       category = Category.find_by(tag_name: tag)
       return category if category.present?
     end
+    return nil
   end
 end
