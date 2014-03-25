@@ -16,6 +16,7 @@ class Tournament < ActiveRecord::Base
   validates :title, presence: true, length: {maximum: 100}
   validates :place, length: {maximum: 100}, allow_nil: true
   validates :detail, length: {maximum: 500}, allow_nil: true
+  validates :url, format: URI::regexp(%w(http https)), allow_nil: true
 
   default_scope {order(created_at: :desc)}
 

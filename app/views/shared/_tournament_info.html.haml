@@ -21,8 +21,9 @@
       %li
         = link_to tournaments_path(tag: tag), class:'no-underline' do
           %span.label.label-warning= tag
-  %p
-    =tournament.detail
+  %p= tournament.detail
+  - if tournament.url
+    %p= link_to "#{tournament.url} <i class='icon icon-external-link'></i>".html_safe, tournament.url, target:'_blank'
 
 %ul.nav.nav-tabs.mb-30
   %li{class: (active==1) ? 'active' : ''}
