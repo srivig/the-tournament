@@ -5,19 +5,20 @@ class Player < ActiveRecord::Base
 
   validates :tournament_id, presence: true, on: :update
   validates :seed, presence: true, numericality: {only_integer: true}
-  validates :name, presence: true, length: {maximum: 100}
+  validates :name, length: {maximum: 100}, allow_nil: true
   validates :group, length: {maximum: 100}, allow_nil: true
   validates :desc, length: {maximum: 500}, allow_nil: true
 
   default_scope {order(seed: :asc)}
 
-  before_validation :set_seed_game, on: :update, if: Proc.new{|player| player.name.blank?}
+  before_update :reset_seed_game, if: :seed_canceled?
+  before_update :set_seed_game, on: :update, if: :seed_registered?
 
   def set_seed_game
-    match_id = (self.seed/2) + (self.seed%2)
-    game = Game.find_by(tournament_id: self.tournament.id, bracket: 1, round: 1, match: match_id)
-    unless game.bye == true
-      self.name = '--'
+    game = self.first_round_game
+    if game.bye == true
+      self.name = self.name_was
+    else
       game.bye = true
       game.game_records.each do |r|
         r.score = 0
@@ -25,5 +26,24 @@ class Player < ActiveRecord::Base
       end
       game.save
     end
+  end
+
+  def seed_registered?
+    self.name_changed? && self.name.blank?
+  end
+
+  def seed_canceled?
+    self.name_changed? && self.name_was.blank?
+  end
+
+  def reset_seed_game
+    game = self.first_round_game
+    game.bye = false
+    game.save
+  end
+
+  def first_round_game
+    match_id = (self.seed/2) + (self.seed%2)
+    Game.find_by(tournament_id: self.tournament.id, bracket: 1, round: 1, match: match_id)
   end
 end

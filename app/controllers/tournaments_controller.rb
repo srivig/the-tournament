@@ -18,7 +18,7 @@ class TournamentsController < ApplicationController
 
     teams = Array.new
     @tournament.games.where(bracket:1, round:1).each do |game|
-      teams << game.players.map{|m| m.name}.to_a
+      teams << game.players.map{|m| (m.name.present?) ? m.name : '--'}.to_a
     end
 
     results = Array.new
@@ -43,7 +43,6 @@ class TournamentsController < ApplicationController
         end
       end
     end
-    p results
 
 
     # pass the tournament data to javascript
