@@ -19,7 +19,9 @@ gem 'quiet_assets'
 gem 'kaminari'
 gem 'gon'
 gem 'acts-as-taggable-on'
+gem 'countries'
 gem 'country_select'
+gem 'world_flags', git: 'git://github.com/djonasson/world_flags.git'
 
 #Bootstrap
 gem 'therubyracer', platforms: :ruby

@@ -15,13 +15,18 @@ $ ->
     hideDecimal = ->
       jQuery.each($('.score'), ->
         if !isNaN(this.innerText)
-          console.log this.innerText
-          if $.inArray(this.innerText, ["0.2", "0.3"]) >= 0
+          if $.inArray(this.innerText, ["0.2", "0.3"]) >= 0  # Hide score on bye match
             this.innerText = '--'
           else
             this.innerText = Math.floor(this.innerText)
       )
-    createBracket().done(hideDecimal())
+
+    addCountryFlg = ->
+      jQuery.each(gon.countries, (i, v) ->
+        if this.length
+          $('.team').eq(i).find('.label').prepend('<div class="f16"><div class="flag '+this+'"></div>')
+      )
+    createBracket().done(hideDecimal(), addCountryFlg())
 
   if $('#tournament_tag_list').length
     $('#tournament_tag_list').tagsInput({'width':'100%', 'height':'auto'})

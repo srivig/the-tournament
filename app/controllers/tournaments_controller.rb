@@ -44,14 +44,13 @@ class TournamentsController < ApplicationController
       end
     end
 
-
     # pass the tournament data to javascript
     gon.tournament_data = {
       'teams' => teams,
       'results' => results
     }
     gon.skip_consolation_round = !@tournament.consolation_round
-    gon.byes = @tournament.games.where(bye: true).map(&:match)
+    gon.countries = @tournament.players.map{|p| p.country.downcase}
   end
 
   def new
@@ -86,7 +85,6 @@ class TournamentsController < ApplicationController
         format.html { redirect_to edit_tournament_path(@tournament), notice: 'Tournament was successfully updated.' }
         format.json { head :no_content }
       else
-        p @tournament.players
         p @tournament.errors
         flash.now[:alert] = "Failed on saving the tournament."
         format.html { render action: 'edit' }
@@ -106,6 +104,6 @@ class TournamentsController < ApplicationController
 
   private
     def tournament_params
-      params.require(:tournament).permit(:id, :title, :user_id, :detail, :place, :url, :size, :consolation_round, :tag_list, players_attributes: [:id, :name, :group])
+      params.require(:tournament).permit(:id, :title, :user_id, :detail, :place, :url, :size, :consolation_round, :tag_list, players_attributes: [:id, :name, :group, :country])
     end
 end

@@ -8,6 +8,7 @@ class Player < ActiveRecord::Base
   validates :name, length: {maximum: 100}, allow_nil: true
   validates :group, length: {maximum: 100}, allow_nil: true
   validates :desc, length: {maximum: 500}, allow_nil: true
+  validates :country, length: {is: 2}, allow_blank: true
 
   default_scope {order(seed: :asc)}
 

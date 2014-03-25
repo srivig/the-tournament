@@ -3,7 +3,7 @@
   .panel{class: panel}
     - round = (i==tournament.round_num) ? "決勝ラウンド" : "#{i}回戦"
     .panel-heading= round
-    %table.table
+    %table.table.f16
       - tournament.games.where(round: i).each do |game|
         - unless (!tournament.consolation_round) && (i==tournament.round_num && game.match==2)
           %tr
@@ -14,7 +14,11 @@
             %td= match
             - if game.game_records.present?
               %td.text-right
-                #{game.game_records.first.player.name}
+                - if game.game_records.first.player.country.present?
+                  - country = game.game_records.first.player.country.downcase
+                  %span.flag{class: country}= game.game_records.first.player.name
+                - else
+                  #{game.game_records.first.player.name}
               %td.text-right.text-danger
                 - if game.finished? && !game.bye
                   #{game.game_records.first.score}
@@ -23,7 +27,11 @@
                 - if game.finished? && !game.bye
                   #{game.game_records.last.score}
               %td
-                #{game.game_records.last.player.name}
+                - if game.game_records.last.player.country.present?
+                  - country = game.game_records.last.player.country.downcase
+                  %span.flag{class: country}= game.game_records.last.player.name
+                - else
+                  #{game.game_records.last.player.name}
             - else
               %td.text-right (TBD)
               %td
