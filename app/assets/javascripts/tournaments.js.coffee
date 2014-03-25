@@ -15,11 +15,12 @@ $ ->
     hideDecimal = ->
       jQuery.each($('.score'), ->
         if !isNaN(this.innerText)
-          if $.inArray(this.innerText, [0.2, 0.3]) >= 0
+          console.log this.innerText
+          if $.inArray(this.innerText, ["0.2", "0.3"]) >= 0
             this.innerText = '--'
-          this.innerText = Math.floor(this.innerText)
+          else
+            this.innerText = Math.floor(this.innerText)
       )
-
     createBracket().done(hideDecimal())
 
   if $('#tournament_tag_list').length

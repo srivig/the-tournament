@@ -29,6 +29,8 @@ class Game < ActiveRecord::Base
     end
   end
 
+  default_scope {order(match: :asc)}
+
   before_update :reset_ancestors, if: :winner_changed?
   after_update :set_parent_game, if: lambda{ self.finished? }, unless: lambda{ self.final? }
 

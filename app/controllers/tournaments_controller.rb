@@ -26,7 +26,14 @@ class TournamentsController < ApplicationController
       round_res = Array.new  # create result array for each round
       results << round_res
       @tournament.games.where(bracket: 1, round: i).each do |game|
-        if game.winner.present? && (game.game_records.first.score == game.game_records.last.score)
+        # Bye game
+        if game.bye == true
+          win_record = game.game_records.find_by(winner: true)
+          tmp = Array[win_record.score + 0.2, win_record.score + 0.3]
+          tmp.reverse! if win_record.record_num == 1
+          round_res << tmp
+        # Same score
+        elsif game.winner.present? && (game.game_records.first.score == game.game_records.last.score)
           win_record = game.game_records.find_by(winner: true)
           tmp = Array[win_record.score, win_record.score + 0.1]
           tmp.reverse! if win_record.record_num == 1
@@ -36,6 +43,8 @@ class TournamentsController < ApplicationController
         end
       end
     end
+    p results
+
 
     # pass the tournament data to javascript
     gon.tournament_data = {
@@ -43,6 +52,7 @@ class TournamentsController < ApplicationController
       'results' => results
     }
     gon.skip_consolation_round = !@tournament.consolation_round
+    gon.byes = @tournament.games.where(bye: true).map(&:match)
   end
 
   def new
@@ -77,6 +87,8 @@ class TournamentsController < ApplicationController
         format.html { redirect_to edit_tournament_path(@tournament), notice: 'Tournament was successfully updated.' }
         format.json { head :no_content }
       else
+        p @tournament.players
+        p @tournament.errors
         flash.now[:alert] = "Failed on saving the tournament."
         format.html { render action: 'edit' }
         format.json { render json: @tournament.errors, status: :unprocessable_entity }
