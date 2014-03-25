@@ -1,0 +1,22 @@
+%meta(charset="utf-8")
+%meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+%meta(name="viewport" content="width=device-width, initial-scale=1.0")
+
+- set_meta_tags site: 'THE TOURNAMENT'
+- set_meta_tags title: "#{controller_name} #{action_name}"
+- set_meta_tags description: "THE TOURNAMENTはかんたん便利なトーナメント管理サービスです。"
+- set_meta_tags keywords: "THE TOURNAMENT, トーナメント, トーナメント表作成, #{controller_name},#{action_name}"
+
+:ruby
+  og = {
+    title: "#{controller_name} #{action_name}",
+    type: 'website',
+    url: root_url,
+    image: '',
+    site_name: 'THE TOURNAMENT',
+    description: "THE TOURNAMENTはかんたん便利なトーナメント管理サービスです。",
+    locale: 'ja_JP'
+  }
+- set_meta_tags og: og
+
+= display_meta_tags
