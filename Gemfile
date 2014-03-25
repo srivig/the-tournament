@@ -19,6 +19,7 @@ gem 'quiet_assets'
 gem 'kaminari'
 gem 'gon'
 gem 'acts-as-taggable-on'
+gem 'country_select'
 
 #Bootstrap
 gem 'therubyracer', platforms: :ruby
