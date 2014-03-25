@@ -2,20 +2,21 @@ class TournamentsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     if params[:q]
-      @tournaments = Tournament.where('title LIKE ? OR detail LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%").page(params[:page]).per(15)
+      tournaments = Tournament.where('title LIKE ? OR detail LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%")
     elsif params[:tag]
-      @tournaments = Tournament.tagged_with(params[:tag]).page(params[:page]).per(15)
+      tournaments = Tournament.tagged_with(params[:tag])
     elsif params[:category]
       if params[:category] != 'others'
         tags = Category.where(category_name: params[:category]).map(&:tag_name)
-        @tournaments = Tournament.tagged_with(tags, any:true).page(params[:page]).per(15)
+        tournaments = Tournament.tagged_with(tags, any:true)
       else
         tags = Category.all.map(&:tag_name)
-        @tournaments = Tournament.tagged_with(tags, exclude:true).page(params[:page]).per(15)
+        tournaments = Tournament.tagged_with(tags, exclude:true)
       end
     else
-      @tournaments = Tournament.all.page(params[:page]).per(15)
+      tournaments = Tournament.all
     end
+    @tournaments = tournaments.page(params[:page]).per(15)
   end
 
   def show
