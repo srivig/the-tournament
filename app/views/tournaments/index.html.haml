@@ -1,4 +1,14 @@
-=link_to sanitize('<i class="icon-reply"></i> ') + 'HOMEに戻る', root_path, class: 'btn btn-default'
+%div
+  %ol.breadcrumb
+    %li
+      =link_to 'HOME', root_path
+    %li
+      =link_to 'すべての大会', tournaments_path
+    - if params[:category].present?
+      %li= link_to params[:category], tournaments_path(category: params[:category])
+    - elsif params[:tag].present?
+      %li= link_to params[:tag], tournaments_path(tag: params[:tag])
+
 %section
   %h1.title.clearfix 大会をさがす
 

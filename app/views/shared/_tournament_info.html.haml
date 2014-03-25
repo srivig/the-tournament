@@ -2,6 +2,8 @@
   %ol.breadcrumb
     %li
       =link_to 'HOME', root_path
+    %li
+      =link_to 'すべての大会', tournaments_path
     - if tournament.category.present?
       %li= link_to tournament.category.category_name, tournaments_path(category: tournament.category.category_name)
       %li= link_to tournament.category.tag_name, tournaments_path(tag: tournament.category.tag_name)

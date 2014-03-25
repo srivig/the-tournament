@@ -6,8 +6,13 @@ class TournamentsController < ApplicationController
     elsif params[:tag]
       @tournaments = Tournament.tagged_with(params[:tag]).page(params[:page]).per(15)
     elsif params[:category]
-      tags = Category.where(category_name: params[:category]).map(&:tag_name)
-      @tournaments = Tournament.tagged_with(tags, any:true).page(params[:page]).per(15)
+      if params[:category] != 'others'
+        tags = Category.where(category_name: params[:category]).map(&:tag_name)
+        @tournaments = Tournament.tagged_with(tags, any:true).page(params[:page]).per(15)
+      else
+        tags = Category.all.map(&:tag_name)
+        @tournaments = Tournament.tagged_with(tags, exclude:true).page(params[:page]).per(15)
+      end
     else
       @tournaments = Tournament.all.page(params[:page]).per(15)
     end
