@@ -13,7 +13,7 @@
             %p.form-control-static= r.object.seed
           - if editable
             %td= r.input :name, label: false
-            %td= r.input :country, label: false, as: :select, collection: Country.all.map{|c| c[1]}, label_method: lambda {|country| Country[country].name}
+            %td= r.input :country, label: false, as: :select, collection: Country.all.sort.map{|c| c[1]}, label_method: lambda {|country| Country[country].name}
             %td= r.input :group, label: false
           - else
             %td

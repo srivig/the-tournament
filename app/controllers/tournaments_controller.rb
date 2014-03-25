@@ -50,7 +50,7 @@ class TournamentsController < ApplicationController
       'results' => results
     }
     gon.skip_consolation_round = !@tournament.consolation_round
-    gon.countries = @tournament.players.map{|p| p.country.downcase}
+    gon.countries = @tournament.players.map{|p| p.country.try(:downcase)}
   end
 
   def new

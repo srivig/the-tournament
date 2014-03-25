@@ -383,7 +383,6 @@ DEPENDENCIES
   acts-as-taggable-on
   capybara
   coffee-rails (~> 4.0.0)
-  countries
   country_select
   database_cleaner
   devise
