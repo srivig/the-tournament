@@ -22,6 +22,7 @@ gem 'acts-as-taggable-on'
 gem 'country_select'
 gem 'world_flags', git: 'git://github.com/djonasson/world_flags.git'
 gem 'meta-tags', require: 'meta_tags'
+gem 'spinjs-rails'
 
 #Bootstrap
 gem 'therubyracer', platforms: :ruby

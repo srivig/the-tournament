@@ -16,5 +16,6 @@
 //= require twitter/bootstrap
 //= require jquery.bracket.min
 //= require jquery.tagsinput.min
+//= require jquery.spin
 //= require turbolinks
 //= require_tree .
