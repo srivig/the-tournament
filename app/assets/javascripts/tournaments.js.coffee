@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
+  # Tournament creation
   if (typeof gon != 'undefined') && ($('#tournament').length)
     createBracket = ->
       d = new $.Deferred
@@ -29,6 +30,7 @@ $ ->
     createBracket().done(hideDecimal(), addCountryFlg())
 
 
+  # Show game info on hover
   $('.teamContainer').attr({
     'data-toggle': 'tooltip',
     'data-placement': 'right',
@@ -38,5 +40,6 @@ $ ->
   $('.teamContainer').tooltip({html:true})
 
 
+  # Tags input
   if $('#tournament_tag_list').length
     $('#tournament_tag_list').tagsInput({'width':'100%', 'height':'auto'})

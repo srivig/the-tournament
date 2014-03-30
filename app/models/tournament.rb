@@ -23,6 +23,59 @@ class Tournament < ActiveRecord::Base
   before_create :create_players, :create_games
   after_create :set_first_rounds
 
+  def self.search_tournaments(params)
+    if params[:q]
+      tournaments = Tournament.where('title LIKE ? OR detail LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%")
+    elsif params[:tag]
+      tournaments = Tournament.tagged_with(params[:tag])
+    elsif params[:category]
+      if params[:category] != 'others'
+        tags = Category.where(category_name: params[:category]).map(&:tag_name)
+        tournaments = Tournament.tagged_with(tags, any:true)
+      else
+        tags = Category.all.map(&:tag_name)
+        tournaments = Tournament.tagged_with(tags, exclude:true)
+      end
+    else
+      tournaments = Tournament.all
+    end
+    tournaments
+  end
+
+  def tournament_data
+    teams = Array.new
+    results = Array.new
+    for i in 1..self.round_num
+      round_res = Array.new  # create result array for each round
+      results << round_res
+      self.games.where(bracket: 1, round: i).each do |game|
+        # Set team info
+        teams << game.players.map{|m| (m.name.present?) ? m.name : '--'}.to_a  if i == 1
+
+        # Set match Info
+        res =  game.game_records.map{|m| m.score}.to_a
+        # Bye Game
+        if game.bye == true
+          win_record = game.game_records.find_by(winner: true)
+          res[win_record.record_num-1] = 0.3
+          res[win_record.record_num]   = 0.2
+        # Same Score Game
+        elsif game.winner.present? && (game.game_records.first.score == game.game_records.last.score)
+          win_record = game.game_records.find_by(winner: true)
+          res[win_record.record_num-1] += 0.1
+        end
+        round_res << res
+      end
+    end
+    tournament_data = {teams: teams, results: results}
+  end
+
+  def match_data
+    self.games.map{ |m|
+      "#{self.round_name(m.round)} #{m.match_name}<br>#{m.game_records.map{|r| r.player.name}.join('-')}"
+    }
+  end
+
   def create_players
     for i in 1..self.size do
       self.players.build(name: "Player#{i}", seed: i)
