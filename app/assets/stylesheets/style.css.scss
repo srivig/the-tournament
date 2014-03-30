@@ -215,8 +215,12 @@ div.tagsinput {
     color: #333;
     width: 76px;
     text-align: left;
+    overflow: scroll;
   }
-  .score { width: 26px; }
+  .score {
+    width: 26px;
+    overflow: scroll;
+  }
 }
 
 .headline {
