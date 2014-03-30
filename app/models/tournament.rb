@@ -90,8 +90,27 @@ class Tournament < ActiveRecord::Base
         self.games.build(bracket:1, round:i, match:k+1)
       end
     end
+
+    # loser & final bracket (when double elimination)
+    if self.double_elimination.present?
+      loser_round_num = (self.round_num-1)*2
+      for i in 1..loser_round_num do
+        match_num_base = (loser_round_num+1-i).quo(2).ceil - 1  #2ラウンドごとに試合数が変わる(e.g. 4-4-2-2-1-1)
+        2**match_num_base.times do |k|
+          self.games.build(bracket:2, round:i, match:k+1)
+        end
+      end
+      2.times do |i|
+        self.games.build(bracket:3, round:i, match:1) #決勝戦(secondary finalも作っておく)
+      end
+    end
+
     # 3rd place consolidation
-    self.games.build(bracket:1, round: self.round_num, match:2)
+    if self.double_elimination.present?
+        self.games.build(bracket:3, round:1, match:2)
+    else
+      self.games.build(bracket:1, round: self.round_num, match:2)
+    end
   end
 
   def set_first_rounds
@@ -112,7 +131,11 @@ class Tournament < ActiveRecord::Base
 
   # return a game of the third-place playoff
   def third_place
-    Game.find_by(tournament: self, bracket:1, round:self.round_num, match:2)
+    if self.double_elimination.blank?
+      Game.find_by(tournament: self, bracket:1, round:self.round_num, match:2)
+    else
+      Game.find_by(tournament: self, bracket:3, round:1, match:2)
+    end
   end
 
   def category
