@@ -1,17 +1,12 @@
 - tournament.round_num.downto(1) do |i|
   - panel = (i==tournament.round_num) ? "panel-warning" : "panel-default"
   .panel{class: panel}
-    - round = (i==tournament.round_num) ? "決勝ラウンド" : "#{i}回戦"
-    .panel-heading= round
+    .panel-heading= tournament.round_name(i)
     %table#game-list.table.f16
       - tournament.games.where(round: i).each do |game|
         - unless (!tournament.consolation_round) && (i==tournament.round_num && game.match==2)
           %tr
-            - if i == tournament.round_num
-              - match = (game.match == 1) ? "決勝" : "3位決定戦"
-            - else
-              - match = "第#{game.match}試合"
-            %td= match
+            %td= game.match_name
             - if game.game_records.present?
               %td.text-right
                 - if game.game_records.first.player.country.present?
@@ -41,5 +36,3 @@
             %td.text-right
               - if editable && game.game_records.present? && !game.bye
                 = link_to t('Edit'), edit_game_path(game), class: 'btn btn-primary btn-sm pull-right'
-              -# - else
-              -#   2014年3月2日 14:00

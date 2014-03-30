@@ -69,4 +69,14 @@ class Tournament < ActiveRecord::Base
     end
     return nil
   end
+
+  def round_name(i)
+    if i == self.round_num
+      '決勝ラウンド'
+    elsif i == self.round_num - 1
+      '準決勝'
+    else
+      "#{i}回戦"
+    end
+  end
 end

@@ -28,5 +28,15 @@ $ ->
       )
     createBracket().done(hideDecimal(), addCountryFlg())
 
+
+  $('.teamContainer').attr({
+    'data-toggle': 'tooltip',
+    'data-placement': 'right',
+  })
+  $('.teamContainer').each (i) ->
+    $('.teamContainer').eq(i).attr('title', gon.match_data[i])
+  $('.teamContainer').tooltip({html:true})
+
+
   if $('#tournament_tag_list').length
     $('#tournament_tag_list').tagsInput({'width':'100%', 'height':'auto'})

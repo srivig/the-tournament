@@ -45,7 +45,9 @@ class TournamentsController < ApplicationController
           tmp.reverse! if win_record.record_num == 1
           round_res << tmp
         else
-          round_res << game.game_records.map{|m| m.score}.to_a
+          tmp =  game.game_records.map{|m| m.score}.to_a
+          tmp << 'game_detail'
+          round_res << tmp
         end
       end
     end
@@ -57,6 +59,7 @@ class TournamentsController < ApplicationController
     }
     gon.skip_consolation_round = !@tournament.consolation_round
     gon.countries = @tournament.players.map{|p| p.country.try(:downcase)}
+    gon.match_data = @tournament.games.map{|m| "#{@tournament.round_name(m.round)} #{m.match_name}<br>#{m.game_records.map{|r| r.player.name}.join('-')}"}
   end
 
   def new
@@ -66,7 +69,6 @@ class TournamentsController < ApplicationController
   def create
     @tournament = Tournament.new(tournament_params)
     @tournament.user = current_user
-    # @tournament.user = current_user || User.find(1) # add as an guest user if not logged in
 
     respond_to do |format|
       if @tournament.save
@@ -91,7 +93,6 @@ class TournamentsController < ApplicationController
         format.html { redirect_to edit_tournament_path(@tournament), notice: 'Tournament was successfully updated.' }
         format.json { head :no_content }
       else
-        p @tournament.errors
         flash.now[:alert] = "Failed on saving the tournament."
         format.html { render action: 'edit' }
         format.json { render json: @tournament.errors, status: :unprocessable_entity }

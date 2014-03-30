@@ -29,7 +29,7 @@ class Game < ActiveRecord::Base
     end
   end
 
-  default_scope {order(match: :asc)}
+  default_scope {order(bracket: :asc, round: :asc, match: :asc)}
 
   before_update :reset_ancestors, if: :winner_changed?
   after_update :set_parent_game, if: lambda{ self.finished? }, unless: lambda{ self.final? }
@@ -109,5 +109,17 @@ class Game < ActiveRecord::Base
 
   def final?
     self.round == self.tournament.round_num
+  end
+
+  def match_name
+    if self.round == self.tournament.round_num
+      if self.match == 1
+        '決勝戦'
+      else
+        '3位決定戦'
+      end
+    else
+      "第#{self.match}試合"
+    end
   end
 end
