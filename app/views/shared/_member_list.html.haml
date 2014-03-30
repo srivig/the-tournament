@@ -1,6 +1,6 @@
 = simple_form_for @tournament, html: {class: 'form-horizontal'} do |f|
   .panel.panel-default
-    %table#member-list.table
+    %table#member-list.table.f16
       %tr.active
         %th.width-10 登録番号
         %th.width-50 名前
@@ -14,20 +14,19 @@
           - if editable
             %td
               = r.input :name, label: false
-            %td.f16
+            %td
               - if r.object.country.present?
                 %div.flag-container
-                  %div.flag{class: r.object.country}
+                  %div.flag{class: r.object.country.downcase}
                 = Country[r.object.country]
             %td= link_to t('詳細'), edit_player_path(r.object), class: 'btn btn-primary btn-sm pull-right'
           - else
             %td
               - if r.object.country.present?
                 %div.flag-container
-                  %div.flag{class: r.object.country}
-              %p.form-control-static= r.object.name
+                  %div.flag{class: r.object.country.downcase}
+              = r.object.name
             %td
-              %p.form-control-static= r.object.group
   - if editable
     = f.button :submit, class: 'btn-danger'
 
