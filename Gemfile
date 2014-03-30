@@ -46,6 +46,7 @@ end
 
 group :development do
   gem 'erb2haml'
+  gem 'rack-mini-profiler'
 end
 
 group :test do
