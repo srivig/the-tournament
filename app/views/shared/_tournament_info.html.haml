@@ -15,7 +15,8 @@
 %section
   %h1.title.clearfix
     =tournament.title
-    %small @#{tournament.place}
+    - if tournament.place.present?
+      %small @#{tournament.place}
     %small.pull-right= tournament.created_at.strftime("%Y.%m.%d")
 
   %ul.list-inline
