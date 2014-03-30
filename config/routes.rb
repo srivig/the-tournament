@@ -2,13 +2,11 @@ TheTournament::Application.routes.draw do
   root to: "static_pages#top"
   devise_for :users
   match 'about', to: 'static_pages#about', via: :get
-  resources :tournaments do
+  resources :tournaments, shallow: true do
     get 'page/:page', action: :index, on: :collection
     resources :players
     resources :games
   end
-  resources :games
-  resources :players
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
