@@ -1,26 +1,31 @@
 = simple_form_for @tournament, html: {class: 'form-horizontal'} do |f|
   .panel.panel-default
-    %table.table
-      %tr
-        %th 参加番号
-        %th 名前
-        %th 国
-        %th 所属
+    %table#member-list.table
+      %tr.active
+        %th.width-10 登録番号
+        %th.width-50 名前
+        %th
+        %th.width-10
       = f.simple_fields_for :players, f.object.players.order(:seed) do |r|
         %tr
           = r.input :seed, as: :hidden
           %td
             %p.form-control-static= r.object.seed
           - if editable
-            %td= r.input :name, label: false
-            %td= r.input :country, label: false, iso_codes: true
-            %td= r.input :group, label: false
-          - else
             %td
-              %p.form-control-static= r.object.name
+              = r.input :name, label: false
             %td.f16
               - if r.object.country.present?
-                %p.form-control-static.flag{class:r.object.country.downcase}= Country[r.object.country].try(:name)
+                %div.flag-container
+                  %div.flag{class: r.object.country}
+                = Country[r.object.country]
+            %td= link_to t('詳細'), edit_player_path(r.object), class: 'btn btn-primary btn-sm pull-right'
+          - else
+            %td
+              - if r.object.country.present?
+                %div.flag-container
+                  %div.flag{class: r.object.country}
+              %p.form-control-static= r.object.name
             %td
               %p.form-control-static= r.object.group
   - if editable

@@ -217,16 +217,6 @@ div.tagsinput {
     text-align: left;
   }
   .score { width: 26px; }
-
-  .f16 {
-    display: inline-block;
-    vertical-align: middle;
-    .flag {
-      width: 16px;
-      height: 14px;
-      display: inline-block;
-    }
-  }
 }
 
 .headline {
@@ -235,17 +225,16 @@ div.tagsinput {
   margin-bottom: 20px;
 }
 
-#game-list.table tr > td:first-child {
-  width: 10%;
+#game-list.table tr > td:first-child,
+#member-list.table tr > td:first-child,
+#member-list.table tr > th:first-child {
   border-right: 1px solid #efefef;
 }
-#game-list.table tr > td:nth-child(2) { width: 30%; }
-#game-list.table tr > td:nth-child(3) { width: 8%; }
-#game-list.table tr > td:nth-child(4) { width: 4%; }
-#game-list.table tr > td:nth-child(5) { width: 8%; }
-#game-list.table tr > td:nth-child(6) { width: 30%; }
-#game-list.table tr > td:nth-child(7) { width: 10%; }
-
+.width-4  { width: 4%; }
+.width-8  { width: 8%; }
+.width-10 { width: 10%; }
+.width-30 { width: 30%; }
+.width-50 { width: 50%; }
 
 
 /*****************************************************************
@@ -262,6 +251,15 @@ div.tagsinput {
 /*****************************************************************
 * Country Flag
 *****************************************************************/
+.flag-container {
+  display: inline-block;
+  vertical-align: middle;
+  .flag {
+    width: 16px;
+    height: 14px;
+    display: inline-block;
+  }
+}
 span.flag, p.flag {
   padding-left: 20px;
 }

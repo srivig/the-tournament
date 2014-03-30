@@ -1,9 +1,7 @@
 = render partial: "shared/tournament_info", locals: {tournament:@game.tournament, active:2}
 
 %section#game-edit
-  %div
-    = link_to sanitize("<i class='icon icon-reply'></i> ")+'試合一覧に戻る', tournament_games_path(@game.tournament), class:'btn btn-default'
   %h1.headline
     %i.icon.icon-list-alt
-    試合情報の更新
+    #{@game.tournament.round_name(@game.round)} #{@game.match_name}
   = render :partial => "form"

@@ -39,4 +39,7 @@
             %option(value="#{r.record_num}")= r.player.name
 
 
-  = f.button :submit, class: 'btn-danger'
+  .form-group
+    = f.button :submit, class: 'btn-danger'
+  .form-group
+    = link_to 'キャンセル', tournament_games_path(@game.tournament)
