@@ -234,10 +234,16 @@ div.tagsinput {
   margin-bottom: 20px;
 }
 
-.table tr > td:first-child {
-  width: 90px;
+#game-list.table tr > td:first-child {
+  width: 10%;
   border-right: 1px solid #efefef;
 }
+#game-list.table tr > td:nth-child(2) { width: 30%; }
+#game-list.table tr > td:nth-child(3) { width: 8%; }
+#game-list.table tr > td:nth-child(4) { width: 4%; }
+#game-list.table tr > td:nth-child(5) { width: 8%; }
+#game-list.table tr > td:nth-child(6) { width: 30%; }
+#game-list.table tr > td:nth-child(7) { width: 10%; }
 
 
 

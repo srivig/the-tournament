@@ -3,7 +3,7 @@
   .panel{class: panel}
     - round = (i==tournament.round_num) ? "決勝ラウンド" : "#{i}回戦"
     .panel-heading= round
-    %table.table.f16
+    %table#game-list.table.f16
       - tournament.games.where(round: i).each do |game|
         - unless (!tournament.consolation_round) && (i==tournament.round_num && game.match==2)
           %tr
