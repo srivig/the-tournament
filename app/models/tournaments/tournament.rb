@@ -12,7 +12,7 @@ class Tournament < ActiveRecord::Base
   validates_associated :players
   validates :user_id, presence: true
   validates :size, presence: true, inclusion: {in: [4,8,16]}
-  validates :type, numericality: {only_integer: true}, allow_nil: true
+  validates :type, presence: true, inclusion: {in: ['SingleElimination', 'DoubleElimination']}
   validates :title, presence: true, length: {maximum: 100}
   validates :place, length: {maximum: 100}, allow_nil: true
   validates :detail, length: {maximum: 500}, allow_nil: true
