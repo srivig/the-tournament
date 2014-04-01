@@ -20,7 +20,7 @@ class Tournament < ActiveRecord::Base
 
   default_scope {order(created_at: :desc)}
 
-  before_create :create_players, :create_games
+  before_create :build_players, :build_winner_games, :build_third_place_game
   after_create :set_first_rounds
 
   def self.search_tournaments(params)
@@ -76,40 +76,9 @@ class Tournament < ActiveRecord::Base
     }
   end
 
-  def create_players
+  def build_players
     for i in 1..self.size do
       self.players.build(name: "Player#{i}", seed: i)
-    end
-  end
-
-  def create_games
-    # winner bracket
-    for i in 1..self.round_num do
-      match_num = self.size / (2**i)
-      match_num.times do |k|
-        self.games.build(bracket:1, round:i, match:k+1)
-      end
-    end
-
-    # loser & final bracket (when double elimination)
-    if self.de?
-      loser_round_num = (self.round_num-1)*2
-      for i in 1..loser_round_num do
-        match_num_base = (loser_round_num+1-i).quo(2).ceil - 1  #2ラウンドごとに試合数が変わる(e.g. 4-4-2-2-1-1)
-        (2**match_num_base).times do |k|
-          self.games.build(bracket:2, round:i, match:k+1)
-        end
-      end
-      2.times do |i|
-        self.games.build(bracket:3, round:i+1, match:1) #決勝戦(secondary finalも作っておく)
-      end
-    end
-
-    # 3rd place consolidation
-    if self.de?
-      self.games.build(bracket:3, round:1, match:2)
-    else
-      self.games.build(bracket:1, round: self.round_num, match:2)
     end
   end
 
@@ -129,25 +98,12 @@ class Tournament < ActiveRecord::Base
     Math.log2(self.size).to_i  #=> return 3 rounds for 8 players (2**3=8)
   end
 
-  # return a game of the third-place playoff
-  def third_place
-    if self.de?
-      Game.find_by(tournament: self, bracket:3, round:1, match:2)
-    else
-      Game.find_by(tournament: self, bracket:1, round:self.round_num, match:2)
-    end
-  end
-
   def category
     self.tag_list.each do |tag|
       category = Category.find_by(tag_name: tag)
       return category if category.present?
     end
     return nil
-  end
-
-  def de?
-    self.double_elimination > 0
   end
 
   def round_name(i)
@@ -158,5 +114,34 @@ class Tournament < ActiveRecord::Base
     else
       "#{i}回戦"
     end
+  end
+
+  def build_winner_games
+    for i in 1..self.round_num do
+      match_num = self.size / (2**i)
+      match_num.times do |k|
+        self.games.build(bracket:1, round:i, match:k+1)
+      end
+    end
+  end
+
+  def build_loser_and_final_games
+    loser_round_num = (self.round_num-1)*2
+    for i in 1..loser_round_num do
+      match_num_base = (loser_round_num+1-i).quo(2).ceil - 1  #2ラウンドごとに試合数が変わる(e.g. 4-4-2-2-1-1)
+      (2**match_num_base).times do |k|
+        self.games.build(bracket:2, round:i, match:k+1)
+      end
+    end
+    2.times do |i|
+      self.games.build(bracket:3, round:i+1, match:1) #決勝戦(secondary finalも作っておく)
+    end
+  end
+
+  # See SE & DE model
+  def build_third_place_game
+  end
+
+  def third_place
   end
 end

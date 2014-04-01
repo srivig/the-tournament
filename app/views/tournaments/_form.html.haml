@@ -1,15 +1,17 @@
 = simple_form_for @tournament, html: {class: 'form-horizontal'} do |f|
+  - disabled =  (@tournament.new_record?) ? false : true
+
   = f.input :title, label: '大会名'
   = f.input :detail, label: '概要', placeholder: '大会の概要、詳細な説明など'
   = f.input :place, label: '開催地'
   = f.input :url, label: 'URL', placeholder: '大会の公式URLなど'
-
-  - disabled =  (@tournament.new_record?) ? false : true
   = f.input :size, label: '参加者数', collection: Array[4,8,16], disabled: disabled
 
   = f.input :consolation_round, label: '３位決定戦', inline_label: '３位決定戦を実施する', as: :boolean
-  - de = ['敗者復活戦なし', '完全ダブルイリミネーション(再決勝あり)', 'ダブルイリミネーション(再決勝なし)']
-  = f.input :double_elimination, label: '敗者復活戦', collection: [0,1,2], label_method:lambda{|i|de[i]}, disabled: disabled, selected:0
+
+  - type = {'シングルイリミネーション (敗者復活なし)'=>'single_elimination', 'ダブルイリミネーション (敗者復活あり)'=>'double_elimination'}
+  = f.input :type, label: '敗者復活戦', collection: type, selected: 'se', disabled: disabled
+  = f.input :secondary_final, label: '再決勝', inline_label: '再決勝を実施する(敗者側が1戦目を勝利した場合)', as: :boolean, disabled: true
   = f.input :tag_list, label: 'タグ'
 
   .form-group
