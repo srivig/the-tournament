@@ -8,8 +8,8 @@
   = f.input :size, label: '参加者数', collection: Array[4,8,16], disabled: disabled
 
   = f.input :consolation_round, label: '３位決定戦', inline_label: '３位決定戦を実施する', as: :boolean
-  - de = ['完全ダブルイリミネーション(再決勝あり)', 'ダブルイリミネーション(再決勝なし)']
-  = f.input :double_elimination, label: '敗者復活戦', collection: [1,2], label_method:lambda{|i|de[i-1]}, disabled: disabled
+  - de = ['敗者復活戦なし', '完全ダブルイリミネーション(再決勝あり)', 'ダブルイリミネーション(再決勝なし)']
+  = f.input :double_elimination, label: '敗者復活戦', collection: [0,1,2], label_method:lambda{|i|de[i]}, disabled: disabled, selected:0
   = f.input :tag_list, label: 'タグ'
 
   .form-group

@@ -14,6 +14,12 @@ class Game < ActiveRecord::Base
   validates :bye, inclusion: {in: [true, false]}, allow_nil: true
   validate  :has_valid_winner, on: :update
 
+  default_scope {order(bracket: :asc, round: :asc, match: :asc)}
+
+  before_update :reset_ancestors, if: :winner_changed?
+  after_update :set_parent_game, if: lambda{ self.finished? }, unless: lambda{ self.final? }
+  after_update :set_loser_game, if: lambda{ self.finished? && self.tournament.de? && self.bracket==1 }  # only when de and in winner bracket
+
   def has_valid_winner
     winners = Array.new
     game_records.each do |r|
@@ -28,11 +34,6 @@ class Game < ActiveRecord::Base
       errors.add(:game_records, "winner is not valid")
     end
   end
-
-  default_scope {order(bracket: :asc, round: :asc, match: :asc)}
-
-  before_update :reset_ancestors, if: :winner_changed?
-  after_update :set_parent_game, if: lambda{ self.finished? }, unless: lambda{ self.final? }
 
   def reset_ancestors
     self.ancestors.map{|game| game.game_records.delete_all }
@@ -56,6 +57,12 @@ class Game < ActiveRecord::Base
       parent_match_id = (self.match%2 == 1) ? (self.match+1)/2 : (self.match)/2
       parent = self.tournament.games.find_by(bracket: 1, round: self.round+1, match: parent_match_id)
     end
+  end
+
+  def loser_game
+    round_num = [(self.round-1)*2, 1].max # 1,2,4,6,8,...
+    match_num = ((self.match)%2 == 0) ? (self.match)/2 : (self.match+1)/2
+    Game.find_by(tournament: self.tournament, bracket:2, round:round, match:match)
   end
 
   # 先祖game(直系の親たち)を取得(include third-place playoff)
@@ -89,6 +96,27 @@ class Game < ActiveRecord::Base
         end
       end
     end
+  end
+
+  def set_loser_game
+    #loser bracketの対象game取得
+    loser_game = self.loser_game
+
+    #1st roundはrecord_numは1,2ともあり。2nd以降はrecord_num=2にセット
+    if self.round == 1 && (self.match)%2 != 0
+      record_num = 1
+    else
+      record_num = 2
+    end
+
+    #game_recordにloserをセット(なければ新規作成)
+    game_record = GameRecord.find_or_initialize_by(game:loser_game, record_num: record_num)
+    game_record.player = self.loser
+    game_record.save!
+  end
+
+  def ready?
+    self.game_records.size == 2
   end
 
   def finished?

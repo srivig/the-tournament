@@ -3,7 +3,7 @@
   .panel{class: panel}
     .panel-heading= tournament.round_name(i)
     %table#game-list.table.f16
-      - tournament.games.where(round: i).each do |game|
+      - tournament.games.where(bracket:1, round: i).each do |game|
         - unless (!tournament.consolation_round) && (i==tournament.round_num && game.match==2)
           %tr
             %td.width-10= game.match_name
