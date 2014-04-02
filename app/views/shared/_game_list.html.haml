@@ -28,7 +28,7 @@
                   - country = game.game_records.last.player.country.downcase
                   %div.flag-container
                     %div.flag{class: country}
-                  = game.game_records.first.player.name
+                  = game.game_records.last.player.name
                 - else
                   #{game.game_records.last.player.name}
             - else
