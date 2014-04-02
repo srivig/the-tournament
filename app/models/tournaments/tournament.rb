@@ -17,11 +17,13 @@ class Tournament < ActiveRecord::Base
   validates :place, length: {maximum: 100}, allow_nil: true
   validates :detail, length: {maximum: 500}, allow_nil: true
   validates :url, format: URI::regexp(%w(http https)), allow_blank: true
+  validates :consolation_round, presence: true, inclusion: {in: [true,false]}, allow_blank: true
+  validates :secondary_final, presence: true, inclusion: {in: [true,false]}, allow_blank: true
 
   default_scope {order(created_at: :desc)}
 
   before_create :build_players, :build_winner_games, :build_third_place_game
-  after_create :set_first_rounds
+  after_create :create_first_round_records
 
   def self.search_tournaments(params)
     if params[:q]
@@ -82,7 +84,7 @@ class Tournament < ActiveRecord::Base
     end
   end
 
-  def set_first_rounds
+  def create_first_round_records
     self.games.where(bracket: 1, round: 1).each do |game|
       game_players = [
         self.players.find_by(seed: 2*(game.match)-1),
@@ -142,6 +144,6 @@ class Tournament < ActiveRecord::Base
   def build_third_place_game
   end
 
-  def third_place
-  end
+  # def third_place
+  # end
 end

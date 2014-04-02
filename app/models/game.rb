@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#coding: utf-8
 class Game < ActiveRecord::Base
   has_many :game_records, dependent: :destroy
   has_many :players, through: :game_records
@@ -12,13 +12,13 @@ class Game < ActiveRecord::Base
   validates :round, presence: true, numericality: {only_integer: true}
   validates :match, presence: true, numericality: {only_integer: true}
   validates :bye, inclusion: {in: [true, false]}, allow_nil: true
-  validate  :has_valid_winner, on: :update
+  # validate  :has_valid_winner, on: :update
 
   default_scope {order(bracket: :asc, round: :asc, match: :asc)}
 
   before_update :reset_ancestors, if: :winner_changed?
-  after_update :set_parent_game, if: lambda{ self.finished? }, unless: lambda{ self.final? }
-  after_update :set_loser_game, if: lambda{ self.finished? && self.tournament.de? && self.bracket==1 }  # only when de and in winner bracket
+  before_update :create_or_update_parent_game_record, if: :winner_changed?, unless: lambda{ self.final? }
+  # before_update :set_loser_game, if: lambda{ self.tournament.de? && self.bracket==1 }  # only when de and in winner bracket
 
   def has_valid_winner
     winners = Array.new
@@ -77,24 +77,19 @@ class Game < ActiveRecord::Base
     ancestors
   end
 
-  def set_parent_game
-    #相方も処理済みで親gameのgame_recordsがまだなければ作成
-    if self.pair.finished? && self.parent.game_records.blank?
-      # add game_records!
-      players = Array[self.pair.winner]
-      (self.match%2 == 1) ? players.unshift(self.winner) : players.push(self.winner)
-      for i in 1..2
-        self.parent.game_records.create(player: players[i-1], record_num: i)
-      end
+  # game初保存時or updateでのwinner変更時に、親gameのrecordをセットする
+  def create_or_update_parent_game_record
+    parent_record_num = ((self.match)%2 == 0) ? 2 : 1
+    parent_game_record = GameRecord.find_or_initialize_by(game:self.parent, record_num: parent_record_num)
+    parent_game_record.player = self.winner
+    parent_game_record.save!
 
-      # semi-finalのときは3rd placeのも作成
-      if self.semi_final?
-        players = Array[self.pair.loser]
-        (self.match%2 == 1) ? players.unshift(self.loser) : players.push(self.loser)
-        for i in 1..2
-          self.tournament.third_place.game_records.create(player: players[i-1], record_num: i)
-        end
-      end
+    # semi-finalのときは3rd placeのも作成
+    if self.semi_final?
+      third_place_record_num = ((self.match)%2 == 0) ? 2 : 1
+      third_place_record = GameRecord.find_or_initialize_by(game:self.tournament.third_place, record_num: third_place_record_num)
+      third_place_record.player = self.loser
+      third_place_record.save!
     end
   end
 
@@ -110,13 +105,13 @@ class Game < ActiveRecord::Base
     end
 
     #game_recordにloserをセット(なければ新規作成)
-    game_record = GameRecord.find_or_initialize_by(game:loser_game, record_num: record_num)
-    game_record.player = self.loser
-    game_record.save!
+    loser_game_record = GameRecord.find_or_initialize_by(game:loser_game, record_num: record_num)
+    loser_game_record.player = self.loser
+    loser_game_record.save!
   end
 
   def ready?
-    self.game_records.size == 2
+    self.game_records.count == 2
   end
 
   def finished?

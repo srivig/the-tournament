@@ -5,5 +5,6 @@ FactoryGirl.define do
     association :user
     title {Faker::Company.name}
     size 8
+    secondary_final true
   end
 end

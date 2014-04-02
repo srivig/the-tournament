@@ -43,6 +43,7 @@ describe Tournament do
       before :each do
         @user = create(:user)
         @tournament = create(:tournament, user:@user, size:8)
+        p @tournament.games
       end
 
       it 'should have right number of games' do
