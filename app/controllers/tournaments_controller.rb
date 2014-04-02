@@ -37,7 +37,7 @@ class TournamentsController < ApplicationController
   end
 
   def edit
-    @tournament = Tournament.find(params[:id])
+    @tournament = Tournament.find(params[:id]).becomes(Tournament)
   end
 
   def update
