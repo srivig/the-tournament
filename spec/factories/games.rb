@@ -6,6 +6,7 @@ FactoryGirl.define do
     bracket 1
     round 1
     match 1
+    type 'Winner'
 
     factory :game_with_empty_records do
       after(:build) do |game|

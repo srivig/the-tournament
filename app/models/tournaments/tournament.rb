@@ -2,8 +2,8 @@ class Tournament < ActiveRecord::Base
   acts_as_taggable
 
   belongs_to :user
-  has_many :games, dependent: :destroy, order: 'bracket ASC, round ASC, match ASC'
-  has_many :players, dependent: :destroy, order: 'seed ASC'
+  has_many :games, -> { order(bracket: :asc, round: :asc, match: :asc) }, dependent: :destroy
+  has_many :players, -> { order(seed: :asc) }, dependent: :destroy
 
   accepts_nested_attributes_for :players
   accepts_nested_attributes_for :games

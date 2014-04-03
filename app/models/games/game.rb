@@ -1,6 +1,6 @@
 #coding: utf-8
 class Game < ActiveRecord::Base
-  has_many :game_records, dependent: :destroy, order: 'record_num ASC'
+  has_many :game_records, -> { order(record_num: :asc) }, dependent: :destroy
   has_many :players, through: :game_records
   belongs_to :tournament
 
