@@ -1,6 +1,6 @@
 #coding: utf-8
 class Game < ActiveRecord::Base
-  has_many :game_records, dependent: :destroy
+  has_many :game_records, dependent: :destroy, order: 'record_num ASC'
   has_many :players, through: :game_records
   belongs_to :tournament
 
@@ -12,13 +12,11 @@ class Game < ActiveRecord::Base
   validates :round, presence: true, numericality: {only_integer: true}
   validates :match, presence: true, numericality: {only_integer: true}
   validates :bye, inclusion: {in: [true, false]}, allow_nil: true
-  # validate  :has_valid_winner, on: :update
+  validate  :has_valid_winner, on: :update
 
-  default_scope {order(bracket: :asc, round: :asc, match: :asc)}
-
-  before_update :reset_ancestors, if: :winner_changed?
-  before_update :create_or_update_parent_game_record, if: :winner_changed?, unless: lambda{ self.final? }
-  # before_update :set_loser_game, if: lambda{ self.tournament.de? && self.bracket==1 }  # only when de and in winner bracket
+  after_update :reset_ancestors, if: :winner_changed?
+  after_update :set_parent_game_record, if: :winner_changed?, unless: lambda{ self.final? }
+  # after_update :set_loser_game_record, if: lambda{ self.tournament.de? && self.bracket==1 }  # only when de and in winner bracket
 
   def has_valid_winner
     winners = Array.new
@@ -40,7 +38,11 @@ class Game < ActiveRecord::Base
   end
 
   def winner_changed?
-    self.game_records.first.winner_changed? || self.game_records.second.winner_changed?
+    changed = false
+    self.game_records.each do |r|
+      changed = true if r.previous_changes[:winner].present?
+    end
+    changed
   end
 
   #ペアになるgameを取得(決勝ラウンドではペアがないので除外)
@@ -65,35 +67,37 @@ class Game < ActiveRecord::Base
     Game.find_by(tournament: self.tournament, bracket:2, round:round, match:match)
   end
 
-  # 先祖game(直系の親たち)を取得(include third-place playoff)
+  # 先祖game(直系の親たち)を取得(except for direct parent)
   def ancestors
     ancestors = Array.new
-    game = self
-    while game.parent.present?
+    game = self.parent
+    while game.try(:parent).present?
       ancestors << game.parent
       game = game.parent
     end
-    ancestors << self.tournament.third_place unless self.final?
     ancestors
   end
 
   # game初保存時or updateでのwinner変更時に、親gameのrecordをセットする
-  def create_or_update_parent_game_record
-    parent_record_num = ((self.match)%2 == 0) ? 2 : 1
-    parent_game_record = GameRecord.find_or_initialize_by(game:self.parent, record_num: parent_record_num)
+  def set_parent_game_record
+    # change or set a winner to the parent record
+    parent_game_record = GameRecord.find_or_initialize_by(game: self.parent, record_num: self.parent_record_num)
     parent_game_record.player = self.winner
     parent_game_record.save!
 
-    # semi-finalのときは3rd placeのも作成
-    if self.semi_final?
-      third_place_record_num = ((self.match)%2 == 0) ? 2 : 1
-      third_place_record = GameRecord.find_or_initialize_by(game:self.tournament.third_place, record_num: third_place_record_num)
-      third_place_record.player = self.loser
-      third_place_record.save!
-    end
+    # reset parent game results
+    self.parent.game_records.map{|r| r.reset_result}
   end
 
-  def set_loser_game
+  def set_third_place_record
+    third_place_record = GameRecord.find_or_initialize_by(game:self.tournament.third_place, record_num: self.parent_record_num)
+    third_place_record.player = self.loser
+    third_place_record.save!
+
+    self.tournament.third_place.game_records.map{|r| r.reset_result}
+  end
+
+  def set_loser_game_record
     #loser bracketの対象game取得
     loser_game = self.loser_game
 
@@ -108,6 +112,10 @@ class Game < ActiveRecord::Base
     loser_game_record = GameRecord.find_or_initialize_by(game:loser_game, record_num: record_num)
     loser_game_record.player = self.loser
     loser_game_record.save!
+  end
+
+  def parent_record_num
+    ((self.match)%2 == 0) ? 2 : 1
   end
 
   def ready?

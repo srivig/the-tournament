@@ -2,8 +2,8 @@ class Tournament < ActiveRecord::Base
   acts_as_taggable
 
   belongs_to :user
-  has_many :games, dependent: :destroy
-  has_many :players, dependent: :destroy
+  has_many :games, dependent: :destroy, order: 'bracket ASC, round ASC, match ASC'
+  has_many :players, dependent: :destroy, order: 'seed ASC'
 
   accepts_nested_attributes_for :players
   accepts_nested_attributes_for :games
@@ -52,10 +52,10 @@ class Tournament < ActiveRecord::Base
       results << round_res
       self.games.where(bracket: 1, round: i).each do |game|
         # Set team info
-        teams << game.players.map{|m| (m.name.present?) ? m.name : '--'}.to_a  if i == 1
+        teams << game.players.map{|p| (p.name.present?) ? p.name : '--'}.to_a  if i == 1
 
         # Set match Info
-        res =  game.game_records.map{|m| m.score}.to_a
+        res =  game.game_records.map{|r| r.score}.to_a
         # Bye Game
         if game.bye == true
           win_record = game.game_records.find_by(winner: true)
@@ -126,24 +126,4 @@ class Tournament < ActiveRecord::Base
       end
     end
   end
-
-  def build_loser_and_final_games
-    loser_round_num = (self.round_num-1)*2
-    for i in 1..loser_round_num do
-      match_num_base = (loser_round_num+1-i).quo(2).ceil - 1  #2ラウンドごとに試合数が変わる(e.g. 4-4-2-2-1-1)
-      (2**match_num_base).times do |k|
-        self.games.build(bracket:2, round:i, match:k+1)
-      end
-    end
-    2.times do |i|
-      self.games.build(bracket:3, round:i+1, match:1) #決勝戦(secondary finalも作っておく)
-    end
-  end
-
-  # See SE & DE model
-  def build_third_place_game
-  end
-
-  # def third_place
-  # end
 end
