@@ -7,7 +7,7 @@
         - unless (!tournament.consolation_round) && (i==tournament.round_num && game.match==2)
           %tr
             %td.width-10= game.match_name
-            - if game.game_records.present?
+            - if game.ready?
               %td.width-30.text-right
                 - if game.game_records.first.player.country.present?
                   - country = game.game_records.first.player.country.downcase
@@ -22,15 +22,15 @@
               %td.width-4.text-center -
               %td.width-8.text-danger
                 - if game.finished? && !game.bye
-                  #{game.game_records.last.score}
+                  #{game.game_records.second.score}
               %td.width-30
-                - if game.game_records.last.player.country.present?
-                  - country = game.game_records.last.player.country.downcase
+                - if game.game_records.second.player.country.present?
+                  - country = game.game_records.second.player.country.downcase
                   %div.flag-container
                     %div.flag{class: country}
-                  = game.game_records.first.player.name
+                  = game.game_records.second.player.name
                 - else
-                  #{game.game_records.last.player.name}
+                  #{game.game_records.second.player.name}
             - else
               %td.width-30.text-right (TBD)
               %td.width-8

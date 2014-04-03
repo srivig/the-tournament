@@ -126,4 +126,8 @@ class Tournament < ActiveRecord::Base
       end
     end
   end
+
+  def de?
+    self.type == 'DoubleElimination'
+  end
 end
