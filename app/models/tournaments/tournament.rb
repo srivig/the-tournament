@@ -52,7 +52,7 @@ class Tournament < ActiveRecord::Base
       results << round_res
       self.games.where(bracket: 1, round: i).each do |game|
         # Set team info
-        teams << game.players.map{|p| (p.name.present?) ? p.name : '--'}.to_a  if i == 1
+        teams << game.game_records.map{|r| (r.player.name.present?) ? r.player.name : '--'}.to_a  if i == 1
 
         # Set match Info
         res =  game.game_records.map{|r| r.score}.to_a

@@ -17,29 +17,6 @@ describe Game do
     end
   end
 
-  describe 'pair' do
-    before :each do
-      @user = create(:user)
-      @tournament = create(:tournament, user:@user, size:8)
-    end
-
-    context 'when not in final round' do
-      subject { @tournament.games.find_by(bracket:1, round:1, match:1) }
-
-      it 'should return pair game' do
-        expect(subject.pair).to eq(@tournament.games.find_by(bracket:1, round:1, match:2))
-      end
-    end
-
-    context 'when in final round' do
-      subject { @tournament.games.find_by(bracket:1, round:3, match:1) }
-
-      it 'should return nil' do
-        expect(subject.pair).to eq(nil)
-      end
-    end
-  end
-
   describe 'parent' do
     before :each do
       @user = create(:user)
@@ -116,7 +93,7 @@ describe Game do
     context 'when winner exist' do
       it 'should have winner' do
         @game = create(:game_with_winner)
-        expect(@game.winner).to eq(@game.players.first)
+        expect(@game.winner).to eq(@game.game_records.first.player)
       end
     end
 
@@ -132,7 +109,7 @@ describe Game do
     context 'when winner exist' do
       it 'should return loser' do
         @game = create(:game_with_winner)
-        expect(@game.loser).to eq(@game.players.second)
+        expect(@game.loser).to eq(@game.game_records.last.player)
       end
     end
 
@@ -197,6 +174,7 @@ describe Game do
       before :each do
         @game.game_records.first.winner = false
         @game.game_records.second.winner = true
+        @game.save
       end
 
       it 'should return true' do

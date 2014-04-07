@@ -15,6 +15,7 @@ class Game < ActiveRecord::Base
   validate  :has_valid_winner, on: :update
 
   after_update :reset_ancestors, :set_parent_game_record, :set_loser_game_record, if: :winner_changed?
+  # after_update :reset_ancestors, if: :winner_changed?
 
   def has_valid_winner
     winners = Array.new
