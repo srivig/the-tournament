@@ -74,6 +74,10 @@ class Game < ActiveRecord::Base
     end
   end
 
+  def parent_record
+    GameRecord.find_or_initialize_by(game: self.parent, record_num: self.parent_record_num)
+  end
+
   def set_parent_game_record
     set_target_game_record(self.parent, self.parent_record_num, self.winner)
   end
