@@ -74,7 +74,7 @@ class Tournament < ActiveRecord::Base
 
   def match_data
     self.games.map{ |m|
-      "#{self.round_name(m.round)} #{m.match_name}<br>#{m.game_records.map{|r| r.player.name}.join('-')}"
+      "#{self.round_name(round:m.round)} #{m.match_name}<br>#{m.game_records.map{|r| r.player.name}.join('-')}"
     }
   end
 

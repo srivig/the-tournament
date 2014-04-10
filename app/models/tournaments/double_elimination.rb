@@ -31,6 +31,7 @@ class DoubleElimination < Tournament
   end
 
   def round_name(args)
+    p args
     bracket = args[:bracket] || 1
     round = args[:round]
 

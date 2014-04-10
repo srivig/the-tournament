@@ -26,11 +26,11 @@ class TournamentsController < ApplicationController
 
     respond_to do |format|
       if @tournament.save
-        @tournament = @tournament.becomes(Tournament)
+        @tournament = @tournament
         format.html { redirect_to @tournament, notice: 'Tournament was successfully created.' }
         format.json { render action: 'show', status: :created, location: @tournament }
       else
-        @tournament = @tournament.becomes(Tournament)
+        @tournament = @tournament
         flash.now[:alert] = "Failed on saving the tournament."
         format.html { render action: 'new' }
         format.json { render json: @tournament.errors, status: :unprocessable_entity }
@@ -64,7 +64,7 @@ class TournamentsController < ApplicationController
 
   private
     def set_tournament
-      @tournament = Tournament.find(params[:id]).becomes(Tournament)
+      @tournament = Tournament.find(params[:id])
     end
 
     def tournament_params
