@@ -11,7 +11,7 @@ class Winner < Game
   def loser_game
     if self.semi_final?
       self.tournament.third_place
-    elsif self.tourament.de?
+    elsif self.tournament.de?
       round_num = [(self.round-1)*2, 1].max # 1,2,4,6,8,...
       match_num = ((self.match)%2 == 0) ? (self.match)/2 : (self.match+1)/2
       self.tournament.games.find_by(bracket:2, round:round_num, match:match_num)

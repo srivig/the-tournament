@@ -15,7 +15,6 @@ class Game < ActiveRecord::Base
   validate  :has_valid_winner, on: :update
 
   after_update :reset_ancestors, :set_parent_game_record, :set_loser_game_record, if: :winner_changed?
-  # after_update :reset_ancestors, if: :winner_changed?
 
   def has_valid_winner
     winners = Array.new
@@ -60,6 +59,8 @@ class Game < ActiveRecord::Base
       ancestors << game.parent
       game = game.parent
     end
+    tournament = self.becomes(Game).tournament
+    ancestors << tournament.third_place unless self.loser_game == tournament.third_place
     ancestors
   end
 

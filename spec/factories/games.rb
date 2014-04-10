@@ -9,16 +9,16 @@ FactoryGirl.define do
     type 'Winner'
 
     factory :game_with_empty_records do
-      after(:build) do |game|
-        game.game_records << build(:game_record, player: create(:player), record_num:1)
-        game.game_records << build(:game_record, player: create(:player), record_num:2)
+      after(:create) do |game|
+        game.game_records << build(:game_record, game: game, player: create(:player), record_num:1)
+        game.game_records << build(:game_record, game: game, player: create(:player), record_num:2)
       end
     end
 
     factory :game_with_winner do
-      after(:build) do |game|
-        game.game_records << build(:win_record, player: create(:player), record_num:1)
-        game.game_records << build(:lose_record, player: create(:player),record_num:2)
+      after(:create) do |game|
+        game.game_records << create(:win_record, game: game, player: create(:player), record_num:1)
+        game.game_records << create(:lose_record, game: game, player: create(:player),record_num:2)
       end
     end
 
