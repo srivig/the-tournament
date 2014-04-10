@@ -1,7 +1,8 @@
 - tournament.round_num.downto(1) do |i|
   - panel = (i==tournament.round_num) ? "panel-warning" : "panel-default"
   .panel{class: panel}
-    .panel-heading= tournament.round_name(i)
+    - p tournament
+    .panel-heading= tournament.round_name(round:i)
     %table#game-list.table.f16
       - tournament.games.where(bracket:1, round: i).each do |game|
         - unless (!tournament.consolation_round) && (i==tournament.round_num && game.match==2)

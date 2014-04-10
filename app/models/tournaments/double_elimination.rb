@@ -1,9 +1,8 @@
 class DoubleElimination < Tournament
   before_create :build_loser_and_final_games
 
-  # return a game of the third-place playoff
   def third_place
-    self.games.find_by(bracket:3, round:1, match:2)
+    self.games.find_by(bracket:3, round:1, match:2) if self.consolation_round
   end
 
   def final
@@ -29,5 +28,18 @@ class DoubleElimination < Tournament
 
   def loser_round_num
     (self.round_num-1)*2
+  end
+
+  def round_name(args)
+    bracket = args[:bracket] || 1
+    round = args[:round]
+
+    if bracket == 3
+      '決勝ラウンド'
+    elsif (bracket==1 && round==self.round_num) || (bracket==2 && round==loser_round_num)
+      '準決勝'
+    else
+      "#{round}回戦"
+    end
   end
 end
