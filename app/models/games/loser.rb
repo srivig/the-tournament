@@ -9,13 +9,17 @@ class Loser < Game
   end
 
   def parent_record_num
-    (self.semi_final?) ? 2 : 1  # return 2 for final game, 1 for other loser games
+    if self.semi_final?
+      2
+    elsif self.round%2 == 1
+      1
+    else
+      ((self.match)%2 == 1) ? 1 : 2   # return 1 for odd number, 2 for even number
+    end
   end
 
   def loser_game
-    if self.semi_final?
-      self.tournament.third_place
-    end
+    self.tournament.third_place if self.semi_final?
   end
 
   def loser_record_num

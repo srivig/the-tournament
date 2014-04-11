@@ -5,7 +5,7 @@ class Winner < Game
   end
 
   def parent_record_num
-    ((self.match)%2 == 0) ? 2 : 1   # return 1 for odd number, 2 for even number
+    ((self.match)%2 == 1) ? 1 : 2   # return 1 for odd number, 2 for even number
   end
 
   def loser_game

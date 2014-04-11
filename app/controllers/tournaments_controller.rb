@@ -27,7 +27,7 @@ class TournamentsController < ApplicationController
     respond_to do |format|
       if @tournament.save
         @tournament = @tournament
-        format.html { redirect_to @tournament, notice: 'Tournament was successfully created.' }
+        format.html { redirect_to tournament_path(@tournament), notice: 'Tournament was successfully created.' }
         format.json { render action: 'show', status: :created, location: @tournament }
       else
         @tournament = @tournament

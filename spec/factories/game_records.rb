@@ -4,8 +4,8 @@ FactoryGirl.define do
   factory :game_record do
     association :player
     association :game
-    score 0
     record_num 1
+    score nil
 
     factory :win_record do
       score 1
@@ -13,6 +13,7 @@ FactoryGirl.define do
     end
 
     factory :lose_record do
+      score 0
       winner false
     end
   end

@@ -86,70 +86,193 @@ describe Game do
   end
 
 
-  describe 'parent_record' do
+  describe 'parent_game_record' do
     context 'when single elimination' do
-      context 'when not in final round' do
+      context 'case 1-1-1' do
         subject { @se_tnmt.games.find_by(bracket:1, round:1, match:1) }
 
         it 'should return parent game record' do
-          expect(subject.parent_record).to eq(@se_tnmt.games.find_by(bracket:1, round:2, match:1).game_records.find_by(record_num:1))
+          expect(subject.parent_game_record.game).to eq(subject.parent)
+          expect(subject.parent_game_record.record_num).to eq(1)
         end
       end
 
-      # context 'when in final round' do
-      #   subject { @se_tnmt.games.find_by(bracket:1, round:3, match:1) }
+      context 'case 1-1-4' do
+        subject { @se_tnmt.games.find_by(bracket:1, round:1, match:4) }
 
-      #   it 'should return nil' do
-      #     expect(subject.parent).to eq(nil)
-      #   end
-      # end
+        it 'should return parent game record' do
+          expect(subject.parent_game_record.game).to eq(subject.parent)
+          expect(subject.parent_game_record.record_num).to eq(2)
+        end
+      end
+
+      context 'case 1-2-2' do
+        subject { @se_tnmt.games.find_by(bracket:1, round:2, match:2) }
+
+        it 'should return parent game record' do
+          expect(subject.parent_game_record.game).to eq(subject.parent)
+          expect(subject.parent_game_record.record_num).to eq(2)
+        end
+      end
+
+      context 'case 1-3-1' do
+        subject { @se_tnmt.games.find_by(bracket:1, round:3, match:1) }
+
+        it 'should return nil' do
+          expect(subject.parent_game_record).to be_nil
+        end
+      end
     end
 
-    # context 'when double elimination' do
-    #   context 'when in winner bracket' do
-    #     context 'when not in winner final round' do
-    #       subject { @de_tnmt.games.find_by(bracket:1, round:1, match:1) }
+    context 'when double elimination' do
+      context 'case 1-1-2' do
+        subject { @de_tnmt.games.find_by(bracket:1, round:1, match:2) }
 
-    #       it 'should return parent game' do
-    #         expect(subject.parent).to eq(@de_tnmt.games.find_by(bracket:1, round:2, match:1))
-    #       end
-    #     end
+        it 'should return parent game record' do
+          expect(subject.parent_game_record.game).to eq(subject.parent)
+          expect(subject.parent_game_record.record_num).to eq(2)
+        end
+      end
 
-    #     context 'when in winner final round' do
-    #       subject { @de_tnmt.games.find_by(bracket:1, round:3, match:1) }
+      context 'case 1-3-1' do
+        subject { @de_tnmt.games.find_by(bracket:1, round:3, match:1) }
 
-    #       it 'should return final game' do
-    #         expect(subject.parent).to eq(@de_tnmt.games.find_by(bracket:3, round:1, match:1))
-    #       end
-    #     end
-    #   end
+        it 'should return parent game record' do
+          expect(subject.parent_game_record.game).to eq(subject.parent)
+          expect(subject.parent_game_record.record_num).to eq(1)
+        end
+      end
 
-    #   context 'when in loser bracket' do
-    #     context 'when not in loser final round' do
-    #       subject { @de_tnmt.games.find_by(bracket:2, round:1, match:1) }
+      context 'case 2-1-2' do
+        subject { @de_tnmt.games.find_by(bracket:2, round:1, match:2) }
 
-    #       it 'should return parent game' do
-    #         expect(subject.parent).to eq(@de_tnmt.games.find_by(bracket:2, round:2, match:1))
-    #       end
-    #     end
+        it 'should return parent game record' do
+          expect(subject.parent_game_record.game).to eq(subject.parent)
+          expect(subject.parent_game_record.record_num).to eq(1)
+        end
+      end
 
-    #     context 'when in loser middle round' do
-    #       subject { @de_tnmt.games.find_by(bracket:2, round:2, match:2) }
+      context 'case 2-2-2' do
+        subject { @de_tnmt.games.find_by(bracket:2, round:2, match:2) }
 
-    #       it 'should return parent game' do
-    #         expect(subject.parent).to eq(@de_tnmt.games.find_by(bracket:2, round:3, match:1))
-    #       end
-    #     end
+        it 'should return parent game record' do
+          expect(subject.parent_game_record.game).to eq(subject.parent)
+          expect(subject.parent_game_record.record_num).to eq(2)
+        end
+      end
 
-    #     context 'when in loser final round' do
-    #       subject { @de_tnmt.games.find_by(bracket:2, round:4, match:1) }
+      context 'case 2-4-1' do
+        subject { @de_tnmt.games.find_by(bracket:2, round:4, match:1) }
 
-    #       it 'should return final game' do
-    #         expect(subject.parent).to eq(@de_tnmt.games.find_by(bracket:3, round:1, match:1))
-    #       end
-    #     end
-    #   end
-    # end
+        it 'should return parent game record' do
+          expect(subject.parent_game_record.game).to eq(subject.parent)
+          expect(subject.parent_game_record.record_num).to eq(2)
+        end
+      end
+
+      context 'case 3-1-1' do
+        subject { @de_tnmt.games.find_by(bracket:3, round:1, match:1) }
+
+        it 'should return parent game record' do
+          expect(subject.parent_game_record).to be_nil
+        end
+      end
+    end
+  end
+
+
+  describe 'loser_game_record' do
+    context 'when single elimination' do
+      context 'case 1-1-1' do
+        subject { @se_tnmt.games.find_by(bracket:1, round:1, match:1) }
+
+        it 'should return loser game record' do
+          expect(subject.loser_game_record).to be_nil
+        end
+      end
+
+      context 'case 1-2-1' do
+        subject { @se_tnmt.games.find_by(bracket:1, round:2, match:1) }
+
+        it 'should return loser game record' do
+          expect(subject.loser_game_record.game).to eq(subject.tournament.third_place)
+          expect(subject.loser_game_record.record_num).to eq(1)
+        end
+      end
+
+      context 'case 1-2-2' do
+        subject { @se_tnmt.games.find_by(bracket:1, round:2, match:2) }
+
+        it 'should return loser game record' do
+          expect(subject.loser_game_record.game).to eq(subject.tournament.third_place)
+          expect(subject.loser_game_record.record_num).to eq(2)
+        end
+      end
+    end
+
+    context 'when double elimination' do
+      context 'case 1-1-1' do
+        subject { @de_tnmt.games.find_by(bracket:1, round:1, match:1) }
+
+        it 'should return loser game record' do
+          expect(subject.loser_game_record.game).to eq(subject.loser_game)
+          expect(subject.loser_game_record.record_num).to eq(1)
+        end
+      end
+
+      context 'case 1-1-4' do
+        subject { @de_tnmt.games.find_by(bracket:1, round:1, match:4) }
+
+        it 'should return loser game record' do
+          expect(subject.loser_game_record.game).to eq(subject.loser_game)
+          expect(subject.loser_game_record.record_num).to eq(2)
+        end
+      end
+
+      context 'case 1-2-1' do
+        subject { @de_tnmt.games.find_by(bracket:1, round:2, match:1) }
+
+        it 'should return loser game record' do
+          expect(subject.loser_game_record.game).to eq(subject.loser_game)
+          expect(subject.loser_game_record.record_num).to eq(2)
+        end
+      end
+
+      context 'case 1-2-2' do
+        subject { @de_tnmt.games.find_by(bracket:1, round:2, match:2) }
+
+        it 'should return loser game record' do
+          expect(subject.loser_game_record.game).to eq(subject.loser_game)
+          expect(subject.loser_game_record.record_num).to eq(2)
+        end
+      end
+
+      context 'case 1-3-1' do
+        subject { @de_tnmt.games.find_by(bracket:1, round:3, match:1) }
+
+        it 'should return loser game record' do
+          expect(subject.loser_game_record.game).to eq(subject.tournament.third_place)  # set third_place when semi-final
+          expect(subject.loser_game_record.record_num).to eq(1)
+        end
+      end
+
+      context 'case 2-3-1' do
+        subject { @de_tnmt.games.find_by(bracket:2, round:3, match:1) }
+
+        it 'should return loser game record' do
+          expect(subject.loser_game_record).to be_nil
+        end
+      end
+
+      context 'case 2-4-1' do
+        subject { @de_tnmt.games.find_by(bracket:2, round:4, match:1) }
+
+        it 'should return loser game record' do
+          expect(subject.loser_game_record.game).to eq(subject.tournament.third_place)  # set third_place when semi-final
+          expect(subject.loser_game_record.record_num).to eq(2)
+        end
+      end
+    end
   end
 
 
