@@ -37,7 +37,9 @@ class Winner < Game
   end
 
   def final?
-    unless self.tournament.de?
+    if self.tournament.de?
+      false
+    else
       (self.round==self.tournament.round_num) && (self.match==1)
     end
   end
@@ -51,7 +53,9 @@ class Winner < Game
   end
 
   def third_place?
-    unless self.tournament.de?
+    if self.tournament.de?
+      false
+    else
       (self.round==self.tournament.round_num) && (self.match==2)
     end
   end
