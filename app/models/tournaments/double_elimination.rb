@@ -42,4 +42,78 @@ class DoubleElimination < Tournament
       "#{round}回戦"
     end
   end
+
+  def tournament_data
+    teams = Array.new
+    results = Array.new
+
+    winner_results = Array.new
+    results << winner_results
+    for i in 1..self.round_num
+      round_res = Array.new  # create result array for each round
+      winner_results << round_res
+      self.games.where(bracket: 1, round: i).each do |game|
+        # Set team info
+        teams << game.game_records.map{|r| (r.player.name.present?) ? r.player.name : '--'}.to_a  if i == 1
+
+        # Set match Info
+        res =  game.game_records.map{|r| r.score}.to_a
+        # Bye Game
+        if game.bye == true
+          win_record = game.game_records.find_by(winner: true)
+          res[win_record.record_num-1] = 0.3
+          res[win_record.record_num]   = 0.2
+        # Same Score Game
+        elsif game.winner.present? && (game.game_records.first.score == game.game_records.last.score)
+          win_record = game.game_records.find_by(winner: true)
+          res[win_record.record_num-1] += 0.1
+        end
+        round_res << res
+      end
+    end
+
+    loser_results = Array.new
+    results << loser_results
+    for i in 1..self.loser_round_num
+      round_res = Array.new  # create result array for each round
+      loser_results << round_res
+      self.games.where(bracket: 2, round: i).each do |game|
+        # Set match Info
+        res =  game.game_records.map{|r| r.score}.to_a
+        # Bye Game
+        if game.bye == true
+          win_record = game.game_records.find_by(winner: true)
+          res[win_record.record_num-1] = 0.3
+          res[win_record.record_num]   = 0.2
+        # Same Score Game
+        elsif game.winner.present? && (game.game_records.first.score == game.game_records.last.score)
+          win_record = game.game_records.find_by(winner: true)
+          res[win_record.record_num-1] += 0.1
+        end
+        round_res << res
+      end
+    end
+
+    final_results = Array.new
+    results << final_results
+    round_res = Array.new  # create result array for each round
+    final_results << round_res
+    self.games.where(bracket: 3, round: 1).each do |game|
+      # Set match Info
+      res =  game.game_records.map{|r| r.score}.to_a
+      # Bye Game
+      if game.bye == true
+        win_record = game.game_records.find_by(winner: true)
+        res[win_record.record_num-1] = 0.3
+        res[win_record.record_num]   = 0.2
+      # Same Score Game
+      elsif game.winner.present? && (game.game_records.first.score == game.game_records.last.score)
+        win_record = game.game_records.find_by(winner: true)
+        res[win_record.record_num-1] += 0.1
+      end
+      round_res << res
+    end
+
+    tournament_data = {teams: teams, results: results}
+  end
 end
