@@ -14,7 +14,7 @@ class Game < ActiveRecord::Base
   validates :bye, inclusion: {in: [true, false]}, allow_nil: true
   validate  :has_valid_winner, on: :update
 
-  after_update :reset_ancestors, :set_parent_game_record, :set_loser_game_record, if: :winner_changed?
+  after_update :reset_ancestor_records, :set_parent_game_record, :set_loser_game_record, if: :winner_changed?
 
   def has_valid_winner
     winners = Array.new
@@ -31,7 +31,7 @@ class Game < ActiveRecord::Base
     end
   end
 
-  def reset_ancestors
+  def reset_ancestor_records
     self.ancestor_records.map{|record| record.delete}
   end
 
@@ -125,7 +125,11 @@ class Game < ActiveRecord::Base
 
   def match_name
     if self.final?
-      '決勝戦'
+      if self.bracket == 3 && self.round == 2
+        '再決勝'
+      else
+        '決勝戦'
+      end
     elsif self.third_place?
       '3位決定戦'
     else
