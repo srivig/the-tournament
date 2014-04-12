@@ -119,7 +119,7 @@ describe Game do
           subject { @de_tnmt.games.find_by(bracket:1, round:2, match:2) }
 
           it 'should return loser_game game' do
-            expect(subject.loser_game).to eq(@de_tnmt.games.find_by(bracket:2, round:2, match:2))
+            expect(subject.loser_game).to eq(@de_tnmt.games.find_by(bracket:2, round:2, match:1))
           end
         end
 
@@ -127,7 +127,7 @@ describe Game do
           subject { @de_tnmt.games.find_by(bracket:1, round:3, match:1) }
 
           it 'should return loser game' do
-            expect(subject.loser_game).to eq(@de_tnmt.games.find_by(bracket:3, round:1, match:2))
+            expect(subject.loser_game).to eq(@de_tnmt.games.find_by(bracket:2, round:4, match:1))
           end
         end
       end
@@ -144,7 +144,7 @@ describe Game do
         context 'case 2-4-1' do
           subject { @de_tnmt.games.find_by(bracket:2, round:4, match:1) }
 
-          it 'should return final game' do
+          it 'should return semi-final' do
             expect(subject.loser_game).to eq(@de_tnmt.games.find_by(bracket:3, round:1, match:2))
           end
         end
@@ -318,8 +318,8 @@ describe Game do
         subject { @de_tnmt.games.find_by(bracket:1, round:3, match:1) }
 
         it 'should return loser game record' do
-          expect(subject.loser_game_record.game).to eq(subject.tournament.third_place)  # set third_place when semi-final
-          expect(subject.loser_game_record.record_num).to eq(1)
+          expect(subject.loser_game_record.game).to eq(subject.loser_game)
+          expect(subject.loser_game_record.record_num).to eq(2)
         end
       end
 
@@ -515,7 +515,7 @@ describe Game do
 
     context 'when double elimination' do
       before :each do
-        games = @de_tnmt.games.where.not(round:1)
+        games = @de_tnmt.games.where("round <> 1 or bracket = 3")
         games.each do |game|
           game.game_records << create(:game_record, game: game, record_num:1)
           game.game_records << create(:game_record, game: game, record_num:2)
@@ -529,7 +529,8 @@ describe Game do
           ancestors = [
             @de_tnmt.games.find_by(bracket:2, round:2, match:1).game_records.find_by(record_num:1),
             @de_tnmt.games.find_by(bracket:2, round:3, match:1).game_records.find_by(record_num:1),
-            @de_tnmt.games.find_by(bracket:2, round:4, match:1).game_records.find_by(record_num:1)
+            @de_tnmt.games.find_by(bracket:2, round:4, match:1).game_records.find_by(record_num:1),
+            @de_tnmt.games.find_by(bracket:3, round:1, match:2).game_records.find_by(record_num:2)
           ]
           expect(subject.loser_ancestor_records).to eq(ancestors)
         end
@@ -542,7 +543,8 @@ describe Game do
           ancestors = [
             @de_tnmt.games.find_by(bracket:2, round:2, match:2).game_records.find_by(record_num:1),
             @de_tnmt.games.find_by(bracket:2, round:3, match:1).game_records.find_by(record_num:2),
-            @de_tnmt.games.find_by(bracket:2, round:4, match:1).game_records.find_by(record_num:1)
+            @de_tnmt.games.find_by(bracket:2, round:4, match:1).game_records.find_by(record_num:1),
+            @de_tnmt.games.find_by(bracket:3, round:1, match:2).game_records.find_by(record_num:2)
           ]
           expect(subject.loser_ancestor_records).to eq(ancestors)
         end
@@ -553,8 +555,9 @@ describe Game do
 
         it 'should return right ancestors' do
           ancestors = [
-            @de_tnmt.games.find_by(bracket:2, round:3, match:1).game_records.find_by(record_num:2),
-            @de_tnmt.games.find_by(bracket:2, round:4, match:1).game_records.find_by(record_num:1)
+            @de_tnmt.games.find_by(bracket:2, round:3, match:1).game_records.find_by(record_num:1),
+            @de_tnmt.games.find_by(bracket:2, round:4, match:1).game_records.find_by(record_num:1),
+            @de_tnmt.games.find_by(bracket:3, round:1, match:2).game_records.find_by(record_num:2)
           ]
           expect(subject.loser_ancestor_records).to eq(ancestors)
         end
@@ -573,7 +576,9 @@ describe Game do
         subject { @de_tnmt.games.find_by(bracket:2, round:1, match:1) }
 
         it 'should return right ancestors' do
-          ancestors = []
+          ancestors = [
+            @de_tnmt.games.find_by(bracket:3, round:1, match:2).game_records.find_by(record_num:2)
+          ]
           expect(subject.loser_ancestor_records).to eq(ancestors)
         end
       end

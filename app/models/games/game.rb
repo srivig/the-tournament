@@ -69,6 +69,8 @@ class Game < ActiveRecord::Base
   end
 
   def loser_ancestor_records
+    return [] unless self.tournament.de?
+
     loser_ancestor_records = Array.new
     game = self.loser_game
     while game.try(:parent).present?
@@ -76,6 +78,11 @@ class Game < ActiveRecord::Base
         loser_ancestor_records << game.parent_game_record
       end
       game = game.parent
+    end
+
+    if self.tournament.third_place.present? && self.bracket == 1 && !self.semi_final?
+      third_place_record = self.loser_game.third_place_record
+      loser_ancestor_records << third_place_record
     end
     loser_ancestor_records
   end

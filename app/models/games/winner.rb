@@ -10,7 +10,7 @@ class Winner < Game
 
   def loser_game
     if self.tournament.de?
-      round_num = [(self.round-1)*2, 1].max # 1,2,4,6,8,...
+      round_num = self.loser_round_num
       match_num = self.loser_match_num
       self.tournament.games.find_by(bracket:2, round:round_num, match:match_num)
     elsif self.semi_final?
@@ -18,9 +18,16 @@ class Winner < Game
     end
   end
 
+  def loser_round_num
+    [(self.round-1)*2, 1].max # 1,2,4,6,8,...
+  end
+
   def loser_match_num
     if self.round == 1
       ((self.match)%2 == 0) ? (self.match)/2 : (self.match+1)/2
+    elsif self.round%2 == 0
+      match_num = self.tournament.games.where(bracket:2, round:self.loser_round_num).count
+      (match_num+1) - self.match
     else
       self.match
     end
