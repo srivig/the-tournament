@@ -13,8 +13,16 @@ class Winner < Game
       self.tournament.third_place
     elsif self.tournament.de?
       round_num = [(self.round-1)*2, 1].max # 1,2,4,6,8,...
-      match_num = ((self.match)%2 == 0) ? (self.match)/2 : (self.match+1)/2
+      match_num = self.loser_match_num
       self.tournament.games.find_by(bracket:2, round:round_num, match:match_num)
+    end
+  end
+
+  def loser_match_num
+    if self.round == 1
+      ((self.match)%2 == 0) ? (self.match)/2 : (self.match+1)/2
+    else
+      self.match
     end
   end
 
@@ -32,6 +40,17 @@ class Winner < Game
         1
       else
         2
+      end
+    end
+  end
+
+  def third_place_record_num
+    if self.tournament.de?
+      1
+    else
+      unless self.final?
+        half_num = self.tournament.games.where(round: self.round).count / 2  # in size8, return 2 for 1st round, 1 for 2nd,
+        (self.match <= half_num) ? 1 : 2
       end
     end
   end

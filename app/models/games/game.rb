@@ -14,7 +14,7 @@ class Game < ActiveRecord::Base
   validates :bye, inclusion: {in: [true, false]}, allow_nil: true
   validate  :has_valid_winner, on: :update
 
-  after_update :reset_ancestor_records, :set_parent_game_record, :set_loser_game_record, if: :winner_changed?
+  after_update :reset_ancestors, :set_parent_game_record, :set_loser_game_record, if: :winner_changed?
 
   def has_valid_winner
     winners = Array.new
@@ -31,8 +31,9 @@ class Game < ActiveRecord::Base
     end
   end
 
-  def reset_ancestor_records
+  def reset_ancestors
     self.ancestor_records.map{|record| record.delete}
+    self.loser_ancestor_records.map{|record| record.delete}
   end
 
   def winner_changed?
@@ -53,30 +54,27 @@ class Game < ActiveRecord::Base
     end
   end
 
-  # 先祖game(直系の親たち)を取得(except for direct parent)
-  def ancestors
-    ancestors = Array.new
-    game = self.parent
-    while game.try(:parent).present?
-      ancestors << game.parent
-      game = game.parent
-    end
-    tournament = self.becomes(Game).tournament
-
-    if tournament.third_place.present? && self.loser_game != tournament.third_place
-      ancestors << tournament.third_place
-    end
-    ancestors
-  end
-
   def ancestor_records
     ancestor_records = Array.new
     game = self.parent
     while game.try(:parent).present?
-      ancestor_records << game.parent_game_record
+      ancestor_records << game.parent_game_record if game.parent_game_record.persisted?
       game = game.parent
     end
+    ancestor_records << self.third_place_record if self.third_place_record.persisted? unless self.semi_final?
     ancestor_records
+  end
+
+  def loser_ancestor_records
+    loser_ancestor_records = Array.new
+    game = self.loser_game
+    while game.try(:parent).present?
+      if game.parent_game_record.persisted? && !game.parent.final?
+        loser_ancestor_records << game.parent_game_record
+      end
+      game = game.parent
+    end
+    loser_ancestor_records
   end
 
   def parent_game_record
@@ -85,6 +83,10 @@ class Game < ActiveRecord::Base
 
   def loser_game_record
     GameRecord.find_or_initialize_by(game: self.loser_game, record_num: self.loser_record_num) if self.loser_game.present?
+  end
+
+  def third_place_record
+    GameRecord.find_or_initialize_by(game: self.tournament.third_place, record_num: self.third_place_record_num)
   end
 
   def set_parent_game_record

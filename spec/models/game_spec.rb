@@ -86,6 +86,73 @@ describe Game do
   end
 
 
+  describe 'loser_game' do
+    context 'when single elimination' do
+      context 'when not in final round' do
+        subject { @se_tnmt.games.find_by(bracket:1, round:1, match:1) }
+
+        it 'should return loser_game game' do
+          expect(subject.loser_game).to be_nil
+        end
+      end
+
+      context 'when in final round' do
+        subject { @se_tnmt.games.find_by(bracket:1, round:3, match:1) }
+
+        it 'should return nil' do
+          expect(subject.loser_game).to be_nil
+        end
+      end
+    end
+
+    context 'when double elimination' do
+      context 'when in winner bracket' do
+        context 'case 1-1-2' do
+          subject { @de_tnmt.games.find_by(bracket:1, round:1, match:2) }
+
+          it 'should return loser_game game' do
+            expect(subject.loser_game).to eq(@de_tnmt.games.find_by(bracket:2, round:1, match:1))
+          end
+        end
+
+        context 'case 1-2-2' do
+          subject { @de_tnmt.games.find_by(bracket:1, round:2, match:2) }
+
+          it 'should return loser_game game' do
+            expect(subject.loser_game).to eq(@de_tnmt.games.find_by(bracket:2, round:2, match:2))
+          end
+        end
+
+        context 'case 1-3-1' do
+          subject { @de_tnmt.games.find_by(bracket:1, round:3, match:1) }
+
+          it 'should return loser game' do
+            expect(subject.loser_game).to eq(@de_tnmt.games.find_by(bracket:3, round:1, match:2))
+          end
+        end
+      end
+
+      context 'when in loser bracket' do
+        context 'case 2-1-1' do
+          subject { @de_tnmt.games.find_by(bracket:2, round:1, match:1) }
+
+          it 'should return loser_game game' do
+            expect(subject.loser_game).to be_nil
+          end
+        end
+
+        context 'case 2-4-1' do
+          subject { @de_tnmt.games.find_by(bracket:2, round:4, match:1) }
+
+          it 'should return final game' do
+            expect(subject.loser_game).to eq(@de_tnmt.games.find_by(bracket:3, round:1, match:2))
+          end
+        end
+      end
+    end
+  end
+
+
   describe 'parent_game_record' do
     context 'when single elimination' do
       context 'case 1-1-1' do
@@ -276,17 +343,25 @@ describe Game do
   end
 
 
-  describe 'ancestors' do
+  describe 'ancestor_records' do
     context 'when single elimination' do
+      before :each do
+        games = @se_tnmt.games.where.not(round:1)
+        games.each do |game|
+          game.game_records << create(:game_record, game: game, record_num:1)
+          game.game_records << create(:game_record, game: game, record_num:2)
+        end
+      end
+
       context 'case 1-1' do
         subject { @se_tnmt.games.find_by(bracket:1, round:1, match:1) }
 
         it 'should return right ancestors' do
           ancestors = [
-            @se_tnmt.games.find_by(bracket:1, round:3, match:1),
-            @se_tnmt.games.find_by(bracket:1, round:3, match:2)
+            @se_tnmt.games.find_by(bracket:1, round:3, match:1).game_records.find_by(record_num:1),
+            @se_tnmt.third_place.game_records.find_by(record_num:1),
           ]
-          expect(subject.ancestors).to eq(ancestors)
+          expect(subject.ancestor_records).to eq(ancestors)
         end
       end
 
@@ -295,10 +370,10 @@ describe Game do
 
         it 'should return right ancestors' do
           ancestors = [
-            @se_tnmt.games.find_by(bracket:1, round:3, match:1),
-            @se_tnmt.games.find_by(bracket:1, round:3, match:2)
+            @se_tnmt.games.find_by(bracket:1, round:3, match:1).game_records.find_by(record_num:2),
+            @se_tnmt.third_place.game_records.find_by(record_num:2),
           ]
-          expect(subject.ancestors).to eq(ancestors)
+          expect(subject.ancestor_records).to eq(ancestors)
         end
       end
 
@@ -306,47 +381,55 @@ describe Game do
         subject { @se_tnmt.games.find_by(bracket:1, round:2, match:1) }
 
         it 'should return right ancestors' do
-          expect(subject.ancestors).to eq([])
+          expect(subject.ancestor_records).to eq([])
         end
       end
     end
 
     context 'when double elimination' do
-      context 'case 1-1' do
+      before :each do
+        games = @de_tnmt.games.where("round <> 1 or bracket = 3")
+        games.each do |game|
+          game.game_records << create(:game_record, game: game, record_num:1)
+          game.game_records << create(:game_record, game: game, record_num:2)
+        end
+      end
+
+      context 'case 1-1-1' do
         subject { @de_tnmt.games.find_by(bracket:1, round:1, match:1) }
 
         it 'should return right ancestors' do
           ancestors = [
-            @de_tnmt.games.find_by(bracket:1, round:3, match:1),
-            @de_tnmt.games.find_by(bracket:3, round:1, match:1),
-            @de_tnmt.games.find_by(bracket:3, round:1, match:2)
+            @de_tnmt.games.find_by(bracket:1, round:3, match:1).game_records.find_by(record_num:1),
+            @de_tnmt.games.find_by(bracket:3, round:1, match:1).game_records.find_by(record_num:1),
+            @de_tnmt.games.find_by(bracket:3, round:1, match:2).game_records.find_by(record_num:1)
           ]
-          expect(subject.ancestors).to eq(ancestors)
+          expect(subject.ancestor_records).to eq(ancestors)
         end
       end
 
-      context 'case 1-4' do
+      context 'case 1-1-4' do
         subject { @de_tnmt.games.find_by(bracket:1, round:1, match:4) }
 
         it 'should return right ancestors' do
           ancestors = [
-            @de_tnmt.games.find_by(bracket:1, round:3, match:1),
-            @de_tnmt.games.find_by(bracket:3, round:1, match:1),
-            @de_tnmt.games.find_by(bracket:3, round:1, match:2)
+            @de_tnmt.games.find_by(bracket:1, round:3, match:1).game_records.find_by(record_num:2),
+            @de_tnmt.games.find_by(bracket:3, round:1, match:1).game_records.find_by(record_num:1),
+            @de_tnmt.games.find_by(bracket:3, round:1, match:2).game_records.find_by(record_num:1)
           ]
-          expect(subject.ancestors).to eq(ancestors)
+          expect(subject.ancestor_records).to eq(ancestors)
         end
       end
 
-      context 'case 2-2' do
+      context 'case 1-2-2' do
         subject { @de_tnmt.games.find_by(bracket:1, round:2, match:2) }
 
         it 'should return right ancestors' do
           ancestors = [
-            @de_tnmt.games.find_by(bracket:3, round:1, match:1),
-            @de_tnmt.games.find_by(bracket:3, round:1, match:2)
+            @de_tnmt.games.find_by(bracket:3, round:1, match:1).game_records.find_by(record_num:1),
+            @de_tnmt.games.find_by(bracket:3, round:1, match:2).game_records.find_by(record_num:1)
           ]
-          expect(subject.ancestors).to eq(ancestors)
+          expect(subject.ancestor_records).to eq(ancestors)
         end
       end
 
@@ -355,7 +438,7 @@ describe Game do
 
         it 'should return right ancestors' do
           ancestors = []
-          expect(subject.ancestors).to eq(ancestors)
+          expect(subject.ancestor_records).to eq(ancestors)
         end
       end
 
@@ -364,12 +447,12 @@ describe Game do
 
         it 'should return right ancestors' do
           ancestors = [
-            @de_tnmt.games.find_by(bracket:2, round:3, match:1),
-            @de_tnmt.games.find_by(bracket:2, round:4, match:1),
-            @de_tnmt.games.find_by(bracket:3, round:1, match:1),
-            @de_tnmt.games.find_by(bracket:3, round:1, match:2)
+            @de_tnmt.games.find_by(bracket:2, round:3, match:1).game_records.find_by(record_num:2),
+            @de_tnmt.games.find_by(bracket:2, round:4, match:1).game_records.find_by(record_num:1),
+            @de_tnmt.games.find_by(bracket:3, round:1, match:1).game_records.find_by(record_num:2),
+            @de_tnmt.games.find_by(bracket:3, round:1, match:2).game_records.find_by(record_num:2)
           ]
-          expect(subject.ancestors).to eq(ancestors)
+          expect(subject.ancestor_records).to eq(ancestors)
         end
       end
 
@@ -378,11 +461,11 @@ describe Game do
 
         it 'should return right ancestors' do
           ancestors = [
-            @de_tnmt.games.find_by(bracket:2, round:4, match:1),
-            @de_tnmt.games.find_by(bracket:3, round:1, match:1),
-            @de_tnmt.games.find_by(bracket:3, round:1, match:2)
+            @de_tnmt.games.find_by(bracket:2, round:4, match:1).game_records.find_by(record_num:1),
+            @de_tnmt.games.find_by(bracket:3, round:1, match:1).game_records.find_by(record_num:2),
+            @de_tnmt.games.find_by(bracket:3, round:1, match:2).game_records.find_by(record_num:2)
           ]
-          expect(subject.ancestors).to eq(ancestors)
+          expect(subject.ancestor_records).to eq(ancestors)
         end
       end
 
@@ -391,10 +474,10 @@ describe Game do
 
         it 'should return right ancestors' do
           ancestors = [
-            @de_tnmt.games.find_by(bracket:3, round:1, match:1),
-            @de_tnmt.games.find_by(bracket:3, round:1, match:2)
+            @de_tnmt.games.find_by(bracket:3, round:1, match:1).game_records.find_by(record_num:2),
+            @de_tnmt.games.find_by(bracket:3, round:1, match:2).game_records.find_by(record_num:2)
           ]
-          expect(subject.ancestors).to eq(ancestors)
+          expect(subject.ancestor_records).to eq(ancestors)
         end
       end
 
@@ -403,7 +486,95 @@ describe Game do
 
         it 'should return right ancestors' do
           ancestors = []
-          expect(subject.ancestors).to eq(ancestors)
+          expect(subject.ancestor_records).to eq(ancestors)
+        end
+      end
+    end
+  end
+
+
+  describe 'loser_ancestor_records' do
+    context 'when single elimination' do
+      before :each do
+        games = @se_tnmt.games.where.not(round:1)
+        games.each do |game|
+          game.game_records << create(:game_record, game: game, record_num:1)
+          game.game_records << create(:game_record, game: game, record_num:2)
+        end
+      end
+
+      context 'case 1-1' do
+        subject { @se_tnmt.games.find_by(bracket:1, round:1, match:1) }
+
+        it 'should return right ancestors' do
+          ancestors = []
+          expect(subject.loser_ancestor_records).to eq(ancestors)
+        end
+      end
+    end
+
+    context 'when double elimination' do
+      before :each do
+        games = @de_tnmt.games.where.not(round:1)
+        games.each do |game|
+          game.game_records << create(:game_record, game: game, record_num:1)
+          game.game_records << create(:game_record, game: game, record_num:2)
+        end
+      end
+
+      context 'case 1-1-1' do
+        subject { @de_tnmt.games.find_by(bracket:1, round:1, match:1) }
+
+        it 'should return right ancestors' do
+          ancestors = [
+            @de_tnmt.games.find_by(bracket:2, round:2, match:1).game_records.find_by(record_num:1),
+            @de_tnmt.games.find_by(bracket:2, round:3, match:1).game_records.find_by(record_num:1),
+            @de_tnmt.games.find_by(bracket:2, round:4, match:1).game_records.find_by(record_num:1)
+          ]
+          expect(subject.loser_ancestor_records).to eq(ancestors)
+        end
+      end
+
+      context 'case 1-1-4' do
+        subject { @de_tnmt.games.find_by(bracket:1, round:1, match:4) }
+
+        it 'should return right ancestors' do
+          ancestors = [
+            @de_tnmt.games.find_by(bracket:2, round:2, match:2).game_records.find_by(record_num:1),
+            @de_tnmt.games.find_by(bracket:2, round:3, match:1).game_records.find_by(record_num:2),
+            @de_tnmt.games.find_by(bracket:2, round:4, match:1).game_records.find_by(record_num:1)
+          ]
+          expect(subject.loser_ancestor_records).to eq(ancestors)
+        end
+      end
+
+      context 'case 1-2-2' do
+        subject { @de_tnmt.games.find_by(bracket:1, round:2, match:2) }
+
+        it 'should return right ancestors' do
+          ancestors = [
+            @de_tnmt.games.find_by(bracket:2, round:3, match:1).game_records.find_by(record_num:2),
+            @de_tnmt.games.find_by(bracket:2, round:4, match:1).game_records.find_by(record_num:1)
+          ]
+          expect(subject.loser_ancestor_records).to eq(ancestors)
+        end
+      end
+
+      context 'case 1-3-1' do
+        subject { @de_tnmt.games.find_by(bracket:1, round:3, match:1) }
+
+        it 'should return right ancestors' do
+          ancestors = []
+          expect(subject.loser_ancestor_records).to eq(ancestors)
+        end
+      end
+
+      context 'case 2-1-1' do
+        subject { @de_tnmt.games.find_by(bracket:2, round:1, match:1) }
+
+        it 'should return right ancestors' do
+          ancestors = []
+          expect(subject.loser_ancestor_records).to eq(ancestors)
         end
       end
     end

@@ -26,6 +26,10 @@ class Loser < Game
     2 if self.semi_final?   # used only for third_place
   end
 
+  def third_place_record_num
+    2
+  end
+
   def final?
     false   # final never comes in losers bracket
   end
