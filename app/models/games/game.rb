@@ -128,7 +128,7 @@ class Game < ActiveRecord::Base
   end
 
   def winner
-    self.game_records.find_by(winner: true).try(:player)
+    self.game_records.find_by(winner: true).try(:player) if self.game_records.count == 2
   end
 
   def loser

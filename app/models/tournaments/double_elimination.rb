@@ -64,7 +64,7 @@ class DoubleElimination < Tournament
           res[win_record.record_num-1] = 0.3
           res[win_record.record_num]   = 0.2
         # Same Score Game
-        elsif game.winner.present? && (game.game_records.first.score == game.game_records.last.score)
+        elsif game.finished? && (game.game_records.first.score == game.game_records.last.score)
           win_record = game.game_records.find_by(winner: true)
           res[win_record.record_num-1] += 0.1
         end
@@ -86,7 +86,7 @@ class DoubleElimination < Tournament
           res[win_record.record_num-1] = 0.3
           res[win_record.record_num]   = 0.2
         # Same Score Game
-        elsif game.winner.present? && (game.game_records.first.score == game.game_records.last.score)
+        elsif game.finished? && (game.game_records.first.score == game.game_records.last.score)
           win_record = game.game_records.find_by(winner: true)
           res[win_record.record_num-1] += 0.1
         end
@@ -107,7 +107,7 @@ class DoubleElimination < Tournament
         res[win_record.record_num-1] = 0.3
         res[win_record.record_num]   = 0.2
       # Same Score Game
-      elsif game.winner.present? && (game.game_records.first.score == game.game_records.last.score)
+      elsif game.finished? && (game.game_records.first.score == game.game_records.last.score)
         win_record = game.game_records.find_by(winner: true)
         res[win_record.record_num-1] += 0.1
       end
