@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe Tournament do
-  describe 'basic validations' do
-    before :each do
-      @user = create(:user)
-    end
+  before :each do
+    @user = create(:user)
+  end
 
+  describe 'basic validations' do
     it 'is valid with a proper attrs' do
       tournament = build(:tournament, user:@user)
       expect(tournament).to be_valid
@@ -20,74 +20,195 @@ describe Tournament do
     end
 
     it 'should order from the newest' do
+      @tournament = create(:se_tnmt, user:@user)
       2.times do |i|
-        create(:tournament, user:@user)
+        create(:se_tnmt, user:@user)
       end
-      expect(Tournament.first.id - Tournament.last.id).to eq(1)
+      expect(Tournament.last).to eq(@tournament)
     end
   end
 
-  describe 'create_players' do
-    before :each do
-      @user = create(:user)
-      @tournament = create(:tournament, user:@user, size:8)
-    end
-
-    it 'should have players equal to its size' do
-      expect(@tournament.players.size).to eq(8)
-    end
-  end
-
-  describe 'create_games' do
-    context 'when it has a third-party placement' do
+  describe 'method after creation' do
+    context 'when single elimination' do
       before :each do
-        @user = create(:user)
-        @tournament = create(:tournament, user:@user, size:8)
+        @tournament = create(:se_tnmt, user:@user)
       end
 
-      it 'should have right number of games' do
-        expect(@tournament.games.size).to eq(8)
+      describe 'create_players' do
+        it 'should have players equal to its size' do
+          expect(@tournament.players.size).to eq(8)
+        end
+      end
+
+      describe 'create_games' do
+        it 'should have right number of games' do
+          expect(@tournament.games.size).to eq(8)
+        end
       end
     end
-  end
 
-  describe 'round_num' do
-    before :each do
-      @user = create(:user)
-    end
+    context 'when double elimination' do
+      before :each do
+        @tournament = create(:de_tnmt, user:@user)
+      end
 
-    context 'when it has a third-party placement' do
-      it 'should return the correct round num' do
-        [2,3,4].each do |i|
-          tournament = create(:tournament, user:@user, size:2**i)
-          expect(tournament.round_num).to eq(i)
+      describe 'create_players' do
+        it 'should have players equal to its size' do
+          expect(@tournament.players.size).to eq(8)
+        end
+      end
+
+      describe 'create_games' do
+        it 'should have right number of games' do
+          expect(@tournament.games.where(bracket:1).count).to eq(7)
+          expect(@tournament.games.where(bracket:2).count).to eq(6)
+          expect(@tournament.games.where(bracket:3).count).to eq(3)
         end
       end
     end
   end
 
+  describe 'round_num' do
+    it 'should return the correct round num' do
+      [2,3,4].each do |i|
+        tournament = create(:se_tnmt, user:@user, size:2**i)
+        expect(tournament.round_num).to eq(i)
+      end
+    end
+  end
+
   describe 'third-place' do
-    before :each do
-      @user = create(:user)
+    context 'when single elimination' do
+      context 'when it has a third-party placement' do
+        it 'should return the game for the third-place playoff' do
+          @tournament = create(:se_tnmt, user:@user)
+          expect(@tournament.third_place).to eq(@tournament.games.find_by(bracket:1, round:3, match:2))
+        end
+      end
+
+      context 'when it doesnot have a third-party placement' do
+        it 'should return nil for the third-place playoff' do
+          @tournament = create(:se_tnmt, user:@user, consolation_round:false)
+          expect(@tournament.third_place).to eq(nil)
+        end
+      end
     end
 
-    context 'when it has a third-party placement' do
-      it 'should return the game for the third-place playoff' do
-        @tournament = create(:tournament, user:@user, size:8)
-        expect(@tournament.third_place).to eq(@tournament.games.find_by(bracket:1, round:3, match:2))
+    context 'when double elimination' do
+      context 'when it has a third-party placement' do
+        it 'should return the game for the third-place playoff' do
+          @tournament = create(:de_tnmt, user:@user)
+          expect(@tournament.third_place).to eq(@tournament.games.find_by(bracket:3, round:1, match:2))
+        end
+      end
+
+      context 'when it doesnot have a third-party placement' do
+        it 'should return nil for the third-place playoff' do
+          @tournament = create(:de_tnmt, user:@user, consolation_round:false)
+          expect(@tournament.third_place).to eq(nil)
+        end
       end
     end
   end
 
   describe 'set_first_rounds' do
-    before :each do
-      @user = create(:user)
-      @tournament = create(:tournament, user:@user)
+    context 'when single elimination' do
+      it 'should have first-round game with game_records' do
+        @tournament = create(:se_tnmt, user:@user)
+        @tournament.games.where(round:1).each do |game|
+          expect(game.game_records.count).to eq(2)
+        end
+
+        @tournament.games.where(round:2).each do |game|
+          expect(game.game_records.count).to eq(0)
+        end
+      end
     end
 
-    it 'should have first-round game with game_records' do
-      @tournament.games.where(round:1).each do |game|
-        expect(game.game_records.size).to be > 0
+    context 'when double elimination' do
+      it 'should have first-round game with game_records' do
+        @tournament = create(:de_tnmt, user:@user)
+        @tournament.games.where(bracket:1,round:1).each do |game|
+          expect(game.game_records.count).to eq(2)
+        end
+
+        @tournament.games.where(bracket:1,round:2).each do |game|
+          expect(game.game_records.count).to eq(0)
+        end
+      end
+    end
+  end
+
+  describe 'category' do
+    before :each do
+      tags = ['サッカー', 'バスケ']
+      @category_name = 'スポーツ'
+      tags.each do |tag|
+        create(:category, tag_name: tag, category_name: @category_name)
+      end
+      create(:category, tag_name: '将棋', category_name: 'ゲーム')
+      @tournament = create(:se_tnmt, user:@user)
+    end
+
+    context 'when without category tag' do
+      it 'should have no category' do
+        expect(@tournament.category).to eq(nil)
+      end
+    end
+
+    context 'when with single category tag' do
+      it 'should have category' do
+        @tournament.tag_list.add('サッカー')
+        expect(@tournament.category.category_name).to eq(@category_name)
+      end
+    end
+
+    context 'when with multiple category tag' do
+      it 'should return first matched category' do
+        @tournament.tag_list.add('サッカー', '将棋')
+        expect(@tournament.category.category_name).to eq(@category_name)
+      end
+    end
+  end
+
+  describe 'de?' do
+    it 'should return true for de' do
+      @tournament = create(:de_tnmt, user:@user)
+      expect(@tournament.de?).to be true
+    end
+
+    it 'should return false for se' do
+      @tournament = create(:se_tnmt, user:@user)
+      expect(@tournament.de?).to be false
+    end
+  end
+
+  describe 'round_name' do
+    context 'when single elimination' do
+      before :each do
+        @tournament = create(:se_tnmt, user:@user)
+      end
+
+      it 'should return proper round name' do
+        expect(@tournament.round_name(bracket:1, round:1)).to eq('1回戦')
+        expect(@tournament.round_name(bracket:1, round:2)).to eq('準決勝')
+        expect(@tournament.round_name(bracket:1, round:3)).to eq('決勝ラウンド')
+      end
+    end
+
+    context 'when double elimination' do
+      before :each do
+        @tournament = create(:de_tnmt, user:@user)
+      end
+
+      it 'should return proper round name' do
+        expect(@tournament.round_name(bracket:1, round:1)).to eq('1回戦')
+        expect(@tournament.round_name(bracket:1, round:2)).to eq('2回戦')
+        expect(@tournament.round_name(bracket:1, round:3)).to eq('準決勝')
+        expect(@tournament.round_name(bracket:2, round:1)).to eq('1回戦')
+        expect(@tournament.round_name(bracket:2, round:2)).to eq('2回戦')
+        expect(@tournament.round_name(bracket:2, round:4)).to eq('準決勝')
+        expect(@tournament.round_name(bracket:3, round:1)).to eq('決勝ラウンド')
       end
     end
   end

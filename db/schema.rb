@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140325090524) do
+ActiveRecord::Schema.define(version: 20140403074346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20140325090524) do
     t.boolean  "bye"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "type",          default: "Winner"
   end
 
   create_table "players", force: true do |t|
@@ -75,7 +76,7 @@ ActiveRecord::Schema.define(version: 20140325090524) do
   create_table "tournaments", force: true do |t|
     t.integer  "user_id"
     t.integer  "size"
-    t.integer  "type"
+    t.string   "type",              default: "SingleElimination"
     t.string   "title"
     t.string   "place"
     t.text     "detail"
@@ -83,6 +84,7 @@ ActiveRecord::Schema.define(version: 20140325090524) do
     t.datetime "updated_at"
     t.boolean  "consolation_round", default: true
     t.string   "url"
+    t.boolean  "secondary_final",   default: false
   end
 
   create_table "users", force: true do |t|

@@ -10,8 +10,6 @@ class Player < ActiveRecord::Base
   validates :desc, length: {maximum: 500}, allow_nil: true
   validates :country, length: {is: 2}, allow_blank: true
 
-  default_scope {order(seed: :asc)}
-
   before_update :reset_seed_game, if: :seed_canceled?
   before_update :set_seed_game, on: :update, if: :seed_registered?
 

@@ -3,5 +3,5 @@
 %section#game-edit
   %h1.headline
     %i.icon.icon-list-alt
-    #{@game.tournament.round_name(@game.round)} #{@game.match_name}
+    #{@game.tournament.round_name(round:@game.round)} #{@game.match_name}
   = render :partial => "form"

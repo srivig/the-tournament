@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :category do
-    tag_name "MyString"
-    category_name "MyString"
+    tag_name "Soccer"
+    category_name "Sports"
   end
 end

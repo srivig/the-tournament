@@ -4,6 +4,13 @@
   %h1.headline
     %i.icon.icon-list-alt
     対戦表
+  -# %div.mb-30
+  -#   %ul.nav.nav-pills
+  -#     %li.active
+  -#       %a(href="#") Winner Bracket
+  -#     %li
+  -#       %a(href="#") Loser Bracket
+
   - editable = (current_user == @tournament.user) ? true : false
   = render partial: "shared/game_list", locals: {tournament: @tournament, editable: editable}
 

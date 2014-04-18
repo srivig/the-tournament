@@ -3,7 +3,7 @@ class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tournament = Tournament.find(params[:tournament_id])
+    @tournament = Tournament.find(params[:tournament_id]).becomes(Tournament)
   end
 
   def edit

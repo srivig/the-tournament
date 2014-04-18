@@ -1,13 +1,14 @@
-- tournament.round_num.downto(1) do |i|
-  - panel = (i==tournament.round_num) ? "panel-warning" : "panel-default"
+- if tournament.de?
+  %h2 Final Bracket
+  - panel = "panel-danger"
   .panel{class: panel}
-    .panel-heading= tournament.round_name(i)
+    .panel-heading= tournament.round_name(bracket:3, round:1)
     %table#game-list.table.f16
-      - tournament.games.where(round: i).each do |game|
-        - unless (!tournament.consolation_round) && (i==tournament.round_num && game.match==2)
+      - tournament.games.where(bracket:3, round:1).each do |game|
+        - unless (!tournament.consolation_round) && (game.match==2)
           %tr
             %td.width-10= game.match_name
-            - if game.game_records.present?
+            - if game.ready?
               %td.width-30.text-right
                 - if game.game_records.first.player.country.present?
                   - country = game.game_records.first.player.country.downcase
@@ -22,15 +23,15 @@
               %td.width-4.text-center -
               %td.width-8.text-danger
                 - if game.finished? && !game.bye
-                  #{game.game_records.last.score}
+                  #{game.game_records.second.score}
               %td.width-30
-                - if game.game_records.last.player.country.present?
-                  - country = game.game_records.last.player.country.downcase
+                - if game.game_records.second.player.country.present?
+                  - country = game.game_records.second.player.country.downcase
                   %div.flag-container
                     %div.flag{class: country}
-                  = game.game_records.last.player.name
+                  = game.game_records.second.player.name
                 - else
-                  #{game.game_records.last.player.name}
+                  #{game.game_records.second.player.name}
             - else
               %td.width-30.text-right (TBD)
               %td.width-8
@@ -38,5 +39,97 @@
               %td.width-8
               %td.width-30 (TBD)
             %td.width-10.text-right
-              - if editable && game.game_records.present? && !game.bye
+              - if editable && game.ready? && !game.bye
                 = link_to t('編集'), edit_game_path(game), class: 'btn btn-primary btn-sm pull-right'
+
+
+- if tournament.de?
+  %h2 Winners Bracket
+- tournament.round_num.downto(1) do |i|
+  - panel = (i==tournament.round_num) ? "panel-warning" : "panel-default"
+  .panel{class: panel}
+    .panel-heading= tournament.round_name(bracket:1, round:i)
+    %table#game-list.table.f16
+      - tournament.games.where(bracket:1, round: i).each do |game|
+        - unless (!tournament.consolation_round) && (i==tournament.round_num && game.match==2)
+          %tr
+            %td.width-10= game.match_name
+            - if game.ready?
+              %td.width-30.text-right
+                - if game.game_records.first.player.country.present?
+                  - country = game.game_records.first.player.country.downcase
+                  %div.flag-container
+                    %div.flag{class: country}
+                  = game.game_records.first.player.name
+                - else
+                  #{game.game_records.first.player.name}
+              %td.width-8.text-right.text-danger
+                - if game.finished? && !game.bye
+                  #{game.game_records.first.score}
+              %td.width-4.text-center -
+              %td.width-8.text-danger
+                - if game.finished? && !game.bye
+                  #{game.game_records.second.score}
+              %td.width-30
+                - if game.game_records.second.player.country.present?
+                  - country = game.game_records.second.player.country.downcase
+                  %div.flag-container
+                    %div.flag{class: country}
+                  = game.game_records.second.player.name
+                - else
+                  #{game.game_records.second.player.name}
+            - else
+              %td.width-30.text-right (TBD)
+              %td.width-8
+              %td.width-4.text-center -
+              %td.width-8
+              %td.width-30 (TBD)
+            %td.width-10.text-right
+              - if editable && game.ready? && !game.bye
+                = link_to t('編集'), edit_game_path(game), class: 'btn btn-primary btn-sm pull-right'
+
+
+- if tournament.de?
+  %h2 Losers Bracket
+  - tournament.loser_round_num.downto(1) do |i|
+    - panel = (i==tournament.loser_round_num) ? "panel-warning" : "panel-default"
+    .panel{class: panel}
+      .panel-heading= tournament.round_name(bracket:2, round:i)
+      %table#game-list.table.f16
+        - tournament.games.where(bracket:2, round: i).each do |game|
+          - unless (!tournament.consolation_round) && (i==tournament.round_num && game.match==2)
+            %tr
+              %td.width-10= game.match_name
+              - if game.ready?
+                %td.width-30.text-right
+                  - if game.game_records.first.player.country.present?
+                    - country = game.game_records.first.player.country.downcase
+                    %div.flag-container
+                      %div.flag{class: country}
+                    = game.game_records.first.player.name
+                  - else
+                    #{game.game_records.first.player.name}
+                %td.width-8.text-right.text-danger
+                  - if game.finished? && !game.bye
+                    #{game.game_records.first.score}
+                %td.width-4.text-center -
+                %td.width-8.text-danger
+                  - if game.finished? && !game.bye
+                    #{game.game_records.second.score}
+                %td.width-30
+                  - if game.game_records.second.player.country.present?
+                    - country = game.game_records.second.player.country.downcase
+                    %div.flag-container
+                      %div.flag{class: country}
+                    = game.game_records.second.player.name
+                  - else
+                    #{game.game_records.second.player.name}
+              - else
+                %td.width-30.text-right (TBD)
+                %td.width-8
+                %td.width-4.text-center -
+                %td.width-8
+                %td.width-30 (TBD)
+              %td.width-10.text-right
+                - if editable && game.ready? && !game.bye
+                  = link_to t('編集'), edit_game_path(game), class: 'btn btn-primary btn-sm pull-right'
