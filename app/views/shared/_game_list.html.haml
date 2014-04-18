@@ -39,7 +39,7 @@
               %td.width-8
               %td.width-30 (TBD)
             %td.width-10.text-right
-              - if editable && game.game_records.present? && !game.bye
+              - if editable && game.ready? && !game.bye
                 = link_to t('編集'), edit_game_path(game), class: 'btn btn-primary btn-sm pull-right'
 
 
@@ -85,7 +85,7 @@
               %td.width-8
               %td.width-30 (TBD)
             %td.width-10.text-right
-              - if editable && game.game_records.present? && !game.bye
+              - if editable && game.ready? && !game.bye
                 = link_to t('編集'), edit_game_path(game), class: 'btn btn-primary btn-sm pull-right'
 
 
@@ -131,5 +131,5 @@
                 %td.width-8
                 %td.width-30 (TBD)
               %td.width-10.text-right
-                - if editable && game.game_records.present? && !game.bye
+                - if editable && game.ready? && !game.bye
                   = link_to t('編集'), edit_game_path(game), class: 'btn btn-primary btn-sm pull-right'
