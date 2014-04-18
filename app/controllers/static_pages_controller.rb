@@ -6,8 +6,10 @@ class StaticPagesController < ApplicationController
     @tournament = Tournament.find(1)
 
     teams = Array.new
-    @tournament.games.where(bracket:1, round:1).each do |game|
-      teams << game.players.map{|m| m.name}.to_a
+    for i in 1..(@tournament.size/2)
+      p1 = @tournament.players.find_by(seed: 2*i-1).name
+      p2 = @tournament.players.find_by(seed: 2*i).name
+      teams << [p1,p2]
     end
 
     results = Array.new
