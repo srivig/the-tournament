@@ -12,7 +12,7 @@
 
   - type = {'シングルイリミネーション (敗者復活なし)'=>'SingleElimination', 'ダブルイリミネーション (敗者復活あり)'=>'DoubleElimination'}
   = f.input :type, label: '敗者復活戦', collection: type, input_html: {default:'SingleElimination'}, disabled: disabled
-  = f.input :secondary_final, label: '再決勝', inline_label: '再決勝を実施する(敗者側が1戦目を勝利した場合)', as: :boolean, disabled: true
+  -# = f.input :secondary_final, label: '再決勝', inline_label: '再決勝を実施する(敗者側が1戦目を勝利した場合)', as: :boolean, disabled: true
   = f.input :tag_list, label: 'タグ'
 
   .form-group
