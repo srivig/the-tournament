@@ -34,6 +34,7 @@ class Game < ActiveRecord::Base
   def reset_ancestors
     self.ancestor_records.map{|record| record.delete}
     self.loser_ancestor_records.map{|record| record.delete}
+    self.ancestor_loser_records.map{|record| record.delete}
   end
 
   def winner_changed?
@@ -85,6 +86,20 @@ class Game < ActiveRecord::Base
       loser_ancestor_records << third_place_record
     end
     loser_ancestor_records
+  end
+
+  def ancestor_loser_records
+    return [] unless self.tournament.de? && self.bracket==1
+
+    ancestor_loser_records = Array.new
+    game = self
+    while game.parent.present?
+      if game.parent.loser_game.present? && game.parent.loser_game_record.persisted?
+        ancestor_loser_records << game.parent.loser_game_record
+      end
+      game = game.parent
+    end
+    ancestor_loser_records
   end
 
   def parent_game_record
