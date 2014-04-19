@@ -43,6 +43,14 @@ class DoubleElimination < Tournament
     end
   end
 
+  def match_data
+    match_data = Array.new
+    match_data[1] = self.games.where(bracket:1).map{ |m| "#{self.round_name(bracket: m.bracket, round:m.round)} #{m.match_name}<br>#{m.game_records.map{|r| r.player.name}.join('-')}" }
+    match_data[2] = self.games.where(bracket:2).map{ |m| "#{self.round_name(bracket: m.bracket, round:m.round)} #{m.match_name}<br>#{m.game_records.map{|r| r.player.name}.join('-')}" }
+    match_data[3] = self.games.where(bracket:3).map{ |m| "#{self.round_name(bracket: m.bracket, round:m.round)} #{m.match_name}<br>#{m.game_records.map{|r| r.player.name}.join('-')}" }
+    match_data
+  end
+
   def tournament_data
     teams = Array.new
     results = Array.new

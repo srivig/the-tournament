@@ -27,7 +27,6 @@ $ ->
     addCountryFlg = ->
       jQuery.each(gon.countries, (i, v) ->
         if this.length
-          console.log $('.team').eq(i)
           $('.bracket .team').eq(i).find('.label').prepend('<div class="flag-container f16"><div class="flag '+this+'"></div>')
       )
     createBracket().done(hideDecimal(), addCountryFlg())
@@ -38,8 +37,13 @@ $ ->
       'data-toggle': 'tooltip',
       'data-placement': 'right',
     })
-    $('.teamContainer').each (i) ->
-      $('.teamContainer').eq(i).attr('title', gon.match_data[i])
+    $('.bracket .teamContainer').each (i) ->
+      $('.bracket .teamContainer').eq(i).attr('title', gon.match_data[1][i])
+    if $('.loserBracket').length
+      $('.loserBracket .teamContainer').each (i) ->
+        $('.loserBracket .teamContainer').eq(i).attr('title', gon.match_data[2][i])
+      $('.finals .teamContainer').each (i) ->
+        $('.finals .teamContainer').eq(i).attr('title', gon.match_data[3][i])
     $('.teamContainer').tooltip({html:true})
 
 
