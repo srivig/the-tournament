@@ -10,6 +10,7 @@ $ ->
       d = new $.Deferred
       $('#tournament').bracket({
         skipConsolationRound: gon.skip_consolation_round,
+        skipSecondaryFinal: gon.skip_secondary_final,
         init: gon.tournament_data
       })
       d.resolve()
@@ -26,7 +27,8 @@ $ ->
     addCountryFlg = ->
       jQuery.each(gon.countries, (i, v) ->
         if this.length
-          $('.team').eq(i).find('.label').prepend('<div class="flag-container f16"><div class="flag '+this+'"></div>')
+          console.log $('.team').eq(i)
+          $('.bracket .team').eq(i).find('.label').prepend('<div class="flag-container f16"><div class="flag '+this+'"></div>')
       )
     createBracket().done(hideDecimal(), addCountryFlg())
 

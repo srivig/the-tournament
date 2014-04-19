@@ -10,7 +10,7 @@ class TournamentsController < ApplicationController
   def show
     gon.push({
       tournament_data: @tournament.tournament_data,
-      skip_secondary_final: true,
+      skip_secondary_final: (@tournament.de?) ? !@tournament.secondary_final : false,
       skip_consolation_round: !@tournament.consolation_round,
       countries: @tournament.players.map{|p| p.country.try(:downcase)},
       match_data: @tournament.match_data
