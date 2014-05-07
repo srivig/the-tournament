@@ -63,7 +63,7 @@ class Game < ActiveRecord::Base
       game = game.parent
     end
 
-    if self.tournament.third_place.present? && self.third_place_record.persisted? && !self.semi_final?
+    if self.tournament.third_place.present? && self.third_place_record.try(:persisted?) && !self.semi_final?
       ancestor_records << self.third_place_record
     end
     ancestor_records
@@ -111,7 +111,9 @@ class Game < ActiveRecord::Base
   end
 
   def third_place_record
-    GameRecord.find_or_initialize_by(game: self.tournament.third_place, record_num: self.third_place_record_num) if self.tournament.third_place.present?
+    unless self.third_place?
+      GameRecord.find_or_initialize_by(game: self.tournament.third_place, record_num: self.third_place_record_num) if self.tournament.third_place.present?
+    end
   end
 
   def set_parent_game_record
