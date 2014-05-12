@@ -2,6 +2,7 @@ TheTournament::Application.routes.draw do
   root to: "static_pages#top"
   devise_for :users
   match 'about', to: 'static_pages#about', via: :get
+  match 'howto', to: 'static_pages#howto', via: :get
   resources :tournaments, shallow: true do
     get 'page/:page', action: :index, on: :collection
     resources :players
