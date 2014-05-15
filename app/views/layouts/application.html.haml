@@ -20,8 +20,9 @@
     = render partial: "shared/analytics" if Rails.env.production?
     = nav_bar responsive: true, brand: image_tag("logo_w.png", alt: "THE TOURNAMENT") do
       %p.navbar-text
-        %span.label.label-warning NEW!
-        「THE TOURNAMENT」のSuperBETA版をリリースしました！
+        -# %span.label.label-warning NEW!
+        -# 「THE TOURNAMENT」のSuperBETA版をリリースしました！
+        THE TOURNAMENT(ザ・トーナメント)は簡単・便利な無料のトーナメント作成サービスです。
       = menu_group pull: :right do
         = link_to howto_path do
           %p.navbar-text
