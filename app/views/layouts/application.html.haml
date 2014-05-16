@@ -18,10 +18,12 @@
 
   %body
     = render partial: "shared/analytics" if Rails.env.production?
+    = render partial: "shared/facebook"
     = nav_bar responsive: true, brand: image_tag("logo_w.png", alt: "THE TOURNAMENT") do
       %p.navbar-text
-        %span.label.label-warning NEW!
-        「THE TOURNAMENT」のSuperBETA版をリリースしました！
+        -# %span.label.label-warning NEW!
+        -# 「THE TOURNAMENT」のSuperBETA版をリリースしました！
+        THE TOURNAMENT(ザ・トーナメント)は簡単・便利な無料のトーナメント作成サービスです。
       = menu_group pull: :right do
         = link_to howto_path do
           %p.navbar-text
@@ -85,5 +87,10 @@
                 = link_to tag.name, tournaments_path(tag: tag.name), class: css_class
 
 
-      %footer.text-center
+    %footer.text-center.well
+      .container
+        .row
+          .col-lg-12
+            %div.mb-30
+              .fb-like-box(data-href="https://www.facebook.com/the.tournament.jp" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true")
         %p &copy; THE TOURNAMENT  2014 All Rights Reserved.
