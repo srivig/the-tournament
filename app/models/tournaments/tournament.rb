@@ -123,4 +123,12 @@ class Tournament < ActiveRecord::Base
   def de?
     self.type == 'DoubleElimination'
   end
+
+  def member_registered?
+    self.players.first.name != 'Player1'
+  end
+
+  def result_registered?
+    self.games.first.winner.present?
+  end
 end

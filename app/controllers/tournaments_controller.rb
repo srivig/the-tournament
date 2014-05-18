@@ -15,6 +15,14 @@ class TournamentsController < ApplicationController
       countries: @tournament.players.map{|p| p.country.try(:downcase)},
       match_data: @tournament.match_data
     })
+
+    if @tournament.user == current_user
+      if !@tournament.member_registered?
+        flash.now[:warning] = '<i class="icon icon-exclamation-sign"></i>「メンバー表」タブから参加者の情報を登録してください。'
+      elsif !@tournament.result_registered?
+        flash.now[:warning] = '<i class="icon icon-exclamation-sign"></i>「対戦表」タブから試合の結果を登録してください。'
+      end
+    end
   end
 
   def new
