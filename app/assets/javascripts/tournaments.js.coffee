@@ -26,8 +26,8 @@ $ ->
 
     addCountryFlg = ->
       jQuery.each(gon.countries, (i, v) ->
-        if this.length
-          $('.bracket .team').eq(i).find('.label').prepend('<div class="flag-container f16"><div class="flag '+this+'"></div>')
+        if v
+          $('.bracket .team').eq(i).find('.label').prepend('<div class="flag-container f16"><div class="flag '+v+'"></div>')
       )
     createBracket().done(hideDecimal(), addCountryFlg())
 
