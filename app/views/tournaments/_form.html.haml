@@ -8,12 +8,18 @@
   = f.input :url, label: 'URL', placeholder: '大会の公式URLなど'
   = f.input :size, label: '参加者数', collection: Array[4,8,16], disabled: disabled
 
-  = f.input :consolation_round, label: '３位決定戦', inline_label: '３位決定戦を実施する', as: :boolean
+  .tnmt-option.hidden
+    = f.input :consolation_round, label: '３位決定戦', inline_label: '３位決定戦を実施する', as: :boolean
+    - type = {'シングルイリミネーション (敗者復活なし)'=>'SingleElimination', 'ダブルイリミネーション (敗者復活あり)'=>'DoubleElimination'}
+    = f.input :type, label: '敗者復活戦', collection: type, input_html: {default:'SingleElimination'}, disabled: disabled
+    -# = f.input :secondary_final, label: '再決勝', inline_label: '再決勝を実施する(敗者側が1戦目を勝利した場合)', as: :boolean, disabled: true
+    = f.input :tag_list, label: 'タグ'
 
-  - type = {'シングルイリミネーション (敗者復活なし)'=>'SingleElimination', 'ダブルイリミネーション (敗者復活あり)'=>'DoubleElimination'}
-  = f.input :type, label: '敗者復活戦', collection: type, input_html: {default:'SingleElimination'}, disabled: disabled
-  -# = f.input :secondary_final, label: '再決勝', inline_label: '再決勝を実施する(敗者側が1戦目を勝利した場合)', as: :boolean, disabled: true
-  = f.input :tag_list, label: 'タグ'
+  .form-group.tnmt-option-trigger.mb-30
+    .col-sm-6.col-sm-offset-2
+      %a(href="javascript:void(0)")
+        %i.icon.icon-plus
+        詳細オプションを表示する
 
   .form-group
     .col-sm-6.col-sm-offset-2
