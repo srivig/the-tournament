@@ -1,5 +1,7 @@
 %section#top
   =image_tag("top-logo.png", alt:'THE TOURNAMENT')
+  %div.mb-30
+    %small かんたん・便利な無料のトーナメント作成サービス
   %p
     =link_to "さっそく使ってみる（無料）", root_path, class: 'btn btn-danger btn-lg'
 
@@ -26,7 +28,8 @@
       %p
         大会URLを参加者に共有すれば、更新されていく<br>
         トーナメント表をリアルタイムに共有可能。<br>
-        またトーナメント表をブログやHPに埋め込むこともできます。
+        ブログやHPへの埋め込み機能も実装予定です。
+        -# またトーナメント表をブログやHPに埋め込むこともできます。
 
 %section#examples
   %h1
@@ -49,66 +52,66 @@
   %h1
     %span Feature
   %p
-    SuperBETAなのでまだまだほとんどの機能が開発中です。<br>
+    ベータ版なのでまだまだほとんどの機能が開発中です。<br>
     要望の強い機能からがんばって開発しますので、希望があればお気軽にご連絡ください。
   .row
-    .col-lg-2
+    .col-lg-2.col-sm-4
       .thumbnail
         %h2 参加者の詳細登録
-    .col-lg-2
+    .col-lg-2.col-sm-4
       .thumbnail
         %h2 試合の詳細登録
-    .col-lg-2
+    .col-lg-2.col-sm-4
       .thumbnail
         %h2 ３位決定戦
-    .col-lg-2
+    .col-lg-2.col-sm-4
       .thumbnail
         %h2 リアルタイム共有
-    .col-lg-2
+    .col-lg-2.col-sm-4
       .thumbnail
         %h2 スマホ対応
-    .col-lg-2
+    .col-lg-2.col-sm-4
+      .thumbnail
+        %h2
+          シード設定
+
+    .col-lg-2.col-sm-4
       .thumbnail
         %h2
           %span.label.label-warning NEW!
-          シード設定
-  .row
-    .col-lg-2.tbd
+          敗者復活戦
+    .col-lg-2.col-sm-4.tbd
       .thumbnail
         %h2 ブログ/HP埋め込み
-    .col-lg-2.tbd
-      .thumbnail
-        %h2 Double Elimination
-    .col-lg-2.tbd
+    .col-lg-2.col-sm-4.tbd
       .thumbnail
         %h2 予選の実施
-    .col-lg-2.tbd
+    .col-lg-2.col-sm-4.tbd
       .thumbnail
         %h2 ブロック分け
-    .col-lg-2.tbd
+    .col-lg-2.col-sm-4.tbd
       .thumbnail
         %h2 各会場での同時更新
-    .col-lg-2.tbd
+    .col-lg-2.col-sm-4.tbd
       .thumbnail
         %h2 ページ分け表示
 
-  .row
-    .col-lg-2.tbd
+    .col-lg-2.col-sm-4.tbd
       .thumbnail
         %h2 参加者の抽選
-    .col-lg-2.tbd
+    .col-lg-2.col-sm-4.tbd
       .thumbnail
         %h2 参加者リスト読み込み
-    .col-lg-2.tbd
+    .col-lg-2.col-sm-4.tbd
       .thumbnail
         %h2 大規模大会対応
-    .col-lg-2.tbd
+    .col-lg-2.col-sm-4.tbd
       .thumbnail
         %h2 総当たり形式　
-    .col-lg-2.tbd
+    .col-lg-2.col-sm-4.tbd
       .thumbnail
         %h2 　
-    .col-lg-2.tbd
+    .col-lg-2.col-sm-4.tbd
       .thumbnail
         %h2 　
 
@@ -120,14 +123,10 @@
     %p
       %strong.text-danger 無料
     %p
-      SuperBETAでの提供中は、すべての機能を無料でお使いいただけます。<br>
-      （正式リリース後も無料のプランは提供する予定です）
+      ベータ版での提供中は、すべての機能を無料でお使いいただけます。<br>
+      （正式リリース後も無料のプランは引き続きご利用可能です）
     %p
       =link_to "さっそく使ってみる（無料）", root_path, class: 'btn btn-danger btn-lg'
-    %p
-      %small
-        ※SuperBETAの期間中に作成されたデータについては、将来的に保持されない可能性があります。<br>
-        なくしたくない大事な記録があれば、別途ご連絡いただければできるだけ対応いたします。
 
 %section#faq
   %h1
