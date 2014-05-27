@@ -20,6 +20,8 @@
 
   %body#about-page
     = render partial: "shared/analytics" if Rails.env.production?
+    = render partial: "shared/facebook"
+
     = nav_bar responsive: true, fixed: :top, brand: image_tag("logo_w.png") do
       = menu_group do
         %li= link_to "Top", "#top"
@@ -29,9 +31,21 @@
         %li= link_to "Plan/Price", "#plan"
         %li= link_to "FAQ", "#faq"
 
+      = menu_group pull: :right do
+        = link_to 'http://nanapi.jp/116254/', target:'_blank' do
+          %p.navbar-text
+            = image_tag("wakaba.png")
+            サービスの使い方
+
     .container
       .row
         .col-lg-12
           = yield
-      %footer.text-center
+
+    %footer.text-center.well
+      .container
+        .row
+          .col-lg-12
+            %div.mb-30
+              .fb-like-box(data-href="https://www.facebook.com/the.tournament.jp" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true")
         %p &copy; THE TOURNAMENT  2014 All Rights Reserved.
