@@ -21,8 +21,6 @@
     = render partial: "shared/facebook"
     = nav_bar responsive: true, brand: image_tag("logo_w.png", alt: "THE TOURNAMENT") do
       %p.navbar-text
-        -# %span.label.label-warning NEW!
-        -# 「THE TOURNAMENT」のSuperBETA版をリリースしました！
         THE TOURNAMENT(ザ・トーナメント)は簡単・便利な無料のトーナメント作成サービスです。
       = menu_group pull: :right do
         = link_to 'http://nanapi.jp/116254/', target:'_blank' do
@@ -60,23 +58,24 @@
             = form_tag('/tournaments', method: :get) do
               .input-group.well
                 = text_field_tag(:q, params[:q], class:"form-control", placeholder:'大会名、キーワード')
-                -# %input.form-control(type="text" placeholder="大会名、キーワード")
                 %span.input-group-btn
                   = submit_tag("検索", class:"btn btn-default")
           -# Pick Up
-          %section
-            %h4
-              %i.icon.icon-star
-              注目されている大会
-            - popular = [3,2]
-            %ul.media-list.well
-              - popular.each do |i|
-                - tournament = Tournament.find(i)
-                %li.media
-                  .media-body
-                    %h4.media-heading
-                      = link_to "#{tournament.title}", tournament_path(tournament.id), data:{no_turbolink:true}
-                    %p= tournament.detail
+          /
+            %section
+              %h4
+                %i.icon.icon-star
+                注目されている大会
+              - popular = [3,2]
+              %ul.media-list.well
+                - popular.each do |i|
+                  - tournament = Tournament.find(i)
+                  %li.media
+                    .media-body
+                      %h4.media-heading
+                        = link_to "#{tournament.title}", tournament_path(tournament.id), data:{no_turbolink:true}
+                      %p= tournament.detail
+
           -# Category
           %section
             %h4

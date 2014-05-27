@@ -20,6 +20,8 @@ $ ->
         if !isNaN(this.innerText)
           if $.inArray(this.innerText, ["0.2", "0.3"]) >= 0  # Hide score on bye match
             this.innerText = '--'
+          else if gon.scoreless
+            this.innerText = '--'
           else
             this.innerText = Math.floor(this.innerText)
       )

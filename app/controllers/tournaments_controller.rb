@@ -13,7 +13,8 @@ class TournamentsController < ApplicationController
       skip_secondary_final: (@tournament.de?) ? !@tournament.secondary_final : false,
       skip_consolation_round: !@tournament.consolation_round,
       countries: @tournament.players.map{|p| p.country.try(:downcase)},
-      match_data: @tournament.match_data
+      match_data: @tournament.match_data,
+      scoreless: @tournament.scoreless?
     })
 
     if @tournament.user == current_user
@@ -77,6 +78,6 @@ class TournamentsController < ApplicationController
     end
 
     def tournament_params
-      params.require(:tournament).permit(:id, :title, :user_id, :detail, :type, :place, :url, :size, :consolation_round, :tag_list, :double_elimination, players_attributes: [:id, :name, :group, :country])
+      params.require(:tournament).permit(:id, :title, :user_id, :detail, :type, :place, :url, :size, :consolation_round, :tag_list, :double_elimination, :scoreless, players_attributes: [:id, :name, :group, :country])
     end
 end

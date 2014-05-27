@@ -19,6 +19,7 @@ class Tournament < ActiveRecord::Base
   validates :url, format: URI::regexp(%w(http https)), allow_blank: true
   validates :consolation_round, presence: true, inclusion: {in: [true,false]}, allow_blank: true
   validates :secondary_final, presence: true, inclusion: {in: [true,false]}, allow_blank: true
+  validates :scoreless, presence: true, inclusion: {in: [true,false]}, allow_blank: true
 
   default_scope {order(created_at: :desc)}
 
