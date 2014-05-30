@@ -1,3 +1,6 @@
+= content_for :page_title, "#{@game.tournament.title}の#{@game.tournament.round_name(round:@game.round)} #{@game.match_name}"
+= content_for :keywords, @game.tournament.title
+
 = render partial: "shared/tournament_info", locals: {tournament:@game.tournament, active:2}
 
 %section#game-edit
