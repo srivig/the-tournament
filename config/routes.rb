@@ -1,11 +1,14 @@
 TheTournament::Application.routes.draw do
-  root to: "static_pages#top"
-  devise_for :users
-  match 'about', to: 'static_pages#about', via: :get
-  resources :tournaments, shallow: true do
-    get 'page/:page', action: :index, on: :collection
-    resources :players
-    resources :games
+  scope "(:locale)", shallow_path: "(:locale)", locale: /ja|en/ do
+    devise_for :users
+    match 'about', to: 'static_pages#about', via: :get
+
+    resources :tournaments, shallow: true do
+      get 'page/:page', action: :index, on: :collection
+      resources :players
+      resources :games
+    end
+    root to: "static_pages#top"
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
