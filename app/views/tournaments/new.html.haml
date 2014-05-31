@@ -3,10 +3,11 @@
 =link_to sanitize('<i class="icon-reply"></i> ') + 'HOMEに戻る', root_path, class: 'btn btn-default'
 
 %section
-  %h1.title.clearfix New Tournament
+  %h1.title.clearfix
+    = t :create_new_tournament
 
 %section
   %h1.headline
     %i.icon.icon-cog
-    トーナメント情報の新規登録
+    = t :basic_info
   = render :partial => "form"

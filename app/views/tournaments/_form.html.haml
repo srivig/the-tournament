@@ -20,12 +20,13 @@
     .col-sm-6.col-sm-offset-2
       %a(href="javascript:void(0)")
         %i.icon.icon-plus
-        詳細オプションを表示する
+        = t :show_option
 
   .form-group
     .col-sm-6.col-sm-offset-2
       = f.button :submit, class: 'btn-danger'
+
   - if @tournament.persisted?
     .form-group
       .col-sm-6.col-sm-offset-2
-        =link_to '大会を削除する', tournament_path(@tournament), confirm: '大会データを削除します。本当によろしいですか？', method: :delete
+        =link_to t(:delete_tournament), tournament_path(@tournament), confirm: '大会データを削除します。本当によろしいですか？', method: :delete
