@@ -1,0 +1,13 @@
+ja:
+  layouts:
+    application:
+      site_description: THE TOURNAMENT(ザ・トーナメント)は簡単・便利な無料のトーナメント作成サービスです。
+      how_to_use: サービスの使い方
+      user_registration: ユーザー登録(無料)
+      signin: ログイン
+      logout: ログアウト
+      create_tournament: 大会の新規作成
+      tournament_search: 大会検索
+      search_placeholder: 大会名、キーワード
+      search: 検索
+      tag: タグ

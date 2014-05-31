@@ -1,5 +1,5 @@
 !!! 5
-%html(lang="ja")
+%html(lang="#{I18n.locale}")
   %head
     = render partial: 'layouts/meta_tags'
     = csrf_meta_tags
@@ -21,12 +21,12 @@
     = render partial: "shared/facebook"
     = nav_bar responsive: true, brand: image_tag("logo_w.png", alt: "THE TOURNAMENT") do
       %p.navbar-text
-        THE TOURNAMENT(ザ・トーナメント)は簡単・便利な無料のトーナメント作成サービスです。
+        = t '.site_description'
       = menu_group pull: :right do
         = link_to 'http://nanapi.jp/116254/', target:'_blank' do
           %p.navbar-text
             = image_tag("wakaba.png")
-            サービスの使い方
+            = t '.how_to_use'
 
     .container
       .row
@@ -41,25 +41,25 @@
               %p
                 %strong= current_user.try(:email)
                 %br
-                %small (#{link_to 'ログアウト', destroy_user_session_path, method: :delete})
+                %small (#{link_to t('.logout'), destroy_user_session_path, method: :delete})
                 -# %br
                 -# =link_to sanitize("<i class='icon icon-external-link'></i>")+" アイコン画像の設定", 'http://ja.gravatar.com/', target: '_blank'
-              = link_to sanitize("<i class='icon icon-plus'></i>")+" 大会の新規作成", new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
+              = link_to sanitize("<i class='icon icon-plus'></i> ")+ t('.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
             - else
               %p
                 = image_tag("http://www.gravatar.com/avatar/?d=mm", class: "img-circle")
-              = link_to "ユーザー登録(無料)", new_user_registration_path, class: 'btn btn-danger btn-block btn-lg'
-              %small (#{link_to 'ログイン', new_user_session_path})
+              = link_to t(".user_registration"), new_user_registration_path, class: 'btn btn-danger btn-block btn-lg'
+              %small (#{link_to t('.signin'), new_user_session_path})
           -# Search
           %section
             %h4
               %i.icon.icon-search
-              大会検索
+              = t('.tournament_search')
             = form_tag('/tournaments', method: :get) do
               .input-group.well
-                = text_field_tag(:q, params[:q], class:"form-control", placeholder:'大会名、キーワード')
+                = text_field_tag(:q, params[:q], class:"form-control", placeholder: t('.search_placeholder'))
                 %span.input-group-btn
-                  = submit_tag("検索", class:"btn btn-default")
+                  = submit_tag(t(".search"), class:"btn btn-default")
           -# Pick Up
           /
             %section
@@ -80,7 +80,7 @@
           %section
             %h4
               %i.icon.icon-tags
-              タグ
+              = t('.tag')
             .well
               - tag_cloud(Tournament.tag_counts_on(:tags), %w(css1 css2 css3 css4)) do |tag, css_class|
                 = link_to tag.name, tournaments_path(tag: tag.name), class: css_class
