@@ -1,0 +1,9 @@
+en:
+  tournament_info:
+    all_tournaments: All tournaments
+    others: Others
+
+  member_list:
+    number: Number
+    name: Name
+    edit_detail: Edit detail

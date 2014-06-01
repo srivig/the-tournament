@@ -9,11 +9,11 @@
       .item.active
         =image_tag("index-top.png")
         .carousel-caption
-          THE TOURNAMENTは、トーナメント形式の大会運営をサポートします。
+          = t ".carousel_caption_1"
       .item
         =image_tag("index-top-2.png")
         .carousel-caption
-          スポーツ、ボードゲームなど様々な用途に利用できます。
+          = t ".carousel_caption_2"
     <!-- Controls -->
     %a.left.carousel-control(href="#" data-target="#carousel" data-slide="prev")
       %span.glyphicon.glyphicon-chevron-left
@@ -24,7 +24,7 @@
 %section
   %h1.headline
     %i.icon.icon-bell-alt
-    新着トーナメント
+    = t '.new_tournaments'
   .list-group
     - @tournaments.each do |tournament|
       =link_to tournament_path(tournament), class: 'list-group-item clearfix', data:{no_turbolink:true} do
@@ -34,4 +34,4 @@
           = tournament.title
           %i.icon.icon-angle-right.pull-right
         %small (#{tournament.created_at.strftime("%Y.%m.%d")})
-    = link_to sanitize("<i class='icon icon-double-angle-right'></i>")+' もっとみる', tournaments_path, class: "pull-right"
+    = link_to sanitize("<i class='icon icon-double-angle-right'></i> ")+ t('.show_more'), tournaments_path, class: "pull-right"

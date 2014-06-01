@@ -1,0 +1,57 @@
+ja:
+  static_pages:
+    top:
+      carousel_caption_1: THE TOURNAMENTは、トーナメント形式の大会運営をサポートします。
+      carousel_caption_2: スポーツ、ボードゲームなど様々な用途に利用できます。
+      new_tournaments: 新着トーナメント
+      show_more: もっと見る
+
+    about:
+      subtitle: 簡単・便利な無料のトーナメント表作成サービス
+      try_service: さっそく使ってみる(無料)
+
+      about_title_1_html: 大会結果をおしゃれな<br>トーナメント表に。
+      about_text_1_html:
+        ごちゃごちゃした汚いトーナメント表にさようなら。<br>
+        THE TOURNAMENTなら、大会結果を簡単に<br>
+        おしゃれなトーナメント表に出力することができます。
+      about_title_2_html: ソフト不要、<br>ブラウザだけで簡単操作。
+      about_text_2_html:
+        専用ソフトや専門的な知識は一切不要。<br>
+        ブラウザでの簡単な操作だけで大会作成から<br>
+        結果入力まですべての操作を行うことができます
+      about_title_3_html: 大会の進捗を<br>リアルタイムに共有。
+      about_text_3_html:
+        大会URLを参加者に共有すれば、更新されていく<br>
+        トーナメント表をリアルタイムに共有可能。<br>
+        ブログやHPへの埋め込み機能も実装予定です。
+
+      feature_text_html:
+        ベータ版なのでまだまだほとんどの機能が開発中です。<br>
+        要望の強い機能からがんばって開発しますので、希望があればお気軽にご連絡ください。
+      feature_1: 参加者の詳細登録
+      feature_2: 試合の詳細登録
+      feature_3: ３位決定戦
+      feature_4: リアルタイム共有
+      feature_5: スマホ対応
+      feature_6: 敗者復活戦
+      feature_7: シード設定
+      feature_8: 英語版対応
+      feature_9: 予選の実施
+      feature_10: ブロック分け
+      feature_11: 各会場での同時更新
+      feature_12: ページ分け表示
+      feature_13: 参加者の抽選
+      feature_14: 参加者リスト読み込み
+      feature_15: 大規模大会対応
+      feature_16: 総当り形式
+      feature_17: ブログ/HP埋め込み
+
+      free: 無料
+      plan_text_html:
+        ベータ版での提供中は、すべての機能を無料でお使いいただけます。<br>
+        （正式リリース後も無料のプランは引き続きご利用可能です）
+
+      faq_text:
+        ご意見・ご要望などあればご連絡ください。
+

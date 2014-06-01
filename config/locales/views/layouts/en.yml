@@ -1,0 +1,9 @@
+en:
+  layouts:
+    application:
+      how_to_use: How to use(Japanese)
+      user_registration: SignUp (Free)
+      create_tournament: New Tournament
+      tournament_search: Search
+      search_placeholder: name, keywords
+      search: Search

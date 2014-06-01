@@ -6,7 +6,7 @@
 %section
   %h1.headline
     %i.icon.icon-trophy
-    トーナメント表
+    = t('.tournament_bracket')
 
   .row.mb-30
     #tournament.col-lg-12
@@ -15,7 +15,7 @@
     %li#like-button
       .fb-like(data-width="120" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false")
     %li
-      %a(href="https://twitter.com/share" class="twitter-share-button" data-text="#{@tournament.title} | THE TOURNAMENT(ザ・トーナメント) 簡単・便利な無料のトーナメント表作成サービス" data-hashtags="the-tournament") Tweet
+      %a(href="https://twitter.com/share" class="twitter-share-button" data-text="#{@tournament.title} | #{t('site_description')}" data-hashtags="the-tournament") Tweet
       %script
         !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 

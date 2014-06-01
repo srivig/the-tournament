@@ -5,29 +5,29 @@
     %li
       =link_to 'HOME', root_path
     %li
-      =link_to 'すべての大会', tournaments_path
+      =link_to t('tournament_info.all_tournaments'), tournaments_path
     - if params[:category].present?
       %li= link_to params[:category], tournaments_path(category: params[:category])
     - elsif params[:tag].present?
       %li= link_to params[:tag], tournaments_path(tag: params[:tag])
 
 %section
-  %h1.title.clearfix 大会をさがす
+  %h1.title.clearfix= t('.search_tournament')
 
 %section
   %h1.headline
     - if params[:q].present?
       %i.icon.icon-search
-      "#{params[:q]}"の検索結果
+      = t('.keyword_search_result', q: params[:q])
     - elsif params[:tag].present?
       %i.icon.icon-tags
-      "#{params[:tag]}"タグのついた大会
+      = t('.tag_search_result', tag: params[:tag])
     - elsif params[:category].present?
       %i.icon.icon-folder-close
-      "#{params[:category]}"カテゴリの大会
+      = t('.category_search_result', category: params[:category])
     - else
       %i.icon.icon-bell-alt
-      すべての大会
+      = t('tournament_info.all_tournaments')
   .list-group
     - if @tournaments.blank?
       .list-group-item No Tournament was found for "#{params[:q]}".

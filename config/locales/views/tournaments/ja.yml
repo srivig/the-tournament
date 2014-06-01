@@ -1,0 +1,13 @@
+ja:
+  tournaments:
+    index:
+      search_tournament: 大会をさがす
+      keyword_search_result: "\'%{q}\'の検索結果"
+      tag_search_result: "\'%{tag}\'タグのついた大会"
+      category_search_result: "\'%{category}\'カテゴリの大会"
+    show:
+      tournament_bracket: トーナメント表
+    new:
+      create_new_tournament: 新規トーナメントの作成
+
+

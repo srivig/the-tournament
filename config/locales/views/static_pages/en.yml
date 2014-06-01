@@ -1,0 +1,54 @@
+en:
+  static_pages:
+    top:
+      carousel_caption_1: Create cool tournament brackets. It's FREE.
+      carousel_caption_2: Suitable for any sports and board games.
+      new_tournaments: Latest Tournaments
+      show_more: show more
+
+    about:
+      subtitle: Create Cool Tournament Brackets
+      try_service: Start Now! (FREE)
+
+      about_title_1_html: Good Design
+      about_text_1_html: 
+        Say bye to the ugly tournament bracket.<br>
+        We offer you the cool design bracket instead.
+      about_title_2_html: Easy to Use
+      about_text_2_html:
+        No need for software download.<br>
+        It works on browsers and is really easy to use!
+      about_title_3_html: Real-time Update
+      about_text_3_html:
+        Bracket is available even in the middle.<br>
+        Just share the url and they'll see the result in real-time.
+
+      feature_text_html:
+        Most functions are under construction as we're on BETA.<br>
+        Please let us know if you have any requirements.
+      feature_1: Player Detail
+      feature_2: Match Detail
+      feature_3: 3rd Place Play-off
+      feature_4: Real-time Update
+      feature_5: Smartphone Mode
+      feature_6: Consolation Round
+      feature_7: Default Win
+      feature_8: English ver.
+      feature_9: Elimination Round
+      feature_10: Block Grouping
+      feature_11: Multi User Update
+      feature_12: Paging View
+      feature_13: Lottery for Players
+      feature_14: Import Players List
+      feature_15: Large Tournament
+      feature_16: Round Robin
+      feature_17: Embedding Bracket
+
+      free: FREE
+      plan_text_html:
+        All the features can be used for FREE during the BETA version.<br>
+        (Free plan will also be left in the official ver.)
+
+      faq_text:
+        Please contact us if you have any requirements or questions.
+
