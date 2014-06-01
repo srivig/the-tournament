@@ -33,9 +33,9 @@
 
   %div.mb-30
     - if @game.tournament.scoreless?
-      %small 以下のリストから試合の勝者を選択してください。
+      %small= t('games.winner_select_scoreless')
     - else
-      %small ※同点の場合は以下から手動で勝者を選択してください。
+      %small= t('games.winner_select_samescore')
 
     .row
       .col-xs-6
@@ -48,4 +48,4 @@
   .form-group
     = f.button :submit, class: 'btn-danger'
   .form-group
-    = link_to 'キャンセル', tournament_games_path(@game.tournament)
+    = link_to t('cancel'), tournament_games_path(@game.tournament)

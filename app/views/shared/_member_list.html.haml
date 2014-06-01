@@ -2,8 +2,8 @@
   .panel.panel-default
     %table#member-list.table.f16
       %tr.active
-        %th.width-10 登録番号
-        %th.width-50 名前
+        %th.width-10= t('member_list.number')
+        %th.width-50= t('member_list.name')
         %th
         %th.width-10
       = f.simple_fields_for :players, f.object.players.order(:seed) do |r|
@@ -19,7 +19,7 @@
                 %div.flag-container
                   %div.flag{class: r.object.country.downcase}
                 = Country[r.object.country]
-            %td= link_to t('詳細'), edit_player_path(r.object), class: 'btn btn-primary btn-sm pull-right'
+            %td= link_to t('member_list.edit_detail'), edit_player_path(r.object), class: 'btn btn-primary btn-sm pull-right'
           - else
             %td
               - if r.object.country.present?

@@ -1,1 +1,6 @@
 en:
+  devise:
+    sessions:
+      new:
+        signin_title: Sign in
+        signin_action: Sign in

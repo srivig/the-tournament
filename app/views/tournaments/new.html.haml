@@ -1,13 +1,13 @@
-= content_for :page_title, "新規トーナメントの作成"
+= content_for :page_title, t(".create_new_tournament")
 
-=link_to sanitize('<i class="icon-reply"></i> ') + 'HOMEに戻る', root_path, class: 'btn btn-default'
+=link_to sanitize('<i class="icon-reply"></i> ') + t('back_to_home'), root_path, class: 'btn btn-default'
 
 %section
   %h1.title.clearfix
-    = t :create_new_tournament
+    = t('.create_new_tournament')
 
 %section
   %h1.headline
     %i.icon.icon-cog
-    = t :basic_info
+    = t('tournament_menu.basic_info')
   = render :partial => "form"

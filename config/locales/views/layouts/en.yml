@@ -1,13 +1,9 @@
 en:
   layouts:
     application:
-      site_description: THE TOURNAMENT - Create cool tournament brackets for FREE!
       how_to_use: How to use(Japanese)
       user_registration: SignUp (Free)
-      signin: Sign In
-      logout: Logout
       create_tournament: New Tournament
       tournament_search: Search
       search_placeholder: name, keywords
       search: Search
-      tag: Tags

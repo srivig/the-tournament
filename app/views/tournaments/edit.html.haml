@@ -1,4 +1,4 @@
-= content_for :page_title, "#{@tournament.title}の基本情報編集"
+= content_for :page_title, "#{@tournament.title} #{t('tournament_menu.basic_info')}"
 = content_for :keywords, @tournament.title
 
 = render partial: "shared/tournament_info", locals: {tournament:@tournament, active:4}
@@ -6,5 +6,5 @@
 %section
   %h1.headline
     %i.icon.icon-cog
-    大会の基本情報
+    = t('tournament_menu.basic_info')
   = render :partial => "form"

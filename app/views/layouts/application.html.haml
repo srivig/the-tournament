@@ -21,7 +21,7 @@
     = render partial: "shared/facebook"
     = nav_bar responsive: true, brand: image_tag("logo_w.png", alt: "THE TOURNAMENT") do
       %p.navbar-text
-        = t '.site_description'
+        = t 'site_description'
       = menu_group pull: :right do
         = link_to 'http://nanapi.jp/116254/', target:'_blank' do
           %p.navbar-text
@@ -41,7 +41,7 @@
               %p
                 %strong= current_user.try(:email)
                 %br
-                %small (#{link_to t('.logout'), destroy_user_session_path, method: :delete})
+                %small (#{link_to t('signout'), destroy_user_session_path, method: :delete})
                 -# %br
                 -# =link_to sanitize("<i class='icon icon-external-link'></i>")+" アイコン画像の設定", 'http://ja.gravatar.com/', target: '_blank'
               = link_to sanitize("<i class='icon icon-plus'></i> ")+ t('.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
@@ -49,7 +49,7 @@
               %p
                 = image_tag("http://www.gravatar.com/avatar/?d=mm", class: "img-circle")
               = link_to t(".user_registration"), new_user_registration_path, class: 'btn btn-danger btn-block btn-lg'
-              %small (#{link_to t('.signin'), new_user_session_path})
+              %small (#{link_to t('signin'), new_user_session_path})
           -# Search
           %section
             %h4
@@ -80,7 +80,7 @@
           %section
             %h4
               %i.icon.icon-tags
-              = t('.tag')
+              = t('tournaments.tags')
             .well
               - tag_cloud(Tournament.tag_counts_on(:tags), %w(css1 css2 css3 css4)) do |tag, css_class|
                 = link_to tag.name, tournaments_path(tag: tag.name), class: css_class

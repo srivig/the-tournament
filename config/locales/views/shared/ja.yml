@@ -1,0 +1,9 @@
+ja:
+  tournament_info:
+    all_tournaments: すべての大会
+    others: その他
+
+  member_list:
+    number: 登録番号
+    name: 名前
+    edit_detail: 詳細設定

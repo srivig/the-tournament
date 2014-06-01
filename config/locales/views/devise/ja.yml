@@ -1,1 +1,6 @@
 ja:
+  devise:
+    sessions:
+      new:
+        signin_title: ログイン
+        signin_action: ログインする

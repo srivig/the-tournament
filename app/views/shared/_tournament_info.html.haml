@@ -3,12 +3,12 @@
     %li
       =link_to 'HOME', root_path
     %li
-      =link_to 'すべての大会', tournaments_path
+      =link_to t('tournament_info.all_tournaments'), tournaments_path
     - if tournament.category.present?
       %li= link_to tournament.category.category_name, tournaments_path(category: tournament.category.category_name)
       %li= link_to tournament.category.tag_name, tournaments_path(tag: tournament.category.tag_name)
     - else
-      %li= link_to 'その他', tournaments_path(category: 'others')
+      %li= link_to t('tournament_info.others'), tournaments_path(category: 'others')
     %li
       =link_to tournament.title, tournament_path(tournament)
 
@@ -30,11 +30,11 @@
 
 %ul.nav.nav-tabs.mb-30
   %li{class: (active==1) ? 'active' : ''}
-    =link_to 'トーナメント表', tournament_path(tournament), data:{no_turbolink:true}
+    =link_to t('tournament_menu.tournament_bracket'), tournament_path(tournament), data:{no_turbolink:true}
   %li{class: (active==2) ? 'active' : ''}
-    =link_to '対戦表', tournament_games_path(tournament)
+    =link_to t('tournament_menu.games'), tournament_games_path(tournament)
   %li{class: (active==3) ? 'active' : ''}
-    =link_to 'メンバー表', tournament_players_path(tournament)
+    =link_to t('tournament_menu.players'), tournament_players_path(tournament)
   - if tournament.user == current_user
     %li{class: (active==4) ? 'active' : ''}
-      =link_to '大会の基本情報', edit_tournament_path(tournament)
+      =link_to t('tournament_menu.basic_info'), edit_tournament_path(tournament)

@@ -1,6 +1,6 @@
 en:
-  create_new_tournament: New Tournament
-  basic_info: Tournament Infomation
-  show_option: Show more settings
-  delete_tournament: Delete the tournament
-  tournament_bracket: Tournament Bracket
+  tournaments:
+    show:
+      tournament_bracket: Tournament Bracket
+    new:
+      create_new_tournament: New Tournament

@@ -1,8 +1,8 @@
 ja:
-  create_new_tournament: 新規トーナメントの作成
-  basic_info: 大会の基本情報
-  show_option: 詳細オプションを表示する
-  delete_tournament: 大会を削除する
-  tournament_bracket: トーナメント表
+  tournaments:
+    show:
+      tournament_bracket: トーナメント表
+    new:
+      create_new_tournament: 新規トーナメントの作成
 
 

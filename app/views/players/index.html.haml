@@ -1,4 +1,4 @@
-= content_for :page_title, "#{@tournament.title}のメンバー表"
+= content_for :page_title, "#{@tournament.title} #{t('tournament_menu.players')}"
 = content_for :keywords, @tournament.title
 
 = render partial: "shared/tournament_info", locals: {tournament:@tournament, active:3}
@@ -6,7 +6,7 @@
 %section#member-list
   %h1.headline
     %i.icon.icon-group
-    メンバー表
+    = t('tournament_menu.players')
     -# =link_to sanitize('<i class="icon icon-paper-clip"></i> ')+'CSVアップロード', '#', class: 'btn btn-warning btn-sm pull-right'
   - editable = (current_user == @tournament.user) ? true : false
   = render partial: "shared/member_list", locals: {tournament: @tournament, editable: editable}

@@ -2,25 +2,25 @@
   - f.object = @tournament.becomes(@tournament.class)
   - disabled =  (@tournament.new_record?) ? false : true
 
-  = f.input :title, label: '大会名'
-  = f.input :detail, label: '概要', placeholder: '大会の概要、詳細な説明など'
-  = f.input :place, label: '開催地'
-  = f.input :url, label: 'URL', placeholder: '大会の公式URLなど'
-  = f.input :size, label: '参加者数', collection: Array[4,8,16], disabled: disabled
+  = f.input :title, label: t('tournaments.title')
+  = f.input :detail, label: t('tournaments.desc'), placeholder: t('tournaments.desc_placeholder')
+  = f.input :place, label: t('tournaments.place')
+  = f.input :url, label: 'URL', placeholder: t('tournaments.url')
+  = f.input :size, label: t('tournaments.size'), collection: Array[4,8,16], disabled: disabled
 
   .tnmt-option.hidden
-    = f.input :consolation_round, label: '３位決定戦', inline_label: '３位決定戦を実施する', as: :boolean
-    = f.input :scoreless, label: 'スコア形式', inline_label: 'スコア無し(勝敗のみ記録する)', as: :boolean
-    - type = {'シングルイリミネーション (敗者復活なし)'=>'SingleElimination', 'ダブルイリミネーション (敗者復活あり)'=>'DoubleElimination'}
-    = f.input :type, label: '敗者復活戦', collection: type, input_html: {default:'SingleElimination'}, disabled: disabled
+    = f.input :consolation_round, label: t('tournaments.third_place'), inline_label: t('tournaments.third_place_inline_label'), as: :boolean
+    = f.input :scoreless, label: t('tournaments.scoreless'), inline_label: t('tournaments.scoreless_inline_label'), as: :boolean
+    - type = {t('tournaments.single_elimination')=>'SingleElimination', t('tournaments.double_elimination')=>'DoubleElimination'}
+    = f.input :type, label: t('tournaments.consolation_round'), collection: type, input_html: {default:'SingleElimination'}, disabled: disabled
     -# = f.input :secondary_final, label: '再決勝', inline_label: '再決勝を実施する(敗者側が1戦目を勝利した場合)', as: :boolean, disabled: true
-    = f.input :tag_list, label: 'タグ'
+    = f.input :tag_list, label: t('tournaments.tags')
 
   .form-group.tnmt-option-trigger.mb-30
     .col-sm-6.col-sm-offset-2
       %a(href="javascript:void(0)")
         %i.icon.icon-plus
-        = t :show_option
+        = t('tournaments.show_option')
 
   .form-group
     .col-sm-6.col-sm-offset-2
@@ -29,4 +29,4 @@
   - if @tournament.persisted?
     .form-group
       .col-sm-6.col-sm-offset-2
-        =link_to t(:delete_tournament), tournament_path(@tournament), confirm: '大会データを削除します。本当によろしいですか？', method: :delete
+        =link_to t('tournaments.delete_tournament'), tournament_path(@tournament), confirm: '大会データを削除します。本当によろしいですか？', method: :delete

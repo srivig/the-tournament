@@ -1,4 +1,4 @@
-= content_for :page_title, "#{@tournament.title}の対戦表"
+= content_for :page_title, "#{@tournament.title} #{t('tournament_menu.games')}"
 = content_for :keywords, @tournament.title
 
 = render partial: "shared/tournament_info", locals: {tournament:@tournament, active:2}
@@ -6,7 +6,7 @@
 %section
   %h1.headline
     %i.icon.icon-list-alt
-    対戦表
+    = t('tournament_menu.games')
   -# %div.mb-30
   -#   %ul.nav.nav-pills
   -#     %li.active

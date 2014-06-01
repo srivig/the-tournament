@@ -1,17 +1,17 @@
 = simple_form_for @player, html: {class: 'form-horizontal'} do |f|
   .form-group
-    %label.col-sm-2.control-label 登録番号
+    %label.col-sm-2.control-label= t('member_list.number')
     .col-sm-6
       %p.form-control-static= f.object.seed
   = f.input :seed, as: :hidden
-  = f.input :name, label: '名前'
-  = f.input :group, label: '所属など'
-  = f.input :country, label: '国', iso_codes: true
+  = f.input :name, label: t('member_list.name')
+  = f.input :group, label: t('players.team')
+  = f.input :country, label: t('players.country'), iso_codes: true
 
   .form-group
     .col-sm-6.col-sm-offset-2
       = f.button :submit, class: 'btn-danger'
   .form-group
     .col-sm-6.col-sm-offset-2
-      =link_to 'キャンセル', tournament_players_path(@player.tournament)
+      =link_to t('cancel'), tournament_players_path(@player.tournament)
 
