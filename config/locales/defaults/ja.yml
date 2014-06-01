@@ -42,3 +42,8 @@ ja:
 
   devise:
     remember_me: ログイン状態を記憶する
+
+  metatags:
+    title: THE TOURNAMENT 無料トーナメント表作成
+    description: THE TOURNAMENT(ザ・トーナメント)は簡単・便利な無料のトーナメント表作成サービスです。
+    site_name: THE TOURNAMENT(ザ・トーナメント)

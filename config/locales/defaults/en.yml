@@ -7,7 +7,7 @@ en:
   signup: Sign up
   edit: Edit
   cancel: Cancel
-  
+
   tournaments:
     show_option: Show more settings
     delete_tournament: Delete the tournament
@@ -42,3 +42,8 @@ en:
 
   devise:
     remember_me: Remember me
+
+  metatags:
+    title: Tournamnet bracket generater - THE TOURNAMENT
+    description: THE TOURNAMENT is a free web service for creating your tournament bracket online.
+    site_name: THE TOURNAMENT
