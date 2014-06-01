@@ -27,6 +27,8 @@
           %p.navbar-text
             = image_tag("wakaba.png")
             = t '.how_to_use'
+        = menu_item 'JP', url_for(locale: :ja)
+        = menu_item 'EN', url_for(locale: :en)
 
     .container
       .row

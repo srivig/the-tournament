@@ -35,7 +35,9 @@
         = link_to 'http://nanapi.jp/116254/', target:'_blank' do
           %p.navbar-text
             = image_tag("wakaba.png")
-            サービスの使い方
+            = t 'layouts.application.how_to_use'
+        = menu_item 'JP', url_for(locale: :ja)
+        = menu_item 'EN', url_for(locale: :en)
 
     .container
       .row

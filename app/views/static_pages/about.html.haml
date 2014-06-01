@@ -1,35 +1,25 @@
 %section#top
   =image_tag("top-logo.png", alt:'THE TOURNAMENT')
   %div.mb-30
-    %small かんたん・便利な無料のトーナメント作成サービス
+    %small= t('.subtitle')
   %p
-    =link_to "さっそく使ってみる（無料）", root_path, class: 'btn btn-danger btn-lg'
+    =link_to t('.try_service'), root_path, class: 'btn btn-danger btn-lg'
 
 %section#about
   %h1.hide About
   .row
     %div.col-lg-4
       =image_tag("icon-1.png")
-      %h2 大会結果をおしゃれな<br>トーナメント表に。
-      %p
-        ごちゃごちゃした汚いトーナメント表にさようなら。<br>
-        THE TOURNAMENTなら、大会結果を簡単に<br>
-        おしゃれなトーナメント表に出力することができます
+      %h2= t('.about_title_1_html')
+      %p= t('.about_text_1_html')
     %div.col-lg-4
       =image_tag("icon-2.png")
-      %h2 ソフト不要、<br>ブラウザだけで簡単操作。
-      %p
-        専用ソフトや専門的な知識は一切不要。<br>
-        ブラウザでの簡単な操作だけで大会作成から<br>
-        結果入力まですべての操作を行うことができます
+      %h2= t('.about_title_2_html')
+      %p= t('.about_text_2_html')
     %div.col-lg-4
       =image_tag("icon-3.png")
-      %h2 大会の進捗を<br>リアルタイムに共有。
-      %p
-        大会URLを参加者に共有すれば、更新されていく<br>
-        トーナメント表をリアルタイムに共有可能。<br>
-        ブログやHPへの埋め込み機能も実装予定です。
-        -# またトーナメント表をブログやHPに埋め込むこともできます。
+      %h2= t('.about_title_3_html')
+      %p= t('.about_text_3_html')
 
 %section#examples
   %h1
@@ -52,65 +42,65 @@
   %h1
     %span Feature
   %p
-    ベータ版なのでまだまだほとんどの機能が開発中です。<br>
-    要望の強い機能からがんばって開発しますので、希望があればお気軽にご連絡ください。
+    = t('.feature_text_html')
   .row
     .col-lg-2.col-sm-4
       .thumbnail
-        %h2 参加者の詳細登録
+        %h2= t('.feature_1')
     .col-lg-2.col-sm-4
       .thumbnail
-        %h2 試合の詳細登録
+        %h2= t('.feature_2')
     .col-lg-2.col-sm-4
       .thumbnail
-        %h2 ３位決定戦
+        %h2= t('.feature_3')
     .col-lg-2.col-sm-4
       .thumbnail
-        %h2 リアルタイム共有
+        %h2= t('.feature_4')
     .col-lg-2.col-sm-4
       .thumbnail
-        %h2 スマホ対応
+        %h2= t('.feature_5')
     .col-lg-2.col-sm-4
       .thumbnail
-        %h2
-          シード設定
+        %h2= t('.feature_6')
 
     .col-lg-2.col-sm-4
       .thumbnail
         %h2
           %span.label.label-warning NEW!
-          敗者復活戦
+          = t('.feature_7')
+    .col-lg-2.col-sm-4
+      .thumbnail
+        %h2
+          %span.label.label-warning NEW!
+          = t('.feature_8')
     .col-lg-2.col-sm-4.tbd
       .thumbnail
-        %h2 ブログ/HP埋め込み
+        %h2= t('.feature_9')
     .col-lg-2.col-sm-4.tbd
       .thumbnail
-        %h2 予選の実施
+        %h2= t('.feature_10')
     .col-lg-2.col-sm-4.tbd
       .thumbnail
-        %h2 ブロック分け
+        %h2= t('.feature_11')
     .col-lg-2.col-sm-4.tbd
       .thumbnail
-        %h2 各会場での同時更新
-    .col-lg-2.col-sm-4.tbd
-      .thumbnail
-        %h2 ページ分け表示
+        %h2= t('.feature_12')
 
     .col-lg-2.col-sm-4.tbd
       .thumbnail
-        %h2 参加者の抽選
+        %h2= t('.feature_13')
     .col-lg-2.col-sm-4.tbd
       .thumbnail
-        %h2 参加者リスト読み込み
+        %h2= t('.feature_14')
     .col-lg-2.col-sm-4.tbd
       .thumbnail
-        %h2 大規模大会対応
+        %h2= t('.feature_15')
     .col-lg-2.col-sm-4.tbd
       .thumbnail
-        %h2 総当たり形式　
+        %h2= t('.feature_16')
     .col-lg-2.col-sm-4.tbd
       .thumbnail
-        %h2 　
+        %h2= t('.feature_17')
     .col-lg-2.col-sm-4.tbd
       .thumbnail
         %h2 　
@@ -121,18 +111,18 @@
     %span Plan/Price
   %div.text-center
     %p
-      %strong.text-danger 無料
+      %strong.text-danger= t('.free')
     %p
-      ベータ版での提供中は、すべての機能を無料でお使いいただけます。<br>
-      （正式リリース後も無料のプランは引き続きご利用可能です）
+      = t('.plan_text_html')
     %p
-      =link_to "さっそく使ってみる（無料）", root_path, class: 'btn btn-danger btn-lg'
+      =link_to t('.try_service'), root_path, class: 'btn btn-danger btn-lg'
 
 %section#faq
   %h1
     %span FAQ
   %p.text-center
-    質問・ご要望などあればいつでもご連絡ください。<br>
+    = t('.faq_text')
+    %br
     info[at]notsobad.jp
 /
   %ul.list-group

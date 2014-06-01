@@ -1,5 +1,10 @@
 en:
   tournaments:
+    index:
+      search_tournament: Search Tournaments
+      keyword_search_result: "Search result for \'%{q}\'"
+      tag_search_result: "Tournaments with \'%{tag}\' tag"
+      category_search_result: "Tournaments in \'%{category}\' category"
     show:
       tournament_bracket: Tournament Bracket
     new:
