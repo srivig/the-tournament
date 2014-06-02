@@ -1,0 +1,24 @@
+ja:
+  flash:
+    tournament:
+      create:
+        success: 大会情報が登録されました。
+        failure: 大会情報の登録に失敗しました。
+      update:
+        success: 大会情報が更新されました。
+        failure: 大会情報の更新に失敗しました。
+    game:
+      update:
+        success: 試合情報が更新されました。
+        failure: 試合情報の更新に失敗しました。
+    player:
+      update:
+        success: 参加者情報が更新されました。
+        failure: 参加者情報の更新に失敗しました。
+    players:
+      update:
+        success: 参加者情報が更新されました。
+        failure: 参加者情報の更新に失敗しました。
+    guides:
+      players_reg: 「メンバー表」タブから参加者の情報を登録してください。
+      games_reg: 「対戦表」タブから試合の結果を登録してください。

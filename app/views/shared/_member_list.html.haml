@@ -1,4 +1,5 @@
-= simple_form_for @tournament, html: {class: 'form-horizontal'} do |f|
+= simple_form_for @tournament.becomes(Tournament), html: {class: 'form-horizontal'} do |f|
+  - f.object = @tournament.becomes(@tournament.class)
   .panel.panel-default
     %table#member-list.table.f16
       %tr.active

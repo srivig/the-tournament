@@ -19,9 +19,9 @@ class TournamentsController < ApplicationController
 
     if @tournament.user == current_user
       if !@tournament.member_registered?
-        flash.now[:warning] = '<i class="icon icon-exclamation-sign"></i>「メンバー表」タブから参加者の情報を登録してください。'
+        flash.now[:warning] = "<i class='icon icon-exclamation-sign'></i> #{I18n.t('flash.guides.players_reg')} "
       elsif !@tournament.result_registered?
-        flash.now[:warning] = '<i class="icon icon-exclamation-sign"></i>「対戦表」タブから試合の結果を登録してください。'
+        flash.now[:warning] = "<i class='icon icon-exclamation-sign'></i> #{I18n.t('flash.guides.games_reg')} "
       end
     end
   end
@@ -37,11 +37,11 @@ class TournamentsController < ApplicationController
     respond_to do |format|
       if @tournament.save
         @tournament = @tournament
-        format.html { redirect_to tournament_path(@tournament), notice: 'Tournament was successfully created.' }
+        format.html { redirect_to tournament_path(@tournament), notice: I18n.t('flash.tournament.create.success')}
         format.json { render action: 'show', status: :created, location: @tournament }
       else
         @tournament = @tournament
-        flash.now[:alert] = "Failed on saving the tournament."
+        flash.now[:alert] = I18n.t('flash.tournament.create.failure')
         format.html { render action: 'new' }
         format.json { render json: @tournament.errors, status: :unprocessable_entity }
       end
@@ -52,13 +52,27 @@ class TournamentsController < ApplicationController
   end
 
   def update
+    # Players一覧更新時
+    if params[:tournament][:players_attributes].present?
+      success_url = tournament_players_path(@tournament)
+      success_notice = I18n.t('flash.players.update.success')
+      failure_url = 'players/index'
+      failure_notice = I18n.t('flash.players.update.failure')
+    else
+      success_url = edit_tournament_path(@tournament)
+      success_notice = I18n.t('flash.tournament.update.success')
+      failure_url = {action: 'edit'}
+      failure_notice = I18n.t('flash.tournament.update.failure')
+    end
+
     respond_to do |format|
       if @tournament.update(tournament_params)
-        format.html { redirect_to edit_tournament_path(@tournament), notice: 'Tournament was successfully updated.' }
+        # format.html { redirect_to edit_tournament_path(@tournament), notice: 'Tournament was successfully updated.' }
+        format.html { redirect_to success_url, notice: success_notice}
         format.json { head :no_content }
       else
-        flash.now[:alert] = "Failed on saving the tournament."
-        format.html { render action: 'edit' }
+        flash.now[:alert] = failure_notice
+        format.html { render failure_url }
         format.json { render json: @tournament.errors, status: :unprocessable_entity }
       end
     end

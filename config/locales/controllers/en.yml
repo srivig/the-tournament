@@ -1,0 +1,25 @@
+en:
+  flash:
+    tournament:
+      create:
+        success: Tournament was successfully created.
+        failure: Failed on saving the tournament.
+      update:
+        success: Tournament was successfully updated.
+        failure: Failed on updating the tournament.
+    game:
+      update:
+        success: Game was successfully updated.
+        failure: Failed on saving the game.
+    player:
+      update:
+        success: Player was successfully updated. 
+        failure: Failed on saving the player.
+    players:
+      update:
+        success: Players were successfully updated.
+        failure: Failed on updating the players.
+
+    guides:
+      players_reg: Edit players info in "Players" tab.
+      games_reg: Edit match results in "Matches" tab.
