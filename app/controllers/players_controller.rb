@@ -3,7 +3,11 @@ class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tournament = Tournament.find(params[:tournament_id]).becomes(Tournament)
+    @tournament = Tournament.find(params[:tournament_id])
+
+    if @tournament.user == current_user && !@tournament.result_registered?
+      flash.now[:warning] = "<i class='icon icon-exclamation-sign'></i> #{I18n.t('flash.guides.games_reg')} "
+    end
   end
 
   def edit
@@ -12,10 +16,10 @@ class PlayersController < ApplicationController
   def update
     respond_to do |format|
       if @player.update(player_params)
-        format.html { redirect_to tournament_players_path(@player.tournament), notice: 'Player was successfully updated.' }
+        format.html { redirect_to tournament_players_path(@player.tournament), notice: I18n.t('flash.player.update.success')}
         format.json { head :no_content }
       else
-        flash.now[:alert] = "Failed on saving the player."
+        flash.now[:alert] = I18n.t('flash.player.update.failure')
         format.html { render action: 'edit' }
         format.json { render json: @player.errors, status: :unprocessable_entity }
       end

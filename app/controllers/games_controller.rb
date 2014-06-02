@@ -16,10 +16,10 @@ class GamesController < ApplicationController
   def update
     respond_to do |format|
       if @game.update(game_params)
-        format.html { redirect_to tournament_games_path(@game.tournament), notice: 'Game was successfully updated.' }
+        format.html { redirect_to tournament_games_path(@game.tournament), notice: I18n.t('flash.game.update.success')}
         format.json { head :no_content }
       else
-        flash.now[:alert] = "Failed on saving the game."
+        flash.now[:alert] = I18n.t('flash.game.update.failure')
         format.html { render action: 'edit' }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
