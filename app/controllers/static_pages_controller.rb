@@ -1,8 +1,6 @@
 class StaticPagesController < ApplicationController
   skip_before_action :authenticate_user!
   def about
-    render layout: 'about'
-
     @tournament = Tournament.find(1)
 
     teams = Array.new

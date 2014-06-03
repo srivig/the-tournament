@@ -1,0 +1,13 @@
+= nav_bar responsive: true, brand: image_tag("logo_w.png", alt: "THE TOURNAMENT") do
+  = menu_group do
+    = menu_text t('site_description')
+
+  %ul.nav.navbar-nav.navbar-right
+    %li
+      = link_to 'http://nanapi.jp/116254/', target: '_blank' do
+        = image_tag("wakaba.png")
+        = t 'layouts.application.how_to_use'
+    - ja_active = en_active = ''
+    - (I18n.locale == :ja) ? ja_active='active' : en_active='active'
+    %li{class:ja_active}= link_to 'JP', url_for(locale: :ja)
+    %li{class:en_active}= link_to 'EN', url_for(locale: :en)

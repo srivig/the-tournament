@@ -2,6 +2,7 @@ en:
   layouts:
     application:
       how_to_use: How to use(Japanese)
+    sidebar:
       user_registration: SignUp (Free)
       create_tournament: New Tournament
       tournament_search: Search

@@ -57,6 +57,11 @@ input[type="checkbox"] {
 }
 .tooltip { width: 180px; }
 .navbar-collapse.collapse { padding-right: 0; }
+.navbar-nav.navbar-right:last-child { margin-right: -7px; } /* デフォルトで-15pxになってるのを調整 */
+.container > .navbar-header, .container-fluid > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-collapse { 
+  margin-right: 0;
+  margin-left: 0;
+}
 
 /* Tags Input modification */
 div.tagsinput {
