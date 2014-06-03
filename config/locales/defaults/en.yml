@@ -11,7 +11,7 @@ en:
   tournaments:
     show_option: Show more settings
     delete_tournament: Delete the tournament
-    tite: Title
+    title: Title
     desc: Description
     desc_placeholder: Description about the tournament.
     place: Place
