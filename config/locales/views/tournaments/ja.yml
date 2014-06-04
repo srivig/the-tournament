@@ -7,6 +7,8 @@ ja:
       category_search_result: "\'%{category}\'カテゴリの大会"
     show:
       tournament_bracket: トーナメント表
+      download_image: トーナメント表を画像でダウンロード
+      download_preparing: 画像ダウンロードの準備をしています...
     new:
       create_new_tournament: 新規トーナメントの作成
 

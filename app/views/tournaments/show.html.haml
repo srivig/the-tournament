@@ -19,6 +19,6 @@
     #tournament.col-lg-12
 
   %div
-    %a#download_btn.btn.btn-sm.btn-default(href="#" download="" data-loading-text="画像ダウンロードの準備をしています...")
+    %a#download_btn.btn.btn-sm.btn-default(href="#" download="#{@tournament.title.gsub(' ','-')}" data-loading-text="#{t('.download_preparing')}")
       %i.icon.icon-download-alt
-      トーナメント表を画像でダウンロード
+      = t('.download_image')

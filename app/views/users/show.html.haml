@@ -1,3 +1,5 @@
+= content_for :page_title, t('.mypage')
+
 =link_to sanitize('<i class="icon-reply"></i> ') + t('back_to_home'), root_path, class: 'btn btn-default'
 %section
   %h1.title= t('.mypage')
@@ -9,10 +11,10 @@
     %div
       %div
         %p= profile_img(@user)
-        %p= @user.email
         - if @user == current_user
+          %p= @user.email
           = link_to t(".change_profile_img"), 'http://ja.gravatar.com/', target: '_blank', class: 'btn btn-sm btn-default'
-          %small 
+          %small
             (#{t('.gravatar_explain')})
 
   %section

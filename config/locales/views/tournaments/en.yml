@@ -7,5 +7,7 @@ en:
       category_search_result: "Tournaments in \'%{category}\' category"
     show:
       tournament_bracket: Tournament Bracket
+      download_image: Download the bracket as JPEG
+      download_preparing: Preparing for the JPEG download..
     new:
       create_new_tournament: New Tournament

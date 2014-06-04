@@ -53,7 +53,7 @@ $ ->
     html2canvas($(".bracket"), {
       onrendered: (canvas) ->
         canvasImage = canvas.toDataURL("image/jpeg")
-        $("#download_btn").attr('href', canvasImage).attr('download', canvasImage)
+        $("#download_btn").attr('href', canvasImage)
         $("#download_btn").button("reset")
     })
 
