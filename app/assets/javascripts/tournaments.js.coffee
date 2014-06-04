@@ -48,6 +48,16 @@ $ ->
         $('.finals .teamContainer').eq(i).attr('title', gon.match_data[3][i])
     $('.teamContainer').tooltip({html:true})
 
+    # Image Download
+    $("#download_btn").button('loading')
+    html2canvas($(".bracket"), {
+      background: '#fff',
+      onrendered: (canvas) ->
+        canvasImage = canvas.toDataURL("image/jpg")
+        $("#download_btn").attr('href', canvasImage).attr('download', canvasImage)
+        $("#download_btn").button("reset")
+    })
+
 
   # tournament#edit page - Tags input
   if $('#tournament_tag_list').length
