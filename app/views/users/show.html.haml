@@ -1,0 +1,34 @@
+=link_to sanitize('<i class="icon-reply"></i> ') + t('back_to_home'), root_path, class: 'btn btn-default'
+%section
+  %h1.title= t('.mypage')
+
+  %section
+    %h1.headline
+      %i.icon.icon-user
+      = t '.account'
+    %div
+      %div
+        %p= profile_img(@user)
+        %p= @user.email
+        - if @user == current_user
+          = link_to t(".change_profile_img"), 'http://ja.gravatar.com/', target: '_blank', class: 'btn btn-sm btn-default'
+          %small 
+            (#{t('.gravatar_explain')})
+
+  %section
+    %h1.headline
+      %i.icon.icon-bell-alt
+      = t '.created_tournaments'
+
+    - if @tournaments.present?
+      %div.panel.panel-default
+        .list-group
+          - @tournaments.each do |tournament|
+            =link_to tournament_path(tournament), class: 'list-group-item clearfix', data:{no_turbolink:true} do
+              %span.list-group-item-heading
+                = tournament.title
+                %i.icon.icon-angle-right.pull-right
+              %small (#{tournament.created_at.strftime("%Y.%m.%d")})
+          -# = link_to sanitize("<i class='icon icon-double-angle-right'></i> ")+ t('.show_more'), tournaments_path, class: "pull-right"
+    - else
+      %p= t(".no_tournament_yet")

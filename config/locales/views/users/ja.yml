@@ -1,0 +1,9 @@
+ja:
+  users:
+    show:
+      mypage: マイページ
+      account: アカウント
+      change_profile_img: プロフィール画像を変更する
+      gravatar_explain: Gravatarという外部のサービスへの登録が必要になります
+      created_tournaments: 作成済みトーナメント
+      no_tournament_yet: まだ作成されたトーナメントがありません。

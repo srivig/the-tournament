@@ -1,6 +1,7 @@
 TheTournament::Application.routes.draw do
   scope "(:locale)", shallow_path: "(:locale)", locale: /ja|en/ do
     devise_for :users
+    resources :users, only: [:show]
     match 'about', to: 'static_pages#about', via: :get
 
     resources :tournaments, shallow: true do
