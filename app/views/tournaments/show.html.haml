@@ -7,10 +7,6 @@
   %h1.headline
     %i.icon.icon-trophy
     = t('.tournament_bracket')
-
-  .row.mb-30
-    #tournament.col-lg-12
-
   %ul.list-inline
     %li#like-button
       .fb-like(data-width="120" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false")
@@ -19,4 +15,10 @@
       %script
         !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 
+  .row.mb-30
+    #tournament.col-lg-12
 
+  %div
+    %a#download_btn.btn.btn-sm.btn-default(href="#" download="" data-loading-text="画像ダウンロードの準備をしています...")
+      %i.icon.icon-download-alt
+      トーナメント表を画像でダウンロード
