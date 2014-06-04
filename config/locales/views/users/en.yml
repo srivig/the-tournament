@@ -1,0 +1,9 @@
+en:
+  users:
+    show:
+      mypage: Mypage
+      account: Account
+      change_profile_img: Change your profile image.
+      gravatar_explain: You need to sign up for Gravatar.
+      created_tournaments: Created Tournaments
+      no_tournament_yet: No tournament is created by this user.

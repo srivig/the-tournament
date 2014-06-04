@@ -1,13 +1,14 @@
 -# Profile
 %section.well.sidebar-nav.text-center
   - if current_user
-    =profile_img(current_user)
-    %p
-      %strong= current_user.try(:email)
-      %br
-      %small (#{link_to t('signout'), destroy_user_session_path, method: :delete})
-      -# %br
-      -# =link_to sanitize("<i class='icon icon-external-link'></i>")+" アイコン画像の設定", 'http://ja.gravatar.com/', target: '_blank'
+    = link_to user_path(current_user) do
+      =profile_img(current_user)
+      %p
+        %strong= current_user.try(:email)
+        %br
+        %small (#{link_to t('signout'), destroy_user_session_path, method: :delete})
+        -# %br
+        -# =link_to sanitize("<i class='icon icon-external-link'></i>")+" アイコン画像の設定", 'http://ja.gravatar.com/', target: '_blank'
     = link_to sanitize("<i class='icon icon-plus'></i> ")+ t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
   - else
     %p
