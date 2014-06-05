@@ -8,6 +8,8 @@ class TournamentsController < ApplicationController
   end
 
   def show
+    redirect_to pretty_tournament_path(@tournament, @tournament.title), status: 301 unless params[:title]==@tournament.title
+
     gon.push({
       tournament_data: @tournament.tournament_data,
       skip_secondary_final: (@tournament.de?) ? !@tournament.secondary_final : false,
