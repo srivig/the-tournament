@@ -18,7 +18,7 @@
   .row.mb-30
     #tournament.col-lg-12
 
-  %div
+  %div.visible-lg.visible-md
     %a#download_btn.btn.btn-sm.btn-default(href="#" download="#{@tournament.title.gsub(' ','-')}" data-loading-text="#{t('.download_preparing')}")
       %i.icon.icon-download-alt
       = t('.download_image')
