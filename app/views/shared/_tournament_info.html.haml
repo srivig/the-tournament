@@ -30,7 +30,7 @@
 
 %ul.nav.nav-tabs.mb-30
   %li{class: (active==1) ? 'active' : ''}
-    =link_to t('tournament_menu.tournament_bracket'), tournament_path(tournament), data:{no_turbolink:true}
+    =link_to t('tournament_menu.tournament_bracket'), pretty_tournament_path(tournament, tournament.title), data:{no_turbolink:true}
   %li{class: (active==2) ? 'active' : ''}
     =link_to t('tournament_menu.games'), tournament_games_path(tournament)
   %li{class: (active==3) ? 'active' : ''}
