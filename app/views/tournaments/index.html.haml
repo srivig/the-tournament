@@ -32,7 +32,7 @@
     - if @tournaments.blank?
       .list-group-item No Tournament was found for "#{params[:q]}".
     - @tournaments.each do |tournament|
-      =link_to tournament_path(tournament), class: 'list-group-item clearfix', data:{no_turbolink:true} do
+      =link_to pretty_tournament_path(tournament, tournament.title), class: 'list-group-item clearfix', data:{no_turbolink:true} do
         - if tournament.created_at > 3.days.ago
           %span.label.label-warning New!
         %span.list-group-item-heading

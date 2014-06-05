@@ -1,5 +1,6 @@
 = content_for :page_title, @tournament.title
 = content_for :keywords, @tournament.title
+= content_for :canonical, pretty_tournament_url(@tournament, @tournament.title)
 
 = render partial: "shared/tournament_info", locals: {tournament:@tournament, active:1}
 
