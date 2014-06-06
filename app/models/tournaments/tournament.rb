@@ -132,4 +132,8 @@ class Tournament < ActiveRecord::Base
   def result_registered?
     self.games.first.winner.present?
   end
+
+  def encoded_title
+    self.title.gsub(/　| |\//, '-')
+  end
 end

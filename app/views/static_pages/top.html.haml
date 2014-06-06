@@ -27,7 +27,7 @@
     = t '.new_tournaments'
   .list-group
     - @tournaments.each do |tournament|
-      =link_to pretty_tournament_path(tournament, tournament.title), class: 'list-group-item clearfix', data:{no_turbolink:true} do
+      =link_to pretty_tournament_path(tournament, tournament.encoded_title), class: 'list-group-item clearfix', data:{no_turbolink:true} do
         - if tournament.created_at > 3.days.ago
           %span.label.label-warning New!
         %span.list-group-item-heading
