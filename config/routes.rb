@@ -3,7 +3,6 @@ TheTournament::Application.routes.draw do
     root to: "static_pages#top"
     devise_for :users
     resources :users, only: [:show]
-    match 'about', to: 'static_pages#about', via: :get
 
     resources :tournaments, shallow: true do
       get 'page/:page', action: :index, on: :collection
@@ -11,6 +10,7 @@ TheTournament::Application.routes.draw do
       resources :games
     end
     match 'tournaments/:id/(:title)', to: 'tournaments#show', via: :get, as: :pretty_tournament
+    match ':action', controller: :static_pages, via: :get
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

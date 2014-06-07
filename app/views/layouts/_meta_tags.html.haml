@@ -27,7 +27,7 @@
   og = {
     title: content_for?(:page_title) ? "#{yield(:page_title)} | THE TOURNAMENT" : t('metatags.title'),
     type: 'website',
-    url: about_url,
+    url: url_for(controller: :static_pages, action: :about, only_path: false),
     image: 'http://the-tournament.jp/assets/index-top.png',
     site_name: t('metatags.site_name'),
     description: t('metatags.description'),

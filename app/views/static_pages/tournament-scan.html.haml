@@ -1,0 +1,87 @@
+.campaign-page
+  %section
+    %h1.text-hide
+      紙のトーナメント表を写真に撮るだけでデータ化
+      「TOURNAMENT SCAN(トーナメント・スキャン」
+    .mb-30
+      =image_tag("tournament-scan/banner.png", alt:'TOURNAMENT SCAN', class: 'img-responsive')
+    %p THE TOURNAMENTでは、紙に描いたトーナメント表を写真に撮って送るだけで、トーナメント表や試合結果をデータ化できるサービス「TOURNAMENT SCAN(トーナメント・スキャン)」の提供を開始します。
+    %p 大会当日は紙でトーナメント表を貼りだしているようなケースで、後日大会結果をHP掲載用にデータ化しないといけないのが大変！という担当者の声に答えました。
+    %p データ化されたトーナメントはTHE TOURNAMENT上に保存され、URLを共有すれば誰でも詳細な結果が見れる他、トーナメント表をきれいな画像ファイルに書き出すことも可能です。
+    %p さらに！サービスのリリースを記念して<strong>先着10名限定で無料</strong>でご利用いただけます。この機会にぜひお試しください。
+
+    .row.mb-30
+      .col-lg-1.col-md-1.col-sm-1.col-xs-1
+      .col-lg-4.col-md-4.col-sm-4.col-xs-4
+        = image_tag("tournament-scan/tnmt_paper.png", alt: "tournament on the paper", class: 'img-responsive img-circle')
+        %p こんなトーナメント表が
+      .col-lg-1.col-md-1.col-sm-1.col-xs-1
+      .col-lg-4.col-md-4.col-sm-4.col-xs-4
+        = image_tag("tournament-scan/tnmt_web.jpeg", alt: "tournament on the web", class: 'img-responsive img-circle')
+        %p
+          こんな感じに。(サンプルは
+          = link_to 'こちら', 'http://the-tournament.jp/ja/tournaments/5/FIFA%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89%E3%82%AB%E3%83%83%E3%83%97-2010-%E5%8D%97%E3%82%A2%E3%83%95%E3%83%AA%E3%82%AB%E5%A4%A7%E4%BC%9A', target: '_blank'
+          )
+    %p.text-right
+      %small (photo credit: <a href="http://www.flickr.com/photos/bjorn1101/3719359821/">Bjorn1101</a> via <a href="http://photopin.com">photopin</a> <a href="http://creativecommons.org/licenses/by-nc-nd/2.0/">cc</a>)
+
+  %section
+    %h2 
+      %span 利用の流れ
+    .row
+      .col-lg-3
+        =image_tag("tournament-scan/1_play.png", alt:'THE TOURNAMENT', class: 'img-responsive')
+        %h3 [1] トーナメントを実施
+        %p まずは大会をがんばりましょう。大会が終了したらすべての試合結果をトーナメント表に記入してください。
+      .col-lg-3
+        =image_tag("tournament-scan/2_photo.png", alt:'THE TOURNAMENT', class: 'img-responsive')
+        %h3 [2] 写真に撮って送信
+        %p 完成したトーナメント表を写真に撮ってアップロードします。全体がはっきり判別できるように撮影してください。
+      .col-lg-3
+        =image_tag("tournament-scan/3_wait.png", alt:'THE TOURNAMENT', class: 'img-responsive')
+        %h3 [3] しばし待ちましょう
+        %p アップロードした内容がデータ化されるまでしばしお待ちください。通常1〜2日程度で完了します。
+      .col-lg-3
+        =image_tag("tournament-scan/4_finish.png", alt:'THE TOURNAMENT', class: 'img-responsive')
+        %h3 [4] データ化完了！
+        %p データ化が完了したらメールで通知いたします。データ化された内容をさらに編集することも可能です。トーナメント表のURLを参加者にシェアしてあげてください。
+
+  %section
+    %h2 
+      %span 利用上の注意
+    %ul
+      %li データ化したトーナメントはTHE TOURNAMENT上に保存されるため、ご利用にあたってTHE TOURNAMENTへの無料ユーザー登録が必要になります。
+      %li データ化可能なトーナメント表のサイズは64名(6回戦)まで、シングルエリミネーション形式(敗者復活戦なし)のみです。
+      %li 登録可能なシードは1回戦のみです。3回戦以降に参加するシード選手がいるようなケースではご利用いただけません。
+      %li 写真は必ずトーナメント表の全体が鮮明に写るように撮影してください。1枚で収まらない場合は複数枚に分けても大丈夫です(複数枚に分ける場合は、小さくても全体が写ったものもご提出ください)。
+      %li トーナメント表は、各試合どちらが勝ったのかが分かるようにしてください。またスコアも記載されていればデータ登録時に反映します。
+      %li 各試合について登録されるデータは、「参加者名」・「試合勝敗」・「スコア」となります。各試合の開始時間などその他のデータは登録されません。
+      %li データ登録後、参加者の名前や試合結果などは自分で編集することが可能です。読み取りに間違いがあればこちらで修正してください。
+
+  %section
+    %h2 
+      %span 料金
+    .text-center
+      %h3 
+        %span.text-danger 300円
+        %small /枚 (税別)
+      %p (先着10名に限り無料)
+
+  %section
+    %h2
+      %span 申し込み方法
+    %p info[at]notsobad.jp までメールにてお申込みください。
+    %ul
+      %li [件名] トーナメント・スキャン利用申込
+      %li [添付] トーナメント表の写真を添付してください。
+      %li [本文] THE TOURNAMENTに登録したメールアドレス、およびデータ化にあたって留意事項などあればご記入ください。
+    %p
+      メールでのお申し込み後、お送り頂いた写真を確認し、問題なければお支払い方法をご連絡いたします。<br>
+      データ登録はお支払い確認後となりますのでご了承ください。
+    %small ※先着10名以内に該当する場合、写真確認時点でお伝えいたします。
+
+  %section
+    %h2
+      %span お問い合わせ
+    %p.text-center
+      NOT SO BAD  |  info[at]notsobad.jp

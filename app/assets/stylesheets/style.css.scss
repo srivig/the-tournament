@@ -62,6 +62,7 @@ input[type="checkbox"] {
   margin-right: 0;
   margin-left: 0;
 }
+.text-hide { margin: 0; }
 
 /* Tags Input modification */
 div.tagsinput {
@@ -280,6 +281,24 @@ span.flag, p.flag {
   padding-top: 0px;
   line-height: 16px;
   margin-top: 5px;
+}
+
+
+
+/*****************************************************************
+* Campaign Page
+*****************************************************************/
+.campaign-page {
+  h2 {
+    line-height: 15px;
+    margin: 50px 0;
+    text-align: center;
+    span {
+      background: #fff;
+      padding: 0 20px;
+    }
+    @include stripes;
+  }
 }
 
 
