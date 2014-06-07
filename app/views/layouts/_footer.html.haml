@@ -7,8 +7,10 @@
             .fb-like-box(data-href="https://www.facebook.com/the.tournament.jp" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true")
   .black.text-center
     .container
-      %p &copy; THE TOURNAMENT  2014 All Rights Reserved.
-      %small
-        produced by NOT SO BAD (
-        = link_to "Developers Blog", 'http://blog.notsobad.jp/', target: '_blank'
-        )
+      %p 
+        Copyright &copy; THE TOURNAMENT  2014 All Rights Reserved.
+      %ul.list-inline
+        %li= link_to '開発ブログ', 'http://blog.notsobad.jp/', target: '_blank'
+        %li= link_to t('terms_of_use'), "static_pages/terms", target: '_blank'
+        %li= link_to t('privacy_policy'), "static_pages/privacy", target: '_blank'
+        %li= link_to '特定商取引法に基づく表示', "static_pages/tokusho", target: '_blank'
