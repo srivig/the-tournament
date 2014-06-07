@@ -7,6 +7,8 @@ ja:
   signup: ユーザー登録
   edit: 編集
   cancel: キャンセル
+  terms_of_use: 利用規約
+  privacy_policy: プライバシーポリシー
 
   tournaments:
     show_option: 詳細オプションを表示する

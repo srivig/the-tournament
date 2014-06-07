@@ -7,6 +7,8 @@ en:
   signup: Sign up
   edit: Edit
   cancel: Cancel
+  terms_of_use: Terms of Use
+  privacy_policy: Privacy Policy
 
   tournaments:
     show_option: Show more settings
