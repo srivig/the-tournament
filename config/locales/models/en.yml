@@ -1,0 +1,7 @@
+en:
+  tournament:
+    round_name:
+      final_round: Final Round
+      semi-final_round: Semi-final Round
+      numbered_round: "Round %{round}"
+

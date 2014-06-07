@@ -1,0 +1,6 @@
+ja:
+  tournament:
+    round_name:
+      final_round: 決勝ラウンド
+      semi-final_round: 準決勝
+      numbered_round: "%{round}回戦"
