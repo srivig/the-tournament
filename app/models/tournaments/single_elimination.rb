@@ -16,11 +16,11 @@ class SingleElimination < Tournament
     round = args[:round]
 
     if round == self.round_num
-      '決勝ラウンド'
+      I18n.t('tournament.round_name.final_round')
     elsif round == self.round_num - 1
-      '準決勝'
+      I18n.t('tournament.round_name.semi-final_round')
     else
-      "#{round}回戦"
+      I18n.t('tournament.round_name.numbered_round', round: round)
     end
   end
 end
