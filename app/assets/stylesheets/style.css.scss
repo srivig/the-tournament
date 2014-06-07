@@ -286,9 +286,17 @@ span.flag, p.flag {
 /*****************************************************************
 * Footer
 *****************************************************************/
-footer.well { 
-  margin-top: 30px;
-  margin-bottom: 0;
+footer {
+  .well {
+    margin-top: 30px;
+    margin-bottom: 0;
+  }
+  .black {
+    background: #333;
+    padding: 20px 0;
+    color: #ccc;
+    a { color: #fff; }
+  }
 }
 /* This element holds injected scripts inside iframes that in some cases may stretch layouts. So, we're just hiding it. */
 #fb-root {
