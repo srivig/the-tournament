@@ -29,9 +29,6 @@ en:
     team: Team or organization
     country: Country
 
-  devise:
-    remember_me: Remember me
-
   metatags:
     title: Tournamnet bracket generater - THE TOURNAMENT
     description: THE TOURNAMENT is a free web service for creating your tournament bracket online.
