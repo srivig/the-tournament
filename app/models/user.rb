@@ -7,6 +7,6 @@ class User < ActiveRecord::Base
   validates_acceptance_of :terms, on: :create, allow_nil: false, message: 'Agree to the terms of use and privacy policy before registration.'
 
   def creatable?
-    !(self.tournaments.count >= 3)
+    self.tournaments.count < 3 || self.admin?
   end
 end
