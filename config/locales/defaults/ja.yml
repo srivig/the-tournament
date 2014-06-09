@@ -14,20 +14,6 @@ ja:
   tournaments:
     show_option: 詳細オプションを表示する
     delete_tournament: 大会を削除する
-    title: 大会名
-    desc: 概要
-    desc_placeholder: 大会の概要、詳細な説明など
-    place: 開催地
-    url: 大会の公式URLなど
-    size: 参加者数
-    third_place: ３位決定戦
-    third_place_inline_label: ３位決定戦を実施する
-    scoreless: スコア形式
-    scoreless_inline_label: スコア無し(勝敗のみ記録する)
-    single_elimination: シングルイリミネーション (敗者復活なし)
-    double_elimination: ダブルイリミネーション (敗者復活あり)
-    consolation_round: 敗者復活戦
-    tags: タグ
 
   tournament_menu:
     tournament_bracket: トーナメント表

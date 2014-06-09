@@ -2,19 +2,19 @@
   - f.object = @tournament.becomes(@tournament.class)
   - disabled =  (@tournament.new_record?) ? false : true
 
-  = f.input :title, label: t('tournaments.title')
-  = f.input :detail, label: t('tournaments.desc'), placeholder: t('tournaments.desc_placeholder')
-  = f.input :place, label: t('tournaments.place')
-  = f.input :url, label: 'URL', placeholder: t('tournaments.url')
-  = f.input :size, label: t('tournaments.size'), collection: Array[4,8,16], disabled: disabled
+  = f.input :title
+  = f.input :detail
+  = f.input :place
+  = f.input :url
+  = f.input :size, collection: Array[4,8,16], disabled: disabled
+  = f.input :tag_list
 
   .tnmt-option.hidden
-    = f.input :consolation_round, label: t('tournaments.third_place'), inline_label: t('tournaments.third_place_inline_label'), as: :boolean
-    = f.input :scoreless, label: t('tournaments.scoreless'), inline_label: t('tournaments.scoreless_inline_label'), as: :boolean
-    - type = {t('tournaments.single_elimination')=>'SingleElimination', t('tournaments.double_elimination')=>'DoubleElimination'}
-    = f.input :type, label: t('tournaments.consolation_round'), collection: type, input_html: {default:'SingleElimination'}, disabled: disabled
+    = f.input :consolation_round, inline_label: t('simple_form.inline_labels.tournament.consolation_round'), as: :boolean
+    = f.input :scoreless, inline_label: t('simple_form.inline_labels.tournament.scoreless'), as: :boolean
+    = f.input :type, collection: [:SingleElimination, :DoubleElimination], input_html: {default: :SingleElimination}, disabled: true
+    -# = f.input :type, label: t('tournaments.consolation_round'), collection: type, input_html: {default:'SingleElimination'}, disabled: disabled
     -# = f.input :secondary_final, label: '再決勝', inline_label: '再決勝を実施する(敗者側が1戦目を勝利した場合)', as: :boolean, disabled: true
-    = f.input :tag_list, label: t('tournaments.tags')
 
   .form-group.tnmt-option-trigger.mb-30
     .col-sm-6.col-sm-offset-2

@@ -16,5 +16,34 @@ en:
         email: E-mail
         password: Password
         password_confirmation: Password Confirmation
+        consolation_round: Third place playoff
       user:
-        remember_me: hoge
+        remember_me: Remember me.
+      tournament:
+        title: Title
+        detail: Description
+        place: Place
+        url:  URL
+        size: Number of Participants
+        scoreless: Scoring Option
+        consolation_round: Third Place Playoff
+        type: Consolation Round
+        tag_list: Tags
+    placeholders:
+      tournament:
+        detail: Description about the tournament.
+        url: Tournament's official website.
+    inline_labels:
+      tournament:
+        consolation_round: Hold the third place playoff.
+        scoreless: Do not record the score(record only the victory or defeat).
+    hints:
+      tournament:
+        size: Adding more than 16 players is available only for Premium plan user.
+        type: Double Elimination is available only for Premium plan user.
+    options:
+      tournament:
+        type:
+          SingleElimination: Single Elimination
+          DoubleElimination: Double Elimination
+
