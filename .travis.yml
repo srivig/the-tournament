@@ -3,7 +3,8 @@ rvm:
   - 2.1.1
 before_script:
   - psql -c "CREATE ROLE tnmt WITH CREATEDB LOGIN" -U postgres
-  - psql -c 'CREATE DATABASE tnmt_test;' -U tnmt
+  - psql -c 'CREATE DATABASE tnmt_test;' -U postgres
+  - psql -c 'ALTER DATABASE tnmt_test OWNER TO tnmt' -U postgres
 deploy:
   provider: heroku
   app:
