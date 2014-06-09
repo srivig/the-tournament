@@ -14,20 +14,6 @@ en:
   tournaments:
     show_option: Show more settings
     delete_tournament: Delete the tournament
-    title: Title
-    desc: Description
-    desc_placeholder: Description about the tournament.
-    place: Place
-    url: Tournament's official website.
-    size: Number of Participants
-    third_place: Third place playoff
-    third_place_inline_label: Hold the third place playoff
-    scoreless: Scoring Option
-    scoreless_inline_label: Do not record the score(record only the victory or defeat)
-    single_elimination: Single Elimination
-    double_elimination: Double Elimination
-    consolation_round: Consolation Round
-    tags: Tags
 
   tournament_menu:
     tournament_bracket: Tournament Bracket
@@ -42,9 +28,6 @@ en:
   players:
     team: Team or organization
     country: Country
-
-  devise:
-    remember_me: Remember me
 
   metatags:
     title: Tournamnet bracket generater - THE TOURNAMENT

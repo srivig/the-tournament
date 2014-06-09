@@ -16,6 +16,30 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワードの確認入力
-      user:
-        remember_me: ログインを記憶する
-
+      tournament:
+        title: 大会名
+        detail: 概要
+        place: 開催地
+        url:  URL
+        size: 参加者数
+        consolation_round: ３位決定戦
+        scoreless: スコア形式
+        type: 敗者復活戦
+        tag_list: タグ
+    placeholders:
+      tournament:
+        detail: 大会の概要、詳細な説明など
+        url: 大会の公式URLなど
+    inline_labels:
+      tournament:
+        consolation_round: ３位決定戦を実施する
+        scoreless: スコア無し(勝敗のみ記録する)
+    hints:
+      tournament:
+        size: ※16名以上の大会は有料プランユーザーのみ利用可能です
+        type: ダブルイリミネーション(敗者復活戦あり)形式は有料プランユーザーのみ利用可能です
+    options:
+      tournament:
+        type:
+          SingleElimination: シングルイリミネーション (敗者復活なし)
+          DoubleElimination: ダブルイリミネーション (敗者復活あり)

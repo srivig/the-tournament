@@ -4,3 +4,7 @@ ja:
       new:
         signin_title: ログイン
         signin_action: ログインする
+        remember_me:  ログイン状態を記憶する
+    registrations:
+      new:
+        agree_to_terms_html: "%{terms_link}および%{privacy_link}に同意する"

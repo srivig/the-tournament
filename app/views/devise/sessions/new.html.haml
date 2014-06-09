@@ -8,7 +8,7 @@
       = f.input :email, required: false, autofocus: true
       = f.input :password, required: false
       .col-sm-6.col-sm-offset-2
-        = f.input :remember_me, as: :boolean, inline_label: t("devise.remember_me"), label: false if devise_mapping.rememberable?
+        = f.input :remember_me, as: :boolean, inline_label: t(".remember_me"), label: false if devise_mapping.rememberable?
     .form-actions.col-sm-6.col-sm-offset-2
       %div= f.button :submit, t(".signin_action"), class: 'btn-danger'
       = render "devise/shared/links"

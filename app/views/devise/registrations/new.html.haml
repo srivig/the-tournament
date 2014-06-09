@@ -9,6 +9,8 @@
       = f.input :email, :required => true, :autofocus => true
       = f.input :password, :required => true
       = f.input :password_confirmation, :required => true
+      .col-sm-6.col-sm-offset-2.mb-30
+        = f.input :accept_terms, as: :boolean, label: false, inline_label: t('.agree_to_terms_html', terms_link: link_to(t('terms_of_use'), '/terms'), privacy_link: link_to(t('privacy_policy'), '/privacy')), input_html: {checked: true}
     .form-actions.col-sm-6.col-sm-offset-2
       %div= f.button :submit, class: 'btn-danger'
       = render "devise/shared/links"

@@ -8,3 +8,4 @@ ja:
       tournament_search: 大会検索
       search_placeholder: 大会名、キーワード
       search: 検索
+      too_many_tournaments: ※大会作成数の上限に達しています。新規で作成するにはマイページから作成済みの大会を削除してください。

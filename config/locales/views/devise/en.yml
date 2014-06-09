@@ -4,3 +4,7 @@ en:
       new:
         signin_title: Sign in
         signin_action: Sign in
+        remember_me:  Remember me.
+    registrations:
+      new:
+        agree_to_terms_html: "Agree to %{terms_link} and %{privacy_link}."

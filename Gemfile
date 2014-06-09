@@ -23,6 +23,7 @@ gem 'country_select'
 gem 'world_flags', git: 'git://github.com/djonasson/world_flags.git'
 gem 'meta-tags', require: 'meta_tags'
 gem 'spinjs-rails'
+gem 'zip'
 
 #Bootstrap
 gem 'therubyracer', platforms: :ruby
@@ -34,6 +35,7 @@ gem 'simple_form', git: 'https://github.com/plataformatec/simple_form.git'
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+gem 'cancancan'
 
 group :doc do
   gem 'sdoc', require: false
@@ -63,7 +65,7 @@ end
 
 group :development, :test do
   gem 'travis'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '2.14.1'
   gem 'guard-rspec'
   gem 'guard-bundler'
   gem 'spring'
