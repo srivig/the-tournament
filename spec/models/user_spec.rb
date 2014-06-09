@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Tournament do
+describe Tournament, :type => :model do
   before :each do
     @user = create(:user)
     @admin = create(:user, admin: true)

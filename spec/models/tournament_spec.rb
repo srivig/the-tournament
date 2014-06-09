@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Tournament do
+describe Tournament, :type => :model do
   before :each do
     @user = create(:user)
   end
@@ -12,11 +12,11 @@ describe Tournament do
     end
 
     it 'is invalid without a user_id' do
-      expect(build(:tournament, user:nil)).to have(1).errors_on(:user_id)
+      expect(build(:tournament, user:nil)).not_to be_valid
     end
 
     it 'should has a size in a multiplier of 2' do
-      expect(build(:tournament, user:@user, size:5)).to have(1).errors_on(:size)
+      expect(build(:tournament, user:@user, size:5)).not_to be_valid
     end
 
     it 'should order from the newest' do

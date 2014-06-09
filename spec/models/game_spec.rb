@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Game do
+describe Game, :type => :model do
   before :each do
     @user = create(:user)
     @se_tnmt = create(:se_tnmt, user:@user)
@@ -14,7 +14,7 @@ describe Game do
     end
 
     it 'should not be valid without bracket' do
-      expect(build(:game, bracket:0, tournament:@se_tnmt)).to have(1).errors_on(:bracket)
+      expect(build(:game, bracket:0, tournament:@se_tnmt)).not_to be_valid
     end
   end
 
@@ -673,14 +673,14 @@ describe Game do
     context 'when the game is finished' do
       it 'should return true' do
         @game = create(:game_with_winner, tournament:@se_tnmt)
-        expect(@game.finished?).to be_true
+        expect(@game.finished?).to be_truthy
       end
     end
 
     context 'when the game is not finished' do
       it 'should return false' do
         @game = create(:game_with_empty_records, tournament:@se_tnmt)
-        expect(@game.finished?).to be_false
+        expect(@game.finished?).to be_falsey
       end
     end
   end
@@ -724,42 +724,42 @@ describe Game do
     context 'when in semi_final' do
       subject { @se_tnmt.games.find_by(bracket:1, round:2, match:1) }
       it 'should return true' do
-        expect(subject.semi_final?).to be_true
+        expect(subject.semi_final?).to be_truthy
       end
     end
 
     context 'when not in semi_final' do
       subject { @se_tnmt.games.find_by(bracket:1, round:1, match:1) }
       it 'should return false' do
-        expect(subject.semi_final?).to be_false
+        expect(subject.semi_final?).to be_falsey
       end
     end
 
     context 'when in semi_final in loser bracket' do
       subject { @de_tnmt.games.find_by(bracket:2, round:4, match:1) }
       it 'should return true' do
-        expect(subject.semi_final?).to be_true
+        expect(subject.semi_final?).to be_truthy
       end
     end
 
     context 'when in semi_final in winner bracket' do
       subject { @de_tnmt.games.find_by(bracket:1, round:3, match:1) }
       it 'should return true' do
-        expect(subject.semi_final?).to be_true
+        expect(subject.semi_final?).to be_truthy
       end
     end
 
     context 'when not in semi_final in loser bracket' do
       subject { @de_tnmt.games.find_by(bracket:2, round:3, match:1) }
       it 'should return false' do
-        expect(subject.semi_final?).to be_false
+        expect(subject.semi_final?).to be_falsey
       end
     end
 
     context 'when not in semi_final in winner bracket' do
       subject { @de_tnmt.games.find_by(bracket:1, round:2, match:1) }
       it 'should return false' do
-        expect(subject.semi_final?).to be_false
+        expect(subject.semi_final?).to be_falsey
       end
     end
   end
@@ -769,28 +769,28 @@ describe Game do
     context 'when in final' do
       subject { @se_tnmt.games.find_by(bracket:1, round:3, match:1) }
       it 'should return true' do
-        expect(subject.final?).to be_true
+        expect(subject.final?).to be_truthy
       end
     end
 
     context 'when not in final' do
       subject { @se_tnmt.games.find_by(bracket:1, round:1, match:1) }
       it 'should return false' do
-        expect(subject.final?).to be_false
+        expect(subject.final?).to be_falsey
       end
     end
 
     context 'when in final in de' do
       subject { @de_tnmt.games.find_by(bracket:3, round:1, match:1) }
       it 'should return true' do
-        expect(subject.final?).to be_true
+        expect(subject.final?).to be_truthy
       end
     end
 
     context 'when not in final in de' do
       subject { @de_tnmt.games.find_by(bracket:1, round:3, match:1) }
       it 'should return false' do
-        expect(subject.final?).to be_false
+        expect(subject.final?).to be_falsey
       end
     end
   end

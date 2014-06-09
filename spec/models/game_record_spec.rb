@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe GameRecord do
+describe GameRecord, :type => :model do
 end
