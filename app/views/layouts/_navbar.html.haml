@@ -9,7 +9,6 @@
           = profile_img(current_user)
           = current_user.try(:email)
       = menu_item t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'visible-xs visible-sm'
-      -# = link_to sanitize("<i class='icon icon-plus'></i> ")+ t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
       = menu_item t('signout'), destroy_user_session_path, method: :delete, class: 'visible-xs visible-sm'
     - else
       = menu_item t("layouts.sidebar.user_registration"), new_user_registration_path, class: 'visible-xs visible-sm'

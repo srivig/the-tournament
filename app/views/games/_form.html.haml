@@ -5,7 +5,7 @@
     .col-lg-1.col-lg-push-5.text-center.visible-lg
       - 5.times do
         %br
-      %i.icon.icon-minus
+      %i.fa.fa-minus
     = f.simple_fields_for :game_records, f.object.game_records.order(:record_num) do |r|
       - offset = 'col-lg-pull-1' if r.object.record_num == 1
       .col-lg-5.text-center{class: offset}
@@ -13,10 +13,10 @@
         .panel{class: panel}
           .panel-heading
             - if @game.finished?
-              - icon = (r.object.winner == true) ? 'icon-trophy' : 'icon-remove'
-              %i.icon.icon-2x{class: icon}
+              - icon = (r.object.winner == true) ? 'fa-trophy' : 'fa-times'
+              %i.fa.fa-2x{class: icon}
             - else
-              %i.icon.icon-2x
+              %i.fa.fa-2x
             %br
             %h4
               = r.object.player.name

@@ -45,15 +45,15 @@ judge_winner = (score_1, score_2) ->
 reset_winner = ->
   $('.game_game_records_winner input').attr('value', '')
   $('.panel').removeClass('panel-warning').addClass('panel-default')
-  $('.panel-heading i').removeClass('icon-trophy icon-remove')
+  $('.panel-heading i').removeClass('fa-trophy fa-times')
 
 # winner/loserの要素をそれぞれセット
 set_winner = (winner) ->
   $('.game_game_records_winner input')[winner-1].value = true
   $('.game_game_records_winner input')[2-winner].value = false
   $('.panel').eq(winner-1).addClass('panel-warning')
-  $('.panel-heading i').eq(winner-1).addClass('icon-trophy')
-  $('.panel-heading i').eq(2-winner).addClass('icon-remove')
+  $('.panel-heading i').eq(winner-1).addClass('fa-trophy')
+  $('.panel-heading i').eq(2-winner).addClass('fa-times')
 
 # 手動の勝者選択を可能にする
 enable_winner_select = ->

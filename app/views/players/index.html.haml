@@ -5,8 +5,8 @@
 
 %section#member-list
   %h1.headline
-    %i.icon.icon-group
+    %i.fa.fa-users
     = t('tournament_menu.players')
-    -# =link_to sanitize('<i class="icon icon-paper-clip"></i> ')+'CSVアップロード', '#', class: 'btn btn-warning btn-sm pull-right'
+    -# =link_to sanitize('<i class="fa fa-paper-clip"></i> ')+'CSVアップロード', '#', class: 'btn btn-warning btn-sm pull-right'
   - editable = (current_user == @tournament.user) ? true : false
   = render partial: "shared/member_list", locals: {tournament: @tournament, editable: editable}

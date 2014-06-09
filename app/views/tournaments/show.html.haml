@@ -5,7 +5,7 @@
 
 %section
   %h1.headline
-    %i.icon.icon-trophy
+    %i.fa.fa-trophy
     = t('.tournament_bracket')
   %ul.list-inline
     %li#like-button
@@ -20,5 +20,5 @@
 
   %div.visible-lg.visible-md
     %a#download_btn.btn.btn-sm.btn-default(href="#" download="#{@tournament.title.gsub(' ','-')}" data-loading-text="#{t('.download_preparing')}")
-      %i.icon.icon-download-alt
+      %i.fa.fa-download
       = t('.download_image')
