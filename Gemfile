@@ -50,6 +50,7 @@ group :development do
   gem 'erb2haml'
   gem 'rack-mini-profiler'
   gem 'rails-erd'
+  gem 'transpec'
 end
 
 group :test do
@@ -65,7 +66,7 @@ end
 
 group :development, :test do
   gem 'travis'
-  gem 'rspec-rails', '2.14.1'
+  gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'guard-bundler'
   gem 'spring'
