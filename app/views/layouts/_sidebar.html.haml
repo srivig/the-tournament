@@ -7,7 +7,12 @@
         %strong= current_user.try(:email)
         %br
         %small (#{link_to t('signout'), destroy_user_session_path, method: :delete})
-    = link_to sanitize("<i class='icon icon-plus'></i> ")+ t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
+    - if current_user.creatable?
+      = link_to sanitize("<i class='icon icon-plus'></i> ")+ t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
+    - else
+      = link_to sanitize("<i class='icon icon-plus'></i> ")+ t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg', disabled: :disabled
+      %small
+        = t('layouts.sidebar.too_many_tournaments')
   - else
     %p
       = image_tag("http://www.gravatar.com/avatar/?d=mm", class: "img-circle")
