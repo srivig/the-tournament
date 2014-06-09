@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :tournaments, dependent: :restrict_with_exception
-  validates_acceptance_of :terms, on: :create, allow_nil: false, message: 'Agree to the terms of use and privacy policy before registration.'
+  validates :accept_terms, acceptance: true, on: :create
 
   def creatable?
     self.tournaments.count < 3 || self.admin?
