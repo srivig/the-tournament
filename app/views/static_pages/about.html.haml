@@ -41,7 +41,7 @@
 %section#feature
   %h1
     %span Feature
-  %p
+  %p.mb-30
     = t('.feature_text_html')
   .row
     .col-lg-2.col-sm-4
@@ -109,13 +109,67 @@
 %section#plan
   %h1
     %span Plan/Price
-  %div.text-center
-    %p
-      %strong.text-danger= t('.free')
-    %p
-      = t('.plan_text_html')
-    %p
-      =link_to t('.try_service'), root_path, class: 'btn btn-danger btn-lg'
+  .container
+    %div.mb-30.text-center
+      %p
+        現在はベータ版のためFREEプランのみ提供しています。<br>
+        有料プランに興味のある方はお問い合わせいただければ優先的にご案内します。
+      %p
+        = link_to t('.try_service'), root_path, class: 'btn btn-danger btn-lg'
+    .row.text-center
+      .col-lg-4
+        .panel.panel-default
+          .panel-heading 
+            %span.label.label-warning ｵｽｽﾒ!
+            %small 無料でもしっかり使えるお得なプラン
+          %ul.list-group
+            %li.list-group-item
+              = image_tag('about/price_1.png')
+              %h2.text-danger FREE
+            %li.list-group-item 
+              %small 月額利用料：
+              %strong 無料
+            %li.list-group-item
+              %small 保存可能トーナメント数：
+              %strong 3
+            %li.list-group-item 
+              %small 大会の最大参加者数：
+              %strong 16名
+      .col-lg-4
+        .panel.panel-default
+          .panel-heading 
+            %small より高度な機能をお手軽価格で
+          %ul.list-group
+            %li.list-group-item
+              = image_tag('about/price_2.png')
+              %h2.text-danger BASIC
+            %li.list-group-item 
+              %small 月額利用料：
+              %strong --
+            %li.list-group-item
+              %small 保存可能トーナメント数：
+              %strong --
+            %li.list-group-item 
+              %small 大会の最大参加者数：
+              %strong --
+      .col-lg-4
+        .panel.panel-default
+          .panel-heading 
+            %small 自社システム統合・カスタマイズが必要なら
+          %ul.list-group
+            %li.list-group-item
+              = image_tag('about/price_3.png')
+              %h2.text-danger PREMIUM
+            %li.list-group-item 
+              %small 月額利用料：
+              %strong --
+            %li.list-group-item
+              %small 保存可能トーナメント数：
+              %strong --
+            %li.list-group-item 
+              %small 大会の最大参加者数：
+              %strong --
+    %div.text-center
 
 %section#faq
   %h1
