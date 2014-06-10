@@ -112,62 +112,61 @@
   .container
     %div.mb-30.text-center
       %p
-        現在はベータ版のためFREEプランのみ提供しています。<br>
-        有料プランに興味のある方はお問い合わせいただければ優先的にご案内します。
+        = t('.plan_text_html')
       %p
         = link_to t('.try_service'), root_path, class: 'btn btn-danger btn-lg'
     .row.text-center
       .col-lg-4
-        .panel.panel-default
+        .panel.panel-danger
           .panel-heading 
-            %span.label.label-warning ｵｽｽﾒ!
-            %small 無料でもしっかり使えるお得なプラン
+            %span.label.label-warning= t('.plan_recommend')
+            %small= t('.plan_1_text')
           %ul.list-group
             %li.list-group-item
               = image_tag('about/price_1.png')
               %h2.text-danger FREE
             %li.list-group-item 
-              %small 月額利用料：
-              %strong 無料
+              %small= t('.plan_price')
+              %strong= t('.free') 
             %li.list-group-item
-              %small 保存可能トーナメント数：
+              %small= t('.plan_storage')
               %strong 3
             %li.list-group-item 
-              %small 大会の最大参加者数：
-              %strong 16名
+              %small= t('.plan_size') 
+              %strong= "16#{t('.plan_player_count')}"
       .col-lg-4
         .panel.panel-default
           .panel-heading 
-            %small より高度な機能をお手軽価格で
+            %small= t('.plan_2_text')
           %ul.list-group
             %li.list-group-item
               = image_tag('about/price_2.png')
-              %h2.text-danger BASIC
+              %h2 BASIC
             %li.list-group-item 
-              %small 月額利用料：
+              %small= t('.plan_price')
               %strong --
             %li.list-group-item
-              %small 保存可能トーナメント数：
+              %small= t('.plan_storage')
               %strong --
             %li.list-group-item 
-              %small 大会の最大参加者数：
+              %small= t('.plan_size') 
               %strong --
       .col-lg-4
         .panel.panel-default
           .panel-heading 
-            %small 自社システム統合・カスタマイズが必要なら
+            %small= t('.plan_3_text')
           %ul.list-group
             %li.list-group-item
               = image_tag('about/price_3.png')
-              %h2.text-danger PREMIUM
+              %h2 PREMIUM
             %li.list-group-item 
-              %small 月額利用料：
+              %small= t('.plan_price')
               %strong --
             %li.list-group-item
-              %small 保存可能トーナメント数：
+              %small= t('.plan_storage')
               %strong --
             %li.list-group-item 
-              %small 大会の最大参加者数：
+              %small= t('.plan_size')
               %strong --
     %div.text-center
 
