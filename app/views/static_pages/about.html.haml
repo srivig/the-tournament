@@ -41,7 +41,7 @@
 %section#feature
   %h1
     %span Feature
-  %p
+  %p.mb-30
     = t('.feature_text_html')
   .row
     .col-lg-2.col-sm-4
@@ -109,13 +109,66 @@
 %section#plan
   %h1
     %span Plan/Price
-  %div.text-center
-    %p
-      %strong.text-danger= t('.free')
-    %p
-      = t('.plan_text_html')
-    %p
-      =link_to t('.try_service'), root_path, class: 'btn btn-danger btn-lg'
+  .container
+    %div.mb-30.text-center
+      %p
+        = t('.plan_text_html')
+      %p
+        = link_to t('.try_service'), root_path, class: 'btn btn-danger btn-lg'
+    .row.text-center
+      .col-lg-4
+        .panel.panel-danger
+          .panel-heading 
+            %span.label.label-warning= t('.plan_recommend')
+            %small= t('.plan_1_text')
+          %ul.list-group
+            %li.list-group-item
+              = image_tag('about/price_1.png')
+              %h2.text-danger FREE
+            %li.list-group-item 
+              %small= t('.plan_price')
+              %strong= t('.free') 
+            %li.list-group-item
+              %small= t('.plan_storage')
+              %strong 3
+            %li.list-group-item 
+              %small= t('.plan_size') 
+              %strong= "16#{t('.plan_player_count')}"
+      .col-lg-4
+        .panel.panel-default
+          .panel-heading 
+            %small= t('.plan_2_text')
+          %ul.list-group
+            %li.list-group-item
+              = image_tag('about/price_2.png')
+              %h2 BASIC
+            %li.list-group-item 
+              %small= t('.plan_price')
+              %strong --
+            %li.list-group-item
+              %small= t('.plan_storage')
+              %strong --
+            %li.list-group-item 
+              %small= t('.plan_size') 
+              %strong --
+      .col-lg-4
+        .panel.panel-default
+          .panel-heading 
+            %small= t('.plan_3_text')
+          %ul.list-group
+            %li.list-group-item
+              = image_tag('about/price_3.png')
+              %h2 PREMIUM
+            %li.list-group-item 
+              %small= t('.plan_price')
+              %strong --
+            %li.list-group-item
+              %small= t('.plan_storage')
+              %strong --
+            %li.list-group-item 
+              %small= t('.plan_size')
+              %strong --
+    %div.text-center
 
 %section#faq
   %h1

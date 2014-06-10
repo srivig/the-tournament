@@ -46,8 +46,17 @@ en:
 
       free: FREE
       plan_text_html:
-        All the features can be used for FREE during the BETA version.<br>
-        (Free plan will also be left in the official ver.)
+        Currently only FREE plan is available.<br>
+        Please contact us if you have interest in paid plans.
+      plan_recommend: Recommend!
+      plan_price: "Monthly Fee:"
+      plan_storage: "Tournaments Storage:"
+      plan_size: "Maximum Players:"
+      plan_player_count: players
+
+      plan_1_text: Free and good enough.
+      plan_2_text: Advanced features at reasonable price.
+      plan_3_text: Integrate with your own system. And more.
 
       faq_text:
         Please contact us if you have any requirements or questions.
