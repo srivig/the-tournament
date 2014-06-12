@@ -13,7 +13,6 @@
     = f.input :consolation_round, inline_label: t('simple_form.inline_labels.tournament.consolation_round'), as: :boolean
     = f.input :scoreless, inline_label: t('simple_form.inline_labels.tournament.scoreless'), as: :boolean
     = f.input :type, collection: [:SingleElimination, :DoubleElimination], input_html: {default: :SingleElimination}, disabled: true
-    -# = f.input :type, label: t('tournaments.consolation_round'), collection: type, input_html: {default:'SingleElimination'}, disabled: disabled
     -# = f.input :secondary_final, label: '再決勝', inline_label: '再決勝を実施する(敗者側が1戦目を勝利した場合)', as: :boolean, disabled: true
 
   .form-group.tnmt-option-trigger.mb-30

@@ -6,7 +6,7 @@ class PlayersController < ApplicationController
     @tournament = Tournament.find(params[:tournament_id])
 
     if @tournament.user==current_user && @tournament.member_registered? && !@tournament.result_registered?
-      flash.now[:warning] = "<i class='icon icon-exclamation-sign'></i> #{I18n.t('flash.guides.games_reg')} "
+      flash.now[:warning] = "<i class='fa fa-exclamation-circle'></i> #{I18n.t('flash.guides.games_reg')} ".html_safe
     end
   end
 

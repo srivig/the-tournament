@@ -21,9 +21,9 @@ class TournamentsController < ApplicationController
 
     if @tournament.user == current_user
       if !@tournament.member_registered?
-        flash.now[:warning] = "<i class='icon icon-exclamation-sign'></i> #{I18n.t('flash.guides.players_reg')} "
+        flash.now[:warning] = "<i class='fa fa-exclamation-circle'></i> #{I18n.t('flash.guides.players_reg')} ".html_safe
       elsif !@tournament.result_registered?
-        flash.now[:warning] = "<i class='icon icon-exclamation-sign'></i> #{I18n.t('flash.guides.games_reg')} "
+        flash.now[:warning] = "<i class='fa fa-exclamation-circle'></i> #{I18n.t('flash.guides.games_reg')} ".html_safe
       end
     end
   end
@@ -33,7 +33,8 @@ class TournamentsController < ApplicationController
   end
 
   def create
-    @tournament = Tournament.new(tournament_params)
+    # @tournament = Tournament.new(tournament_params)
+    @tournament = SingleElimination.new(tournament_params)  #TODO: Fix when enabling double elimination
     @tournament.user = current_user
 
     respond_to do |format|
