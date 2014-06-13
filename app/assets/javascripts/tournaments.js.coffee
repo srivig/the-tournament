@@ -66,3 +66,4 @@ $ ->
     $('.tnmt-option-trigger').click ->
       $('.tnmt-option').removeClass('hidden')
       $(this).addClass('hidden')
+      return false
