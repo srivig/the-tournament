@@ -7,7 +7,7 @@ module ApplicationHelper
     image_tag(img_url, alt: user.email, class: 'img-circle')
   end
 
-  def fontawesome(icon)
-    '<i class="fa fa-#{icon}"></i>'
+  def fa_icon(icon, option=nil)
+    content_tag(:i, nil, class: "fa fa-#{icon} #{option}")
   end
 end
