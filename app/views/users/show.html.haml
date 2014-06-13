@@ -1,12 +1,12 @@
 = content_for :page_title, t('.mypage')
+= render partial: "shared/back_to_home"
 
-=link_to sanitize('<i class="fa fa-reply"></i> ') + t('back_to_home'), root_path, class: 'btn btn-default'
 %section
   %h1.title= t('.mypage')
 
   %section
     %h1.headline
-      %i.fa.fa-user
+      = fa_icon("user")
       = t '.account'
     %div
       %div
@@ -19,7 +19,7 @@
 
   %section
     %h1.headline
-      %i.fa.fa-bell
+      = fa_icon("bell")
       = t '.created_tournaments'
 
     - if @tournaments.present?
@@ -29,7 +29,7 @@
             =link_to tournament_path(tournament), class: 'list-group-item clearfix', data:{no_turbolink:true} do
               %span.list-group-item-heading
                 = tournament.title
-                %i.fa.fa-angle-right.pull-right
+                = fa_icon("angle-right", "pull-right")
               %small (#{tournament.created_at.strftime("%Y.%m.%d")})
           -# = link_to sanitize("<i class='fa fa-angle-double-right'></i> ")+ t('.show_more'), tournaments_path, class: "pull-right"
     - else

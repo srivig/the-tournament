@@ -21,9 +21,9 @@ class TournamentsController < ApplicationController
 
     if @tournament.user == current_user
       if !@tournament.member_registered?
-        flash.now[:warning] = "<i class='fa fa-exclamation-circle'></i> #{I18n.t('flash.guides.players_reg')} ".html_safe
+        flash.now[:warning] = view_context.fa_icon("exclamation-circle") + I18n.t('flash.guides.players_reg')
       elsif !@tournament.result_registered?
-        flash.now[:warning] = "<i class='fa fa-exclamation-circle'></i> #{I18n.t('flash.guides.games_reg')} ".html_safe
+        flash.now[:warning] = view_context.fa_icon("exclamation-circle") + I18n.t('flash.guides.games_reg')
       end
     end
   end

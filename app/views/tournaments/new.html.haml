@@ -1,6 +1,5 @@
 = content_for :page_title, t(".create_new_tournament")
-
-=link_to sanitize('<i class="fa fa-reply"></i> ') + t('back_to_home'), root_path, class: 'btn btn-default'
+= render partial: "shared/back_to_home"
 
 %section
   %h1.title.clearfix
@@ -8,6 +7,6 @@
 
 %section
   %h1.headline
-    %i.fa.fa-cog
+    = fa_icon("cog")
     = t('tournament_menu.basic_info')
   = render :partial => "form"

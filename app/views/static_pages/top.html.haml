@@ -30,7 +30,8 @@
 
 %section
   %h1.headline
-    %i.fa.fa-bell
+    -# %i.fa.fa-bell
+    = fa_icon('star')
     = t '.new_tournaments'
   .list-group
     - @tournaments.each do |tournament|
@@ -39,6 +40,7 @@
           %span.label.label-warning New!
         %span.list-group-item-heading
           = tournament.title
-          %i.fa.fa-angle-right.pull-right
+          -# %i.fa.fa-angle-right.pull-right
+          = fa_icon("angle-right", "pull-right")
         %small (#{tournament.created_at.strftime("%Y.%m.%d")})
-    = link_to sanitize("<i class='fa fa-angle-double-right'></i> ")+ t('.show_more'), tournaments_path, class: "pull-right"
+    = link_to fa_icon("angle-double-right")+t('.show_more'), tournaments_path, class: "pull-right"

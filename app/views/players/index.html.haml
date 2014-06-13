@@ -5,7 +5,7 @@
 
 %section#member-list
   %h1.headline
-    %i.fa.fa-users
+    = fa_icon("users")
     = t('tournament_menu.players')
     -# =link_to sanitize('<i class="fa fa-paper-clip"></i> ')+'CSVアップロード', '#', class: 'btn btn-warning btn-sm pull-right'
   - editable = (current_user == @tournament.user) ? true : false
