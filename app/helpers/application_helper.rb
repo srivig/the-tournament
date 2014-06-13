@@ -6,4 +6,8 @@ module ApplicationHelper
     img_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
     image_tag(img_url, alt: user.email, class: 'img-circle')
   end
+
+  def fontawesome(icon)
+    '<i class="fa fa-#{icon}"></i>'
+  end
 end
