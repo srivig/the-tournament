@@ -8,9 +8,9 @@
         %br
         %small (#{link_to t('signout'), destroy_user_session_path, method: :delete})
     - if current_user.creatable?
-      = link_to sanitize("<i class='fa fa-plus'></i> ")+ t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
+      = link_to fa_icon("plus")+t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
     - else
-      = link_to sanitize("<i class='fa fa-plus'></i> ")+ t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg', disabled: :disabled
+      = link_to fa_icon("plus")+t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg', disabled: :disabled
       %small
         = t('layouts.sidebar.too_many_tournaments')
   - else
@@ -21,7 +21,7 @@
 -# Search
 %section
   %h4
-    %i.fa.fa-search
+    = fa_icon("search")
     = t('layouts.sidebar.tournament_search')
   = form_tag('/tournaments', method: :get) do
     .input-group.well
@@ -32,7 +32,7 @@
 /
   %section
     %h4
-      %i.fa.fa-star
+      = fa_icon("star")
       注目されている大会
     - popular = [3,2]
     %ul.media-list.well
@@ -47,7 +47,7 @@
 -# Category
 %section
   %h4
-    %i.fa.fa-tags
+    = fa_icon("tags")
     = t('tournaments.tags')
   .well
     - tag_cloud(Tournament.tag_counts_on(:tags, limit: 40, order: "count desc"), %w(css1 css2 css3 css4)) do |tag, css_class|

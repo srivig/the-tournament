@@ -17,16 +17,16 @@
 %section
   %h1.headline
     - if params[:q].present?
-      %i.fa.fa-search
+      = fa_icon("search")
       = t('.keyword_search_result', q: params[:q])
     - elsif params[:tag].present?
-      %i.fa.fa-tags
+      = fa_icon("tags")
       = t('.tag_search_result', tag: params[:tag])
     - elsif params[:category].present?
-      %i.fa.fa-folder
+      = fa_icon("folder")
       = t('.category_search_result', category: params[:category])
     - else
-      %i.fa.fa-bell
+      = fa_icon("bell")
       = t('tournament_info.all_tournaments')
   .list-group
     - if @tournaments.blank?
@@ -37,6 +37,6 @@
           %span.label.label-warning New!
         %span.list-group-item-heading
           = tournament.title
-          %i.fa.fa-angle-right.pull-right
+          = fa_icon("angle-right", "pull-right")
           %small (#{tournament.created_at.strftime("%Y.%m.%d")})
     = paginate @tournaments
