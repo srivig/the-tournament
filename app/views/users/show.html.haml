@@ -13,9 +13,7 @@
         %p= profile_img(@user)
         - if @user == current_user
           %p= @user.email
-          = link_to t(".change_profile_img"), 'http://ja.gravatar.com/', target: '_blank', class: 'btn btn-sm btn-default'
-          %small
-            (#{t('.gravatar_explain')})
+          %p= link_to t("edit"), edit_user_path(@user), class: 'btn btn-primary'
 
   %section
     %h1.headline
