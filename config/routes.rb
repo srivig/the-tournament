@@ -4,7 +4,7 @@ TheTournament::Application.routes.draw do
   scope "(:locale)", shallow_path: "(:locale)", locale: /ja|en/ do
     root to: "static_pages#top"
     devise_for :users
-    resources :users, only: [:show]
+    resources :users
 
     resources :tournaments, shallow: true do
       get 'page/:page', action: :index, on: :collection

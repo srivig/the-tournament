@@ -26,6 +26,8 @@ ja:
         scoreless: スコア形式
         type: 敗者復活戦
         tag_list: タグ
+      user:
+        profile_img: プロフィール画像
     placeholders:
       tournament:
         detail: 大会の概要、詳細な説明など
@@ -34,10 +36,15 @@ ja:
       tournament:
         consolation_round: ３位決定戦を実施する
         scoreless: スコア無し(勝敗のみ記録する)
+      user:
+        email_subscription: THE TOURNAMENTからのお知らせをE-mailで受信する。
+        profile_img: プロフィール画像を変更する
     hints:
       tournament:
         size: ※16名以上の大会は有料プランユーザーのみ利用可能です
         type: ダブルイリミネーション(敗者復活戦あり)形式は有料プランユーザーのみ利用可能です
+      user:
+        profile_img: Gravatarという外部のサービスへの登録が必要になります
     options:
       tournament:
         type:
