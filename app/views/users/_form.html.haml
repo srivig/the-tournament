@@ -1,0 +1,19 @@
+= simple_form_for @user, html: {class: 'form-horizontal'} do |f|
+  .form-group
+    = f.label t('simple_form.labels.user.profile_img')
+    %p.form-controll-static
+      = profile_img(@user)
+      = link_to t("simple_form.inline_labels.user.profile_img"), 'http://ja.gravatar.com/', target: '_blank', class: 'btn btn-sm btn-default'
+      %small
+        (#{t('simple_form.hints.user.profile_img')})
+
+  = f.input :email, disabled: true
+  .col-sm-offset-2
+    = f.input :email_subscription, as: :boolean, inline_label: t("simple_form.inline_labels.user.email_subscription"), label: false
+
+  .form-group
+    .col-sm-6.col-sm-offset-2
+      = f.button :submit, class: 'btn-danger'
+  .form-group
+    .col-sm-6.col-sm-offset-2
+      =link_to t('cancel'), user_path(@user)

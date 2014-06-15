@@ -1,0 +1,12 @@
+-# = content_for :page_title, "#{@tournament.title} #{t('tournament_menu.basic_info')}"
+= render partial: "shared/back_to_home"
+
+%section
+  %h1.title.clearfix
+    = t('.account_setting')
+
+%section
+  %h1.headline
+    = fa_icon("user")
+    = t('.user_info')
+  = render :partial => "form"
