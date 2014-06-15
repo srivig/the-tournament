@@ -1,6 +1,7 @@
 class PlayersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_player, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
     @tournament = Tournament.find(params[:tournament_id])

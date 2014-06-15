@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
   before_action :set_user, only: [:show, :edit, :update]
+  load_and_authorize_resource
 
   def show
   end
