@@ -15,5 +15,10 @@
   -#       %a(href="#") Loser Bracket
 
   - editable = (current_user == @tournament.user) ? true : false
-  = render partial: "game_list", locals: {tournament: @tournament, editable: editable}
+  - if @tournament.de?
+    = render partial: "finals_list", locals: {tournament: @tournament, editable: editable}
+    = render partial: "winners_list", locals: {tournament: @tournament, editable: editable}
+    = render partial: "losers_list", locals: {tournament: @tournament, editable: editable}
+  - else
+    = render partial: "winners_list", locals: {tournament: @tournament, editable: editable}
 
