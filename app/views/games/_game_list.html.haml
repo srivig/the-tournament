@@ -1,5 +1,7 @@
-- bracket_names = %w(Winners Losers Final)
-%h2 #{bracket_names[bracket-1]} Bracket
+- if tournament.de?
+  - bracket_names = %w(Winners Losers Final)
+  %h2 #{bracket_names[bracket-1]} Bracket
+
 - case bracket
 - when 1
   - round_num = tournament.round_num
