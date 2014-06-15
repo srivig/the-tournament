@@ -15,5 +15,5 @@
   -#       %a(href="#") Loser Bracket
 
   - editable = (current_user == @tournament.user) ? true : false
-  = render partial: "shared/game_list", locals: {tournament: @tournament, editable: editable}
+  = render partial: "game_list", locals: {tournament: @tournament, editable: editable}
 
