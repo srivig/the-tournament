@@ -16,9 +16,9 @@
 
   - editable = (current_user == @tournament.user) ? true : false
   - if @tournament.de?
-    = render partial: "finals_list", locals: {tournament: @tournament, editable: editable}
-    = render partial: "winners_list", locals: {tournament: @tournament, editable: editable}
-    = render partial: "losers_list", locals: {tournament: @tournament, editable: editable}
+    = render partial: "game_list", locals: {tournament: @tournament, editable: editable, bracket: 3}
+    = render partial: "game_list", locals: {tournament: @tournament, editable: editable, bracket: 1}
+    = render partial: "game_list", locals: {tournament: @tournament, editable: editable, bracket: 2}
   - else
-    = render partial: "winners_list", locals: {tournament: @tournament, editable: editable}
+    = render partial: "game_list", locals: {tournament: @tournament, editable: editable, bracket: 1}
 

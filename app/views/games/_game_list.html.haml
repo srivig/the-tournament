@@ -1,11 +1,22 @@
-- if tournament.de?
-  %h2 Winners Bracket
-- tournament.round_num.downto(1) do |i|
-  - panel = (i==tournament.round_num) ? "panel-warning" : "panel-default"
+- bracket_names = %w(Winners Losers Final)
+%h2 #{bracket_names[bracket-1]} Bracket
+- case bracket
+- when 1
+  - round_num = tournament.round_num
+- when 2
+  - round_num = tournament.loser_round_num
+- when 3
+  - round_num = 1
+
+- round_num.downto(1) do |i|
+  - if bracket == 3
+    - panel = 'panel-danger'
+  - else
+    - panel = (i==round_num) ? "panel-warning" : "panel-default"
   .panel{class: panel}
-    .panel-heading= tournament.round_name(bracket:1, round:i)
+    .panel-heading= tournament.round_name(bracket:bracket, round:i)
     %table#game-list.table.f16
-      - tournament.games.where(bracket:1, round: i).each do |game|
+      - tournament.games.where(bracket:bracket, round: i).each do |game|
         - unless (!tournament.consolation_round) && (i==tournament.round_num && game.match==2)
           %tr
             %td.width-10= game.match_name
