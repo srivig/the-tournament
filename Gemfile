@@ -61,7 +61,6 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
-  gem 'fuubar'
 end
 
 group :development, :test do
