@@ -55,6 +55,9 @@ GEM
     acts-as-taggable-on (3.2.6)
       activerecord (>= 3, < 5)
     addressable (2.3.6)
+    airbrake (4.0.0)
+      builder
+      multi_json
     arel (5.0.1.20140414130214)
     ast (2.0.0)
     backports (3.6.0)
@@ -408,6 +411,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  airbrake
   cancancan
   capybara
   coffee-rails (~> 4.0.0)

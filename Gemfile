@@ -44,6 +44,7 @@ end
 group :production do
   gem 'rails_12factor'
   gem 'google-analytics-rails'
+  gem 'airbrake'
 end
 
 group :development do
