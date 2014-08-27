@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: game_records
+#
+#  id         :integer          not null, primary key
+#  game_id    :integer
+#  player_id  :integer
+#  record_num :integer
+#  score      :integer
+#  winner     :boolean
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class GameRecord < ActiveRecord::Base
   belongs_to :game
   belongs_to :player

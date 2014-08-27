@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: players
+#
+#  id            :integer          not null, primary key
+#  tournament_id :integer
+#  seed          :integer
+#  name          :string(255)
+#  group         :string(255)
+#  desc          :text
+#  created_at    :datetime
+#  updated_at    :datetime
+#  country       :string(255)
+#
+
 class Player < ActiveRecord::Base
   belongs_to :tournament
   has_many :game_records

@@ -58,10 +58,19 @@ GEM
     airbrake (4.0.0)
       builder
       multi_json
+    annotate (2.6.5)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     arel (5.0.1.20140414130214)
     ast (2.0.0)
     backports (3.6.0)
     bcrypt (3.1.7)
+    better_errors (2.0.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.2.2)
     cancancan (1.8.2)
     capybara (2.3.0)
@@ -91,6 +100,7 @@ GEM
       countries (= 0.9.3)
     currencies (0.4.2)
     database_cleaner (1.3.0)
+    debug_inspector (0.0.2)
     debugger (1.6.8)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
@@ -251,9 +261,9 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
-    pry-debugger (0.2.2)
+    pry-debugger (0.2.3)
       debugger (~> 1.3)
-      pry (~> 0.9.10)
+      pry (>= 0.9.10, < 0.11.0)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
     pusher-client (0.6.0)
@@ -262,6 +272,8 @@ GEM
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
+    rack-dev-mark (0.7.3)
+      rack (>= 1.1)
     rack-mini-profiler (0.9.1)
       rack (>= 1.1.3)
     rack-test (0.6.2)
@@ -412,6 +424,9 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on
   airbrake
+  annotate
+  better_errors
+  binding_of_caller
   cancancan
   capybara
   coffee-rails (~> 4.0.0)
@@ -441,6 +456,7 @@ DEPENDENCIES
   pry-debugger
   pry-rails
   quiet_assets
+  rack-dev-mark
   rack-mini-profiler
   rails (= 4.1.0)
   rails-erd

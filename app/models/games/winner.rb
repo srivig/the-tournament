@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: games
+#
+#  id            :integer          not null, primary key
+#  tournament_id :integer
+#  bracket       :integer
+#  round         :integer
+#  match         :integer
+#  bye           :boolean
+#  created_at    :datetime
+#  updated_at    :datetime
+#  type          :string(255)      default("Winner")
+#
+
 #coding: utf-8
 class Winner < Game
   def parent_match_id

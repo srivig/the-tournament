@@ -35,6 +35,8 @@ class StaticPagesController < ApplicationController
 
   def top
     @tournaments = Tournament.limit(5)
+    # nil > 10
+    # binding.pry
   end
 
   def howto

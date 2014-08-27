@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: tournaments
+#
+#  id                :integer          not null, primary key
+#  user_id           :integer
+#  size              :integer
+#  type              :string(255)      default("SingleElimination")
+#  title             :string(255)
+#  place             :string(255)
+#  detail            :text
+#  created_at        :datetime
+#  updated_at        :datetime
+#  consolation_round :boolean          default(TRUE)
+#  url               :string(255)
+#  secondary_final   :boolean          default(FALSE)
+#  scoreless         :boolean          default(FALSE)
+#
+
 class Tournament < ActiveRecord::Base
   acts_as_taggable
 
