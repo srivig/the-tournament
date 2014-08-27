@@ -52,6 +52,9 @@ group :development do
   gem 'rack-mini-profiler'
   gem 'rails-erd'
   gem 'transpec'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'annotate'
 end
 
 group :test do
