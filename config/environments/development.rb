@@ -37,4 +37,5 @@ TheTournament::Application.configure do
        :domain => 'heroku.com',
        :enable_starttls_auto => true,
      }
+  config.rack_dev_mark.enable = true
 end
