@@ -1,33 +1,5 @@
 %section
-  #carousel.carousel.slide(data-ride="carousel")
-    <!-- Indicators -->
-    %ol.carousel-indicators
-      %li.active(data-target="#carousel" data-slide-to="0")
-      %li(data-target="#carousel" data-slide-to="1")
-    <!-- Wrapper for slides -->
-    .carousel-inner
-      .item.active
-        =image_tag("index-top.png")
-        .carousel-caption.hidden-xs
-          = t ".carousel_caption_1"
-      .item
-        =image_tag("index-top-2.png")
-        .carousel-caption.hidden-xs
-          = t ".carousel_caption_2"
-    <!-- Controls -->
-    %a.left.carousel-control(href="#" data-target="#carousel" data-slide="prev")
-      %span.glyphicon.glyphicon-chevron-left
-    %a.right.carousel-control(href="#" data-target="#carousel" data-slide="next")
-      %span.glyphicon.glyphicon-chevron-right
-
-- if I18n.locale == :ja
-  %section
-    .row
-      .col-lg-6
-        = link_to image_tag('tournament-scan/banner.png', class: 'img-responsive'), '/tournament-scan'
-        %br.visible-xs
-      .col-lg-6
-        = link_to image_tag('campaigns/worldcup_banner.png', class: 'img-responsive'), tournaments_path(tag: 'W杯')
+  = image_tag("index-top.png", class: "img-responsive img-rounded")
 
 %section
   %h1.headline
