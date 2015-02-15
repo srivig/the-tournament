@@ -30,7 +30,7 @@ class Tournament < ActiveRecord::Base
   validates_associated :games, on: :create
   validates_associated :players
   validates :user_id, presence: true
-  validates :size, presence: true, inclusion: {in: [4,8,16]}
+  validates :size, presence: true, inclusion: {in: [4,8,16,32]}
   validates :type, presence: true, inclusion: {in: ['SingleElimination', 'DoubleElimination']}
   validates :title, presence: true, length: {maximum: 100}, exclusion: {in: %w(index new edit players games)}
   validates :place, length: {maximum: 100}, allow_nil: true

@@ -42,7 +42,7 @@ en:
         profile_img: Change profile image.
     hints:
       tournament:
-        size: Adding more than 16 players is available only for Premium plan user.
+        size: Adding more than 32 players is available only for Premium plan user.
         type: Double Elimination is available only for Premium plan user.
       user:
         profile_img: You need to sign up for Gravatar.
