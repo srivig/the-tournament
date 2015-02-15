@@ -1,12 +1,19 @@
+- if editable
+  %small.text-right ※国を登録するとトーナメント表に国旗アイコンが表示されます。
+
 = simple_form_for @tournament.becomes(Tournament), html: {class: 'form-horizontal'} do |f|
   - f.object = @tournament.becomes(@tournament.class)
   .panel.panel-default
     %table#member-list.table.f16
       %tr.active
         %th.width-10= t('member_list.number')
-        %th.width-50= t('member_list.name')
-        %th
-        %th.width-10
+        %th.width-40= t('member_list.name')
+        - if editable
+          %th.width-20= t('member_list.country')
+          %th.width-30= t('member_list.group')
+        - else
+          %th.width-20
+          %th.width-30
       = f.simple_fields_for :players, f.object.players.order(:seed) do |r|
         %tr
           = r.input :seed, as: :hidden
@@ -16,18 +23,22 @@
             %td
               = r.input :name, label: false
             %td
-              - if r.object.country.present?
-                %div.flag-container
-                  %div.flag{class: r.object.country.downcase}
-                = Country[r.object.country]
-            %td= link_to t('member_list.edit_detail'), edit_player_path(r.object), class: 'btn btn-primary btn-sm pull-right'
+              = r.input :country, label: false, iso_codes: true
+            %td
+              = r.input :group, label: false
+              -# - if r.object.country.present?
+              -#   %div.flag-container
+              -#     %div.flag{class: r.object.country.downcase}
+              -#   = Country[r.object.country]
+            -# %td= link_to t('member_list.edit_detail'), edit_player_path(r.object), class: 'btn btn-primary btn-sm pull-right'
           - else
             %td
               - if r.object.country.present?
                 %div.flag-container
                   %div.flag{class: r.object.country.downcase}
               = r.object.name
-            %td
+            %td= Country[r.object.country]
+            %td= r.object.group
   - if editable
     = f.button :submit, class: 'btn-danger'
 

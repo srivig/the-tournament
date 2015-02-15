@@ -6,4 +6,6 @@ en:
   member_list:
     number: Number
     name: Name
+    country: Country
+    group: Group
     edit_detail: Edit detail

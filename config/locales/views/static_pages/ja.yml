@@ -1,14 +1,14 @@
 ja:
   static_pages:
     top:
-      subtitle: 簡単・便利な無料のトーナメント表作成サービス
       carousel_caption_1: THE TOURNAMENTは、トーナメント形式の大会運営をサポートします。
       carousel_caption_2: スポーツ、ボードゲームなど様々な用途に利用できます。
       new_tournaments: 新着トーナメント
       show_more: もっと見る
 
     about:
-      subtitle: 簡単・便利な無料のトーナメント表作成サービス
+      subtitle: 圧倒的に使いやすい！無料トーナメント表作成サービスの決定版！
+      # subtitle: 簡単・便利な無料のトーナメント表作成サービス
       try_service: さっそく使ってみる(無料)
 
       about_title_1_html: 大会結果をおしゃれな<br>トーナメント表に。
