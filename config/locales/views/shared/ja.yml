@@ -5,5 +5,7 @@ ja:
 
   member_list:
     number: 登録番号
-    name: 名前
+    name: 名前 *
+    country: 国(任意)
+    group: 所属(任意)
     edit_detail: 詳細設定
