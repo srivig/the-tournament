@@ -10,4 +10,13 @@ module ApplicationHelper
   def fa_icon(icon, option=nil)
     content_tag(:i, nil, class: "fa fa-#{icon} #{option}")
   end
+
+  def embed_height(tournament_size)
+    case tournament_size
+    when 32; 1200
+    when 16; 630
+    when 8;  380
+    when 4;  300
+    end
+  end
 end
