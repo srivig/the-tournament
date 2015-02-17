@@ -29,5 +29,7 @@ module TheTournament
 
     config.autoload_paths += Dir[Rails.root.join('app', 'models', 'tournaments')]
     config.autoload_paths += Dir[Rails.root.join('app', 'models', 'games')]
+
+    config.action_dispatch.default_headers['X-Frame-Options'] = "ALLOWALL"
   end
 end
