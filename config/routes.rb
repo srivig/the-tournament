@@ -13,6 +13,10 @@ TheTournament::Application.routes.draw do
     end
     match 'tournaments/:id/(:title)', to: 'tournaments#show', via: :get, as: :pretty_tournament
     match ':action', controller: :static_pages, via: :get
+
+    scope :embed do
+      match '/tournaments/:id', to: 'tournaments#embed', via: :get, as: :embed_tournament
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

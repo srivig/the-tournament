@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_tournament, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: [:index, :show, :embed]
+  before_action :set_tournament, only: [:show, :edit, :update, :destroy, :embed]
   load_and_authorize_resource
 
   def index
@@ -27,6 +27,18 @@ class TournamentsController < ApplicationController
         flash.now[:warning] = view_context.fa_icon("exclamation-circle") + I18n.t('flash.guides.games_reg')
       end
     end
+  end
+
+  def embed
+    gon.push({
+      tournament_data: @tournament.tournament_data,
+      skip_secondary_final: (@tournament.de?) ? !@tournament.secondary_final : false,
+      skip_consolation_round: !@tournament.consolation_round,
+      countries: @tournament.players.map{|p| p.country.try(:downcase)},
+      match_data: @tournament.match_data,
+      scoreless: @tournament.scoreless?
+    })
+    render layout: false
   end
 
   def new
