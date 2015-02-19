@@ -26,6 +26,6 @@
     %p
       = fa_icon("link")
       埋め込み用HTMLタグ　
-    - value = "<iframe src='"+ embed_tournament_url(@tournament) +"' seamless frameborder='0' width='100%' height='1200'></iframe>"
+    - value = "<iframe src='"+ embed_tournament_url(@tournament) +"' seamless frameborder='0' width='100%' height='"+ (embed_height(@tournament.size).to_s) +"'></iframe>"
     %input(type="text" size="100%" value="#{value}" onfocus="this.select();" readonly)
 

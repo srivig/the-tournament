@@ -358,6 +358,7 @@ footer {
 /*****************************************************************
 * Embed
 *****************************************************************/
+body#embed { background: transparent; }
 #emb-container { margin: 10px; }
 #emb-header {
   background: #333;
@@ -372,6 +373,7 @@ footer {
 }
 
 #emb-body {
+  background: #fff;
   padding-top: 10px;
   border: 1px dotted #333;
   #tournament { margin-bottom: 20px; }
