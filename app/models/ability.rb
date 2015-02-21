@@ -7,6 +7,7 @@ class Ability
       can :manage, :all
     else
       can :read, :all
+      can :embed, :all
     end
 
     can :manage, User, id: user.id
