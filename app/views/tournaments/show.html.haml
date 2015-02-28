@@ -22,10 +22,12 @@
       %script
         !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
   %br
-  %div
-    %p
-      = fa_icon("link")
-      埋め込み用HTMLタグ　
-    - value = "<iframe src='"+ embed_tournament_url(@tournament) +"' seamless frameborder='0' width='100%' height='"+ (embed_height(@tournament.size).to_s) +"'></iframe>"
-    %input(type="text" size="100%" value="#{value}" onfocus="this.select();" readonly)
+  .row
+    .col-lg-12
+      %p
+        = fa_icon("link")
+        埋め込み用HTMLタグ　
+      - value = "<iframe src='"+ embed_tournament_url(@tournament) +"' seamless frameborder='0' width='100%' height='"+ (embed_height(@tournament.size).to_s) +"'></iframe>"
+      %div#emb-link
+        %input(type="text" size="100%" value="#{value}" onfocus="this.select();" readonly)
 
