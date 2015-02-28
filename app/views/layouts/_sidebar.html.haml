@@ -3,21 +3,26 @@
   - if current_user
     = link_to user_path(current_user) do
       =profile_img(current_user)
-      %p
+    %p
+      = link_to user_path(current_user) do
         %strong= current_user.try(:email)
-        %br
-        %small (#{link_to t('signout'), destroy_user_session_path, method: :delete})
-    - if current_user.creatable?
-      = link_to fa_icon("plus")+t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
-    - else
-      = link_to fa_icon("plus")+t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg', disabled: :disabled
-      %small
-        = t('layouts.sidebar.too_many_tournaments')
+      = link_to destroy_user_session_path, method: :delete do
+        %small (#{t('signout')})
+    %p
+      - if current_user.creatable?
+        = link_to fa_icon("plus")+t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
+      - else
+        = link_to fa_icon("plus")+t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg', disabled: :disabled
+        %small
+          = t('layouts.sidebar.too_many_tournaments')
+    %p
+      = link_to t('layouts.sidebar.tournaments_list'), user_path(current_user)
   - else
     %p
       = image_tag("http://www.gravatar.com/avatar/?d=mm", class: "img-circle")
     = link_to t("layouts.sidebar.user_registration"), new_user_registration_path, class: 'btn btn-danger btn-block btn-lg'
     %small (#{link_to t('signin'), new_user_session_path})
+
 -# Search
 %section
   %h4
@@ -28,21 +33,6 @@
       = text_field_tag(:q, params[:q], class:"form-control", placeholder: t('layouts.sidebar.search_placeholder'))
       %span.input-group-btn
         = submit_tag(t("layouts.sidebar.search"), class:"btn btn-default")
--# Pick Up
-/
-  %section
-    %h4
-      = fa_icon("star")
-      注目されている大会
-    - popular = [3,2]
-    %ul.media-list.well
-      - popular.each do |i|
-        - tournament = Tournament.find(i)
-        %li.media
-          .media-body
-            %h4.media-heading
-              = link_to "#{tournament.title}", tournament_path(tournament.id), data:{no_turbolink:true}
-            %p= tournament.detail
 
 -# Category
 %section
