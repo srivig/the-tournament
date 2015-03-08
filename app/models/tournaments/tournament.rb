@@ -72,15 +72,20 @@ class Tournament < ActiveRecord::Base
       results << round_res
       self.games.where(bracket: 1, round: i).each do |game|
         # Set team info
-        teams << game.game_records.map{|r| (r.player.name.present?) ? r.player.name : '--'}.to_a  if i == 1
+        teams << game.game_records.map{|r| (r.player.name.present?) ? r.player.name : '(BYE)'}.to_a  if i == 1
 
         # Set match Info
         res =  game.game_records.map{|r| r.score}.to_a
         # Bye Game
         if game.bye == true
           win_record = game.game_records.find_by(winner: true)
-          res[win_record.record_num-1] = 0.3
-          res[win_record.record_num]   = 0.2
+          if win_record.record_num == 1
+            res[0] = 0.3
+            res[1] = 0.2
+          else
+            res[0] = 0.2
+            res[1] = 0.3
+          end
         # Same Score Game
         elsif game.finished? && (game.game_records.first.score == game.game_records.last.score)
           win_record = game.game_records.find_by(winner: true)
@@ -97,7 +102,7 @@ class Tournament < ActiveRecord::Base
 
   def match_data
     match_data = Array.new
-    match_data[1] = self.games.map{ |m| "#{self.round_name(bracket: m.bracket, round:m.round)} #{m.match_name}<br>#{m.game_records.map{|r| r.player.name}.join('-')}" }
+    match_data[1] = self.games.map{ |m| "#{self.round_name(bracket: m.bracket, round:m.round)} #{m.match_name}<br>#{m.game_records.map{|r| (r.player.name.present?) ? r.player.name : '(BYE)'}.join('-')}" }
     match_data
   end
 

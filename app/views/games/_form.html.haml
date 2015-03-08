@@ -27,7 +27,13 @@
                   \(--)
           %ul.list-group
             %li.list-group-item.clearfix
-              %div.clearfix= r.input :score, label:false, input_html:{value: r.object.score || 0}
+              -# %div.clearfix= r.input :score, label:false, input_html:{value: r.object.score || 0, class: 'input-lg'}
+              %br
+              %div.clearfix
+                .form-group.game_game_records_score.integer.required
+                  .form-group
+                    - record_id = r.object.record_num - 1
+                    = r.input_field :score, value: r.object.score || 0, class: 'input-lg text-right', id: "game_game_records_attributes_#{record_id}_score", name: "game[game_records_attributes][#{record_id}][score]", min: 0
             = r.association :player, as: :hidden
             = r.input :winner, as: :hidden
 
