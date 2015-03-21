@@ -32,3 +32,12 @@
             = render partial: "layouts/sidebar"
 
     = render partial: "layouts/footer"
+    %script
+      (function() {
+      var lb = document.createElement('script'); lb.type = 'text/javascript'; lb.async = true;
+      lb.src = '//cdn.logbk.net/v1/logbk.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lb, s);
+      })();
+      var _lbq = _lbq || [];
+      _lbq.push(['setTrackingCode', 'KwtBadF2']);
+      _lbq.push(['trackSys', '_access']);
