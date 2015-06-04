@@ -38,3 +38,8 @@
   - if tournament.user == current_user
     %li{class: (active==4) ? 'active' : ''}
       =link_to t('tournament_menu.basic_info'), edit_tournament_path(tournament)
+
+%section
+  = link_to fa_icon("users")+'参加者を登録する', tournament_players_path(@tournament), class: "btn btn-primary"
+  = link_to fa_icon("list-alt")+'試合結果を登録する', tournament_games_path(@tournament), class: "btn btn-primary"
+
