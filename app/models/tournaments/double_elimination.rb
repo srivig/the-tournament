@@ -143,4 +143,8 @@ class DoubleElimination < Tournament
 
     tournament_data = {teams: teams, results: results}
   end
+
+  def is_finished?
+    self.final.has_valid_winner?
+  end
 end

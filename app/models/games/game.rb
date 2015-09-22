@@ -27,11 +27,11 @@ class Game < ActiveRecord::Base
   validates :round, presence: true, numericality: {only_integer: true}
   validates :match, presence: true, numericality: {only_integer: true}
   validates :bye, inclusion: {in: [true, false]}, allow_nil: true
-  validate  :has_valid_winner, on: :update
+  validate  :has_valid_winner?, on: :update
 
   after_update :reset_ancestors, :set_parent_game_record, :set_loser_game_record, if: :winner_changed?
 
-  def has_valid_winner
+  def has_valid_winner?
     winners = Array.new
     game_records.each do |r|
       winners << r  if r.winner == true
@@ -40,10 +40,11 @@ class Game < ActiveRecord::Base
     if winners.size == 1
       loser = (game_records - winners).first
       winner = winners.first
-      errors.add(:game_records, "score is invalid") unless winner.score >= loser.score
-    else
-      errors.add(:game_records, "winner is not valid")
+      if winner.score >= loser.score
+        return true
+      end
     end
+    return false
   end
 
   def reset_ancestors

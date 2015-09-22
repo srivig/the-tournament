@@ -7,3 +7,14 @@ Now under SuperBETA.
     % createuser -e -s -d tnmt
     % bundle exec rake db:create
     % bundle exec rake db:migrate
+
+
+## Test ENV Setting ##
+
+    % psql postgres
+    >postgres=# CREATE ROLE tnmt;
+    >postgres=# ALTER ROLE tnmt WITH LOGIN;
+    >postgres=# ALTER ROLE tnmt WITH CREATEDB;
+    % bundle exec rake db:create RAILS_ENV=test
+    % bundle exec rake db:migrate RAILS_ENV=test
+    
