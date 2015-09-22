@@ -212,4 +212,38 @@ describe Tournament, :type => :model do
       end
     end
   end
+
+  describe 'is_finished?' do
+    context 'when not finished' do
+      before :each do
+        @tournament = create(:se_tnmt, user:@user, size: 4)
+      end
+
+      it 'should return false' do
+        expect(@tournament.is_finished?).to eq(false)
+      end
+    end
+
+#  context 'when finished' do
+#    before :each do
+#      @tournament = create(:se_tnmt, user:@user)
+#    end
+
+#    it 'should return true' do
+#      @game = create(:game_with_winner, tournament:@tournament, round:2)
+#      expect(@tournament.is_finished?).to eq(true)
+#    end
+#  end
+
+#  context 'when de finished' do
+#    before :each do
+#      @tournament = create(:de_tnmt, user:@user)
+#    end
+
+#    it 'should return true' do
+#      @game = create(:game_with_winner, tournament:@tournament, round:3)
+#      expect(@tournament.is_finished?).to eq(true)
+#    end
+#  end
+  end
 end

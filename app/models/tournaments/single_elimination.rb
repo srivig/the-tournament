@@ -42,4 +42,8 @@ class SingleElimination < Tournament
       I18n.t('tournament.round_name.numbered_round', round: round)
     end
   end
+
+  def is_finished?
+    self.final.has_valid_winner?
+  end
 end
