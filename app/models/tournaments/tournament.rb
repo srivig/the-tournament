@@ -41,25 +41,26 @@ class Tournament < ActiveRecord::Base
   validates :scoreless, presence: true, inclusion: {in: [true,false]}, allow_blank: true
 
   default_scope {order(created_at: :desc)}
+  scope :finished, -> { where(finished: true) }
 
   before_create :build_players, :build_winner_games, :build_third_place_game
   after_create :create_first_round_records
 
   def self.search_tournaments(params)
     if params[:q]
-      tournaments = Tournament.where('title LIKE ? OR detail LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%")
+      tournaments = Tournament.finished.where('title LIKE ? OR detail LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%")
     elsif params[:tag]
-      tournaments = Tournament.tagged_with(params[:tag])
+      tournaments = Tournament.finished.tagged_with(params[:tag])
     elsif params[:category]
       if params[:category] != 'others'
         tags = Category.where(category_name: params[:category]).map(&:tag_name)
-        tournaments = Tournament.tagged_with(tags, any:true)
+        tournaments = Tournament.finished.tagged_with(tags, any:true)
       else
         tags = Category.all.map(&:tag_name)
-        tournaments = Tournament.tagged_with(tags, exclude:true)
+        tournaments = Tournament.finished.tagged_with(tags, exclude:true)
       end
     else
-      tournaments = Tournament.all
+      tournaments = Tournament.finished
     end
     tournaments
   end

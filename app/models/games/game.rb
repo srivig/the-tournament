@@ -30,6 +30,7 @@ class Game < ActiveRecord::Base
   validate  :has_valid_winner?, on: :update
 
   after_update :reset_ancestors, :set_parent_game_record, :set_loser_game_record, if: :winner_changed?
+  after_update :set_finished_flg, if: :final?
 
   def has_valid_winner?
     winners = Array.new
@@ -180,5 +181,9 @@ class Game < ActiveRecord::Base
     else
       "第#{self.match}試合"
     end
+  end
+
+  def set_finished_flg
+    self.tournament.update(finished: true) if self.has_valid_winner?
   end
 end
