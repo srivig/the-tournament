@@ -12,6 +12,8 @@
     = javascript_include_tag "application"
 
   - is_about_page = controller.action_name=='about'
+  - is_top_page = controller.action_name=='top'
+
   %body{id: (is_about_page) ? 'about-page' : ''}
     = render partial: "shared/analytics" if Rails.env.production?
     = render partial: "shared/facebook"
@@ -19,12 +21,18 @@
     - nav_partial = (is_about_page) ? 'navbar_about' : 'navbar'
     = render partial: "layouts/#{nav_partial}"
 
-    .container
-      .row
-        - if is_about_page
+    - if is_about_page
+      .container
+        .row
           .col-lg-12
             = yield
-        - else
+    - else
+      - if is_top_page
+        #top-banner.hidden-md.hidden-lg(style="margin-top:-20px;margin-bottom:15px;")
+          = image_tag("index-top.png", class: "img-responsive")
+
+      .container
+        .row
           .col-lg-9
             = bootstrap_flash
             = yield
