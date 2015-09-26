@@ -1,9 +1,11 @@
 %section#top
-  =image_tag("top-logo.png", alt:'THE TOURNAMENT')
-  %div.mb-30
-    %small= t('.subtitle')
-  %p
-    =link_to t('.try_service'), root_path, class: 'btn btn-danger btn-lg'
+  .row
+    %div(style="margin:0 10%;")
+      =image_tag("top-logo.png", alt:'THE TOURNAMENT')
+      %div.mb-30
+        %small= t('.subtitle')
+      %p
+        =link_to t('.try_service'), root_path, class: 'btn btn-danger btn-lg'
 
 %section#about
   %h1.hide About
@@ -117,54 +119,54 @@
     .row.text-center
       .col-lg-4
         .panel.panel-danger
-          .panel-heading 
+          .panel-heading
             %span.label.label-warning= t('.plan_recommend')
             %small= t('.plan_1_text')
           %ul.list-group
             %li.list-group-item
               = image_tag('about/price_1.png')
               %h2.text-danger FREE
-            %li.list-group-item 
+            %li.list-group-item
               %small= t('.plan_price')
-              %strong= t('.free') 
+              %strong= t('.free')
             %li.list-group-item
               %small= t('.plan_storage')
               %strong 3
-            %li.list-group-item 
-              %small= t('.plan_size') 
+            %li.list-group-item
+              %small= t('.plan_size')
               %strong= "32#{t('.plan_player_count')}"
       .col-lg-4
         .panel.panel-default
-          .panel-heading 
+          .panel-heading
             %small= t('.plan_2_text')
           %ul.list-group
             %li.list-group-item
               = image_tag('about/price_2.png')
               %h2 BASIC
-            %li.list-group-item 
+            %li.list-group-item
               %small= t('.plan_price')
               %strong --
             %li.list-group-item
               %small= t('.plan_storage')
               %strong --
-            %li.list-group-item 
-              %small= t('.plan_size') 
+            %li.list-group-item
+              %small= t('.plan_size')
               %strong --
       .col-lg-4
         .panel.panel-default
-          .panel-heading 
+          .panel-heading
             %small= t('.plan_3_text')
           %ul.list-group
             %li.list-group-item
               = image_tag('about/price_3.png')
               %h2 PREMIUM
-            %li.list-group-item 
+            %li.list-group-item
               %small= t('.plan_price')
               %strong --
             %li.list-group-item
               %small= t('.plan_storage')
               %strong --
-            %li.list-group-item 
+            %li.list-group-item
               %small= t('.plan_size')
               %strong --
     %div.text-center
@@ -183,6 +185,3 @@
 
     %li.list-group-item これはどういうサービスなんですか？
     %li.list-group-item THE TOURAMENTは、トーナメント形式の大会を簡単に管理し、きれいなトーナメント表を作成することができるサービスです。
-
-
-
