@@ -34,6 +34,7 @@
       .container
         .row
           .col-lg-9
+            = flash[:log]
             = bootstrap_flash
             = yield
           .col-lg-3.hidden-xs.hidden-sm
