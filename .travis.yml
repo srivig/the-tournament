@@ -1,19 +1,21 @@
 language: ruby
 rvm:
-  - 2.1.4
+- 2.1.4
 script:
-  - RAILS_ENV=test bundle exec rake db:migrate
+- RAILS_ENV=test bundle exec rake db:migrate
 before_script:
-  - psql -c "CREATE ROLE tnmt WITH CREATEDB LOGIN" -U postgres
-  - psql -c 'CREATE DATABASE tnmt_test;' -U postgres
-  - psql -c 'ALTER DATABASE tnmt_test OWNER TO tnmt' -U postgres
+- psql -c "CREATE ROLE tnmt WITH CREATEDB LOGIN" -U postgres
+- psql -c 'CREATE DATABASE tnmt_test;' -U postgres
+- psql -c 'ALTER DATABASE tnmt_test OWNER TO tnmt' -U postgres
 deploy:
   provider: heroku
   app:
     master: the-tournament
   api_key:
     secure: AwIEWo1N2yFX8gLH/GkZLv7VifkdLx+hrTJPJS+bGJerrY756kLifQI5CKWvWnUAi+hpcdJHg+mOqyacoHouTxTnKhSP9PJi2ZrbqTzUfhp2qCgh/vOaFwacKOll6agDgSgsx7e9SdwFjJ34U+LT/Ky4dx9nfNn6fCbqu6b9dZs=
-  run: 'rake db:migrate'
-
+  run: rake db:migrate
 sudo: false
 cache: bundler
+notifications:
+  slack:
+    secure: iIt20CDP0IxwOCUX9PAE+t7/oF5m8Fwf00fthFS+TbYNiqhuHWZsdNK2qeVvKuzerEzv8Ay/sdYYrjkOAWIWcSUEt0G20Smo3b1cc+5erdyRcbrVc60FC9whbG7/YSDIHuV+u/L/qQ0iqXq6PPnIhHj2gvlT0sywOk6wiwIkIiA=
