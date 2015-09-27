@@ -29,4 +29,4 @@
   - if @tournament.persisted?
     .form-group
       .col-sm-6.col-sm-offset-2
-        =link_to t('tournaments.delete_tournament'), tournament_path(@tournament), confirm: '大会データを削除します。本当によろしいですか？', method: :delete
+        =link_to t('tournaments.delete_tournament'), tournament_path(@tournament), data: {confirm: '大会データを削除します。本当によろしいですか？'}, method: :delete
