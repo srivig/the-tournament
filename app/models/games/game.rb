@@ -184,6 +184,6 @@ class Game < ActiveRecord::Base
   end
 
   def set_finished_flg
-    self.tournament.update(finished: true) if self.has_valid_winner?
+    self.tournament.update(finished: true) if self.has_valid_winner? && !self.tournament.finished?
   end
 end

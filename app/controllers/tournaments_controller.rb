@@ -19,14 +19,6 @@ class TournamentsController < ApplicationController
       match_data: @tournament.match_data,
       scoreless: @tournament.scoreless?
     })
-
-    if @tournament.user == current_user
-      if !@tournament.member_registered?
-        flash.now[:warning] = view_context.fa_icon("exclamation-circle") + I18n.t('flash.guides.players_reg')
-      elsif !@tournament.result_registered?
-        flash.now[:warning] = view_context.fa_icon("exclamation-circle") + I18n.t('flash.guides.games_reg')
-      end
-    end
   end
 
   def embed
@@ -46,17 +38,18 @@ class TournamentsController < ApplicationController
   end
 
   def create
-    # @tournament = Tournament.new(tournament_params)
     @tournament = SingleElimination.new(tournament_params)  #TODO: Fix when enabling double elimination
     @tournament.user = current_user
 
     respond_to do |format|
       if @tournament.save
-        @tournament = @tournament
-        format.html { redirect_to tournament_path(@tournament), notice: I18n.t('flash.tournament.create.success')}
+        # GAにイベントを送信
+        flash[:log] = "<script>ga('send', 'event', 'tournament', 'create');</script>".html_safe
+
+        flash[:notice] = I18n.t('flash.tournament.create.success')
+        format.html { redirect_to tournament_path(@tournament) }
         format.json { render action: 'show', status: :created, location: @tournament }
       else
-        @tournament = @tournament
         flash.now[:alert] = I18n.t('flash.tournament.create.failure')
         format.html { render action: 'new' }
         format.json { render json: @tournament.errors, status: :unprocessable_entity }
@@ -97,7 +90,7 @@ class TournamentsController < ApplicationController
   def destroy
     @tournament.destroy
     respond_to do |format|
-      format.html { redirect_to tournaments_path }
+      format.html { redirect_to tournaments_path, notice: 'トーナメントを削除しました' }
       format.json { head :no_content }
     end
   end
