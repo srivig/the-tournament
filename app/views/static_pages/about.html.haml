@@ -169,13 +169,15 @@
               %strong --
     %div.text-center
 
-%section#faq
+%section#faq.text-center
   %h1
     %span FAQ
-  %p.text-center
+  %p.mb-30
     = t('.faq_text')
     %br
     info[at]notsobad.jp
+  %p
+    =link_to t('.try_service'), root_path, class: 'btn btn-danger btn-lg'
 /
   %ul.list-group
     %li.list-group-item これはどういうサービスなんですか？
