@@ -9,7 +9,7 @@ ja:
     about:
       subtitle: 圧倒的に使いやすい！無料トーナメント表作成サービスの決定版！
       # subtitle: 簡単・便利な無料のトーナメント表作成サービス
-      try_service: さっそく使ってみる(無料)
+      try_service: サンプルを見てみる（無料）
 
       about_title_1_html: 大会結果をおしゃれな<br>トーナメント表に。
       about_text_1_html:
@@ -64,4 +64,3 @@ ja:
 
       faq_text:
         ご意見・ご要望などあればご連絡ください。
-
