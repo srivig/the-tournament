@@ -38,7 +38,7 @@ ja:
       feature_6: 敗者復活戦
       feature_7: シード設定
       feature_8: 英語版対応
-      feature_9: 予選の実施
+      feature_9: HPへの埋め込み
       feature_10: ブロック分け
       feature_11: 各会場での同時更新
       feature_12: ページ分け表示
@@ -46,7 +46,7 @@ ja:
       feature_14: 参加者リスト読み込み
       feature_15: 大規模大会対応
       feature_16: 総当り形式
-      feature_17: ブログ/HP埋め込み
+      feature_17: 予選の実施
 
       free: 無料
       plan_text_html:
