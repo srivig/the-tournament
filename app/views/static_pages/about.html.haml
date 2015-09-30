@@ -66,17 +66,15 @@
 
     .col-lg-2.col-sm-4
       .thumbnail
-        %h2
-          %span.label.label-warning NEW!
-          = t('.feature_7')
+        %h2= t('.feature_7')
+    .col-lg-2.col-sm-4
+      .thumbnail
+        %h2= t('.feature_8')
     .col-lg-2.col-sm-4
       .thumbnail
         %h2
           %span.label.label-warning NEW!
-          = t('.feature_8')
-    .col-lg-2.col-sm-4.tbd
-      .thumbnail
-        %h2= t('.feature_9')
+          = t('.feature_9')
     .col-lg-2.col-sm-4.tbd
       .thumbnail
         %h2= t('.feature_10')
@@ -171,13 +169,15 @@
               %strong --
     %div.text-center
 
-%section#faq
+%section#faq.text-center
   %h1
     %span FAQ
-  %p.text-center
+  %p.mb-30
     = t('.faq_text')
     %br
     info[at]notsobad.jp
+  %p
+    =link_to t('.try_service'), root_path, class: 'btn btn-danger btn-lg'
 /
   %ul.list-group
     %li.list-group-item これはどういうサービスなんですか？
