@@ -40,21 +40,6 @@
     %li{class: (active==4) ? 'active' : ''}
       =link_to t('tournament_menu.basic_info'), edit_tournament_path(tournament)
 
--# SP版: ボタングループでメニュー表示
-.btn-group.hidden-md.hidden-lg
-  %button.btn.btn-default.dropdown-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-    表示切り替え
-    %span.caret
-  %ul.dropdown-menu
-    %li
-      =link_to t('tournament_menu.tournament_bracket'), pretty_tournament_path(tournament, tournament.encoded_title), data:{no_turbolink:true}
-    %li
-      =link_to t('tournament_menu.games'), tournament_games_path(tournament)
-    %li
-      =link_to t('tournament_menu.players'), tournament_players_path(tournament)
-    - if tournament.user == current_user
-      %li
-        =link_to t('tournament_menu.basic_info'), edit_tournament_path(tournament)
 
 - if tournament.user == current_user
   %section.hidden-xs.hidden-sm

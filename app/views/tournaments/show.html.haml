@@ -7,6 +7,8 @@
   %h1.headline
     = fa_icon("trophy")
     = t('.tournament_bracket')
+    -# SP版: ボタングループでメニュー表示
+    = render partial: "shared/sp_tournament_menu", locals: {tournament:@tournament} 
   .row.mb-30
     #tournament.col-lg-12
 
@@ -30,4 +32,3 @@
       - value = "<iframe src='"+ embed_tournament_url(@tournament) +"' seamless frameborder='0' width='100%' height='"+ (embed_height(@tournament.size).to_s) +"'></iframe>"
       %div#emb-link
         %input(type="text" size="100%" value="#{value}" onfocus="this.select();" readonly)
-
