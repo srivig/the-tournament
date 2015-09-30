@@ -7,4 +7,6 @@
   %h1.headline
     = fa_icon("cog")
     = t('tournament_menu.basic_info')
+    -# SP版: ボタングループでメニュー表示
+    = render partial: "shared/sp_tournament_menu", locals: {tournament:@tournament} 
   = render :partial => "form"
