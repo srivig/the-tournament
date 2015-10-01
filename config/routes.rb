@@ -8,6 +8,8 @@ TheTournament::Application.routes.draw do
     }
     resources :users
 
+    # ケンガントーナメントのリダイレクト処置
+    get  "/tournaments/157/(:title)" => redirect("/tournaments/464/", status: 301)
     resources :tournaments, shallow: true do
       get 'page/:page', action: :index, on: :collection
       resources :players
