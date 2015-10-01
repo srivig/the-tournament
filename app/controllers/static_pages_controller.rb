@@ -1,5 +1,9 @@
+require 'open-uri'
+
 class StaticPagesController < ApplicationController
   skip_before_action :authenticate_user!
+  before_action :set_blog_rss
+
   def about
     sample_id = (Rails.env=='production') ? 158 : 1
     @tournament = Tournament.find(sample_id)
@@ -17,6 +21,10 @@ class StaticPagesController < ApplicationController
     @tournaments = Tournament.finished.limit(5)
   end
 
-  def howto
-  end
+
+  private
+
+    def set_blog_rss
+      @rss = SimpleRSS.parse open('http://blog.the-tournament.jp/feed.xml')
+    end
 end

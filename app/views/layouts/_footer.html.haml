@@ -1,13 +1,23 @@
 %footer
-  .text-center.well
-    .container
-      .row
-        .col-lg-12
-          %div.mb-30
-            .fb-like-box(data-href="https://www.facebook.com/the.tournament.jp" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true")
+  - if controller.action_name == 'about'
+    .well.mb-0
+      .container
+        .row
+          .col-lg-8.col-lg-offset-2
+            %div
+              %table.table
+                - @rss.items.each do |item|
+                  %tr
+                    %td
+                      =link_to item.link, target:'_blank' do
+                        = item.title.force_encoding("utf-8")
+                        %small.visible-xs= item.pubDate.strftime("%Y-%m-%d")
+                    %td.text-right.hidden-xs
+                      %small= item.pubDate.strftime("%Y-%m-%d")
+
   .black.text-center
     .container
-      %p 
+      %p
         Copyright &copy; THE TOURNAMENT  2014 All Rights Reserved.
       %ul.list-inline
         %li= link_to t('about_this_site'), "/about", data:{no_turbolink:true}
