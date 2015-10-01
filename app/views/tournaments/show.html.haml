@@ -13,10 +13,6 @@
     #tournament.col-lg-12
 
   %ul.list-inline
-    %li.download-btn.hide
-      %a#download_btn.btn.btn-sm.btn-default(href="#" download="#{@tournament.title.gsub(' ','-')}" data-loading-text="#{t('.download_preparing')}")
-        = fa_icon("download")
-        = t('.download_image')
     %li
       %span
         %script(type="text/javascript" src="//media.line.me/js/line-button.js?v=20140411")
