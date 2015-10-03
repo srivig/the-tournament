@@ -1,9 +1,9 @@
 %footer
-  - if controller.action_name == 'about'
-    .well.mb-0
+  - if @rss.present?
+    .well
       .container
         .row
-          .col-lg-8.col-lg-offset-2
+          .col-lg-10.col-lg-offset-1
             %div
               %table.table
                 - @rss.items.each do |item|
