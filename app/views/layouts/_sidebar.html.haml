@@ -1,8 +1,6 @@
 -# Profile
 %section.well.sidebar-nav.text-center
   - if current_user
-    = link_to user_path(current_user) do
-      =profile_img(current_user)
     %p
       = link_to user_path(current_user) do
         %strong= current_user.try(:email)
@@ -18,8 +16,6 @@
     %p
       = link_to t('layouts.sidebar.tournaments_list'), user_path(current_user)
   - else
-    %p
-      = image_tag("http://www.gravatar.com/avatar/?d=mm", class: "img-circle")
     = link_to t("layouts.sidebar.user_registration"), new_user_registration_path, class: 'btn btn-danger btn-block btn-lg'
     %small (#{link_to t('signin'), new_user_session_path})
 
