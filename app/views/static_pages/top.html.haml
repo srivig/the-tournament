@@ -32,7 +32,8 @@
     = fa_icon('star')
     Pickup!
   %div
-    %iframe(src='http://the-tournament.jp/ja/embed/tournaments/464' seamless frameborder='0' width='100%' height='1150')
+    %iframe{src: embed_tournament_url(@tournament), seamless:true, frameborder:0, width:'100%', height:embed_height(@tournament.size).to_s}
+
 
 %section
   %h1.headline
