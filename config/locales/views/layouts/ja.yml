@@ -11,3 +11,4 @@ ja:
       too_many_tournaments: ※大会作成数の上限に達しています。新規で作成するにはマイページから作成済みの大会を削除してください。
       tournaments_list: 作成済みのトーナメント一覧
       mypage: マイページ
+      need_signin_or_signup_html: "%{signin_link}もしくは%{signup_link}が必要です。"

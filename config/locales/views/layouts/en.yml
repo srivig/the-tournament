@@ -11,3 +11,4 @@ en:
       too_many_tournaments: You have already reached the maximum number of tournaments. Delete existing tournaments in MyPage to create a new one.
       tournaments_list: See your tournaments
       mypage: My Page
+      need_signin_or_signup_html: "%{signin_link} or %{signup_link} needed."

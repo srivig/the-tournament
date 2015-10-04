@@ -1,9 +1,42 @@
 %section#top-banner.hidden-xs.hidden-sm
   = image_tag("index-top.png", class: "img-responsive img-rounded")
 
+%section.well.text-center
+  //PC版
+  %div.visible-md.visible-lg
+    - if current_user
+      - if current_user.creatable?
+        = link_to fa_icon("plus")+t('.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
+      - else
+        = link_to fa_icon("plus")+t('.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg', disabled: :disabled
+        %small
+          = t('layouts.sidebar.too_many_tournaments')
+    - else
+      = link_to fa_icon("plus")+t('.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
+      %small= t('layouts.sidebar.need_signin_or_signup_html', signin_link: link_to(t('signin'), new_user_session_path), signup_link: link_to(t('signup'), new_user_registration_path))
+  //SP版
+  %div.visible-xs.visible-sm
+    - if current_user
+      - if current_user.creatable?
+        = link_to fa_icon("plus")+t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
+      - else
+        = link_to fa_icon("plus")+t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg', disabled: :disabled
+        %small
+          = t('layouts.sidebar.too_many_tournaments')
+    - else
+      = link_to fa_icon("plus")+t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
+      %small= t('layouts.sidebar.need_signin_or_signup_html', signin_link: link_to(t('signin'), new_user_session_path), signup_link: link_to(t('signup'), new_user_registration_path))
+
 %section
   %h1.headline
     = fa_icon('star')
+    Pickup!
+  %div
+    %iframe(src='http://the-tournament.jp/ja/embed/tournaments/464' seamless frameborder='0' width='100%' height='1150')
+
+%section
+  %h1.headline
+    = fa_icon('rss')
     = t '.new_tournaments'
   .list-group
     - @tournaments.each do |tournament|

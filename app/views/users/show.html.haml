@@ -10,10 +10,11 @@
       = t '.account'
     %div
       %div
-        %p= profile_img(@user)
         - if @user == current_user
           %p= @user.email
           %p= link_to t("edit"), edit_user_path(@user), class: 'btn btn-primary'
+        - else
+          %small ※ユーザー情報は公開されていません。
 
   %section
     %h1.headline

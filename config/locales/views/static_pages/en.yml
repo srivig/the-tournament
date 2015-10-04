@@ -5,6 +5,8 @@ en:
       carousel_caption_2: Suitable for any sports and board games.
       new_tournaments: Latest Tournaments
       show_more: show more
+      create_tournament: Create a new tournament.
+      need_login: You need to login or register to create.
 
     about:
       subtitle: Create Cool Tournament Brackets
