@@ -5,8 +5,6 @@
   - if current_user
     - if current_user.creatable?
       = link_to fa_icon("plus")+t('.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
-      %small
-        = t('.need_login')
     - else
       = link_to fa_icon("plus")+t('.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg', disabled: :disabled
       %small
