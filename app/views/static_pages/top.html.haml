@@ -10,9 +10,8 @@
       %small
         = t('layouts.sidebar.too_many_tournaments')
   - else
-    = link_to fa_icon("plus")+t('.create_tournament'), new_user_registration_path, class: 'btn btn-danger btn-block btn-lg'
-    %small
-      = t('.need_login')
+    = link_to fa_icon("plus")+t('.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
+    %small= t('layouts.sidebar.need_signin_or_signup_html', signin_link: link_to(t('signin'), new_user_session_path), signup_link: link_to(t('signup'), new_user_registration_path))
 
 %section
   %h1.headline

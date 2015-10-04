@@ -16,8 +16,8 @@
     %p
       = link_to t('layouts.sidebar.tournaments_list'), user_path(current_user)
   - else
-    = link_to t("layouts.sidebar.user_registration"), new_user_registration_path, class: 'btn btn-danger btn-block btn-lg'
-    %small (#{link_to t('signin'), new_user_session_path})
+    = link_to fa_icon("plus")+t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
+    %small= t('layouts.sidebar.need_signin_or_signup_html', signin_link: link_to(t('signin'), new_user_session_path), signup_link: link_to(t('signup'), new_user_registration_path))
 
 -# Search
 %section
