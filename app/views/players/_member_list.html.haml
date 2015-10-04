@@ -1,5 +1,5 @@
 - if editable
-  %small.text-right ※国を登録するとトーナメント表に国旗アイコンが表示されます。
+  %small.text-right.hidden-sm.hidden-xs ※国を登録するとトーナメント表に国旗アイコンが表示されます。
 
 = simple_form_for @tournament.becomes(Tournament), html: {class: 'form-horizontal'} do |f|
   - f.object = @tournament.becomes(@tournament.class)
@@ -9,11 +9,11 @@
         %th.width-10= t('member_list.number')
         %th.width-40= t('member_list.name')
         - if editable
-          %th.width-20= t('member_list.country')
-          %th.width-30= t('member_list.group')
+          %th.width-20.hidden-sm.hidden-xs= t('member_list.country')
+          %th.width-30.hidden-sm.hidden-xs= t('member_list.group')
         - else
-          %th.width-20
-          %th.width-30
+          %th.width-20.hidden-sm.hidden-xs
+          %th.width-30.hidden-sm.hidden-xs
       = f.simple_fields_for :players, f.object.players.order(:seed) do |r|
         %tr
           = r.input :seed, as: :hidden
@@ -22,23 +22,17 @@
           - if editable
             %td
               = r.input :name, label: false
-            %td
+            %td.hidden-sm.hidden-xs
               = r.input :country, label: false, iso_codes: true
-            %td
+            %td.hidden-sm.hidden-xs
               = r.input :group, label: false
-              -# - if r.object.country.present?
-              -#   %div.flag-container
-              -#     %div.flag{class: r.object.country.downcase}
-              -#   = Country[r.object.country]
-            -# %td= link_to t('member_list.edit_detail'), edit_player_path(r.object), class: 'btn btn-primary btn-sm pull-right'
           - else
             %td
               - if r.object.country.present?
                 %div.flag-container
                   %div.flag{class: r.object.country.downcase}
               = r.object.name
-            %td= Country[r.object.country]
-            %td= r.object.group
+            %td.hidden-sm.hidden-xs= Country[r.object.country]
+            %td.hidden-sm.hidden-xs= r.object.group
   - if editable
     = f.button :submit, class: 'btn-danger'
-
