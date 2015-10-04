@@ -22,7 +22,8 @@ $screen-md-min: 751px;
 * {
   font-family:'Lucida Grande','Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
   h1, h2, h3, h4, h5, h6 { font-weight: lighter; }
-  input.form-control {
+  // フォーム・タグ入力欄のフォントサイズを16px以上にする（SPのズーム対策)
+  .form-control, .tagsinput{
     font-size: 16px !important;
   }
 }
