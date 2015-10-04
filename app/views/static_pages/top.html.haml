@@ -31,7 +31,7 @@
   %h1.headline
     = fa_icon('star')
     Pickup!
-  %div
+  %div(style="width:100%;overflow:auto;")
     %iframe{src: embed_tournament_url(@tournament), seamless:true, frameborder:0, width:'100%', height:embed_height(@tournament.size).to_s}
 
 
