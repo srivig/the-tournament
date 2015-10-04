@@ -30,6 +30,6 @@
       %p
         = fa_icon("link")
         埋め込み用HTMLタグ　
-      - value = "<div style="width:100% !important;overflow:auto;"><iframe src='"+ embed_tournament_url(@tournament) +"' seamless frameborder='0' width='100%' height='"+ (embed_height(@tournament.size).to_s) +"'></iframe></div>"
+      - value = "<div style='width:100% !important;overflow:auto;'><iframe src='"+ embed_tournament_url(@tournament) +"' seamless frameborder='0' width='100%' height='"+ (embed_height(@tournament.size).to_s) +"'></iframe></div>"
       %div#emb-link
         %input(type="text" size="100%" value="#{value}" onfocus="this.select();" readonly)
