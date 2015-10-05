@@ -8,6 +8,9 @@
     = fa_icon("users")
     = t('tournament_menu.players')
     -# SP版: ボタングループでメニュー表示
-    = render partial: "shared/sp_tournament_menu", locals: {tournament:@tournament} 
+    = render partial: "shared/sp_tournament_menu", locals: {tournament:@tournament}
+    -# PC版： CSVインポート
+    %input#csv-btn.btn.btn-warning.hidden-xs.hidden-sm.pull-right(type="file")
+      CSVインポート
   - editable = (current_user == @tournament.user) ? true : false
   = render partial: "member_list", locals: {tournament: @tournament, editable: editable}
