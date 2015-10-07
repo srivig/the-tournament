@@ -16,6 +16,7 @@
 //= require twitter/bootstrap
 //= require jquery.bracket.min
 //= require jquery.tagsinput.min
+//= require ZeroClipboard.min
 //= require jquery.spin
 //= require html2canvas
 //= require turbolinks
