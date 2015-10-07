@@ -27,9 +27,11 @@
   %br
   .row.hidden-xs.hidden-sm
     .col-lg-12
-      %p
+      - embed_content = "<div style='width:100% !important;overflow:auto;-webkit-overflow-scrolling:touch !important;'><iframe src='"+ embed_tournament_url(@tournament) +"' seamless frameborder='0' width='100%' height='"+ (embed_height(@tournament.size).to_s) +"'></iframe></div>"
+      %h5
         = fa_icon("link")
         埋め込み用HTMLタグ　
-      - value = "<div style='width:100% !important;overflow:auto;-webkit-overflow-scrolling:touch !important;'><iframe src='"+ embed_tournament_url(@tournament) +"' seamless frameborder='0' width='100%' height='"+ (embed_height(@tournament.size).to_s) +"'></iframe></div>"
+        %button.btn.btn-link#clipboard(style="color:#333;padding:0;" data-toggle="tooltip" data-placement="top" title="クリップボードにタグをコピーします" data-clipboard-text="#{embed_content}")
+          = fa_icon("clipboard")
       %div#emb-link
-        %input(type="text" size="100%" value="#{value}" onfocus="this.select();" readonly)
+        %input(type="text" size="100%" value="#{embed_content}" onfocus="this.select();" readonly)

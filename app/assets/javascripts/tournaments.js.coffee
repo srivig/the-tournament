@@ -57,6 +57,10 @@ $ ->
         $("#download_btn").button("reset")
     })
 
+    # Copy to clipboard
+    $('#clipboard').tooltip()
+    zclip = new ZeroClipboard($("#clipboard"));
+
 
   # tournament#edit page - Tags input
   if $('#tournament_tag_list').length
