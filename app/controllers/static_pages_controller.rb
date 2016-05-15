@@ -18,7 +18,7 @@ class StaticPagesController < ApplicationController
   end
 
   def top
-    @tournament = Tournament.where(pickup: true).last
+    @tournament = Tournament.where(pickup: true).order(created_at: :desc).first
     @tournaments = Tournament.finished.limit(5)
   end
 
