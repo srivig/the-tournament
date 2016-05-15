@@ -25,9 +25,23 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :tournaments, dependent: :restrict_with_exception
+  has_many :plans, dependent: :restrict_with_exception
   validates :accept_terms, acceptance: true, on: :create
 
   def creatable?
-    self.tournaments.count < 3 || self.admin?
+    return true if self.admin?
+    self.tournaments.count < self.limit_count
+  end
+
+  def current_plan
+    self.plans.order(created_at: :desc).where("expires_at >= ?", Date.today).first
+  end
+
+  def limit_count
+    self.current_plan.try(:count) || Plan::DEFAULT_COUNT
+  end
+
+  def limit_size
+    self.current_plan.try(:size) || Plan::DEFAULT_SIZE
   end
 end

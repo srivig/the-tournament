@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151004084746) do
+ActiveRecord::Schema.define(version: 20160515053226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,18 @@ ActiveRecord::Schema.define(version: 20151004084746) do
     t.datetime "updated_at"
     t.string   "type",          default: "Winner"
   end
+
+  create_table "plans", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "count",      null: false
+    t.integer  "size",       null: false
+    t.date     "expires_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "plans", ["expires_at"], name: "index_plans_on_expires_at", using: :btree
+  add_index "plans", ["user_id"], name: "index_plans_on_user_id", using: :btree
 
   create_table "players", force: true do |t|
     t.integer  "tournament_id"
