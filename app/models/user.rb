@@ -24,8 +24,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :tournaments, dependent: :restrict_with_exception
-  has_many :plans, dependent: :restrict_with_exception
+  has_many :tournaments, dependent: :destroy
+  has_many :plans, dependent: :destroy
   validates :accept_terms, acceptance: true, on: :create
 
   def creatable?
