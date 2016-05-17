@@ -10,6 +10,6 @@ namespace :tasks do
   end
 
   task :delete_nonactive_users => :environment do
-    User.where("last_sign_in_at < ?", 2.year.ago).destroy_all
+    User.where("last_sign_in_at < ?", 1.year.ago).destroy_all
   end
 end
