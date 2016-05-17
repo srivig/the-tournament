@@ -19,10 +19,13 @@
   .black.text-center
     .container
       %p
-        Copyright &copy; THE TOURNAMENT  2014 All Rights Reserved.
+        Copyright &copy; THE TOURNAMENT  2014-#{Date.today.strftime("%Y")} All Rights Reserved.
       %ul.list-inline
         - unless controller.action_name == 'about'
           %li= link_to t('about_this_site'), "/about", data:{no_turbolink:true}
+        %li
+          = link_to 'http://nanapi.jp/116254/', target: '_blank' do
+            = t 'layouts.application.how_to_use'
         %li= link_to '公式ブログ', 'http://blog.the-tournament.jp/', target: '_blank'
         %li= link_to t('terms_of_use'), "/terms", target: '_blank'
         %li= link_to t('privacy_policy'), "/privacy", target: '_blank'
