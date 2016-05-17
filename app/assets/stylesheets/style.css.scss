@@ -112,6 +112,11 @@ div.tagsinput {
 }
 .container > .navbar-header { margin: 0; }
 
+#start_service {
+  margin-right: 10px;
+  a { color: #fff; }
+}
+
 /*****************************************************************
 * About
 *****************************************************************/
@@ -163,6 +168,10 @@ div.tagsinput {
   #about {
     .col-lg-4 {
       text-align: center;
+      img {
+        width: 50%;
+        border-radius: 50%;
+      }
     }
   }
 

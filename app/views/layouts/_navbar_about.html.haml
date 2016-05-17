@@ -9,9 +9,9 @@
 
   %ul.nav.navbar-nav.navbar-right
     %li
-      = link_to 'http://nanapi.jp/116254/', target: '_blank' do
-        = image_tag("wakaba.png")
-        = t 'layouts.application.how_to_use'
+      %button.btn.btn-danger.navbar-btn#start_service
+        = link_to "サービスを利用する(無料)", 'root_path'
+
     - ja_active = en_active = ''
     - (I18n.locale == :ja) ? ja_active='active' : en_active='active'
     %li{class:ja_active}= link_to 'JP', url_for(locale: :ja)
