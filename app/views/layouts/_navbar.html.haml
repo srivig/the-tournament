@@ -16,7 +16,7 @@
 
 
   %ul.nav.navbar-nav.navbar-right
-    %li= link_to 'このサイトについて', controller: 'static_pages', action: 'about'
+    %li= link_to 'このサイトについて', '/about'
     - ja_active = en_active = ''
     - (I18n.locale == :ja) ? ja_active='active' : en_active='active'
     %li{class:ja_active}= link_to 'JP', url_for(locale: :ja)
