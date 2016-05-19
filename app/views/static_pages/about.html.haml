@@ -127,7 +127,9 @@
               %strong= t('.free')
             %li.list-group-item
               %small= t('.plan_storage')
-              %strong 3
+              %strong
+                2
+                %small (※)
             %li.list-group-item
               %small= t('.plan_size')
               %strong= "32#{t('.plan_player_count')}"
@@ -165,6 +167,14 @@
             %li.list-group-item
               %small= t('.plan_size')
               %strong --
+    %div.mb-30.text-center
+      %p
+        ※無料で作成可能なトーナメント数を増やすオプションもあります。
+        %br
+        詳しくは「
+        %a(href="/gift")
+          無料のトーナメント作成数を増やす
+        」のページをご確認ください。
     %div.text-center
 
 %section#faq.text-center

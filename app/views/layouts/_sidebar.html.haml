@@ -13,8 +13,13 @@
         = link_to fa_icon("plus")+t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg', disabled: :disabled
         %small
           = t('layouts.sidebar.too_many_tournaments')
-    %p
-      = link_to t('layouts.sidebar.tournaments_list'), user_path(current_user)
+    %ul.list-group.text-left
+      %li.list-group-item
+        %i.fa.fa-gift
+        = link_to t('layouts.sidebar.get_free_tournaments'), '/gift'
+      %li.list-group-item
+        %i.fa.fa-list
+        = link_to t('layouts.sidebar.tournaments_list'), user_path(current_user)
   - else
     = link_to fa_icon("plus")+t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
     %small= t('layouts.sidebar.need_signin_or_signup_html', signin_link: link_to(t('signin'), new_user_session_path), signup_link: link_to(t('signup'), new_user_registration_path))
