@@ -10,8 +10,12 @@ class TournamentsController < ApplicationController
 
   def show
     redirect_to pretty_tournament_path(@tournament, @tournament.encoded_title), status: 301 if params[:title] != @tournament.encoded_title
+    is_tutorial_needed = flash[:notice].present? && current_user.tournaments.count == 1
+    p "---"
+    p is_tutorial_needed
 
     gon.push({
+      is_tutorial_needed: is_tutorial_needed,
       tournament_data: @tournament.tournament_data,
       skip_secondary_final: (@tournament.de?) ? !@tournament.secondary_final : false,
       skip_consolation_round: !@tournament.consolation_round,
@@ -47,7 +51,7 @@ class TournamentsController < ApplicationController
         flash[:log] = "<script>ga('send', 'event', 'tournament', 'create');</script>".html_safe
 
         flash[:notice] = I18n.t('flash.tournament.create.success')
-        format.html { redirect_to tournament_path(@tournament) }
+        format.html { redirect_to pretty_tournament_path(@tournament, @tournament.encoded_title) }
         format.json { render action: 'show', status: :created, location: @tournament }
       else
         flash.now[:alert] = I18n.t('flash.tournament.create.failure')
@@ -90,7 +94,7 @@ class TournamentsController < ApplicationController
   def destroy
     @tournament.destroy
     respond_to do |format|
-      format.html { redirect_to tournaments_path, notice: 'トーナメントを削除しました' }
+      format.html { redirect_to root_path, notice: 'トーナメントを削除しました' }
       format.json { head :no_content }
     end
   end

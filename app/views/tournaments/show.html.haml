@@ -35,3 +35,28 @@
           = fa_icon("clipboard")
       %div#emb-link
         %input(type="text" size="100%" value="#{embed_content}" onfocus="this.select();" readonly)
+
+#modal-tutorial.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title
+          トーナメント作成ありがとうございます！
+      .modal-body
+        %p
+          ありがとうございます！トーナメント完成まであと一歩です。
+          %br
+          このあとは「参加者登録」「試合結果登録」へと進んで下さい。
+        %p
+          初めてのトーナメント表を最後まで完成させると、
+          %br
+          %span.text-danger トーナメント作成数を無料で１枠増加
+          させることができます。
+          %br
+          %a(href="/gift" target="_blank") （詳細はこちら）
+        %p
+          ぜひトーナメントを完成させてみてください！
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close

@@ -61,6 +61,10 @@ $ ->
     $('#clipboard').tooltip()
     zclip = new ZeroClipboard($("#clipboard"));
 
+    # Show Tutorial
+    if gon.is_tutorial_needed
+      $("#modal-tutorial").modal()
+
 
   # tournament#edit page - Tags input
   if $('#tournament_tag_list').length
