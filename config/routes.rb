@@ -15,7 +15,7 @@ TheTournament::Application.routes.draw do
       resources :players
       resources :games
     end
-    match 'tournaments/:id/(:title)', to: 'tournaments#show', via: :get, as: :pretty_tournament
+    match 'tournaments/:id/(:title)', to: 'tournaments#show', via: :get, as: :pretty_tournament, constraints: {title: /[^\/]+/}
     match ':action', controller: :static_pages, via: :get
 
     scope :embed do

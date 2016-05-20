@@ -25,7 +25,7 @@
       %div.panel.panel-default
         .list-group
           - @tournaments.each do |tournament|
-            =link_to tournament_path(tournament), class: 'list-group-item clearfix', data:{no_turbolink:true} do
+            =link_to pretty_tournament_path(tournament, tournament.encoded_title), class: 'list-group-item clearfix', data:{no_turbolink:true} do
               %span.list-group-item-heading
                 = tournament.title
                 = fa_icon("angle-right", "pull-right")
