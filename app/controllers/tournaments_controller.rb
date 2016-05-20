@@ -36,6 +36,12 @@ class TournamentsController < ApplicationController
   end
 
   def new
+    if !current_user.creatable?
+      link = "(<a href=\"/gift\">無料作成枠を増やす</a>)"
+      flash[:alert] = "トーナメント作成数の上限に達しています。#{link}".html_safe
+      redirect_to root_path
+    end
+
     @tournament = Tournament.new
   end
 
@@ -44,7 +50,7 @@ class TournamentsController < ApplicationController
     @tournament.user = current_user
 
     respond_to do |format|
-      if @tournament.save
+      if @tournament.save && current_user.creatable?
         # GAにイベントを送信
         flash[:log] = "<script>ga('send', 'event', 'tournament', 'create');</script>".html_safe
 
