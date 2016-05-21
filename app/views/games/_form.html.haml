@@ -50,6 +50,10 @@
           - @game.game_records.each do |r|
             %option(value="#{r.record_num}")= r.player.name
 
+  %div.mb-30
+    %small コメント(オプション)
+    .row
+      = f.input :comment, label: false, hint: "24文字まで。トーナメント表マウスオーバー時に表示されます"
 
   .form-group
     = f.button :submit, class: 'btn-danger'

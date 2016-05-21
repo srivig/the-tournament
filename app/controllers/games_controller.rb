@@ -15,6 +15,8 @@ class GamesController < ApplicationController
   end
 
   def update
+    p "----"
+    p game_params
     respond_to do |format|
       tnmt_finished = @game.tournament.finished?
       if @game.update(game_params)
@@ -47,6 +49,6 @@ class GamesController < ApplicationController
     end
 
     def game_params
-      params.require(:game).permit(:id, :tournament_id, :bracket, :round, :match, game_records_attributes: [:id, :player_id, :score, :winner])
+      params.require(:game).permit(:id, :tournament_id, :bracket, :round, :match, :comment, game_records_attributes: [:id, :player_id, :score, :winner, :comment])
     end
 end
