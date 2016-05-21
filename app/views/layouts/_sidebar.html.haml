@@ -25,6 +25,13 @@
     = link_to fa_icon("plus")+t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
     %small= t('layouts.sidebar.need_signin_or_signup_html', signin_link: link_to(t('signin'), new_user_session_path), signup_link: link_to(t('signup'), new_user_registration_path))
 
+-# Ad
+%section.text-center
+  %script(async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")
+  %ins(class="adsbygoogle" style="display:inline-block;width:250px;height:250px;" data-ad-client="ca-pub-7703471297541925" data-ad-slot="9725523161")
+  %script
+    (adsbygoogle = window.adsbygoogle || []).push({});
+
 -# Search
 %section
   %h4

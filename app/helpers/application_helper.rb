@@ -13,10 +13,10 @@ module ApplicationHelper
 
   def embed_height(tournament_size)
     case tournament_size
-    when 32; 1200
-    when 16; 630
-    when 8;  380
-    when 4;  300
+    when 32; 1200 + 100
+    when 16; 630 + 100
+    when 8;  380 + 100
+    when 4;  300 + 100
     end
   end
 end

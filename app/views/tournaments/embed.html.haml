@@ -25,10 +25,16 @@
       #emb-body
         #tournament
         #emb-ad
-          %script(async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")
-          %ins(class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7703471297541925" data-ad-slot="1630506761" data-ad-format="auto")
-          %script
-            (adsbygoogle = window.adsbygoogle || []).push({});
+          .visible-md.visible-lg
+            %script(async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")
+            %ins(class="adsbygoogle" style="display:block;width:728px;height:90px;" data-ad-client="ca-pub-7703471297541925" data-ad-slot="8946793961")
+            %script
+              (adsbygoogle = window.adsbygoogle || []).push({});
+          .visible-xs.visible-sm
+            %script(async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")
+            %ins(class="adsbygoogle" style="display:block;width:320px;height:100px;" data-ad-client="ca-pub-7703471297541925" data-ad-slot="2481457962")
+            %script
+              (adsbygoogle = window.adsbygoogle || []).push({});
         #emb-footer
           %ul.list-inline
             %li
