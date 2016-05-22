@@ -13,6 +13,12 @@
         = link_to fa_icon("plus")+t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg', disabled: :disabled
         %small
           = t('layouts.sidebar.too_many_tournaments')
+    %p
+      トーナメント作成数:
+      %strong.text-danger
+        = current_user.tournaments.count
+      \/
+      = current_user.limit_count
     %br
     %ul.list-group.text-left
       %li.list-group-item

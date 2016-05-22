@@ -27,7 +27,7 @@
   %br
   .row.hidden-xs.hidden-sm
     .col-lg-12
-      - embed_content = "<div style='width:100% !important;overflow:auto;-webkit-overflow-scrolling:touch !important;'><iframe src='"+ embed_tournament_url(@tournament) +"' seamless frameborder='0' width='100%' height='"+ (embed_height(@tournament.size).to_s) +"'></iframe></div>"
+      - embed_content = "<div style='position: relative!;width:100% !important;max-width:100% !important;overflow:auto !important;-webkit-overflow-scrolling:touch !important;'><iframe src='"+ embed_tournament_url(@tournament) +"' seamless frameborder='0' width='100%' height='"+ (embed_height(@tournament.size).to_s) +"'></iframe></div>"
       %h5
         = fa_icon("link")
         埋め込み用HTMLタグ　
