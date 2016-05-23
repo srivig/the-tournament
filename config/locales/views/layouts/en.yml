@@ -13,3 +13,4 @@ en:
       tournaments_list: See your tournaments
       mypage: My Page
       need_signin_or_signup_html: "%{signin_link} or %{signup_link} needed."
+      tournaments_created: Tournaments created

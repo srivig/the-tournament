@@ -13,3 +13,4 @@ ja:
       tournaments_list: 作成済みトーナメント
       mypage: マイページ
       need_signin_or_signup_html: "%{signin_link}もしくは%{signup_link}が必要です。"
+      tournaments_created: トーナメント作成数

@@ -14,7 +14,7 @@
         %small
           = t('layouts.sidebar.too_many_tournaments')
     %p
-      トーナメント作成数:
+      = t('layouts.sidebar.tournaments_created') + ":"
       %strong.text-danger
         = current_user.tournaments.count
       \/
@@ -50,7 +50,3 @@
   .well
     - tag_cloud(Tournament.tag_counts_on(:tags, limit: 40, order: "count desc"), %w(css1 css2 css3 css4)) do |tag, css_class|
       = link_to tag.name, tournaments_path(tag: tag.name), class: css_class
-
--# Message Leaf
-%script(type='text/javascript' src='https://www.messageleaf.jp/embed.js')
-%script new MSGLF({ titleBgColor: '#4B75B9', titleFontColor: '#FFFFFF', position: 'right', gadgetTitle: 'お問い合わせ' }).changeDesign();
