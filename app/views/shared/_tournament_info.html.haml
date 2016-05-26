@@ -42,15 +42,8 @@
 
 
 - if tournament.user == current_user
-  %section.hidden-xs.hidden-sm
+  %section
     = link_to fa_icon("users")+'参加者を登録する', tournament_players_path(tournament), class: "btn btn-primary"
+    %br.hidden-md.hidden-lg
+    %br.hidden-md.hidden-lg
     = link_to fa_icon("list-alt")+'試合結果を登録する', tournament_games_path(tournament), class: "btn btn-primary"
-  .btn-group.hidden-md.hidden-lg
-    %button.btn.btn-primary.dropdown-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-      管理者メニュー
-      %span.caret
-    %ul.dropdown-menu
-      %li
-        = link_to fa_icon("users")+'参加者を登録する', tournament_players_path(tournament)
-      %li
-        = link_to fa_icon("list-alt")+'試合結果を登録する', tournament_games_path(tournament)
