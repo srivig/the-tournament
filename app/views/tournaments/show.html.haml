@@ -1,4 +1,4 @@
-= content_for :page_title, @tournament.title
+= content_for :page_title, "#{@tournament.title}のトーナメント"
 = content_for :keywords, @tournament.title
 
 = render partial: "shared/tournament_info", locals: {tournament:@tournament, active:1}

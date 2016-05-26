@@ -1,4 +1,5 @@
-= content_for :page_title, "Tournaments"
+- keyword = params[:q] || params[:tag] || params[:category] || "すべて"
+= content_for :page_title, "#{keyword}のトーナメント一覧"
 = content_for :canonical, tournaments_url
 
 %div
@@ -17,18 +18,8 @@
 
 %section
   %h1.headline
-    - if params[:q].present?
-      = fa_icon("search")
-      = t('.keyword_search_result', q: params[:q])
-    - elsif params[:tag].present?
-      = fa_icon("tags")
-      = t('.tag_search_result', tag: params[:tag])
-    - elsif params[:category].present?
-      = fa_icon("folder")
-      = t('.category_search_result', category: params[:category])
-    - else
-      = fa_icon("bell")
-      = t('tournament_info.all_tournaments')
+    = fa_icon("search")
+    = t('.keyword_search_result', q: keyword)
   .list-group
     - if @tournaments.blank?
       .list-group-item No Tournament was found for "#{params[:q]}".
