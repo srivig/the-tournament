@@ -43,7 +43,15 @@
 
 - if tournament.user == current_user
   %section
-    = link_to fa_icon("users")+'参加者を登録する', tournament_players_path(tournament), class: "btn btn-primary"
-    %br.hidden-md.hidden-lg
-    %br.hidden-md.hidden-lg
-    = link_to fa_icon("list-alt")+'試合結果を登録する', tournament_games_path(tournament), class: "btn btn-primary"
+    .visible-xs.visible-sm
+      = link_to tournament_players_path(tournament), class: "btn btn-primary" do
+        = fa_icon('users')
+        %br
+        参加者登録
+      = link_to tournament_games_path(tournament), class: "btn btn-primary" do
+        = fa_icon('list-alt')
+        %br
+        試合結果登録
+    .visible-md.visible-lg
+      = link_to fa_icon("users")+'参加者を登録する', tournament_players_path(tournament), class: "btn btn-primary"
+      = link_to fa_icon("list-alt")+'試合結果を登録する', tournament_games_path(tournament), class: "btn btn-primary"
