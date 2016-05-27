@@ -48,19 +48,19 @@ class Tournament < ActiveRecord::Base
 
   def self.search_tournaments(params)
     if params[:q]
-      tournaments = Tournament.finished.where('title LIKE ? OR detail LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%")
+      tournaments = Tournament.where('title LIKE ? OR detail LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%")
     elsif params[:tag]
-      tournaments = Tournament.finished.tagged_with(params[:tag])
+      tournaments = Tournament.tagged_with(params[:tag])
     elsif params[:category]
       if params[:category] != 'others'
         tags = Category.where(category_name: params[:category]).map(&:tag_name)
-        tournaments = Tournament.finished.tagged_with(tags, any:true)
+        tournaments = Tournament.tagged_with(tags, any:true)
       else
         tags = Category.all.map(&:tag_name)
-        tournaments = Tournament.finished.tagged_with(tags, exclude:true)
+        tournaments = Tournament.tagged_with(tags, exclude:true)
       end
     else
-      tournaments = Tournament.finished
+      tournaments = Tournament.all
     end
     tournaments
   end

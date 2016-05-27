@@ -34,12 +34,12 @@
     = fa_icon('star')
     Pickup!
   %div(style="width:100% !important;overflow:auto;-webkit-overflow-scrolling:touch !important;")
-    %iframe{src: embed_tournament_url(@tournament), seamless:true, frameborder:0, width:'100%', height:embed_height(@tournament.size).to_s}
+    %iframe{src: embed_tournament_url(@pickup), seamless:true, frameborder:0, width:'100%', height:embed_height(@pickup.size).to_s}
 
 
 %section
   %h1.headline
-    = fa_icon('rss')
+    = fa_icon('bullhorn')
     = t '.new_tournaments'
   .list-group
     - @tournaments.each do |tournament|
@@ -48,7 +48,20 @@
           %span.label.label-warning New!
         %span.list-group-item-heading
           = tournament.title
-          -# %i.fa.fa-angle-right.pull-right
           = fa_icon("angle-right", "pull-right")
         %small (#{tournament.created_at.strftime("%Y.%m.%d")})
+    = link_to fa_icon("angle-double-right")+t('.show_more'), tournaments_path, class: "pull-right"
+
+%section
+  %h1.headline
+    = fa_icon('refresh')
+    = t '.wip_tournaments'
+  .list-group
+    - @unfinished_tnmts.each do |tournament|
+      =link_to pretty_tournament_path(tournament, tournament.encoded_title), class: 'list-group-item clearfix', data:{no_turbolink:true} do
+        %span.list-group-item-heading
+          = tournament.title
+          = fa_icon("angle-right", "pull-right")
+          %small (#{tournament.created_at.strftime("%Y.%m.%d")})
+        %span.label.label-default= t('.wip')
     = link_to fa_icon("angle-double-right")+t('.show_more'), tournaments_path, class: "pull-right"

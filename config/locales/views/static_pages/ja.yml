@@ -4,6 +4,9 @@ ja:
       carousel_caption_1: THE TOURNAMENTは、トーナメント形式の大会運営をサポートします。
       carousel_caption_2: スポーツ、ボードゲームなど様々な用途に利用できます。
       new_tournaments: 新着トーナメント
+      wip_tournaments: 作成中トーナメント
+      wip: 作成中
+      finished: 完了
       show_more: もっと見る
       create_tournament: 新しいトーナメントを作成する
       need_login: ログインもしくは会員登録が必要です。
