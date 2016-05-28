@@ -17,8 +17,3 @@ Now under SuperBETA.
     >postgres=# ALTER ROLE tnmt WITH CREATEDB;
     % bundle exec rake db:create RAILS_ENV=test
     % bundle exec rake db:migrate RAILS_ENV=test
-
-
-## Heroku DB Cleaning
-
-    heroku run rake tasks:delete_unfinished_tournaments

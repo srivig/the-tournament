@@ -19,9 +19,10 @@
     .container
       %p
         Copyright &copy; THE TOURNAMENT  2014-#{Date.today.strftime("%Y")} All Rights Reserved.
-      %ul.list-inline
+      %p
         - unless controller.action_name == 'about'
-          %li= link_to t('about_this_site'), "/about", data:{no_turbolink:true}
+          = link_to t('site_description'), "/about", data:{no_turbolink:true}
+      %ul.list-inline
         %li
           = link_to 'http://nanapi.jp/116254/', target: '_blank' do
             = t 'layouts.application.how_to_use'

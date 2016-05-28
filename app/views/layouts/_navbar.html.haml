@@ -1,4 +1,4 @@
-= nav_bar responsive: true, brand: image_tag("logo_w.png", alt: "THE TOURNAMENT") do
+= nav_bar responsive: true, brand: image_tag("logo_w.png", alt: "THE TOURNAMENT"), brand_link: '/about' do
   = menu_group do
     %p.navbar-text.hidden-xs.hidden-sm= t('site_description')
 
@@ -17,7 +17,6 @@
 
 
   %ul.nav.navbar-nav.navbar-right
-    %li= link_to t('about_this_site'), "/about", data:{no_turbolink:true}
     - ja_active = en_active = ''
     - (I18n.locale == :ja) ? ja_active='active' : en_active='active'
     %li.visible-md.visible-lg{class:ja_active}= link_to 'JP', url_for(locale: :ja)
