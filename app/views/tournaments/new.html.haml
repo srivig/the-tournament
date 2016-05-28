@@ -21,17 +21,12 @@
       試合結果の登録
   -# SP版
   .visible-xs.visible-sm
-    .btn-group.btn-group-justified(role="group")
-      = link_to "#", class: "btn btn-primary" do
-        %h4 1
-        基本情報
-      = link_to "#", class: "btn btn-default disabled" do
-        %h4 2
-        参加者
-      = link_to "#", class: "btn btn-default disabled" do
-        %h4 3
-        試合結果
-
+    = link_to "#", class: "btn btn-primary btn-block" do
+      %h5 1. 基本情報の登録
+    = link_to "#", class: "btn btn-default btn-block" do
+      %h5 2.参加者の登録
+    = link_to "#", class: "btn btn-default btn-block" do
+      %h5 3. 試合結果の登録
 %hr
 
 %section
