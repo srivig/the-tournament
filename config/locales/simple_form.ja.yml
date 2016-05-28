@@ -17,7 +17,7 @@ ja:
         password: パスワード
         password_confirmation: パスワードの確認入力
       tournament:
-        title: 大会名
+        title: トーナメント名
         detail: 概要
         place: 開催地
         url:  URL
@@ -30,8 +30,8 @@ ja:
         profile_img: プロフィール画像
     placeholders:
       tournament:
-        detail: 大会の概要、詳細な説明など
-        url: 大会の公式URLなど
+        detail: トーナメントの概要、詳細な説明など
+        url: 公式URLなど
     inline_labels:
       tournament:
         consolation_round: ３位決定戦を実施する
@@ -41,7 +41,7 @@ ja:
         profile_img: プロフィール画像を変更する
     hints:
       tournament:
-        size: ※32名より大きな大会は有料プランユーザーのみ利用可能です
+        size: ※32名より大きな大会は有料プランへの登録が必要です
         type: ダブルイリミネーション(敗者復活戦あり)形式は有料プランユーザーのみ利用可能です
       user:
         profile_img: Gravatarという外部のサービスへの登録が必要になります
