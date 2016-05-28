@@ -28,6 +28,11 @@
   - if tournament.url.present?
     %p= link_to "#{tournament.url} <i class='fa fa-external-link'></i>".html_safe, tournament.url, target:'_blank'
 
+-# 所有者のみ編集ボタン表示
+- if tournament.user == current_user
+  %section.well
+    = link_to 'トーナメントを編集する', tournament_players_path(tournament), class: "btn btn-danger btn-block btn-lg center-block"
+
 -# PC版: タブでメニュー表示
 %ul.nav.nav-tabs.mb-30.hidden-xs.hidden-sm
   %li{class: (active==1) ? 'active' : ''}
@@ -36,22 +41,11 @@
     =link_to t('tournament_menu.games'), tournament_games_path(tournament)
   %li{class: (active==3) ? 'active' : ''}
     =link_to t('tournament_menu.players'), tournament_players_path(tournament)
-  - if tournament.user == current_user
-    %li{class: (active==4) ? 'active' : ''}
-      =link_to t('tournament_menu.basic_info'), edit_tournament_path(tournament)
-
-
-- if tournament.user == current_user
-  %section
-    .visible-xs.visible-sm
-      = link_to tournament_players_path(tournament), class: "btn btn-primary" do
-        = fa_icon('users')
-        %br
-        参加者登録
-      = link_to tournament_games_path(tournament), class: "btn btn-primary" do
-        = fa_icon('list-alt')
-        %br
-        試合結果登録
-    .visible-md.visible-lg
-      = link_to fa_icon("users")+'参加者を登録する', tournament_players_path(tournament), class: "btn btn-primary"
-      = link_to fa_icon("list-alt")+'試合結果を登録する', tournament_games_path(tournament), class: "btn btn-primary"
+-# SP版: Pillsでメニュー表示
+%ul.nav.nav-pills.nav-stacked.mb-30.hidden-md.hidden-lg
+  %li{class: (active==1) ? 'active' : ''}
+    =link_to t('tournament_menu.tournament_bracket'), pretty_tournament_path(tournament, tournament.encoded_title), data:{no_turbolink:true}
+  %li{class: (active==2) ? 'active' : ''}
+    =link_to t('tournament_menu.games'), tournament_games_path(tournament)
+  %li{class: (active==3) ? 'active' : ''}
+    =link_to t('tournament_menu.players'), tournament_players_path(tournament)
