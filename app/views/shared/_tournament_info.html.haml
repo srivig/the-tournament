@@ -30,22 +30,31 @@
 
 -# 所有者のみ編集ボタン表示
 - if tournament.user == current_user
-  %section.well
-    = link_to 'トーナメントを編集する', tournament_players_path(tournament), class: "btn btn-danger btn-block btn-lg center-block"
+  %section.well.text-center
+    = link_to 'トーナメント情報編集', tournament_players_path(tournament), class: "btn btn-danger btn-block btn-lg center-block"
+    %small トーナメント情報の編集・参加者の登録・試合結果の登録はこちらから可能です。
+
+%hr.visible-xs.visible-sm
 
 -# PC版: タブでメニュー表示
-%ul.nav.nav-tabs.mb-30.hidden-xs.hidden-sm
+%ul.nav.nav-tabs.mb-30.visible-md.visible-lg
   %li{class: (active==1) ? 'active' : ''}
     =link_to t('tournament_menu.tournament_bracket'), pretty_tournament_path(tournament, tournament.encoded_title), data:{no_turbolink:true}
   %li{class: (active==2) ? 'active' : ''}
     =link_to t('tournament_menu.games'), tournament_games_path(tournament)
   %li{class: (active==3) ? 'active' : ''}
     =link_to t('tournament_menu.players'), tournament_players_path(tournament)
+  - if tournament.user == current_user
+    %li{class: (active==4) ? 'active' : ''}
+      =link_to t('tournament_menu.basic_info'), edit_tournament_path(tournament)
 -# SP版: Pillsでメニュー表示
-%ul.nav.nav-pills.nav-stacked.mb-30.hidden-md.hidden-lg
+%ul.nav.nav-pills.nav-stacked.visible-xs.visible-sm
   %li{class: (active==1) ? 'active' : ''}
     =link_to t('tournament_menu.tournament_bracket'), pretty_tournament_path(tournament, tournament.encoded_title), data:{no_turbolink:true}
   %li{class: (active==2) ? 'active' : ''}
     =link_to t('tournament_menu.games'), tournament_games_path(tournament)
   %li{class: (active==3) ? 'active' : ''}
     =link_to t('tournament_menu.players'), tournament_players_path(tournament)
+  - if tournament.user == current_user
+    %li{class: (active==4) ? 'active' : ''}
+      =link_to t('tournament_menu.basic_info'), edit_tournament_path(tournament)

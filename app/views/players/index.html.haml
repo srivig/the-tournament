@@ -7,7 +7,5 @@
   %h1.headline
     = fa_icon("users")
     = t('tournament_menu.players')
-    -# SP版: ボタングループでメニュー表示
-    = render partial: "shared/sp_tournament_menu", locals: {tournament:@tournament} 
   - editable = (current_user == @tournament.user) ? true : false
   = render partial: "member_list", locals: {tournament: @tournament, editable: editable}

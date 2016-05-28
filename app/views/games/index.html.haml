@@ -7,14 +7,6 @@
   %h1.headline
     = fa_icon("list-alt")
     = t('tournament_menu.games')
-    -# SP版: ボタングループでメニュー表示
-    = render partial: "shared/sp_tournament_menu", locals: {tournament:@tournament}
-  -# %div.mb-30
-  -#   %ul.nav.nav-pills
-  -#     %li.active
-  -#       %a(href="#") Winner Bracket
-  -#     %li
-  -#       %a(href="#") Loser Bracket
 
   - editable = (current_user == @tournament.user) ? true : false
   - if @tournament.de?
