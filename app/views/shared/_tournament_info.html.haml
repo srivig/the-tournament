@@ -28,12 +28,11 @@
   - if tournament.url.present?
     %p= link_to "#{tournament.url} <i class='fa fa-external-link'></i>".html_safe, tournament.url, target:'_blank'
 
-/
-  -# 所有者のみ編集ボタン表示
-  - if tournament.user == current_user
-    %section.well.text-center
-      = link_to 'トーナメント情報編集', tournament_players_path(tournament), class: "btn btn-danger btn-block btn-lg center-block"
-      %small トーナメント情報の編集・参加者の登録・試合結果の登録はこちらから可能です。
+-# 所有者のみ編集ボタン表示
+- if tournament.user == current_user
+  %section.well.text-center
+    = link_to fa_icon("cog")+'トーナメント情報編集', tournament_players_path(tournament), class: "btn btn-danger btn-block btn-lg center-block"
+    %small トーナメント情報の編集・参加者の登録・試合結果の登録はこちらから可能です。
 
 %hr.visible-xs.visible-sm
 

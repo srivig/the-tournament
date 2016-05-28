@@ -6,6 +6,34 @@
     = t('.create_new_tournament')
 
 %section
+  -# PC版
+  .visible-md.visible-lg
+    = link_to "#", class: "btn btn-primary btn-lg" do
+      %h4 1
+      基本情報登録
+    = fa_icon("arrow-right")
+    = link_to "#", class: "btn btn-default btn-lg disabled" do
+      %h4 2
+      参加者の登録
+    = fa_icon("arrow-right")
+    = link_to "#", class: "btn btn-default btn-lg disabled" do
+      %h4 3
+      試合結果の登録
+  -# SP版
+  .visible-xs.visible-sm
+    .btn-group.btn-group-justified(role="group")
+      = link_to "#", class: "btn btn-primary" do
+        %h4 1
+        基本情報
+      = link_to "#", class: "btn btn-default disabled" do
+        %h4 2
+        参加者
+      = link_to "#", class: "btn btn-default disabled" do
+        %h4 3
+        試合結果
+
+
+%section
   %h1.headline
     = fa_icon("cog")
     = t('tournament_menu.basic_info')
