@@ -1,0 +1,30 @@
+%section
+  - btn_1_class = (step==1) ? 'btn-primary' : 'btn-default'
+  - btn_2_class = (step==2) ? 'btn-primary' : 'btn-default'
+  - btn_3_class = (step==3) ? 'btn-primary' : 'btn-default'
+
+  -# PC版
+  .visible-md.visible-lg
+    = link_to edit_tournament_path(tournament), class: "btn #{btn_1_class} btn-lg" do
+      %h4 1
+      基本情報の登録
+    = fa_icon("arrow-right")
+    = link_to tournament_edit_players_path(tournament), class: "btn #{btn_2_class} btn-lg" do
+      %h4 2
+      参加者の登録
+    = fa_icon("arrow-right")
+    = link_to tournament_edit_games_path(tournament), class: "btn #{btn_3_class} btn-lg" do
+      %h4 3
+      試合結果の登録
+  -# SP版
+  .visible-xs.visible-sm.text-center
+    - btn_class = (step==1) ? 'btn-primary' : 'btn-default'
+    = link_to edit_tournament_path(tournament), class: "btn #{btn_1_class} btn-lg btn-block" do
+      1. 基本情報の登録
+    = fa_icon("arrow-down")
+    = link_to tournament_edit_players_path(tournament), class: "btn #{btn_2_class} btn-lg btn-block" do
+      2.参加者の登録
+    = fa_icon("arrow-down")
+    = link_to tournament_edit_games_path(tournament), class: "btn #{btn_3_class} btn-lg btn-block" do
+      3. 試合結果の登録
+%hr

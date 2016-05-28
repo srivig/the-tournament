@@ -1,7 +1,8 @@
 = content_for :page_title, "#{@tournament.title} #{t('tournament_menu.basic_info')}"
 = content_for :keywords, @tournament.title
 
-= render partial: "shared/tournament_info", locals: {tournament:@tournament, active:4}
+= render partial: "shared/tournament_info", locals: {tournament:@tournament, editable: false}
+= render partial: "shared/tournament_navi", locals: {tournament:@tournament, step:1}
 
 %section
   %h1.headline

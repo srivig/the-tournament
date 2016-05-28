@@ -13,8 +13,9 @@ TheTournament::Application.routes.draw do
     resources :tournaments, shallow: true do
       get 'page/:page', action: :index, on: :collection
       resources :players
-      match 'players/edit_all', to: 'players#edit_all', via: :get, as: :edit_all_players
+      match 'players/edit_all', to: 'players#edit_all', via: :get, as: :edit_players
       resources :games
+      match 'games/edit_all', to: 'games#edit_all', via: :get, as: :edit_games
     end
     match 'tournaments/:id/(:title)', to: 'tournaments#show', via: :get, as: :pretty_tournament, constraints: {title: /[^\/]+/}
     match ':action', controller: :static_pages, via: :get

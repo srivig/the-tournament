@@ -1,10 +1,13 @@
 class GamesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_game, only: [:show, :edit, :update, :destroy]
+  before_action :set_tournament, only: [:index, :edit_all]
   load_and_authorize_resource
 
   def index
-    @tournament = Tournament.find(params[:tournament_id])
+  end
+
+  def edit_all
   end
 
   def edit
@@ -46,6 +49,10 @@ class GamesController < ApplicationController
   private
     def set_game
       @game = Game.find(params[:id])
+    end
+
+    def set_tournament
+      @tournament = Tournament.find(params[:tournament_id])
     end
 
     def game_params
