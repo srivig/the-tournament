@@ -10,7 +10,7 @@
   .visible-md.visible-lg
     = link_to "#", class: "btn btn-primary btn-lg" do
       %h4 1
-      基本情報登録
+      基本情報の登録
     = fa_icon("arrow-right")
     = link_to "#", class: "btn btn-default btn-lg disabled" do
       %h4 2
@@ -32,9 +32,10 @@
         %h4 3
         試合結果
 
+%hr
 
 %section
   %h1.headline
-    = fa_icon("cog")
+    = fa_icon("info-circle")
     = t('tournament_menu.basic_info')
   = render :partial => "form"

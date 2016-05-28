@@ -55,7 +55,7 @@ class TournamentsController < ApplicationController
         flash[:log] = "<script>ga('send', 'event', 'tournament', 'create');</script>".html_safe
 
         flash[:notice] = I18n.t('flash.tournament.create.success')
-        format.html { redirect_to pretty_tournament_path(@tournament, @tournament.encoded_title) }
+        format.html { redirect_to tournament_edit_players_path(@tournament) }
         format.json { render action: 'show', status: :created, location: @tournament }
       else
         flash.now[:alert] = I18n.t('flash.tournament.create.failure')
@@ -71,12 +71,12 @@ class TournamentsController < ApplicationController
   def update
     # Players一覧更新時
     if params[:tournament][:players_attributes].present?
-      success_url = tournament_players_path(@tournament)
+      success_url = tournament_edit_games_path(@tournament)
       success_notice = I18n.t('flash.players.update.success')
-      failure_url = 'players/index'
+      failure_url = 'players/edit_all'
       failure_notice = I18n.t('flash.players.update.failure')
     else
-      success_url = edit_tournament_path(@tournament)
+      success_url = tournament_edit_players_path(@tournament)
       success_notice = I18n.t('flash.tournament.update.success')
       failure_url = {action: 'edit'}
       failure_notice = I18n.t('flash.tournament.update.failure')

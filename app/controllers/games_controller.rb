@@ -18,8 +18,6 @@ class GamesController < ApplicationController
   end
 
   def update
-    p "----"
-    p game_params
     respond_to do |format|
       tnmt_finished = @game.tournament.finished?
       if @game.update(game_params)
@@ -27,7 +25,7 @@ class GamesController < ApplicationController
         tnmt_finished_now = @game.tournament.finished? && !tnmt_finished #親tournamentがはじめてfinishedになったことを検知
         flash[:log] = "<script>ga('send', 'event', 'tournament', 'finished');</script>".html_safe if tnmt_finished_now
 
-        format.html { redirect_to tournament_games_path(@game.tournament), notice: I18n.t('flash.game.update.success')}
+        format.html { redirect_to tournament_edit_games_path(@game.tournament), notice: I18n.t('flash.game.update.success')}
         format.json { head :no_content }
       else
         flash.now[:alert] = I18n.t('flash.game.update.failure')

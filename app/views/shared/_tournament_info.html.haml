@@ -14,11 +14,10 @@
 
 %section
   %h1.title.clearfix
-    =tournament.title
-    - if tournament.place.present?
-      %small @#{tournament.place}
+    = link_to tournament.title, pretty_tournament_path(tournament, tournament.title), data:{no_turbolink:true}
     %small.pull-right= tournament.created_at.strftime("%Y.%m.%d")
-
+  - if tournament.place.present?
+    %small @#{tournament.place}
   %ul.list-inline
     - tournament.tag_list.each do |tag|
       %li
