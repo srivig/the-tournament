@@ -1,0 +1,46 @@
+= content_for :page_title, "#{@tournament.title} #{t('tournament_menu.players')}"
+= content_for :keywords, @tournament.title
+
+%section
+  %h1.title.clearfix
+    参加者情報の登録
+
+%section
+  -# PC版
+  .visible-md.visible-lg
+    = link_to "#", class: "btn btn-default btn-lg" do
+      %h4 1
+      基本情報登録
+    = fa_icon("arrow-right")
+    = link_to "#", class: "btn btn-primary btn-lg" do
+      %h4 2
+      参加者の登録
+    = fa_icon("arrow-right")
+    = link_to "#", class: "btn btn-default btn-lg disabled" do
+      %h4 3
+      試合結果の登録
+  -# SP版
+  .visible-xs.visible-sm
+    .btn-group.btn-group-justified(role="group")
+      = link_to "#", class: "btn btn-default" do
+        %h4 1
+        基本情報
+      = link_to "#", class: "btn btn-primary" do
+        %h4 2
+        参加者
+      = link_to "#", class: "btn btn-default disabled" do
+        %h4 3
+        試合結果
+
+
+%section#member-list
+  %h1.headline
+    = fa_icon("users")
+    = t('tournament_menu.players')
+  - editable = (current_user == @tournament.user) ? true : false
+  - if editable
+    %strong.text-right.text-danger ※名前を空白にすると、対戦相手がシード扱いになります。
+    %br
+    %small.text-right.hidden-sm.hidden-xs ※国を登録するとトーナメント表に国旗アイコンが表示されます。
+    %small.text-right.hidden-md.hidden-lg ※国・所属など詳細を登録したい場合は、PCから操作してください。
+  = render partial: "member_list", locals: {tournament: @tournament, editable: editable}

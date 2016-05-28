@@ -1,6 +1,3 @@
-- if editable
-  %small.text-right.hidden-sm.hidden-xs ※国を登録するとトーナメント表に国旗アイコンが表示されます。
-
 = simple_form_for @tournament.becomes(Tournament), html: {class: 'form-horizontal'} do |f|
   - f.object = @tournament.becomes(@tournament.class)
   .panel.panel-default

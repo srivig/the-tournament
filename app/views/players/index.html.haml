@@ -8,4 +8,4 @@
     = fa_icon("users")
     = t('tournament_menu.players')
   - editable = (current_user == @tournament.user) ? true : false
-  = render partial: "member_list", locals: {tournament: @tournament, editable: editable}
+  = render partial: "member_list", locals: {tournament: @tournament, editable: false}
