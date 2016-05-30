@@ -1,6 +1,5 @@
 - keyword = params[:q] || params[:tag] || params[:category] || "すべて"
 = content_for :page_title, "#{keyword}のトーナメント一覧"
-= content_for :canonical, tournaments_url
 
 %div
   %ol.breadcrumb

@@ -57,6 +57,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'annotate'
   gem 'rack-dev-mark'
+  gem 'sitemap_generator'
 end
 
 group :test do
