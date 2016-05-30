@@ -25,6 +25,7 @@ gem 'meta-tags', require: 'meta_tags'
 gem 'spinjs-rails'
 gem 'zip'
 gem 'simple-rss'
+gem 'sitemap_generator'
 
 #Bootstrap
 gem 'therubyracer', platforms: :ruby
@@ -57,7 +58,6 @@ group :development do
   gem 'binding_of_caller'
   gem 'annotate'
   gem 'rack-dev-mark'
-  gem 'sitemap_generator'
 end
 
 group :test do
