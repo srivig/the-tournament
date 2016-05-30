@@ -6,7 +6,12 @@
   - set_meta_tags site: 'THE TOURNAMENT', title: yield(:page_title), reverse: true
 - else
   - set_meta_tags title: t('metatags.title')
-- set_meta_tags description: t('metatags.description')
+
+- if content_for?(:description)
+  - description = yield(:description)
+- else
+  - description = t('metatags.description')
+- set_meta_tags description: description
 
 - if I18n.locale == :ja
   - keywords = %w[トーナメント 作成 無料 トーナメント表 アプリ ツール フリー ソフト エクセル 作り方]
@@ -32,7 +37,7 @@
     url: url_for(controller: '/static_pages', action: 'about', only_path: false),
     image: 'http://the-tournament.jp/assets/index-top.png',
     site_name: t('metatags.site_name'),
-    description: t('metatags.description'),
+    description: description,
     locale: (I18n.locale==:ja) ? 'ja_JP' : 'en_US'
   }
 - set_meta_tags og: og

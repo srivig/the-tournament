@@ -1,5 +1,6 @@
-= content_for :page_title, "#{@tournament.encoded_title}のトーナメント"
+= content_for :page_title, "#{@tournament.encoded_title}のトーナメント表"
 = content_for :keywords, @tournament.encoded_title
+= content_for :description, "#{@tournament.encoded_title}のトーナメント表です。#{@tournament.detail}"
 = content_for :canonical, url_for(locale:nil, only_path:false) + "/#{@tournament.encoded_title}"
 
 - editable = @tournament.user == current_user
