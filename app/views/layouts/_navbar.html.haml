@@ -5,8 +5,9 @@
     / Show Acccount menu on SP view
     - if current_user
       %li.visible-xs.visible-sm
-        %button.btn.btn-danger.navbar-btn#start_service
-          = link_to t('layouts.sidebar.create_tournament'), new_tournament_path
+        = link_to new_tournament_path, class: 'navbar-btn-danger' do
+          %button.btn.btn-danger.navbar-btn
+            = t('layouts.sidebar.create_tournament')
       %li
         = link_to t('layouts.sidebar.tournaments_list'), user_path(current_user), class: 'visible-xs visible-sm'
       /= menu_item t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'visible-xs visible-sm'

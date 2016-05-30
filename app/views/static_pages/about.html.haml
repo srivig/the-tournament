@@ -5,7 +5,10 @@
       %div.mb-30
         %small= t('.subtitle')
       %p
-        =link_to t('.try_service'), root_path, class: 'btn btn-danger btn-lg'
+        =link_to root_path, class: 'btn btn-danger btn-lg' do
+          = t('.try_service')
+          %br.visible-xs.visible-sm
+          = "(#{t('.free')})"
 
 %section#about
   %h1.hide About

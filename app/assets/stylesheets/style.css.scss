@@ -114,10 +114,12 @@ div.tagsinput {
 }
 .container > .navbar-header { margin: 0; }
 
-#start_service {
+.navbar-btn-danger {
   margin-left: 10px;
   margin-right: 10px;
-  a { color: #fff; }
+  padding: 0 !important;
+  color: #fff;
+  &:hover { background: none !important; }
 }
 
 /*****************************************************************

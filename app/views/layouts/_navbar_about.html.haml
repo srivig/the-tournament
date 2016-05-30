@@ -9,10 +9,14 @@
 
   %ul.nav.navbar-nav.navbar-right
     %li
-      %button.btn.btn-danger.navbar-btn#start_service
-        = link_to "サービスを利用する(無料)", root_path
+      = link_to root_path, class: "navbar-btn-danger" do
+        %button.btn.btn-danger.navbar-btn
+          = t('static_pages.about.try_service')
+          = "(#{t('free')}）"
 
     - ja_active = en_active = ''
     - (I18n.locale == :ja) ? ja_active='active' : en_active='active'
-    %li{class:ja_active}= link_to 'JP', url_for(locale: :ja)
-    %li{class:en_active}= link_to 'EN', url_for(locale: :en)
+    %li{class: "#{ja_active} visible-md visible-lg"}
+      = link_to 'JP', url_for(locale: :ja)
+    %li{class: "#{en_active} visible-md visible-lg"}
+      = link_to 'EN', url_for(locale: :en)

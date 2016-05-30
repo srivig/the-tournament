@@ -3,8 +3,8 @@ ja:
     top:
       carousel_caption_1: THE TOURNAMENTは、トーナメント形式の大会運営をサポートします。
       carousel_caption_2: スポーツ、ボードゲームなど様々な用途に利用できます。
-      new_tournaments: 新着トーナメント
-      wip_tournaments: 作成中トーナメント
+      new_tournaments: 新着作成済みトーナメント表
+      wip_tournaments: 作成中トーナメント表
       wip: 作成中
       finished: 完了
       show_more: もっと見る
@@ -13,8 +13,7 @@ ja:
 
     about:
       subtitle: 圧倒的に使いやすい！無料トーナメント表作成ツールの決定版！
-      # subtitle: 簡単・便利な無料のトーナメント表作成サービス
-      try_service: サービスを利用する（無料）
+      try_service: トーナメント表を作成する
 
       about_title_1_html: 大会結果をおしゃれな<br>トーナメント表に。
       about_text_1_html:
