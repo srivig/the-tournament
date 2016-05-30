@@ -28,7 +28,8 @@
 - if content_for?(:canonical)
   - set_meta_tags canonical: yield(:canonical)
 - else
-  - set_meta_tags canonical: url_for(locale:nil, only_path: false)
+  - canonical = url_for(locale:nil, only_path: false).sub(/http:\/\/www\./, "http://")
+  - set_meta_tags canonical: canonical
 
 :ruby
   og = {
