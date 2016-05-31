@@ -12,7 +12,6 @@
       = link_to root_path, class: "navbar-btn-danger" do
         %button.btn.btn-danger.navbar-btn
           = t('static_pages.about.try_service')
-          = "(#{t('free')}）"
 
     - ja_active = en_active = ''
     - (I18n.locale == :ja) ? ja_active='active' : en_active='active'
