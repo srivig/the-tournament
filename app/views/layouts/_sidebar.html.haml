@@ -13,6 +13,8 @@
         = link_to t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg', disabled: :disabled
         %small
           = t('layouts.sidebar.too_many_tournaments')
+          %br
+          = link_to "（#{t('layouts.sidebar.get_free_tournaments')}）", '/gift'
     %p
       = t('layouts.sidebar.tournaments_created') + ":"
       %strong.text-danger
