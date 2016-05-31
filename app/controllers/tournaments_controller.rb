@@ -50,7 +50,7 @@ class TournamentsController < ApplicationController
     @tournament.user = current_user
 
     respond_to do |format|
-      if @tournament.save && current_user.creatable?
+      if @tournament.save
         # GAにイベントを送信
         flash[:log] = "<script>ga('send', 'event', 'tournament', 'create');</script>".html_safe
 
