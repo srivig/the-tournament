@@ -25,17 +25,14 @@
 
 - set_meta_tags keywords: keywords
 
-- if content_for?(:canonical)
-  - set_meta_tags canonical: yield(:canonical)
-- else
-  - canonical = url_for(locale:nil, only_path: false).sub(/http:\/\/www\./, "http://")
-  - set_meta_tags canonical: canonical
+- canonical = url_for(locale:nil, only_path: false).sub(/http:\/\/www\./, "http://")
+- set_meta_tags canonical: canonical
 
 :ruby
   og = {
     title: content_for?(:page_title) ? "#{yield(:page_title)} | THE TOURNAMENT" : t('metatags.title'),
     type: 'website',
-    url: url_for(controller: '/static_pages', action: 'about', only_path: false),
+    url: canonical,
     image: 'http://the-tournament.jp/assets/index-top.png',
     site_name: t('metatags.site_name'),
     description: description,
