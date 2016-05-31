@@ -33,4 +33,8 @@
   %h1.headline
     = fa_icon("info-circle")
     = t('tournament_menu.basic_info')
+  %p
+    %strong.text-danger ※「参加者数」は後から変更できませんのでご注意ください。
+    %br
+    %small （間違えた場合はトーナメントを削除して新しく作りなおしてください）
   = render :partial => "form"
