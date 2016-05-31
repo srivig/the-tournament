@@ -1,5 +1,7 @@
 # Set the host name for URL creation
 SitemapGenerator::Sitemap.default_host = "http://the-tournament.jp"
+SitemapGenerator::Sitemap.public_path = 'tmp/sitemaps'
+
 
 SitemapGenerator::Sitemap.create do
   add '/about'
@@ -12,7 +14,7 @@ SitemapGenerator::Sitemap.create do
     add "/tournaments/#{tournament.id}/players"
     add "/tournaments/#{tournament.id}/games"
   end
-  
+
   Category.find_each do |category|
     add "/tournaments?tag=#{category.tag_name}"
   end
