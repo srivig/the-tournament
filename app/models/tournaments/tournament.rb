@@ -30,7 +30,8 @@ class Tournament < ActiveRecord::Base
   validates_associated :games, on: :create
   validates_associated :players
   validates :user_id, presence: true
-  validates :size, presence: true, inclusion: {in: [4,8,16,32]}
+  validates :size, presence: true
+  validate :tnmt_size_must_be_smaller_than_limit, on: :create
   validates :type, presence: true, inclusion: {in: ['SingleElimination', 'DoubleElimination']}
   validates :title, presence: true, length: {maximum: 100}, exclusion: {in: %w(index new edit players games)}
   validates :place, length: {maximum: 100}, allow_nil: true
@@ -39,6 +40,10 @@ class Tournament < ActiveRecord::Base
   validates :consolation_round, presence: true, inclusion: {in: [true,false]}, allow_blank: true
   validates :secondary_final, presence: true, inclusion: {in: [true,false]}, allow_blank: true
   validates :scoreless, presence: true, inclusion: {in: [true,false]}, allow_blank: true
+
+  def tnmt_size_must_be_smaller_than_limit
+    errors.add(:size, "作成できるサイズ上限を越えています") unless self.user.creatable_sizes.include? size
+  end
 
   default_scope {order(created_at: :desc)}
   scope :finished, -> { where(finished: true) }
