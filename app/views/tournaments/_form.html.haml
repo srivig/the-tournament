@@ -3,7 +3,7 @@
   - disabled =  (@tournament.new_record?) ? false : true
 
   = f.input :title
-  = f.input :size, collection: Array[4,8,16,32], disabled: disabled
+  = f.input :size, collection: current_user.creatable_sizes, disabled: disabled
   = f.input :detail
   = f.input :place
   = f.input :url

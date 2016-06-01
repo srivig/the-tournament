@@ -44,4 +44,8 @@ class User < ActiveRecord::Base
   def limit_size
     self.current_plan.try(:size) || Plan::DEFAULT_SIZE
   end
+
+  def creatable_sizes
+    [4,8,16,32,64,128].select{|i| i <= self.limit_size}
+  end
 end
