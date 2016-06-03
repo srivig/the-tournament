@@ -10,10 +10,8 @@ class TournamentsController < ApplicationController
 
   def show
     redirect_to pretty_tournament_path(@tournament, @tournament.encoded_title), status: 301 if params[:title] != @tournament.encoded_title
-    is_tutorial_needed = flash[:notice].present? && current_user.tournaments.count == 1
 
     gon.push({
-      is_tutorial_needed: is_tutorial_needed,
       tournament_data: @tournament.tournament_data,
       skip_secondary_final: (@tournament.de?) ? !@tournament.secondary_final : false,
       skip_consolation_round: !@tournament.consolation_round,
