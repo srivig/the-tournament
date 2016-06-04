@@ -31,9 +31,7 @@
     .col-lg-12
       - embed_content = "<div style='position: relative!;width:100% !important;max-width:100% !important;overflow:auto !important;-webkit-overflow-scrolling:touch !important;'><iframe src='"+ embed_tournament_url(@tournament) +"' seamless frameborder='0' width='100%' height='"+ (embed_height(@tournament.size).to_s) +"'></iframe></div>"
       %h5
-        = fa_icon("link")
-        埋め込み用HTMLタグ　
-        %button.btn.btn-link#clipboard(style="color:#333;padding:0;" data-toggle="tooltip" data-placement="top" title="クリップボードにタグをコピーします" data-clipboard-text="#{embed_content}")
-          = fa_icon("clipboard")
+        = fa_icon("code")
+        埋め込み用タグ　
       %div#emb-link
         %input(type="text" size="100%" value="#{embed_content}" onfocus="this.select();" readonly)
