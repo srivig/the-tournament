@@ -115,14 +115,10 @@
   %h1
     %span Plan/Price
   .container
-    %div.mb-30.text-center
-      %p
-        = t('.plan_text_html')
     .row.text-center
       .col-lg-4
         .panel.panel-danger
           .panel-heading
-            %span.label.label-warning= t('.plan_recommend')
             %small= t('.plan_1_text')
           %ul.list-group
             %li.list-group-item
@@ -134,11 +130,14 @@
             %li.list-group-item
               %small= t('.plan_storage')
               %strong
-                3
+                10
                 %small (※)
             %li.list-group-item
               %small= t('.plan_size')
               %strong= "32#{t('.plan_player_count')}"
+            %li.list-group-item
+              =link_to root_path, class: 'btn btn-danger' do
+                = t('.plan_1_action')
       .col-lg-4
         .panel.panel-default
           .panel-heading
@@ -149,13 +148,18 @@
               %h2 BASIC
             %li.list-group-item
               %small= t('.plan_price')
-              %strong --
+              %strong 500円
             %li.list-group-item
               %small= t('.plan_storage')
-              %strong --
+              %strong ∞（無制限）
             %li.list-group-item
               %small= t('.plan_size')
-              %strong --
+              %strong 128名
+            %li.list-group-item
+              =link_to @shop_url, target: '_blank', class: 'btn btn-primary' do
+                = t('.plan_2_action')
+              %br
+              %small ※外部の購入ページに遷移します
       .col-lg-4
         .panel.panel-default
           .panel-heading
@@ -173,11 +177,12 @@
             %li.list-group-item
               %small= t('.plan_size')
               %strong --
+            %li.list-group-item
+              =link_to '#', target: '_blank', class: 'btn btn-primary' do
+                = t('.plan_3_action')
     %div.mb-30.text-center
       %p
-        ※当初は1つのみ作成できます。1つ目のトーナメントを完成させると、さらに2つ無料で作成できるようになります。
-      %p
-        ※また、無料で作成可能なトーナメント数を増やすオプションもあります。
+        ※無料で作成可能なトーナメント数を増やすオプションもあります。
         %br
         詳しくは「
         %a(href="/gift")
@@ -190,5 +195,5 @@
     %span FAQ
   %p.mb-30
     = t('.faq_text')
-    %br
-    info[at]notsobad.jp
+  %div
+    =link_to t('contact'), 'http://goo.gl/forms/xqvYet0AAsQUalI52', target: '_blank', class: 'btn btn-primary'

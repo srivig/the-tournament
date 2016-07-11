@@ -13,7 +13,7 @@ ja:
 
     about:
       subtitle: 圧倒的に使いやすい！無料トーナメント表作成ツールの決定版！
-      try_service: トーナメント表を作成する
+      try_service: サービスを利用する（無料）
 
       about_title_1_html: 大会結果をおしゃれな<br>トーナメント表に。
       about_text_1_html:
@@ -52,18 +52,18 @@ ja:
       feature_17: 予選の実施
 
       free: 無料
-      plan_text_html:
-        現在はベータ版のためFREEプランのみ公開提供しています。<br>
-        有料プランはお問い合わせいただければ優先的にご利用いただけます。
-      plan_recommend: ｵｽｽﾒ!
-      plan_price: 月額利用料：
-      plan_storage: 保存可能トーナメント数：
+      plan_price: 月額利用料（税別）：
+      plan_storage: 作成可能トーナメント数：
       plan_size: 大会の最大参加者数：
       plan_player_count: 名
 
-      plan_1_text: 無料でもしっかり使えるお得なプラン
-      plan_2_text: より高度な機能をお手軽価格で
-      plan_3_text: 自社システムへの統合・カスタマイズが必要なら
+      plan_1_text: 小規模トーナメントならずっと無料！
+      plan_2_text: 128名までの大規模大会にも対応！
+      plan_3_text: さらに大きな大会や高度なカスタマイズが必要なら
+
+      plan_1_action: 無料で利用開始
+      plan_2_action: BASICプランに申し込む
+      plan_3_action: お問い合わせください
 
       faq_text:
         ご意見・ご要望などあればお気軽にご連絡ください。いただいたお問い合わせにはすべて目を通して返信いたします。
