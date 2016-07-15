@@ -52,18 +52,18 @@ ja:
       feature_17: 予選の実施
 
       free: 無料
-      plan_price: 月額利用料（税別）：
+      plan_price: 利用料（税別）：
       plan_storage: 作成可能トーナメント数：
       plan_size: 大会の最大参加者数：
       plan_player_count: 名
 
       plan_1_text: 小規模トーナメントならずっと無料！
-      plan_2_text: 128名までの大規模大会にも対応！
-      plan_3_text: さらに大きな大会や高度なカスタマイズが必要なら
+      plan_2_text: 大規模大会で利用する場合はこちら！
+      plan_3_text: 継続的に利用する方にお得なプラン
 
-      plan_1_action: 無料で利用開始
-      plan_2_action: BASICプランに申し込む
-      plan_3_action: お問い合わせください
+      plan_1_action: FREEプランで利用する(無料)
+      plan_2_action: LIGHTプランに申し込む
+      plan_3_action: STANDARDプランに申し込む
 
       faq_text:
         ご意見・ご要望などあればお気軽にご連絡ください。いただいたお問い合わせにはすべて目を通して返信いたします。

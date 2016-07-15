@@ -131,7 +131,7 @@
               %small= t('.plan_storage')
               %strong
                 10
-                %small (※)
+              %small (※1)
             %li.list-group-item
               %small= t('.plan_size')
               %strong= "32#{t('.plan_player_count')}"
@@ -145,21 +145,21 @@
           %ul.list-group
             %li.list-group-item
               = image_tag('about/price_2.png')
-              %h2 BASIC
+              %h2 LIGHT
             %li.list-group-item
               %small= t('.plan_price')
-              %strong 500円
+              %strong 1,500円
+              %small (一括購入)
             %li.list-group-item
               %small= t('.plan_storage')
-              %strong ∞（無制限）
+              %strong 無料枠＋10
+              %small (※2)
             %li.list-group-item
               %small= t('.plan_size')
               %strong 128名
             %li.list-group-item
-              =link_to @shop_url, target: '_blank', class: 'btn btn-primary' do
+              =link_to 'https://goo.gl/Xzqaxb', target: '_blank', class: 'btn btn-primary' do
                 = t('.plan_2_action')
-              %br
-              %small ※外部の購入ページに遷移します
       .col-lg-4
         .panel.panel-default
           .panel-heading
@@ -167,27 +167,33 @@
           %ul.list-group
             %li.list-group-item
               = image_tag('about/price_3.png')
-              %h2 PREMIUM
+              %h2 STANDARD
             %li.list-group-item
               %small= t('.plan_price')
-              %strong --
+              %strong 500円/月
             %li.list-group-item
               %small= t('.plan_storage')
-              %strong --
+              %strong ∞（無制限）
             %li.list-group-item
               %small= t('.plan_size')
-              %strong --
+              %strong 128名
             %li.list-group-item
-              =link_to '#', target: '_blank', class: 'btn btn-primary' do
+              =link_to 'https://goo.gl/USzLf9', target: '_blank', class: 'btn btn-primary' do
                 = t('.plan_3_action')
     %div.mb-30.text-center
       %p
-        ※無料で作成可能なトーナメント数を増やすオプションもあります。
+        %b 【※1】
+        無料で作成可能なトーナメント数を増やし続けるオプションも用意しています。
         %br
         詳しくは「
         %a(href="/gift")
           無料のトーナメント作成数を増やす
         」のページをご確認ください。
+      %p
+        %b 【※2】
+        32サイズの作成数とは別に、128サイズの作成数が10加算されます。
+        %br
+        （無料枠を増やしていない状態で、32サイズ10個＋128サイズ10個=合計20個作成することができます）
     %div.text-center
 
 %section#faq.text-center

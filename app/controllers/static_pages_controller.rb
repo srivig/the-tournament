@@ -8,7 +8,6 @@ class StaticPagesController < ApplicationController
   def about
     sample_id = (Rails.env=='production') ? 158 : 1
     @tournament = Tournament.find(sample_id)
-    @shop_url = 'https://spike.cc/shop/user_1688032006/products/Kgoa0Zmt'
     gon.push({
       tournament_data: @tournament.tournament_data,
       skip_secondary_final: (@tournament.de?) ? !@tournament.secondary_final : false,
