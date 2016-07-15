@@ -1,8 +1,9 @@
 = content_for :page_title, '無料トーナメント作成枠を増やす'
 
+= render partial: "shared/back_to_home"
 .campaign-page
   %section
-    %h1
+    %h1.title.clearfix
       無料のトーナメント作成枠を増やす
     %br
     %p
@@ -32,7 +33,8 @@
           %td
             8名以上のトーナメントを作成し、最後まで完成させてください。
             全参加者/チームの名前が入力されており、優勝者が決定するまで試合結果が登録されていることが条件です。
-          %td.text-center 2
+          %td.text-center
+            %b.text-danger +2
           %td
             %a.btn.btn-primary(href="http://goo.gl/forms/hNtXMYsbV5r5irhp1" target="_blank")
               申請する
@@ -44,7 +46,9 @@
           %td
             じぶんで作成したトーナメントを、TwitterもしくはFacebookでシェアしてください。
             （Twitter/Facebook両方で1回ずつ申請可能です）
-          %td.text-center 各2（合計4）
+          %td.text-center
+            %b.text-danger +4
+            %small (各2ずつ)
           %td
             %a.btn.btn-primary(href="http://goo.gl/forms/hNtXMYsbV5r5irhp1" target="_blank")
               申請する
@@ -56,8 +60,10 @@
           %td
             じぶんで作成したトーナメントを、ブログもしくはHPに埋め込んでください。
             %strong.text-danger
-              トーナメントごとに何回でも申請可能なので、ずっと無料枠で利用しつづけることも可能です。
-          %td.text-center 初回:3 （次回以降:1）
+              トーナメントを作成するごとに毎回申請可能なので、ずっと無料枠を増やし続けることも可能です。
+          %td.text-center
+            %b.text-danger 無制限
+            %small (初回のみ+3,以降+1)
           %td
             %a.btn.btn-primary(href="http://goo.gl/forms/hNtXMYsbV5r5irhp1" target="_blank")
               申請する
