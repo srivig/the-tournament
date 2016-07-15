@@ -13,7 +13,7 @@
     %meta(name="robots" content="noindex")
 
   %body#embed
-    = render partial: "shared/analytics" if Rails.env.production?
+    = google_tag_manager if Rails.env.production?
     = render partial: "shared/facebook"
     #emb-container
       #emb-header
