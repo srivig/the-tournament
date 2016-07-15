@@ -7,7 +7,7 @@
   = f.input :detail
   = f.input :place
   = f.input :url
-  = f.input :tag_list
+  -#= f.input :tag_list
   = f.input :consolation_round, inline_label: t('simple_form.inline_labels.tournament.consolation_round'), as: :boolean
   = f.input :scoreless, inline_label: t('simple_form.inline_labels.tournament.scoreless'), as: :boolean
   = f.input :type, collection: [:SingleElimination, :DoubleElimination], input_html: {default: :SingleElimination}, as: :hidden

@@ -2,13 +2,13 @@
   - f.object = @game.becomes(@game.class)
   - scoreless = (@game.tournament.scoreless?) ? 'hidden' : ''
   .row{class: scoreless}
-    .col-lg-1.col-lg-push-5.text-center.visible-lg
+    .col-md-1.col-md-push-5.text-center.visible-md.visible-lg
       - 5.times do
         %br
       %i.fa.fa-minus
     = f.simple_fields_for :game_records, f.object.game_records.order(:record_num) do |r|
-      - offset = 'col-lg-pull-1' if r.object.record_num == 1
-      .col-lg-5.text-center{class: offset}
+      - offset = 'col-md-pull-1' if r.object.record_num == 1
+      .col-md-5.text-center{class: offset}
         - panel = (r.object.winner == true) ? 'panel-warning' : 'panel-default'
         .panel{class: panel}
           .panel-heading
