@@ -5,12 +5,13 @@
     = csrf_meta_tags
     = stylesheet_link_tag "application", :media => "all"
     = favicon_link_tag 'favicon.ico', rel: 'shortcut icon'
+    = render partial: "shared/jaco"
 
   - is_about_page = controller.action_name=='about'
   - is_top_page = controller.action_name=='top'
 
   %body{id: (is_about_page) ? 'about-page' : ''}
-    = google_tag_manager
+    = google_tag_manager if Rails.env.production?
 
     - nav_partial = (is_about_page) ? 'navbar_about' : 'navbar'
     = render partial: "layouts/#{nav_partial}"
