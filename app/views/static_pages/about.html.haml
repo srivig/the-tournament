@@ -11,16 +11,16 @@
 %section#about
   %h1.hide About
   .row
-    %div.col-lg-4
-      =image_tag("about/about_1.png")
+    %div.col-md-4.col-lg-4
+      =image_tag "about/about_1.png", style: "max-width:250px;"
       %h2= t('.about_title_1_html')
       %p= t('.about_text_1_html')
-    %div.col-lg-4
-      =image_tag("about/about_2.png")
+    %div.col-md-4.col-lg-4
+      =image_tag "about/about_2.png", style: "max-width:250px;"
       %h2= t('.about_title_2_html')
       %p= t('.about_text_2_html')
-    %div.col-lg-4
-      =image_tag("about/about_3.png")
+    %div.col-md-4.col-lg-4
+      =image_tag "about/about_3.png", style: "max-width:250px;"
       %h2= t('.about_title_3_html')
       %p= t('.about_text_3_html')
 
@@ -51,62 +51,62 @@
   %p.mb-30
     = t('.feature_text_html')
   .row
-    .col-lg-2.col-sm-4
+    .col-sm-4
       .thumbnail
         %h2= t('.feature_1')
-    .col-lg-2.col-sm-4
+    .col-sm-4
       .thumbnail
         %h2= t('.feature_2')
-    .col-lg-2.col-sm-4
+    .col-sm-4
       .thumbnail
         %h2= t('.feature_3')
-    .col-lg-2.col-sm-4
+    .col-sm-4
       .thumbnail
         %h2= t('.feature_4')
-    .col-lg-2.col-sm-4
+    .col-sm-4
       .thumbnail
         %h2= t('.feature_5')
-    .col-lg-2.col-sm-4
+    .col-sm-4
       .thumbnail
         %h2= t('.feature_6')
 
-    .col-lg-2.col-sm-4
+    .col-sm-4
       .thumbnail
         %h2= t('.feature_7')
-    .col-lg-2.col-sm-4
+    .col-sm-4
       .thumbnail
         %h2= t('.feature_8')
-    .col-lg-2.col-sm-4
+    .col-sm-4
       .thumbnail
         %h2= t('.feature_9')
-    .col-lg-2.col-sm-4
+    .col-sm-4
       .thumbnail
         %h2
           %span.label.label-warning NEW!
           = t('.feature_10')
-    .col-lg-2.col-sm-4.tbd
+    .col-sm-4.tbd
       .thumbnail
         %h2= t('.feature_11')
-    .col-lg-2.col-sm-4.tbd
+    .col-sm-4.tbd
       .thumbnail
         %h2= t('.feature_12')
 
-    .col-lg-2.col-sm-4.tbd
+    .col-sm-4.tbd
       .thumbnail
         %h2= t('.feature_13')
-    .col-lg-2.col-sm-4.tbd
+    .col-sm-4.tbd
       .thumbnail
         %h2= t('.feature_14')
-    .col-lg-2.col-sm-4.tbd
+    .col-sm-4.tbd
       .thumbnail
         %h2= t('.feature_15')
-    .col-lg-2.col-sm-4.tbd
+    .col-sm-4.tbd
       .thumbnail
         %h2= t('.feature_16')
-    .col-lg-2.col-sm-4.tbd
+    .col-sm-4.tbd
       .thumbnail
         %h2= t('.feature_17')
-    .col-lg-2.col-sm-4.tbd
+    .col-sm-4.tbd
       .thumbnail
         %h2 　
 
@@ -116,7 +116,7 @@
     %span Plan/Price
   .container
     .row.text-center
-      .col-lg-4
+      .col-md-4
         .panel.panel-danger
           .panel-heading
             %small= t('.plan_1_text')
@@ -138,7 +138,7 @@
             %li.list-group-item
               =link_to root_path, class: 'btn btn-danger' do
                 = t('.plan_1_action')
-      .col-lg-4
+      .col-md-4
         .panel.panel-default
           .panel-heading
             %small= t('.plan_2_text')
@@ -160,7 +160,7 @@
             %li.list-group-item
               =link_to 'https://goo.gl/Xzqaxb', target: '_blank', class: 'btn btn-primary' do
                 = t('.plan_2_action')
-      .col-lg-4
+      .col-md-4
         .panel.panel-default
           .panel-heading
             %small= t('.plan_3_text')
