@@ -2,7 +2,7 @@ require 'open-uri'
 
 class StaticPagesController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_blog_rss, only: :top
+  before_action :set_blog_rss, only: [:top, :about]
 
 
   def about
