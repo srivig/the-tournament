@@ -88,4 +88,7 @@ TheTournament::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # GoogleTagManager
+  GoogleTagManager.gtm_id = "GTM-NB7BRT"
 end

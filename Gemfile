@@ -46,6 +46,7 @@ end
 group :production do
   gem 'rails_12factor'
   gem 'google-analytics-rails'
+  gem 'google-tag-manager-rails'
   gem 'airbrake'
   gem 'asset_sync'
 end
