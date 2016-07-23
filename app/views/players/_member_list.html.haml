@@ -4,12 +4,10 @@
     %table#member-list.table.f16
       %tr.active
         %th.width-10= t('member_list.number')
-        %th.width-40= t('member_list.name')
+        %th.width-60= t('member_list.name')
         - if editable
-          %th.width-20.hidden-sm.hidden-xs= t('member_list.country')
-          %th.width-30.hidden-sm.hidden-xs= t('member_list.group')
+          %th.width-30.hidden-sm.hidden-xs= t('member_list.country')
         - else
-          %th.width-20.hidden-sm.hidden-xs
           %th.width-30.hidden-sm.hidden-xs
       = f.simple_fields_for :players, f.object.players.order(:seed) do |r|
         %tr
@@ -21,8 +19,6 @@
               = r.input :name, label: false
             %td.hidden-sm.hidden-xs
               = r.input :country, label: false, iso_codes: true
-            %td.hidden-sm.hidden-xs
-              = r.input :group, label: false
           - else
             %td
               - if r.object.country.present?
@@ -30,6 +26,5 @@
                   %div.flag{class: r.object.country.downcase}
               = r.object.name
             %td.hidden-sm.hidden-xs= Country[r.object.country]
-            %td.hidden-sm.hidden-xs= r.object.group
   - if editable
     = f.button :submit, class: 'btn-danger'
