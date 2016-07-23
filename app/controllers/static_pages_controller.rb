@@ -22,6 +22,7 @@ class StaticPagesController < ApplicationController
     @pickup = Tournament.where(pickup: true).order(created_at: :desc).first
     @tournaments = Tournament.finished.limit(10)
     @unfinished_tnmts = Tournament.where(finished: false).limit(10)
+    @user_tnmts = current_user.tournaments.limit(10) if current_user
   end
 
 
