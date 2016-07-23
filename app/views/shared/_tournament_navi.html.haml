@@ -6,22 +6,24 @@
   -# PC版
   .visible-md.visible-lg
     = link_to edit_tournament_path(tournament), class: "btn #{btn_1_class} btn-lg" do
-      %h4 1
+      %h4 Step.1
       基本情報の登録
     = fa_icon("arrow-right")
     = link_to tournament_edit_players_path(tournament), class: "btn #{btn_2_class} btn-lg" do
-      %h4 2
+      %h4 Step.2
       参加者の登録
     = fa_icon("arrow-right")
     = link_to tournament_edit_games_path(tournament), class: "btn #{btn_3_class} btn-lg" do
-      %h4 3
+      %h4 Step.3
       試合結果の登録
   -# SP版
-  .visible-xs.visible-sm
+  .visible-xs.visible-sm.text-center
     = link_to edit_tournament_path(tournament), class: "btn #{btn_1_class} btn-block" do
-      %h5 1. 基本情報の登録
+      %h5 基本情報の登録
+    = fa_icon("caret-down")
     = link_to tournament_edit_players_path(tournament), class: "btn #{btn_2_class} btn-block" do
-      %h5 2.参加者の登録
+      %h5 参加者の登録
+    = fa_icon("caret-down")
     = link_to tournament_edit_games_path(tournament), class: "btn #{btn_3_class} btn-block" do
-      %h5 3. 試合結果の登録
+      %h5 試合結果の登録
 %hr
