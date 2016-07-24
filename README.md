@@ -31,3 +31,13 @@ DNSをCloudFlareのもので設定。
 - SSLを有効にする
 - つねにhttpsを使用
 - HSTSを有効化
+
+## Resouceの配置
+
+asset_syncを利用して、GoogleCloudStorageにassetsを配置。  
+
+FontawesomeのCORS問題があるため、cors.jsonを設定して対応。
+
+>https://cloud.google.com/storage/docs/cross-origin
+
+    gsutil cors set cors-json-file.json gs://example

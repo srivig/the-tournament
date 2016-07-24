@@ -29,6 +29,6 @@ class StaticPagesController < ApplicationController
   private
 
     def set_blog_rss
-      @rss= SimpleRSS.parse open('http://blog.the-tournament.jp/rss')
+      #@rss= SimpleRSS.parse open('http://blog.the-tournament.jp/rss')
     end
 end
