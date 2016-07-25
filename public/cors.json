@@ -1,6 +1,6 @@
 [
     {
-      "origin": ["http://the-tournament.jp","https://the-tournament.jp"],
+      "origin": ["http://the-tournament.jp","https://the-tournament.jp", "http://www.the-tournament.jp", "https://www.the-tournament.jp"],
       "responseHeader": ["Content-Type"],
       "method": ["GET", "HEAD", "DELETE"],
       "maxAgeSeconds": 3600
