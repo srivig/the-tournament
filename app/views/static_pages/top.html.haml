@@ -59,7 +59,7 @@
       = fa_icon('star')
       Pickup!
     %div(style="width:100% !important;overflow:auto;-webkit-overflow-scrolling:touch !important;")
-      %iframe{src: embed_tournament_url(@pickup, protocol: request.protocol), seamless:true, frameborder:0, width:'100%', height:embed_height(@pickup.size).to_s}
+      %iframe{src: embed_tournament_url(@pickup, protocol: 'https'), seamless:true, frameborder:0, width:'100%', height:embed_height(@pickup.size).to_s}
 
 
 %section
