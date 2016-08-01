@@ -33,7 +33,7 @@
       %script
         !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
   %br
-  .row.hidden-xs.hidden-sm
+  .row.hidden-xs.hidden-sm.mb-30
     .col-lg-12
       - embed_content = "<div style='position:relative!important;width:100%!important;max-width:100%!important;margin-bottom:50px!important;overflow:auto !important;-webkit-overflow-scrolling:touch !important;'><iframe src='"+ embed_tournament_url(@tournament, protocol: "https") +"' seamless frameborder='0' width='100%' height='"+ (embed_height(@tournament.size).to_s) +"'></iframe><div style='margin-top:-15px!important;text-align:right!important;'><small>powered by <a href='https://the-tournament.jp/about' target='_blank'>THE TOURNAMENT | 簡単・便利な無料トーナメント表作成ツール</a></small></div></div>"
       %h5
