@@ -8,6 +8,12 @@
 = render partial: "shared/tournament_menu", locals: {tournament:@tournament, active:1}
 
 %section
+  .row.text-center(style="margin-bottom:-30px;")
+    %script(async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")
+    %ins(class="adsbygoogle" style="display:inline-block;width:100%;height:100px;" data-ad-client="ca-pub-7703471297541925" data-ad-slot="3863031161" data-ad-format="auto")
+    %script
+      (adsbygoogle = window.adsbygoogle || []).push({});
+
   %h1.headline
     = fa_icon("trophy")
     = t('.tournament_bracket')
@@ -35,3 +41,9 @@
         埋め込み用タグ　
       %div#emb-link
         %input(type="text" size="100%" value="#{embed_content}" onfocus="this.select();" readonly)
+
+  .row.text-center
+    %script(async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")
+    %ins(class="adsbygoogle" style="display:inline-block;width:100%;height:100px;" data-ad-client="ca-pub-7703471297541925" data-ad-slot="5339764369" data-ad-format="auto")
+    %script
+      (adsbygoogle = window.adsbygoogle || []).push({});
