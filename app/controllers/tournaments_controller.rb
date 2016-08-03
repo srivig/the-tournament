@@ -34,13 +34,14 @@ class TournamentsController < ApplicationController
   end
 
   def upload
-    File.write("tmp/#{@tournament.id}.json", @tournament.to_json)
+    json = @tournament.to_json
+    File.write("tmp/#{@tournament.id}.json", json)
     uploader = TournamentUploader.new
     src = File.join(Rails.root, "/tmp/#{@tournament.id}.json")
     src_file = File.new(src)
 
     uploader.store!(src_file)
-    render :nothing
+    render json: json
   end
 
   def new

@@ -57,6 +57,11 @@ $ ->
         $("#download_btn").button("reset")
     })
 
+  # Update embeded tournament
+  $("a[data-remote]").on "ajax:success", (e, data, status, xhr) ->
+    alert "埋め込みトーナメントが更新されました！"
+  $("a[data-remote]").on "ajax:error", (e, xhr, status, error) ->
+    alert "更新に失敗しました。。何回か試しても機能しない場合は、お手数ですが運営までお問い合わせください。"
 
   # tournament#edit page - Tags input
   if $('#tournament_tag_list').length
