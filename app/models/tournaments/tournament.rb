@@ -166,4 +166,16 @@ class Tournament < ActiveRecord::Base
   def encoded_title
     self.title.gsub(/　| |\//, '-')
   end
+
+  def to_json
+    {
+      title: self.title,
+      tournament_data: self.tournament_data,
+      skip_secondary_final: (self.de?) ? !self.secondary_final : false,
+      skip_consolation_round: !self.consolation_round,
+      countries: self.players.map{|p| p.country.try(:downcase)},
+      match_data: self.match_data,
+      scoreless: self.scoreless?
+    }.to_json
+  end
 end

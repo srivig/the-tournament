@@ -26,6 +26,10 @@ gem 'spinjs-rails'
 gem 'zip'
 gem 'simple-rss'
 gem 'sitemap_generator'
+gem 'carrierwave'
+gem 'fog'
+
+
 
 #Bootstrap
 gem 'therubyracer', platforms: :ruby

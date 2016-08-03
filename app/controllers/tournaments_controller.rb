@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :embed]
-  before_action :set_tournament, only: [:show, :edit, :update, :destroy, :embed]
+  before_action :set_tournament, only: [:show, :edit, :update, :destroy, :embed, :upload]
   load_and_authorize_resource
 
   def index
@@ -31,6 +31,16 @@ class TournamentsController < ApplicationController
       scoreless: @tournament.scoreless?
     })
     render layout: false
+  end
+
+  def upload
+    File.write("tmp/#{@tournament.id}.json", @tournament.to_json)
+    uploader = TournamentUploader.new
+    src = File.join(Rails.root, "/tmp/#{@tournament.id}.json")
+    src_file = File.new(src)
+
+    uploader.store!(src_file)
+    render :nothing
   end
 
   def new
