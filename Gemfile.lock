@@ -570,6 +570,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  addressable
   airbrake
   annotate
   asset_sync

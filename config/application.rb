@@ -6,6 +6,7 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
+require "addressable/uri"
 
 
 # Require the gems listed in Gemfile, including any gems
@@ -32,5 +33,12 @@ module TheTournament
     config.autoload_paths += Dir[Rails.root.join('app', 'models', 'games')]
 
     config.action_dispatch.default_headers['X-Frame-Options'] = "ALLOWALL"
+  end
+end
+
+class URI::Parser
+  def split url
+    a = Addressable::URI::parse url
+    [a.scheme, a.userinfo, a.host, a.port, nil, a.path, nil, a.query, a.fragment]
   end
 end

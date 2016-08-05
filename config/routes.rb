@@ -22,7 +22,7 @@ TheTournament::Application.routes.draw do
     match ':action', controller: :static_pages, via: :get
 
     scope :embed do
-      match '/tournaments/:id', to: 'tournaments#embed', via: :get, as: :embed_tournament
+      get '/tournaments/:id' => redirect('https://the_tournament.storage.googleapis.com/index.html?id=%{id}&utm_campaign=embed&utm_medium=&utm_source=%{id}')
     end
   end
 end

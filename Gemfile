@@ -28,6 +28,7 @@ gem 'simple-rss'
 gem 'sitemap_generator'
 gem 'carrierwave'
 gem 'fog'
+gem 'addressable'
 
 
 
