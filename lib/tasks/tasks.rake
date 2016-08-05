@@ -12,4 +12,10 @@ namespace :tasks do
   task :delete_nonactive_users => :environment do
     User.where("last_sign_in_at < ?", 1.year.ago).destroy_all
   end
+
+  task :upload_json => :environment do
+    Tournament.all.each do |tnmt|
+      tnmt.upload_json
+    end
+  end
 end
