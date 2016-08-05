@@ -32,6 +32,7 @@ class Game < ActiveRecord::Base
 
   after_update :reset_ancestors, :set_parent_game_record, :set_loser_game_record, if: :winner_changed?
   after_update :set_finished_flg, if: :final?
+  after_update :upload_tournament_json
 
   def has_valid_winner?
     winners = Array.new
@@ -186,5 +187,9 @@ class Game < ActiveRecord::Base
 
   def set_finished_flg
     self.tournament.update(finished: true) if self.has_valid_winner? && !self.tournament.finished?
+  end
+
+  def upload_tournament_json
+    self.tournament.upload_json
   end
 end

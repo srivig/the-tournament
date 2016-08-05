@@ -50,6 +50,7 @@ class Tournament < ActiveRecord::Base
 
   before_create :build_players, :build_winner_games, :build_third_place_game
   after_create :create_first_round_records
+  after_save :upload_json
 
   def self.search_tournaments(params)
     if params[:q]
@@ -177,5 +178,13 @@ class Tournament < ActiveRecord::Base
       match_data: self.match_data,
       scoreless: self.scoreless?
     }.to_json
+  end
+
+  def upload_json
+    File.write("tmp/#{self.id}.json", self.to_json)
+    src = File.join(Rails.root, "/tmp/#{self.id}.json")
+    src_file = File.new(src)
+
+    TournamentUploader.new.store!(src_file)
   end
 end
