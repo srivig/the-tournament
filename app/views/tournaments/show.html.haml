@@ -3,7 +3,7 @@
 = content_for :description, "#{@tournament.encoded_title}のトーナメント表です。#{@tournament.detail}"
 = content_for :canonical, url_for(locale:nil, only_path:false) + "/#{@tournament.encoded_title}"
 
-- editable = @tournament.user == current_user
+- editable = @tournament.user==current_user || current_user.admin?
 = render partial: "shared/tournament_info", locals: {tournament:@tournament, editable: editable}
 = render partial: "shared/tournament_menu", locals: {tournament:@tournament, active:1}
 
@@ -27,35 +27,24 @@
       %script
         !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
   %br
-  .row.hidden-xs.hidden-sm.mb-30
-    .col-lg-12
-      - embed_content = "<div style='position:relative!important;width:100%!important;max-width:100%!important;margin-bottom:50px!important;overflow:auto !important;-webkit-overflow-scrolling:touch !important;'><iframe src='"+ embed_tournament_url(@tournament, protocol: "https") +"' seamless frameborder='0' width='100%' height='"+ (embed_height(@tournament.size).to_s) +"'></iframe><div style='margin-top:-15px!important;text-align:right!important;'><small>powered by <a href='https://the-tournament.jp/about' target='_blank'>THE TOURNAMENT | 簡単・便利な無料トーナメント表作成ツール</a></small></div></div>"
-      %h5
-        = fa_icon("code")
-        埋め込み用タグ　
-      %div#emb-link
-        %input(type="text" size="100%" value="#{embed_content}" onfocus="this.select();" readonly)
   - if editable
     .row.hidden-xs.hidden-sm.mb-30
       .col-lg-12
         - embed_content = "<div style='position:relative!important;width:100%!important;max-width:100%!important;margin-bottom:50px!important;overflow:auto !important;-webkit-overflow-scrolling:touch !important;'><iframe src='https://the_tournament.storage.googleapis.com/index.html?id="+@tournament.id.to_s+"' seamless frameborder='0' width='100%' height='"+ (embed_height(@tournament.size).to_s) +"'></iframe><div style='margin-top:-15px!important;text-align:right!important;'><small>powered by <a href='https://the-tournament.jp/about' target='_blank'>THE TOURNAMENT | 簡単・便利な無料トーナメント表作成ツール</a></small></div></div>"
         %h5
-          = fa_icon("flash")
-          爆速埋め込みタグ
-          %small.label.label-warning BETA
+          = fa_icon("code")
+          埋め込み用タグ　
+          %span.label.label-danger
+            New!
         %div#emb-link
           %input(type="text" size="100%" value="#{embed_content}" onfocus="this.select();" readonly)
         %br
-        %div
-          = link_to upload_tournament_path(@tournament), class: 'btn btn-danger', remote: true do
-            = fa_icon("refresh")
-            爆速埋め込みの更新
-        %br
-        .alert.alert-danger(role="alert")
+        .alert.alert-info(role="alert")
+          = fa_icon("info-circle")
+          埋め込みトーナメントの表示が
           %strong
-            = fa_icon("exclamation-circle")
-            注意
-          「爆速埋め込み」はまだ試験的な機能のため、大会更新後は手動で更新ボタンを押さないと変更が反映されません。
+            「爆速」
+          になりました！旧タグを使用していた方はぜひタグを置き換えてみてください。
 
   .row.text-center
     %script(async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")
