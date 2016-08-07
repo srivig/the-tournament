@@ -3,7 +3,7 @@
 = content_for :description, "#{@tournament.encoded_title}のトーナメント表です。#{@tournament.detail}"
 = content_for :canonical, url_for(locale:nil, only_path:false) + "/#{@tournament.encoded_title}"
 
-- editable = @tournament.user==current_user || current_user.admin?
+- editable = @tournament.user==current_user || current_user.try(:admin?)
 = render partial: "shared/tournament_info", locals: {tournament:@tournament, editable: editable}
 = render partial: "shared/tournament_menu", locals: {tournament:@tournament, active:1}
 
