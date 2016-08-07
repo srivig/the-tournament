@@ -46,14 +46,6 @@
             = fa_icon("angle-right", "pull-right")
           %small (#{tournament.created_at.strftime("%Y.%m.%d")})
       = link_to fa_icon("angle-double-right")+t('.show_more'), user_path(current_user), class: "pull-right"
-- else
-  %section
-    %h1.headline
-      = fa_icon('star')
-      Pickup!
-    %div(style="width:100% !important;overflow:auto;-webkit-overflow-scrolling:touch !important;")
-      %iframe{src: embed_tournament_url(@pickup, protocol: 'https'), seamless:true, frameborder:0, width:'100%', height:embed_height(@pickup.size).to_s}
-
 
 %section
   %h1.headline
