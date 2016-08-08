@@ -38,4 +38,10 @@ TheTournament::Application.configure do
        :enable_starttls_auto => true,
      }
   config.rack_dev_mark.enable = true
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.console = true
+  end
 end

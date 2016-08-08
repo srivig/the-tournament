@@ -77,6 +77,9 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
+    bullet (5.2.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.10.0)
     cancancan (1.8.2)
     capybara (2.3.0)
       mime-types (>= 1.16)
@@ -557,6 +560,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    uniform_notifier (1.10.0)
     warden (1.2.3)
       rack (>= 1.0)
     websocket (1.2.2)
@@ -576,6 +580,7 @@ DEPENDENCIES
   asset_sync
   better_errors
   binding_of_caller
+  bullet
   cancancan
   capybara
   carrierwave
