@@ -11,8 +11,18 @@ class TournamentsController < ApplicationController
   def show
     redirect_to pretty_tournament_path(@tournament, @tournament.encoded_title), status: 301 if params[:title] != @tournament.encoded_title
 
-    #json = JSON.parse(open("#{ENV['GOOGLE_STORAGE_URL']}/json/#{@tournament.id.to_s}.json").read)
-    json = JSON.parse(open("#{ENV['GOOGLE_STORAGE_URL']}/json/1001.json").read)
+    if Rails.env.production?
+      json = JSON.parse(open("#{ENV['GOOGLE_STORAGE_URL']}/json/#{@tournament.id.to_s}.json").read)
+    else
+      json = {
+        tournament_data: @tournament.tournament_data,
+        skip_secondary_final: (@tournament.de?) ? !@tournament.secondary_final : false,
+        skip_consolation_round: !@tournament.consolation_round,
+        countries: @tournament.players.map{|p| p.country.try(:downcase)},
+        match_data: @tournament.match_data,
+        scoreless: @tournament.scoreless?
+      }
+    end
     gon.push(json)
   end
 
