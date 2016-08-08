@@ -168,6 +168,10 @@ class Tournament < ActiveRecord::Base
     self.title.gsub(/　| |\//, '-')
   end
 
+  def embed_url
+    "#{ENV['GOOGLE_STORAGE_URL']}/index.html?id=#{self.id.to_s}&utm_campaign=embed&utm_medium=#{self.user.id.to_s}&utm_source=#{self.id.to_s}"
+  end
+
   def to_json
     {
       title: self.title,
