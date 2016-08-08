@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160521081859) do
+ActiveRecord::Schema.define(version: 20160808094505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20160521081859) do
     t.datetime "updated_at"
   end
 
+  add_index "game_records", ["game_id", "player_id"], name: "index_game_records_on_game_id_and_player_id", using: :btree
+
   create_table "games", force: true do |t|
     t.integer  "tournament_id"
     t.integer  "bracket"
@@ -44,6 +46,8 @@ ActiveRecord::Schema.define(version: 20160521081859) do
     t.string   "type",                     default: "Winner"
     t.string   "comment",       limit: 24
   end
+
+  add_index "games", ["tournament_id"], name: "index_games_on_tournament_id", using: :btree
 
   create_table "plans", force: true do |t|
     t.integer  "user_id",    null: false
@@ -67,6 +71,8 @@ ActiveRecord::Schema.define(version: 20160521081859) do
     t.datetime "updated_at"
     t.string   "country"
   end
+
+  add_index "players", ["tournament_id"], name: "index_players_on_tournament_id", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
@@ -106,6 +112,7 @@ ActiveRecord::Schema.define(version: 20160521081859) do
 
   add_index "tournaments", ["finished"], name: "index_tournaments_on_finished", using: :btree
   add_index "tournaments", ["pickup"], name: "index_tournaments_on_pickup", using: :btree
+  add_index "tournaments", ["user_id"], name: "index_tournaments_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
