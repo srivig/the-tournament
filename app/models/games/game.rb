@@ -13,6 +13,7 @@
 #  type          :string(255)      default("Winner")
 #
 
+
 #coding: utf-8
 class Game < ActiveRecord::Base
   has_many :game_records, -> { order(record_num: :asc) }, dependent: :destroy
@@ -191,5 +192,13 @@ class Game < ActiveRecord::Base
 
   def upload_tournament_json
     self.tournament.upload_json
+  end
+
+  def final?
+    (self.round==self.tournament.round_num) && (self.match==1)
+  end
+
+  def third_place?
+    (self.round==self.tournament.round_num) && (self.match==2)
   end
 end
