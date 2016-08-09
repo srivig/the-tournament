@@ -10,58 +10,65 @@
 - when 3
   - round_num = 1
 
--# - round_num.downto(1) do |i|
-- for i in 1..round_num
-  - if bracket == 3
-    - panel = 'panel-danger'
-  - else
-    - panel = (i==round_num) ? "panel-warning" : "panel-default"
-  .panel{class: panel}
-    .panel-heading= tournament.round_name(bracket:bracket, round:i)
-    %table#game-list.table.f16
-      - tournament.games.where(bracket:bracket, round: i).each do |game|
-        - unless (!tournament.consolation_round) && (i==tournament.round_num && game.match==2)
-          %tr
-            %td.width-10= game.match_name
 
-            -# First Player
-            - if game.ready?
-              - if game.finished?
-                - text_color =(game.winner == game.game_records.first.player) ? 'text-danger' : 'text-muted'
-              - else
-                - text_color = ''
-              %td.width-30.text-right{class: text_color}
-                %div.flag-container
-                  - if game.game_records.first.player.country.present?
-                    - country = game.game_records.first.player.country.downcase
-                    %div.flag{class: country}
-                = game.game_records.first.player.name
-              %td.width-8.text-right
-                - if game.finished? && !game.bye && !tournament.scoreless?
-                  #{game.game_records.first.score}
+.panel.panel-default
+  .panel-heading 対戦表
+  %table#game-list.table.f16
+    - current_round = 0
+    - tournament.games.includes([game_records: :player], :tournament).each do |game|
+      -# 3位決定戦のgameも必ず作成されるので、なしのときは表示スキップ
+      - next if (!tournament.consolation_round) && (game.round==tournament.round_num && game.match==2)
 
-              %td.width-4.text-center -
+      -# round heading
+      - if game.round > current_round
+        - current_round = game.round
+        - if bracket == 3
+          - panel = 'danger'
+        - else
+          - panel = (game.round==round_num) ? "danger" : "warning"
+        %tr{class: panel}
+          %td(colspan=7)= tournament.round_name(bracket:bracket, round:game.round)
 
-              -# Second Player
-              %td.width-8
-                - if game.finished? && !game.bye && !tournament.scoreless?
-                  #{game.game_records.second.score}
-              - if game.finished?
-                - text_color =(game.winner == game.game_records.second.player) ? 'text-danger' : 'text-muted'
-              - else
-                - text_color = ''
-              %td.width-30{class: text_color}
-                %div.flag-container
-                  - if game.game_records.second.player.country.present?
-                    - country = game.game_records.second.player.country.downcase
-                    %div.flag{class: country}
-                = game.game_records.second.player.name
-            - else
-              %td.width-30.text-right (TBD)
-              %td.width-8
-              %td.width-4.text-center -
-              %td.width-8
-              %td.width-30 (TBD)
-            %td.width-10.text-right
-              - if editable && game.ready? && !game.bye
-                = link_to t('edit'), edit_game_path(game), class: 'btn btn-primary btn-sm pull-right'
+      %tr
+        %td.width-10= game.match_name
+        -# First Player
+        - if game.ready?
+          - if game.finished?
+            - text_color =(game.winner == game.game_records.first.player) ? 'text-danger' : 'text-muted'
+          - else
+            - text_color = ''
+          %td.width-30.text-right{class: text_color}
+            %div.flag-container
+              - if game.game_records.first.player.country.present?
+                - country = game.game_records.first.player.country.downcase
+                %div.flag{class: country}
+            = game.game_records.first.player.name
+          %td.width-8.text-right
+            - if game.finished? && !game.bye && !tournament.scoreless?
+              #{game.game_records.first.score}
+
+          %td.width-4.text-center -
+
+          -# Second Player
+          %td.width-8
+            - if game.finished? && !game.bye && !tournament.scoreless?
+              #{game.game_records.second.score}
+          - if game.finished?
+            - text_color =(game.winner == game.game_records.second.player) ? 'text-danger' : 'text-muted'
+          - else
+            - text_color = ''
+          %td.width-30{class: text_color}
+            %div.flag-container
+              - if game.game_records.second.player.country.present?
+                - country = game.game_records.second.player.country.downcase
+                %div.flag{class: country}
+            = game.game_records.second.player.name
+        - else
+          %td.width-30.text-right (TBD)
+          %td.width-8
+          %td.width-4.text-center -
+          %td.width-8
+          %td.width-30 (TBD)
+        %td.width-10.text-right
+          - if editable && game.ready? && !game.bye
+            = link_to t('edit'), edit_game_path(game), class: 'btn btn-primary btn-sm pull-right'
