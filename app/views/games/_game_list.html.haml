@@ -22,11 +22,7 @@
       -# round heading
       - if game.round > current_round
         - current_round = game.round
-        - if bracket == 3
-          - panel = 'danger'
-        - else
-          - panel = (game.round==round_num) ? "danger" : "warning"
-        %tr{class: panel}
+        %tr.warning
           %td(colspan=7)= tournament.round_name(bracket:bracket, round:game.round)
 
       %tr
