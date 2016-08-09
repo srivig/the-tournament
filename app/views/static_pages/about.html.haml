@@ -81,12 +81,12 @@
         %h2= t('.feature_9')
     .col-sm-4
       .thumbnail
+        %h2= t('.feature_10')
+    .col-sm-4
+      .thumbnail
         %h2
           %span.label.label-warning NEW!
-          = t('.feature_10')
-    .col-sm-4.tbd
-      .thumbnail
-        %h2= t('.feature_11')
+          = t('.feature_11')
     .col-sm-4.tbd
       .thumbnail
         %h2= t('.feature_12')
@@ -108,7 +108,7 @@
         %h2= t('.feature_17')
     .col-sm-4.tbd
       .thumbnail
-        %h2 　
+        %h2= t('.feature_18')
 
 
 %section#plan
@@ -116,7 +116,8 @@
     %span Plan/Price
   .container
     .row.text-center
-      .col-md-4
+      .col-md-1
+      .col-md-5
         .panel.panel-danger
           .panel-heading
             %small= t('.plan_1_text')
@@ -125,52 +126,40 @@
               = image_tag('about/price_1.png')
               %h2.text-danger FREE
             %li.list-group-item
-              %small= t('.plan_price')
-              %strong= t('.free')
+              %small 初期費用：
+              %strong 無料
+              &nbsp;/&nbsp;
+              %small 月額費用：
+              %strong 無料
             %li.list-group-item
               %small= t('.plan_storage')
-              %strong
-                10~∞
-              %small (※1)
+              %strong ∞（無制限）
             %li.list-group-item
               %small= t('.plan_size')
-              %strong= "32#{t('.plan_player_count')}"
+              %strong 128名(※)
+            %li.list-group-item
+              %small トーナメント埋め込み機能：
+              %strong ◯
+            %li.list-group-item
+              %small 埋め込み時の広告非表示：
+              %strong ✕
+            %li.list-group-item
+              %small 埋め込み時のデザインカスタマイズ：
+              %strong ✕
             %li.list-group-item
               =link_to root_path, class: 'btn btn-danger' do
                 = t('.plan_1_action')
-      .col-md-4
-        .panel.panel-default
-          .panel-heading
-            %small= t('.plan_2_text')
-          %ul.list-group
-            %li.list-group-item
-              = image_tag('about/price_2.png')
-              %h2 LIGHT
-            %li.list-group-item
-              %small= t('.plan_price')
-              %strong 1,500円
-              %small (一括購入)
-            %li.list-group-item
-              %small= t('.plan_storage')
-              %strong 無料枠＋10
-              %small (※2)
-            %li.list-group-item
-              %small= t('.plan_size')
-              %strong 128名
-            %li.list-group-item
-              =link_to 'https://goo.gl/Xzqaxb', target: '_blank', class: 'btn btn-primary' do
-                = t('.plan_2_action')
-      .col-md-4
+      .col-md-5
         .panel.panel-default
           .panel-heading
             %small= t('.plan_3_text')
           %ul.list-group
             %li.list-group-item
               = image_tag('about/price_3.png')
-              %h2 STANDARD
+              %h2 PREMIUM
             %li.list-group-item
-              %small= t('.plan_price')
-              %strong 500円/月
+              %small 初期費用/月額費用：
+              %strong 応相談
             %li.list-group-item
               %small= t('.plan_storage')
               %strong ∞（無制限）
@@ -178,22 +167,25 @@
               %small= t('.plan_size')
               %strong 128名
             %li.list-group-item
-              =link_to 'https://goo.gl/USzLf9', target: '_blank', class: 'btn btn-primary' do
+              %small トーナメント埋め込み機能：
+              %strong ◯
+            %li.list-group-item
+              %small 埋め込み時の広告非表示：
+              %strong ◯
+            %li.list-group-item
+              %small 埋め込み時のデザインカスタマイズ：
+              %strong ◯
+            %li.list-group-item
+              =link_to 'https://goo.gl/forms/xqvYet0AAsQUalI52', target: '_blank', class: 'btn btn-primary' do
                 = t('.plan_3_action')
     %div.mb-30.text-center
       %p
-        %b 【※1】
-        無料枠は初期10個ですが、オプションで無制限に増やすことが可能です。
+        %b (※)
+        32名より大きいトーナメントの作成を希望される方は、事前に申請が必要です。
         %br
-        詳しくは「
-        %a(href="/gift")
-          無料のトーナメント作成数を増やす
-        」のページをご確認ください。
-      %p
-        %b 【※2】
-        32サイズの作成数とは別に、128サイズの作成数が10加算されます。
-        %br
-        （無料枠を増やしていない状態で、32サイズ10個＋128サイズ10個=合計20個作成することができます）
+        =link_to 'https://goo.gl/forms/xqvYet0AAsQUalI52', target: '_blank' do
+          お問い合わせフォーム
+        から、利用を希望される旨をご連絡ください。
     %div.text-center
 
 %section#faq.text-center

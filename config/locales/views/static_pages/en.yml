@@ -37,14 +37,15 @@ en:
       feature_7: Default Win
       feature_8: English ver.
       feature_9: Embedding Bracket
-      feature_10: Comment #Show Comment
-      feature_11: Multi User Update
+      feature_10: Show Comment
+      feature_11: Large Tournament
       feature_12: Paging View
       feature_13: Lottery for Players
       feature_14: Import Players List
-      feature_15: Large Tournament
+      feature_15: Multi User Update
       feature_16: Round Robin
       feature_17: Elimination Round
+      feature_18: Excel/PDF Export
 
       free: FREE
       plan_text_html:
