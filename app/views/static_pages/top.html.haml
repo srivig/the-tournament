@@ -7,28 +7,14 @@
   //PC版
   %div.visible-md.visible-lg
     - if current_user
-      - if current_user.creatable?
-        = link_to t('.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg center-block'
-      - else
-        = link_to t('.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg center-block', disabled: :disabled
-        %small
-          = t('layouts.sidebar.too_many_tournaments')
-          %br
-          = link_to "（#{t('layouts.sidebar.get_free_tournaments')}）", '/gift'
+      = link_to t('.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg center-block'
     - else
       = link_to t('.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg center-block'
       %small= t('layouts.sidebar.need_signin_or_signup_html', signin_link: link_to(t('signin'), new_user_session_path), signup_link: link_to(t('signup'), new_user_registration_path))
   //SP版
   %div.visible-xs.visible-sm
     - if current_user
-      - if current_user.creatable?
-        = link_to t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg center-block'
-      - else
-        = link_to t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg center-block', disabled: :disabled
-        %small
-          = t('layouts.sidebar.too_many_tournaments')
-          %br
-          = link_to "（#{t('layouts.sidebar.get_free_tournaments')}）", '/gift'
+      = link_to t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg center-block'
     - else
       = link_to t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'btn btn-danger btn-block btn-lg center-block'
       %small= t('layouts.sidebar.need_signin_or_signup_html', signin_link: link_to(t('signin'), new_user_session_path), signup_link: link_to(t('signup'), new_user_registration_path))

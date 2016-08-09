@@ -41,7 +41,7 @@ ja:
         profile_img: プロフィール画像を変更する
     hints:
       tournament:
-        size: ※32名より大きな大会は有料プランへの登録が必要です
+        size: ※32名より大きな大会の利用は、「<a href='https://goo.gl/forms/xqvYet0AAsQUalI52' target='_blank'>お問い合わせ</a>」より事前に申請してください。
         type: ダブルイリミネーション(敗者復活戦あり)形式は有料プランユーザーのみ利用可能です
       user:
         profile_img: Gravatarという外部のサービスへの登録が必要になります

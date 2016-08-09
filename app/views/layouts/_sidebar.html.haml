@@ -7,28 +7,10 @@
       = link_to destroy_user_session_path, method: :delete do
         %small (#{t('signout')})
     %p
-      - if current_user.creatable?
-        = link_to 'トーナメント作成', new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
-      - else
-        = link_to 'トーナメント作成', new_tournament_path, class: 'btn btn-danger btn-block btn-lg', disabled: :disabled
-        %small
-          = t('layouts.sidebar.too_many_tournaments')
-          %br
-          = link_to "（#{t('layouts.sidebar.get_free_tournaments')}）", '/gift'
-    %p
-      = t('layouts.sidebar.tournaments_created') + ":"
-      %strong.text-danger
-        = current_user.tournaments.count
-      \/
-      = current_user.limit_count
+      = link_to 'トーナメント作成', new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
     %br
-    %ul.list-group.text-left
-      %li.list-group-item
-        %i.fa.fa-gift
-        = link_to t('layouts.sidebar.get_free_tournaments'), '/gift'
-      %li.list-group-item
-        %i.fa.fa-list
-        = link_to t('layouts.sidebar.tournaments_list'), user_path(current_user)
+    %div
+      = link_to fa_icon('list')+"作成済みトーナメント", user_path(current_user), class: 'btn btn-default'
   - else
     = link_to 'トーナメント作成', new_tournament_path, class: 'btn btn-danger btn-block btn-lg'
     %small= t('layouts.sidebar.need_signin_or_signup_html', signin_link: link_to(t('signin'), new_user_session_path), signup_link: link_to(t('signup'), new_user_registration_path))

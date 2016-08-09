@@ -28,17 +28,8 @@ class User < ActiveRecord::Base
   has_many :plans, dependent: :destroy
   validates :accept_terms, acceptance: true, on: :create
 
-  def creatable?
-    return true if self.admin?
-    self.tournaments.count < self.limit_count
-  end
-
   def current_plan
     self.plans.order(created_at: :desc).where("expires_at >= ?", Date.today).first
-  end
-
-  def limit_count
-    self.current_plan.try(:count) || Plan::DEFAULT_COUNT
   end
 
   def limit_size

@@ -50,12 +50,6 @@ class TournamentsController < ApplicationController
   end
 
   def new
-    if !current_user.creatable?
-      link = "(<a href=\"/gift\">無料作成枠を増やす</a>)"
-      flash[:alert] = "トーナメント作成数の上限に達しています。#{link}".html_safe
-      redirect_to root_path
-    end
-
     @tournament = Tournament.new
   end
 
