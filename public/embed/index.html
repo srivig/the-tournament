@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang='ja'>
+<head>
+  <meta charset='utf-8'>
+  <meta content='IE=Edge,chrome=1' http-equiv='X-UA-Compatible'>
+  <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+  <title>THE TOURNAMENT(ザ・トーナメント)</title>
+
+  <!--[if lt IE 9]>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"></script>
+  <![endif]-->
+  <link href="https://the_tournament.storage.googleapis.com/css/application.css" media="all" rel="stylesheet"/>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://the_tournament.storage.googleapis.com/js/jquery.bracket.min.js"></script>
+
+  <script type="text/javascript">
+    var getQueryString = function ( field, url ) {
+      var href = url ? url : window.location.href;
+      var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
+      var string = reg.exec(href);
+      return string ? string[1] : null;
+    };
+    window.tnmt_id = getQueryString('id');
+
+    $.getJSON("https://the_tournament.storage.googleapis.com/json/"+tnmt_id+".json?t="+Date.now(), function(json){
+      window.gon = json;
+
+      var addCountryFlg, createBracket, hideDecimal;
+      createBracket = function() {
+        var d;
+        d = new $.Deferred;
+        $('#tournament').bracket({
+          skipConsolationRound: gon.skip_consolation_round,
+          skipSecondaryFinal: gon.skip_secondary_final,
+          init: gon.tournament_data
+        });
+        return d.resolve();
+      };
+      hideDecimal = function() {
+        return jQuery.each($('.score'), function() {
+          if (!isNaN(this.innerText)) {
+            if ($.inArray(this.innerText, ["0.2", "0.3"]) >= 0) {
+              return this.innerText = '--';
+            } else if (gon.scoreless) {
+              return this.innerText = '--';
+            } else {
+              return this.innerText = Math.floor(this.innerText);
+            }
+          }
+        });
+      };
+      addCountryFlg = function() {
+        return jQuery.each(gon.countries, function(i, v) {
+          if (v) {
+            return $('.bracket .team').eq(i).find('.label').prepend('<div class="flag-container f16"><div class="flag ' + v + '"></div>');
+          }
+        });
+      };
+      createBracket().done(hideDecimal(), addCountryFlg());
+
+      $('.teamContainer').attr({
+        'data-toggle': 'tooltip',
+        'data-placement': 'right'
+      });
+      $('.bracket .teamContainer').each(function(i) {
+        return $('.bracket .teamContainer').eq(i).attr('title', gon.match_data[1][i]);
+      });
+      if ($('.loserBracket').length) {
+        $('.loserBracket .teamContainer').each(function(i) {
+          return $('.loserBracket .teamContainer').eq(i).attr('title', gon.match_data[2][i]);
+        });
+        $('.finals .teamContainer').each(function(i) {
+          return $('.finals .teamContainer').eq(i).attr('title', gon.match_data[3][i]);
+        });
+      }
+      $('.teamContainer').tooltip({
+        html: true
+      });
+
+      $("#original_link").text(gon.title);
+      $("#original_link").attr("href", "https://the-tournament.jp/tournaments/"+tnmt_id);
+    });
+  </script>
+  <meta content='noindex' name='robots'>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-30867542-19', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
+<body id='embed'>
+  <div id='emb-container'>
+    <div id='emb-header'>
+      <h1>
+        <a id="original_link" href="#" target="_blank"></a>
+        <small class='text-right'>
+          powered by
+          <a href="https://the-tournament.jp/about" target="_blank">THE TOURNAMENT</a>
+        </small>
+      </h1>
+    </div>
+    <div id='emb-body'>
+      <div id='tournament'></div>
+      <div class='text-center' id='emb-ad'>
+        <script async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
+        <ins class='adsbygoogle' data-ad-client='ca-pub-7703471297541925' data-ad-format='auto' data-ad-slot='1630506761' style='display:inline-block;width:100%;height:100px;'></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
