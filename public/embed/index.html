@@ -22,7 +22,7 @@
       var string = reg.exec(href);
       return string ? string[1] : null;
     };
-    window.tnmt_id = getQueryString('id');
+    window.tnmt_id = getQueryString('utm_source') || getQueryString('id');
 
     $.getJSON("https://the_tournament.storage.googleapis.com/json/"+tnmt_id+".json?t="+Date.now(), function(json){
       window.gon = json;
