@@ -23,7 +23,7 @@
       return string ? string[1] : null;
     };
     window.tnmt_id = getQueryString('utm_source') || getQueryString('id');
-    window.size = getQueryString('size');
+    window.width = getQueryString('width');
 
     $.getJSON("https://the_tournament.storage.googleapis.com/json/"+tnmt_id+".json?t="+Date.now(), function(json){
       window.gon = json;
@@ -59,7 +59,22 @@
           }
         });
       };
-      createBracket().done(hideDecimal(), addCountryFlg());
+      // width指定されてたらリサイズ
+      resizeBracket = function() {
+        if(width && width > 100) {
+          $('#tournament .round').width(width);
+          $('#tournament .team').width(width);
+          $('#tournament .label').width(width-24);
+
+          var size_diff = width - 100;
+          var round_num = Math.log2(gon.tournament_data.teams.length * 2);
+          var bracket_width = $('#tournament .bracket').width();
+          $('#tournament .bracket').width(bracket_width + (size_diff*round_num));
+          $('#tournament .jQBracket').width(bracket_width + (size_diff*round_num) + 10);
+        }
+      }
+
+      createBracket().done(hideDecimal(), addCountryFlg(), resizeBracket());
 
       $('.teamContainer').attr({
         'data-toggle': 'tooltip',
@@ -79,8 +94,6 @@
       $('.teamContainer').tooltip({
         html: true
       });
-
-      //TODO: size指定されてたらリサイズ
 
       $("#original_link").text(gon.title);
       $("#original_link").attr("href", "https://the-tournament.jp/tournaments/"+tnmt_id);
