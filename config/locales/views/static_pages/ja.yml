@@ -44,8 +44,8 @@ ja:
       feature_9: HPへの埋め込み
       feature_10: コメント表示
       feature_11: 大規模大会対応
-      feature_12: ブロック分け表示
-      feature_13: 参加者の抽選
+      feature_12: 参加者名の表示幅調整
+      feature_13: ブロック分け表示
       feature_14: 参加者リスト読み込み
       feature_15: 各会場での同時更新
       feature_16: 総当り形式
