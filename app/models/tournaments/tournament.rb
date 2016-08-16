@@ -42,7 +42,7 @@ class Tournament < ActiveRecord::Base
   validates :scoreless, presence: true, inclusion: {in: [true,false]}, allow_blank: true
 
   def tnmt_size_must_be_smaller_than_limit
-    errors.add(:size, "作成できるサイズ上限を越えています") unless self.user.creatable_sizes.include? size
+    errors.add(:size, "作成できるサイズ上限を越えています") unless self.user.creatable_sizes.has_value? size
   end
 
   default_scope {order(created_at: :desc)}

@@ -37,6 +37,6 @@ class User < ActiveRecord::Base
   end
 
   def creatable_sizes
-    [4,8,16,32,64,128].select{|i| i <= self.limit_size}
+    {"〜4名"=> 4, "5〜8名"=> 8, "9〜16名"=>16, "17〜32名"=>32, "33〜64名"=>64, "65〜128名"=>128}.select{|k,v| v <= self.limit_size}
   end
 end
