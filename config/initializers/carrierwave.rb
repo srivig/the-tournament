@@ -4,5 +4,5 @@ CarrierWave.configure do |config|
     google_storage_access_key_id:     ENV['GOOGLE_STORAGE_ACCESS_KEY_ID'],
     google_storage_secret_access_key: ENV['GOOGLE_STORAGE_SECRET_ACCESS_KEY']
   }
-  config.fog_directory = ENV['FOG_DIRECTORY_EMBED']
+  config.fog_directory = ENV['FOG_DIRECTORY']
 end
