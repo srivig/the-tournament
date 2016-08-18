@@ -12,7 +12,7 @@ class TournamentsController < ApplicationController
     redirect_to pretty_tournament_path(@tournament, @tournament.encoded_title), status: 301 if params[:title] != @tournament.encoded_title
 
     if Rails.env.production?
-      json = JSON.parse(open("#{ENV['GOOGLE_STORAGE_URL']}/json/#{@tournament.id.to_s}.json").read)
+      json = JSON.parse(open("https://#{ENV['FOG_DIRECTORY']}.storage.googleapis.com/embed/json/#{@tournament.id.to_s}.json").read)
     else
       json = {
         tournament_data: @tournament.tournament_data,
