@@ -84,15 +84,15 @@ class TournamentsController < ApplicationController
       failure_url = 'players/edit_all'
       failure_notice = I18n.t('flash.players.update.failure')
 
-      # Playerテキスト一括登録利用時
-      if params[:tournament][:players_all].present?
-        players = params[:tournament][:players_all][:players]
+      # 一括登録利用時
+      players = params[:tournament][:players_all][:players]
+      if players != @tournament.players_list
         players.lines.each_with_index do |line, i|
           break if i >= @tournament.size
           params[:tournament][:players_attributes]["#{i}"]["name"] = line.chomp
         end
-        params[:tournament][:players_all] = nil
       end
+      params[:tournament][:players_all] = nil
     else
       success_url = tournament_edit_players_path(@tournament)
       success_notice = I18n.t('flash.tournament.update.success')
