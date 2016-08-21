@@ -26,5 +26,7 @@
                   %div.flag{class: r.object.country.downcase}
               = r.object.name
             %td.hidden-sm.hidden-xs= Country[r.object.country]
+  = f.simple_fields_for :players_all do |p|
+    = p.input :players, as: :text, label: '参加者一括登録'
   - if editable
     = f.button :submit, class: 'btn-danger'

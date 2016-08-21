@@ -83,6 +83,16 @@ class TournamentsController < ApplicationController
       success_notice = I18n.t('flash.players.update.success')
       failure_url = 'players/edit_all'
       failure_notice = I18n.t('flash.players.update.failure')
+
+      # Playerテキスト一括登録利用時
+      if params[:tournament][:players_all].present?
+        players = params[:tournament][:players_all][:players]
+        players.lines.each_with_index do |line, i|
+          break if i >= @tournament.size
+          params[:tournament][:players_attributes]["#{i}"]["name"] = line.chomp
+        end
+        params[:tournament][:players_all] = nil
+      end
     else
       success_url = tournament_edit_players_path(@tournament)
       success_notice = I18n.t('flash.tournament.update.success')
@@ -90,16 +100,11 @@ class TournamentsController < ApplicationController
       failure_notice = I18n.t('flash.tournament.update.failure')
     end
 
-    respond_to do |format|
-      if @tournament.update(tournament_params)
-        # format.html { redirect_to edit_tournament_path(@tournament), notice: 'Tournament was successfully updated.' }
-        format.html { redirect_to success_url, notice: success_notice}
-        format.json { head :no_content }
-      else
-        flash.now[:alert] = failure_notice
-        format.html { render failure_url }
-        format.json { render json: @tournament.errors, status: :unprocessable_entity }
-      end
+    if @tournament.update(tournament_params)
+      redirect_to success_url, notice: success_notice
+    else
+      flash.now[:alert] = failure_notice
+      render failure_url
     end
   end
 
@@ -117,6 +122,6 @@ class TournamentsController < ApplicationController
     end
 
     def tournament_params
-      params.require(:tournament).permit(:id, :title, :user_id, :detail, :type, :place, :url, :size, :consolation_round, :tag_list, :double_elimination, :scoreless, players_attributes: [:id, :name, :group, :country])
+      params.require(:tournament).permit(:id, :title, :user_id, :detail, :type, :place, :url, :size, :consolation_round, :tag_list, :double_elimination, :scoreless, players_attributes: [:id, :name, :group, :country], players_all: [:players])
     end
 end

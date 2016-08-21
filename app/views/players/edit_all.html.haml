@@ -13,4 +13,4 @@
     %strong.text-right.text-danger ※名前を空白にすると、対戦相手がシード扱いになります。
     %br
     %small.text-right.hidden-sm.hidden-xs ※国を登録するとトーナメント表に国旗アイコンが表示されます。
-  = render partial: "member_list", locals: {tournament: @tournament, editable: editable}
+  = render partial: "/players/member_list", locals: {tournament: @tournament, editable: editable}
