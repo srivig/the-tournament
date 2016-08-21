@@ -191,4 +191,16 @@ class Tournament < ActiveRecord::Base
 
     TournamentUploader.new.store!(src_file)
   end
+
+  def players_list
+    if self.players
+      players = self.players.pluck(:name)
+    else
+      players = []
+      self.size.times do |i|
+        players << "Player#{i}"
+      end
+    end
+    players.join("\r\n")
+  end
 end
