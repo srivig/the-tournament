@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 ruby '2.3.1'
 
-gem 'rails', '4.1.0'
+gem 'rails', '4.2.6'
 gem 'pg'
-gem 'foreman'
+gem 'foreman', '0.71.0'
 gem 'unicorn'
 gem 'newrelic_rpm'
 
@@ -19,7 +19,7 @@ gem 'quiet_assets'
 gem 'kaminari'
 gem 'gon'
 gem 'acts-as-taggable-on'
-gem 'country_select'
+gem 'country_select', '~> 1.0'
 gem 'world_flags', git: 'git://github.com/djonasson/world_flags.git'
 gem 'meta-tags', require: 'meta_tags'
 gem 'spinjs-rails'
@@ -29,7 +29,6 @@ gem 'sitemap_generator'
 gem 'carrierwave'
 gem 'fog'
 gem 'addressable'
-
 
 
 #Bootstrap
