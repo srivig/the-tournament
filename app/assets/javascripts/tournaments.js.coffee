@@ -50,12 +50,15 @@ $ ->
 
     # Image Download
     $("#download_btn").button('loading')
-    html2canvas($(".bracket"), {
-      onrendered: (canvas) ->
-        canvasImage = canvas.toDataURL("image/jpeg")
-        $("#download_btn").attr('href', canvasImage)
-        $("#download_btn").button("reset")
-    })
+    setTimeout ->
+      html2canvas($(".bracket"), {
+        onrendered: (canvas) ->
+          canvasImage = canvas.toDataURL("image/jpeg")
+          canvasImage = canvasImage.replace(/^data:image\/jpeg/, "data:application/octet-stream");
+          $("#download_btn").attr('href', canvasImage).attr('download', 'tournament.jpg')
+          $("#download_btn").button("reset")
+      })
+    , 2000
 
   # Update embeded tournament
   $("a[data-remote]").on "ajax:success", (e, data, status, xhr) ->
