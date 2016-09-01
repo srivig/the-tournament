@@ -44,7 +44,7 @@
             = fa_icon("photo")
             画像埋め込みタグ　
           %div
-            %input(type="text" size="100%" value="<img src='https://the-tournament.storage.googleapis.com/embed/img/#{@tournament.id}.png'>" readonly)
+            %input(type="text" size="100%" value="<img src='https://the-tournament.storage.googleapis.com/embed/json/#{@tournament.id}.jpg'>" readonly)
           %br
           %button#btn-upload_img.btn.btn-default(data-tournament_id="#{@tournament.id}")
             = fa_icon("refresh")
