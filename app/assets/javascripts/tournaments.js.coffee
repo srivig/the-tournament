@@ -40,7 +40,8 @@ $ ->
             canvasImage = canvas.toDataURL("image/jpeg")
             canvasImage = canvasImage.replace(/^data:image\/jpeg/, "data:application/octet-stream");
             $("#download_btn").attr('href', canvasImage).attr('download', 'tournament.jpg')
-            $("#download_btn").button("reset")
+            $("#btn-upload_img").attr('data-img_uri', canvasImage)
+            $("#download_btn, #btn-upload_img").button("reset")
         })
       , 5000
 
@@ -62,7 +63,16 @@ $ ->
     $('.teamContainer').tooltip({html:true})
 
     # Image Download
-    $("#download_btn").button('loading')
+    $("#download_btn, #btn-upload_img").button('loading')
+
+    # Image Upload
+    $("#btn-upload_img").click ->
+      url = '/tournaments/' + $(this).attr('data-tournament_id') + '/upload_img'
+      $.ajax({url: url, type: "post", data: {img_uri: $(this).attr('data-img_uri')}})
+      .done (data) ->
+        console.log data
+        alert('画像の更新が完了しました！')
+
 
   # tournament#edit page - Tags input
   if $('#tournament_tag_list').length

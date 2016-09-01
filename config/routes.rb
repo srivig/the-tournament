@@ -18,6 +18,7 @@ TheTournament::Application.routes.draw do
       match 'games/edit', to: 'games#edit_all', via: :get, as: :edit_games
     end
     match 'tournaments/:id/upload', to: 'tournaments#upload', via: :get, as: :upload_tournament
+    match 'tournaments/:id/upload_img', to: 'tournaments#upload_img', via: :post
     match 'tournaments/:id/(:title)', to: 'tournaments#show', via: :get, as: :pretty_tournament, constraints: {title: /[^\/]+/}
     match ':action', controller: :static_pages, via: :get
 

@@ -49,6 +49,26 @@ class TournamentsController < ApplicationController
     render json: json
   end
 
+  def upload_img
+    begin
+      # Save Image
+      uri = URI::Data.new(params[:img_uri])
+      File.open(File.join(Rails.root, "/tmp/#{params[:id]}.jpg"), 'wb') do |f|
+        f.write(uri.data)
+      end
+
+      # Upload Image
+      uploader = TournamentUploader.new
+      src = File.join(Rails.root, "/tmp/#{@tournament.id}.jpg")
+      src_file = File.new(src)
+      uploader.store!(src_file)
+
+      render text: 'success', status: 200
+    rescue => e
+      render text: 'error', status: 500
+    end
+  end
+
   def new
     @tournament = Tournament.new
   end

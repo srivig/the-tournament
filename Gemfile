@@ -29,6 +29,7 @@ gem 'sitemap_generator'
 gem 'carrierwave'
 gem 'fog'
 gem 'addressable'
+gem 'data_uri'
 
 
 #Bootstrap

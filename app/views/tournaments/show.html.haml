@@ -40,6 +40,15 @@
         %br
       - if current_user && (current_user.id == 835 || current_user.admin?)
         .col-lg-12
+          %h5
+            = fa_icon("photo")
+            画像埋め込みタグ　
+          %div
+            %input(type="text" size="100%" value="<img src='https://the-tournament.storage.googleapis.com/embed/img/#{@tournament.id}.png'>" readonly)
+          %br
+          %button#btn-upload_img.btn.btn-default(data-tournament_id="#{@tournament.id}")
+            = fa_icon("refresh")
+            埋め込み画像更新
           %a#download_btn.btn.btn-default(href="#" target="_blank")
             = fa_icon("download")
             画像ダウンロード
