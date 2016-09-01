@@ -35,13 +35,14 @@ $ ->
     prepareImage = ->
       setTimeout ->
         html2canvas($(".bracket"), {
+          useCORS: true,
           onrendered: (canvas) ->
             canvasImage = canvas.toDataURL("image/jpeg")
             canvasImage = canvasImage.replace(/^data:image\/jpeg/, "data:application/octet-stream");
             $("#download_btn").attr('href', canvasImage).attr('download', 'tournament.jpg')
             $("#download_btn").button("reset")
         })
-      , 15000
+      , 5000
 
     createBracket().done(hideDecimal(), addCountryFlg(), prepareImage())
 
