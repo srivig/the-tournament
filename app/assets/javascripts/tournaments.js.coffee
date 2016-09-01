@@ -41,7 +41,7 @@ $ ->
             $("#download_btn").attr('href', canvasImage).attr('download', 'tournament.jpg')
             $("#download_btn").button("reset")
         })
-      , 5000
+      , 15000
 
     createBracket().done(hideDecimal(), addCountryFlg(), prepareImage())
 
