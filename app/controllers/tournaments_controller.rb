@@ -53,13 +53,13 @@ class TournamentsController < ApplicationController
     begin
       # Save Image
       uri = URI::Data.new(params[:img_uri])
-      File.open(File.join(Rails.root, "/tmp/#{params[:id]}.jpg"), 'wb') do |f|
+      File.open(File.join(Rails.root, "/tmp/#{params[:id]}.png"), 'wb') do |f|
         f.write(uri.data)
       end
 
       # Upload Image
       uploader = TournamentUploader.new
-      src = File.join(Rails.root, "/tmp/#{@tournament.id}.jpg")
+      src = File.join(Rails.root, "/tmp/#{@tournament.id}.png")
       src_file = File.new(src)
       uploader.store!(src_file)
 

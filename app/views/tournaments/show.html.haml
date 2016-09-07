@@ -40,11 +40,12 @@
         %br
       - if current_user && (current_user.id == 835 || current_user.admin?)
         .col-lg-12
+          - embed_img_content = "<iframe src='#{@tournament.embed_img_url}' seamless frameborder='0' width='100%' height='#{embed_height(@tournament.size).to_s}'></iframe>";
           %h5
             = fa_icon("photo")
             画像埋め込みタグ　
           %div
-            %input(type="text" size="100%" value="<img src='https://the-tournament.storage.googleapis.com/embed/json/#{@tournament.id}.jpg'>" readonly)
+            %input(type="text" style="width:100%;" value="#{embed_img_content}" onfocus="this.select();" readonly)
           %br
           %button#btn-upload_img.btn.btn-default(data-tournament_id="#{@tournament.id}")
             = fa_icon("refresh")

@@ -37,9 +37,8 @@ $ ->
         html2canvas($(".bracket"), {
           useCORS: true,
           onrendered: (canvas) ->
-            canvasImage = canvas.toDataURL("image/jpeg")
-            canvasImage = canvasImage.replace(/^data:image\/jpeg/, "data:application/octet-stream");
-            $("#download_btn").attr('href', canvasImage).attr('download', 'tournament.jpg')
+            canvasImage = canvas.toDataURL("image/png", 1.0)
+            $("#download_btn").attr('href', canvasImage).attr('download', 'tournament.png')
             $("#btn-upload_img").attr('data-img_uri', canvasImage)
             $("#download_btn, #btn-upload_img").button("reset")
         })
