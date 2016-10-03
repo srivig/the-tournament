@@ -2,36 +2,6 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$ ->
-  if $('#game-edit').length
-    # 同点の場合は最初から手動の勝者選択をactiveにしとく
-    scores = [Number($('.game_game_records_score input')[0].value), Number($('.game_game_records_score input')[1].value)]
-    if scores[0] == scores[1]
-      enable_winner_select()
-
-    # スコアが変更されたとき
-    $('.game_game_records_score input').change ->
-      scores = [Number($('.game_game_records_score input')[0].value), Number($('.game_game_records_score input')[1].value)]
-      # 点数比較して勝者を決定
-      winner = judge_winner(scores[0], scores[1])
-      reset_winner()
-
-      # 引き分けじゃなかったら勝者セット
-      if winner
-        set_winner(winner)
-        disable_winner_select()
-      # 引き分けのときは手動で勝者選択できるようにする
-      else
-        enable_winner_select()
-
-    # 手動の勝者選択が変更されたとき
-    $('#winner-select').change ->
-      reset_winner()
-      # 2人のうちのどちらかが選ばれていたら
-      if $.inArray($(this).val(), ["1","2"]) >= 0
-        winner = $(this).val()
-        set_winner(winner)
-
 # スコアから勝者を判定
 judge_winner = (score_1, score_2) ->
   winner = null
@@ -63,3 +33,33 @@ enable_winner_select = ->
 disable_winner_select = ->
   $('#winner-select').attr('disabled','disabled')
   $('#winner-select').val('0')
+
+$ ->
+  if $('#game-edit').length
+    # 同点の場合は最初から手動の勝者選択をactiveにしとく
+    scores = [Number($('.game_game_records_score input')[0].value), Number($('.game_game_records_score input')[1].value)]
+    if scores[0] == scores[1]
+      enable_winner_select()
+
+    # スコアが変更されたとき
+    $('.game_game_records_score input').change ->
+      scores = [Number($('.game_game_records_score input')[0].value), Number($('.game_game_records_score input')[1].value)]
+      # 点数比較して勝者を決定
+      winner = judge_winner(scores[0], scores[1])
+      reset_winner()
+
+      # 引き分けじゃなかったら勝者セット
+      if winner
+        set_winner(winner)
+        disable_winner_select()
+      # 引き分けのときは手動で勝者選択できるようにする
+      else
+        enable_winner_select()
+
+    # 手動の勝者選択が変更されたとき
+    $('#winner-select').change ->
+      reset_winner()
+      # 2人のうちのどちらかが選ばれていたら
+      if $.inArray($(this).val(), ["1","2"]) >= 0
+        winner = $(this).val()
+        set_winner(winner)
