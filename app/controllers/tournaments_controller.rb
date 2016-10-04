@@ -9,6 +9,7 @@ class TournamentsController < ApplicationController
   end
 
   def show
+    @tournament.upload_img
     redirect_to pretty_tournament_path(@tournament, @tournament.encoded_title), status: 301 if params[:title] != @tournament.encoded_title
 
     if Rails.env.production?
@@ -59,26 +60,6 @@ class TournamentsController < ApplicationController
 
     uploader.store!(src_file)
     render json: json
-  end
-
-  def upload_img
-    begin
-      # Save Image
-      uri = URI::Data.new(params[:img_uri])
-      File.open(File.join(Rails.root, "/tmp/#{params[:id]}.png"), 'wb') do |f|
-        f.write(uri.data)
-      end
-
-      # Upload Image
-      uploader = TournamentUploader.new
-      src = File.join(Rails.root, "/tmp/#{@tournament.id}.png")
-      src_file = File.new(src)
-      uploader.store!(src_file)
-
-      render text: 'success', status: 200
-    rescue => e
-      render text: 'error', status: 500
-    end
   end
 
   def new

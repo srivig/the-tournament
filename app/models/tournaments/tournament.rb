@@ -50,7 +50,7 @@ class Tournament < ActiveRecord::Base
 
   before_create :build_players, :build_winner_games, :build_third_place_game
   after_create :create_first_round_records
-  after_save :upload_json
+  after_save :upload_json, :upload_img
 
   def self.search_tournaments(params)
     if params[:q]
@@ -194,6 +194,20 @@ class Tournament < ActiveRecord::Base
     src_file = File.new(src)
 
     TournamentUploader.new.store!(src_file)
+  end
+
+  def upload_img
+    File.open(File.join(Rails.root, "/tmp/#{self.id}.png"), 'wb') do |tmp|
+      open("https://phantomjscloud.com/api/browser/v2/ak-nf04k-a8wtb-56vg4-4t56s-j2ex3/?request={url:%22https://the-tournament.jp/ja/tournaments/#{self.id}/raw%22,renderType:%22png%22}") do |f|
+        f.each_line {|line| tmp.puts line}
+      end
+    end
+
+    # Upload Image
+    uploader = TournamentUploader.new
+    src = File.join(Rails.root, "/tmp/#{self.id}.png")
+    src_file = File.new(src)
+    uploader.store!(src_file)
   end
 
   def players_list

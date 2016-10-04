@@ -42,7 +42,7 @@ $ ->
             $("#btn-upload_img").attr('data-img_uri', canvasImage)
             $("#download_btn, #btn-upload_img").button("reset")
         })
-      , 5000
+      , 1500
 
     createBracket().done(hideDecimal(), addCountryFlg(), prepareImage())
 
@@ -63,15 +63,6 @@ $ ->
 
     # Image Download
     $("#download_btn, #btn-upload_img").button('loading')
-
-    # Image Upload
-    $("#btn-upload_img").click ->
-      url = '/tournaments/' + $(this).attr('data-tournament_id') + '/upload_img'
-      $.ajax({url: url, type: "post", data: {img_uri: $(this).attr('data-img_uri')}})
-      .done (data) ->
-        console.log data
-        alert('画像の更新が完了しました！')
-
 
   # tournament#edit page - Tags input
   if $('#tournament_tag_list').length
