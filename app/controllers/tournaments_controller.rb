@@ -1,5 +1,5 @@
 class TournamentsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show, :embed]
+  skip_before_action :authenticate_user!, only: [:index, :show, :embed, :raw]
   before_action :set_tournament, only: [:show, :edit, :update, :destroy, :embed, :upload]
   load_and_authorize_resource
 
