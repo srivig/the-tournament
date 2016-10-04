@@ -40,7 +40,7 @@
         %br
       - if current_user && (current_user.id == 835 || current_user.admin?)
         .col-lg-12
-          - embed_img_content = "<iframe src='#{@tournament.embed_img_url}' seamless frameborder='0' width='100%' height='#{embed_height(@tournament.size).to_s}'></iframe>";
+          - embed_img_content = "<iframe src='#{@tournament.embed_img_url}' seamless frameborder='0' width='100%' height='1000px'></iframe>";
           %h5
             = fa_icon("photo")
             画像埋め込みタグ　
