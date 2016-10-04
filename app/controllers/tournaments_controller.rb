@@ -26,6 +26,18 @@ class TournamentsController < ApplicationController
     gon.push(json)
   end
 
+  def raw
+    gon.push({
+      tournament_data: @tournament.tournament_data,
+      skip_secondary_final: (@tournament.de?) ? !@tournament.secondary_final : false,
+      skip_consolation_round: !@tournament.consolation_round,
+      countries: @tournament.players.map{|p| p.country.try(:downcase)},
+      match_data: @tournament.match_data,
+      scoreless: @tournament.scoreless?
+    })
+    render layout: false
+  end
+
   def embed
     gon.push({
       tournament_data: @tournament.tournament_data,

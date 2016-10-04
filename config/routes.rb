@@ -17,6 +17,7 @@ TheTournament::Application.routes.draw do
       resources :games
       match 'games/edit', to: 'games#edit_all', via: :get, as: :edit_games
     end
+    match 'tournaments/:id/raw', to: 'tournaments#raw', via: :get
     match 'tournaments/:id/upload', to: 'tournaments#upload', via: :get, as: :upload_tournament
     match 'tournaments/:id/upload_img', to: 'tournaments#upload_img', via: :post
     match 'tournaments/:id/(:title)', to: 'tournaments#show', via: :get, as: :pretty_tournament, constraints: {title: /[^\/]+/}
