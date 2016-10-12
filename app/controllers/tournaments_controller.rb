@@ -9,7 +9,6 @@ class TournamentsController < ApplicationController
   end
 
   def show
-    @tournament.upload_img
     redirect_to pretty_tournament_path(@tournament, @tournament.encoded_title), status: 301 if params[:title] != @tournament.encoded_title
 
     if Rails.env.production?

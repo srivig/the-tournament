@@ -198,7 +198,7 @@ class Tournament < ActiveRecord::Base
 
   def upload_img
     File.open(File.join(Rails.root, "/tmp/#{self.id}.png"), 'wb') do |tmp|
-      open("https://phantomjscloud.com/api/browser/v2/ak-nf04k-a8wtb-56vg4-4t56s-j2ex3/?request={url:%22https://the-tournament.jp/ja/tournaments/#{self.id}/raw%22,renderType:%22png%22}") do |f|
+      open("https://phantomjscloud.com/api/browser/v2/ak-b1hw7-66a8k-1wdyw-xhqh1-f2s4p/?request={url:%22https://the-tournament.jp/ja/tournaments/#{self.id}/raw%22,renderType:%22png%22}") do |f|
         f.each_line {|line| tmp.puts line}
       end
     end
