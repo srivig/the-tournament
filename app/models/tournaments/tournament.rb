@@ -197,17 +197,19 @@ class Tournament < ActiveRecord::Base
   end
 
   def upload_img
-    File.open(File.join(Rails.root, "/tmp/#{self.id}.png"), 'wb') do |tmp|
-      open("https://phantomjscloud.com/api/browser/v2/ak-b1hw7-66a8k-1wdyw-xhqh1-f2s4p/?request={url:%22https://the-tournament.jp/ja/tournaments/#{self.id}/raw%22,renderType:%22png%22}") do |f|
-        f.each_line {|line| tmp.puts line}
+    if self.user.id == 835 || self.user.admin?
+      File.open(File.join(Rails.root, "/tmp/#{self.id}.png"), 'wb') do |tmp|
+        open("https://phantomjscloud.com/api/browser/v2/ak-b1hw7-66a8k-1wdyw-xhqh1-f2s4p/?request={url:%22https://the-tournament.jp/ja/tournaments/#{self.id}/raw%22,renderType:%22png%22}") do |f|
+          f.each_line {|line| tmp.puts line}
+        end
       end
-    end
 
-    # Upload Image
-    uploader = TournamentUploader.new
-    src = File.join(Rails.root, "/tmp/#{self.id}.png")
-    src_file = File.new(src)
-    uploader.store!(src_file)
+      # Upload Image
+      uploader = TournamentUploader.new
+      src = File.join(Rails.root, "/tmp/#{self.id}.png")
+      src_file = File.new(src)
+      uploader.store!(src_file)
+    end
   end
 
   def players_list
