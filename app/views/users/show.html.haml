@@ -48,4 +48,6 @@
             %small (#{tournament.created_at.strftime("%Y.%m.%d")})
     = paginate @tournaments
   - else
-    %p= t(".no_tournament_yet")
+    .well
+      %p= t(".no_tournament_yet")
+      %p= link_to 'トーナメント作成', new_tournament_path, class: 'btn btn-danger'

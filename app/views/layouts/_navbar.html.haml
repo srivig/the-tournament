@@ -1,27 +1,25 @@
 = nav_bar responsive: true, brand: image_tag("logo_w.png", alt: "THE TOURNAMENT"), brand_link: '/' do
-  = menu_group do
+  = menu_group class: 'visible-xs visible-sm' do
     %p.navbar-text.hidden-xs.hidden-sm= t('site_description')
 
     / Show Acccount menu on SP view
-    = menu_item 'このサイトについて', '/about', class: 'visible-xs visible-sm'
     - if current_user
-      %li.visible-xs.visible-sm
-        = link_to new_tournament_path, class: 'navbar-btn-danger' do
-          %button.btn.btn-danger.navbar-btn
-            = t('layouts.sidebar.create_tournament')
       %li
-        = link_to t('layouts.sidebar.tournaments_list'), user_path(current_user), class: 'visible-xs visible-sm'
-      /= menu_item t('layouts.sidebar.create_tournament'), new_tournament_path, class: 'visible-xs visible-sm'
+        = link_to 'マイページ', user_path(current_user), class: 'visible-xs visible-sm'
       = menu_item t('signout'), destroy_user_session_path, method: :delete, class: 'visible-xs visible-sm'
     - else
       = menu_item t("layouts.sidebar.user_registration"), new_user_registration_path, class: 'visible-xs visible-sm'
       = menu_item t('signin'), new_user_session_path, class: 'visible-xs visible-sm'
 
 
-  %ul.nav.navbar-nav.navbar-right
-    %li.visible-md.visible-lg
-      = link_to 'このサイトについて', '/about'
-    - ja_active = en_active = ''
-    - (I18n.locale == :ja) ? ja_active='active' : en_active='active'
-    %li.visible-md.visible-lg{class:ja_active}= link_to 'JP', url_for(locale: :ja)
-    %li.visible-md.visible-lg{class:en_active}= link_to 'EN', url_for(locale: :en)
+  %ul.nav.navbar-nav.navbar-right.visible-md.visible-lg
+    - if current_user
+      %li
+        = link_to user_path(current_user) do
+          = fa_icon('user')
+          = current_user.name || current_user.email
+      %li
+        = link_to t('signout'),destroy_user_session_path, method: :delete
+    - else
+      %li= link_to t("layouts.sidebar.user_registration"), new_user_registration_path
+      %li= link_to t('signin'), new_user_session_path
