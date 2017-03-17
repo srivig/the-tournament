@@ -31,8 +31,3 @@
         %li= link_to t('contact'), 'https://goo.gl/forms/xqvYet0AAsQUalI52', target: '_blank'
         %li= link_to t('terms_of_use'), "/terms", target: '_blank'
         %li= link_to t('privacy_policy'), "/privacy", target: '_blank'
-      - if Rails.env.production?
-        %br
-        %p
-          = link_to '//getjaco.com', target: '_blank' do
-            %img(src='//www.getjaco.com/images/free_with_logo/jaco-badge-white.png' alt='Jaco Analytics')

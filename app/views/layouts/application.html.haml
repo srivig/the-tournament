@@ -5,7 +5,6 @@
     = csrf_meta_tags
     = stylesheet_link_tag "application", :media => "all"
     = favicon_link_tag 'favicon.ico', rel: 'shortcut icon'
-    = render partial: "shared/jaco" if Rails.env.production?
 
   - is_about_page = controller.action_name=='about'
   - is_top_page = controller.action_name=='top'
