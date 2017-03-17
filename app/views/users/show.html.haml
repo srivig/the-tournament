@@ -1,35 +1,51 @@
-= content_for :page_title, t('.mypage')
-= render partial: "shared/back_to_home"
+= content_for :page_title, @user.name
 
 %section
-  %h1.title= t('.mypage')
+  - if @user.profile_img_url.present?
+    %div.profile_bg_img(style="background-image:url(#{@user.profile_img_url});")
 
-  %section
-    %h1.headline
-      = fa_icon("user")
-      = t '.account'
-    %div
-      %div
-        - if @user == current_user
-          %p= @user.email
-          %p= link_to t("edit"), edit_user_path(@user), class: 'btn btn-primary'
-        - else
-          %small ※ユーザー情報は公開されていません。
+  %h1.title.clearfix
+    = @user.name || @user.email
+    - if current_user && @user == current_user
+      = link_to '編集', edit_user_path(@user), class: 'btn btn-primary pull-right', style: 'color: #fff !important;'
 
-  %section
-    %h1.headline
-      = fa_icon("bell")
-      = t '.created_tournaments'
+  %p
+    = sanitize @user.profile, tags: %w(h1 h2 h3 h4 h5 h6 ul ol li p a img table tr td em br strong), attributes:  %w(id class href)
 
-    - if @tournaments.present?
-      %div.panel.panel-default
-        .list-group
-          - @tournaments.each do |tournament|
-            =link_to pretty_tournament_path(tournament, tournament.encoded_title), class: 'list-group-item clearfix', data:{no_turbolink:true} do
-              %span.list-group-item-heading
-                = tournament.title
-                = fa_icon("angle-right", "pull-right")
-              %small (#{tournament.created_at.strftime("%Y.%m.%d")})
-          -# = link_to sanitize("<i class='fa fa-angle-double-right'></i> ")+ t('.show_more'), tournaments_path, class: "pull-right"
-    - else
-      %p= t(".no_tournament_yet")
+  - if @user.url
+    %p
+      = link_to @user.url, target: '_blank' do
+        = @user.url
+        = fa_icon("external-link")
+
+
+  -# %section
+  -#   %h1.headline
+  -#     = fa_icon("user")
+  -#     = t '.account'
+  -#   %div
+  -#     %div
+  -#       - if @user == current_user
+  -#         %p= @user.email
+  -#         %p= link_to t("edit"), edit_user_path(@user), class: 'btn btn-primary'
+  -#       - else
+  -#         %small ※ユーザー情報は公開されていません。
+
+
+%section
+  %h1.headline
+    = fa_icon("trophy")
+    大会一覧
+
+  - if @tournaments.present?
+    %div.panel.panel-default
+      .list-group
+        - @tournaments.each do |tournament|
+          =link_to pretty_tournament_path(tournament, tournament.encoded_title), class: 'list-group-item clearfix', data:{no_turbolink:true} do
+            %span.list-group-item-heading
+              = tournament.title
+              = fa_icon("angle-right", "pull-right")
+            %small (#{tournament.created_at.strftime("%Y.%m.%d")})
+    = paginate @tournaments
+  - else
+    %p= t(".no_tournament_yet")

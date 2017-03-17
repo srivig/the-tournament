@@ -23,9 +23,7 @@
         - unless controller.action_name == 'about'
           = link_to t('site_description'), "/about", data:{no_turbolink:true}
       %ul.list-inline
-        %li
-          = link_to 'https://digitalfan.jp/116254', target: '_blank' do
-            = t 'layouts.application.how_to_use'
+        %li= link_to 'このサイトについて', "/about", data:{no_turbolink:true}
         %li= link_to t('official_blog'), 'https://blog.the-tournament.jp', target: '_blank'
         %li= link_to t('company'), 'http://notsobad.jp/', target: '_blank'
         %li= link_to t('contact'), 'https://goo.gl/forms/xqvYet0AAsQUalI52', target: '_blank'

@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def show
+    @tournaments = @user.tournaments.page(params[:page]).per(15)
   end
 
   def edit
@@ -25,10 +26,9 @@ class UsersController < ApplicationController
   private
     def set_user
       @user = User.find(params[:id])
-      @tournaments = @user.tournaments.all
     end
 
     def user_params
-      params.require(:user).permit(:email, :email_subscription)
+      params.require(:user).permit(:email, :email_subscription, :name, :url, :facebook_url, :profile_img_url, :profile)
     end
 end
