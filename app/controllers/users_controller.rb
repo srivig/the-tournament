@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if @user.facebook_url
       match = @user.facebook_url.match(/https?:\/\/www\.facebook\.com\/(.*?)\/?$/)
       gon.fb_id = match[1] if match
-      gon.fb_token = ENV['FACEBOOK_APP_TOKEN']
+      gon.fb_token = ENV['FACEBOOK_APP_TOKEN'].sub('%7C', '|')
     end
   end
 
