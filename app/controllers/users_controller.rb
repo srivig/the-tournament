@@ -5,6 +5,12 @@ class UsersController < ApplicationController
 
   def show
     @tournaments = @user.tournaments.page(params[:page]).per(15)
+
+    if @user.facebook_url
+      match = @user.facebook_url.match(/https?:\/\/www\.facebook\.com\/(.*?)\/?$/)
+      gon.fb_id = match[1] if match
+      gon.fb_token = ENV['FACEBOOK_APP_TOKEN']
+    end
   end
 
   def edit
@@ -29,6 +35,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:email, :email_subscription, :name, :url, :facebook_url, :profile_img_url, :profile)
+      params.require(:user).permit(:email, :email_subscription, :name, :url, :facebook_url, :profile)
     end
 end

@@ -1,8 +1,8 @@
 = content_for :page_title, @user.name
 
+
 %section
-  - if @user.profile_img_url.present?
-    %div.profile_bg_img(style="background-image:url(#{@user.profile_img_url});")
+  %div.cover
 
   %h1.title.clearfix
     = @user.name || @user.email
@@ -17,19 +17,6 @@
       = link_to @user.url, target: '_blank' do
         = @user.url
         = fa_icon("external-link")
-
-
-  -# %section
-  -#   %h1.headline
-  -#     = fa_icon("user")
-  -#     = t '.account'
-  -#   %div
-  -#     %div
-  -#       - if @user == current_user
-  -#         %p= @user.email
-  -#         %p= link_to t("edit"), edit_user_path(@user), class: 'btn btn-primary'
-  -#       - else
-  -#         %small ※ユーザー情報は公開されていません。
 
 
 %section

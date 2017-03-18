@@ -306,11 +306,12 @@ div.tagsinput {
 /*****************************************************************
 * User MyPage
 *****************************************************************/
-.profile_bg_img {
+.cover {
   width: 100%;
   height: 300px;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
+  display: none;
 }
 
 

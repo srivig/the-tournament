@@ -10,7 +10,9 @@
   - is_top_page = controller.action_name=='top'
   - is_profile_page = controller.controller_name=='users' && controller.action_name=='show'
 
-  %body{id: (is_about_page) ? 'about-page' : ''}
+  -# %body
+  %body{id: (is_about_page) ? 'about-page' : ''}(data-controller="#{params[:controller]}" data-action="#{params[:action]}")
+
     = google_tag_manager if Rails.env.production?
 
     - nav_partial = (is_about_page) ? 'navbar_about' : 'navbar'

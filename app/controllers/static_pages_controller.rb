@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
 
 
   def about
-    sample_id = (Rails.env.production?) ? 158 : 1
+    sample_id = (Rails.env.production?) ? 158 : 158
     @tournament = Tournament.find(sample_id)
     gon.push({
       tournament_data: @tournament.tournament_data,
