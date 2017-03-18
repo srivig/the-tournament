@@ -9,7 +9,6 @@ $ ->
       })
       FB.AppEvents.logPageView()
 
-      # request_url = "/" + gon.fb_id + "?fields=cover&access_token=1468816573143230|RXVAmkE2kAYW4P8h_e8fBf8T4kc"
       request_url = "/" + gon.fb_id + "?fields=cover&access_token=" + gon.fb_token
       FB.api request_url, (response) ->
         $('.cover').css('background-image', "url('"+response.cover.source+"')").show()
