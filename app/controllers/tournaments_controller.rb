@@ -140,10 +140,8 @@ class TournamentsController < ApplicationController
 
 
   def photos
-    if @tournament.facebook_album_id.present?
-      gon.album_id = @tournament.facebook_album_id
-      gon.fb_token = ENV['FACEBOOK_APP_TOKEN'].sub('%7C', '|')
-    end
+    gon.album_id = @tournament.facebook_album_id
+    gon.fb_token = ENV['FACEBOOK_APP_TOKEN'].sub('%7C', '|')
   end
 
 

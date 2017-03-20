@@ -11,4 +11,15 @@
     = fa_icon("picture-o")
     フォトアルバム
 
-  .album-container
+  - if @tournament.facebook_album_id
+    .album-container
+    %small
+      = link_to "https://www.facebook.com/media/set/?set=a.#{@tournament.facebook_album_id}", target: '_blank' do
+        すべての写真を見る
+        = fa_icon 'external-link'
+  - else
+    .well
+      Facebookで作成したアルバムと紐付けることで、ここに写真を表示することができます。
+      詳しくは
+      = link_to 'こちら', 'http://blog.the-tournament.jp/entry/album', target: '_blank'
+      をご覧ください。

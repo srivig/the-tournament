@@ -71,25 +71,26 @@ $ ->
 
   # tournament#photos
   if ($('body').data('controller')=='tournaments' && $('body').data('action')=='photos')
-    window.fbAsyncInit = ->
-      FB.init({
-        appId      : '1468816573143230',
-        xfbml      : true,
-        version    : 'v2.8'
-      })
-      FB.AppEvents.logPageView()
+    if gon.album_id != null
+      window.fbAsyncInit = ->
+        FB.init({
+          appId      : '1468816573143230',
+          xfbml      : true,
+          version    : 'v2.8'
+        })
+        FB.AppEvents.logPageView()
 
-      request_url = "/" + gon.album_id + "/photos?fields=images&access_token=" + gon.fb_token
-      FB.api request_url, (response) ->
-        photos = ''
-        album_url = 'https://facebook.com/pg/the.tournament.jp/photos/?tab=album&album_id=' + gon.album_id
-        $.each response.data, (index, obj) ->
-          return false if index >= 12
+        request_url = "/" + gon.album_id + "/photos?fields=images&access_token=" + gon.fb_token
+        FB.api request_url, (response) ->
+          photos = ''
+          album_url = "https://www.facebook.com/media/set/?set=a." + gon.album_id
+          $.each response.data, (index, obj) ->
+            return false if index >= 12
 
-          start_div = end_div = ''
-          if index%4 == 0
-            start_div = '<div class="row" style="margin-bottom:15px;">'
-          if index%4 == 3 || index == response.data.length
-            end_div = '</div>'
-          photos += start_div + '<div class="col-sm-3"><a href="' + album_url + '" target="_blank"><div style="width:100%;height:200px;background-size:cover;background-position:center;background-image:url('+obj.images[0]['source']+')"></div></a></div>' + end_div
-        $('.album-container').append(photos)
+            start_div = end_div = ''
+            if index%4 == 0
+              start_div = '<div class="row" style="margin-bottom:15px;">'
+            if index%4 == 3 || index == response.data.length
+              end_div = '</div>'
+            photos += start_div + '<div class="col-sm-3"><a href="' + album_url + '" target="_blank"><div style="width:100%;height:200px;background-size:cover;background-position:center;background-image:url('+obj.images[0]['source']+')"></div></a></div>' + end_div
+          $('.album-container').append(photos)
