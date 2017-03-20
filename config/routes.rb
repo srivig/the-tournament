@@ -20,6 +20,7 @@ TheTournament::Application.routes.draw do
     match 'tournaments/:id/raw', to: 'tournaments#raw', via: :get
     match 'tournaments/:id/upload', to: 'tournaments#upload', via: :get, as: :upload_tournament
     match 'tournaments/:id/upload_img', to: 'tournaments#upload_img', via: :post
+    match 'tournaments/:id/photos', to: 'tournaments#photos', via: :get, as: :tournament_photos
     match 'tournaments/:id/(:title)', to: 'tournaments#show', via: :get, as: :pretty_tournament, constraints: {title: /[^\/]+/}
     match ':action', controller: :static_pages, via: :get
 

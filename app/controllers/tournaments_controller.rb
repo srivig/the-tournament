@@ -3,10 +3,12 @@ class TournamentsController < ApplicationController
   before_action :set_tournament, only: [:show, :edit, :update, :destroy, :embed, :upload]
   load_and_authorize_resource
 
+
   def index
     tournaments = Tournament.search_tournaments(params)
     @tournaments = tournaments.page(params[:page]).per(15)
   end
+
 
   def show
     redirect_to pretty_tournament_path(@tournament, @tournament.encoded_title), status: 301 if params[:title] != @tournament.encoded_title
@@ -26,6 +28,7 @@ class TournamentsController < ApplicationController
     gon.push(json)
   end
 
+
   def raw
     gon.push({
       tournament_data: @tournament.tournament_data,
@@ -37,6 +40,7 @@ class TournamentsController < ApplicationController
     })
     render layout: false
   end
+
 
   def embed
     gon.push({
@@ -50,6 +54,7 @@ class TournamentsController < ApplicationController
     render layout: false
   end
 
+
   def upload
     json = @tournament.to_json
     File.write("tmp/#{@tournament.id}.json", json)
@@ -61,9 +66,11 @@ class TournamentsController < ApplicationController
     render json: json
   end
 
+
   def new
     @tournament = Tournament.new
   end
+
 
   def create
     @tournament = SingleElimination.new(tournament_params)  #TODO: Fix when enabling double elimination
@@ -85,8 +92,10 @@ class TournamentsController < ApplicationController
     end
   end
 
+
   def edit
   end
+
 
   def update
     # Players一覧更新時
@@ -120,6 +129,7 @@ class TournamentsController < ApplicationController
     end
   end
 
+
   def destroy
     @tournament.destroy
     respond_to do |format|
@@ -128,12 +138,21 @@ class TournamentsController < ApplicationController
     end
   end
 
+
+  def photos
+    if @tournament.facebook_album_id.present?
+      gon.album_id = @tournament.facebook_album_id
+      gon.fb_token = ENV['FACEBOOK_APP_TOKEN'].sub('%7C', '|')
+    end
+  end
+
+
   private
     def set_tournament
       @tournament = Tournament.find(params[:id])
     end
 
     def tournament_params
-      params.require(:tournament).permit(:id, :title, :user_id, :detail, :type, :place, :url, :size, :consolation_round, :tag_list, :double_elimination, :scoreless, players_attributes: [:id, :name, :group, :country], players_all: [:players])
+      params.require(:tournament).permit(:id, :title, :user_id, :detail, :type, :place, :url, :size, :consolation_round, :tag_list, :double_elimination, :scoreless, :facebook_album_id, players_attributes: [:id, :name, :group, :country], players_all: [:players])
     end
 end

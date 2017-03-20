@@ -26,6 +26,7 @@ ja:
         scoreless: スコア形式
         type: 敗者復活戦
         tag_list: タグ
+        facebook_album_id: FacebookアルバムID
       user:
         profile_img: プロフィール画像
     placeholders:
@@ -43,6 +44,7 @@ ja:
       tournament:
         size: ※32名より大きな大会の利用は、「<a href='https://goo.gl/forms/xqvYet0AAsQUalI52' target='_blank'>お問い合わせ</a>」より事前に申請してください。
         type: ダブルイリミネーション(敗者復活戦あり)形式は有料プランユーザーのみ利用可能です
+        facebook_album_id: ※Facebookで作成したアルバムの写真を表示できます。詳細は<a href='http://blog.the-tournament.jp/entry/2017/03/17/photoalbum' target="_blank">こちら</a>
       user:
         profile_img: Gravatarという外部のサービスへの登録が必要になります
     options:

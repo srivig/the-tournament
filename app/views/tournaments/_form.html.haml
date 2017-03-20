@@ -12,6 +12,7 @@
   = f.input :scoreless, inline_label: t('simple_form.inline_labels.tournament.scoreless'), as: :boolean
   = f.input :type, collection: [:SingleElimination, :DoubleElimination], input_html: {default: :SingleElimination}, as: :hidden
   -# = f.input :secondary_final, label: '再決勝', inline_label: '再決勝を実施する(敗者側が1戦目を勝利した場合)', as: :boolean, disabled: true
+  = f.input :facebook_album_id
 
   .form-group
     .col-sm-6.col-sm-offset-2

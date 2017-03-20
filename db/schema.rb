@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170318020308) do
+ActiveRecord::Schema.define(version: 20170318131842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 20170318020308) do
     t.boolean  "scoreless",                     default: false
     t.boolean  "finished",                      default: false
     t.boolean  "pickup",                        default: false
+    t.string   "facebook_album_id", limit: 255
   end
 
   add_index "tournaments", ["finished"], name: "index_tournaments_on_finished", using: :btree

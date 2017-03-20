@@ -1,0 +1,14 @@
+= content_for :page_title, "#{@tournament.encoded_title}の写真アルバム"
+= content_for :keywords, @tournament.encoded_title
+= content_for :description, "#{@tournament.encoded_title}のアルバムです。#{@tournament.detail}"
+
+- editable = @tournament.user==current_user || current_user.try(:admin?)
+= render partial: "shared/tournament_info", locals: {tournament:@tournament, editable: editable}
+= render partial: "shared/tournament_menu", locals: {tournament:@tournament, active:4}
+
+%section
+  %h1.headline
+    = fa_icon("picture-o")
+    フォトアルバム
+
+  .album-container
