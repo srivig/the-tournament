@@ -9,6 +9,7 @@ class Ability
       can :read, :all
       can :embed, :all
       can :raw, :all
+      can :photos, :all
     end
 
     can :manage, User, id: user.id
