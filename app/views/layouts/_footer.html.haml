@@ -11,9 +11,9 @@
                     %td
                       =link_to item.link.gsub('http:','https:'), target:'_blank' do
                         = item.title.force_encoding("utf-8")
-                        %small.visible-xs= item.pubDate.strftime("%Y-%m-%d")
+                        %small.visible-xs= item.published.strftime("%Y-%m-%d")
                     %td.text-right.hidden-xs
-                      %small= item.pubDate.strftime("%Y-%m-%d")
+                      %small= item.published.strftime("%Y-%m-%d")
 
   .black.text-center
     .container
