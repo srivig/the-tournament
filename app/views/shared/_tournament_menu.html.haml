@@ -1,26 +1,26 @@
 -# PC版: タブでメニュー表示
 %ul.nav.nav-pills.visible-md.visible-lg
   %li{class: (active==1) ? 'active' : ''}
-    =link_to t('tournament_menu.tournament_bracket'), pretty_tournament_path(tournament, tournament.encoded_title), data:{no_turbolink:true}
+    =link_to t('tournament_menu.tournament_bracket'), pretty_tournament_path(tournament, tournament.encoded_title), data:{turbolinks: false}
   %li{class: (active==2) ? 'active' : ''}
     =link_to t('tournament_menu.games'), tournament_games_path(tournament)
   %li{class: (active==3) ? 'active' : ''}
     =link_to t('tournament_menu.players'), tournament_players_path(tournament)
   %li{class: (active==4) ? 'active' : ''}
-    =link_to tournament_photos_path(tournament), data:{no_turbolink:true} do
+    =link_to tournament_photos_path(tournament), data:{turbolinks: false} do
       フォトアルバム
       - if active!=4
         %span.label.label-warning New!
 -# SP版: Pillsでメニュー表示
 %ul.nav.nav-pills.nav-stacked.visible-xs.visible-sm
   %li{class: (active==1) ? 'active' : ''}
-    =link_to t('tournament_menu.tournament_bracket'), pretty_tournament_path(tournament, tournament.encoded_title), data:{no_turbolink:true}
+    =link_to t('tournament_menu.tournament_bracket'), pretty_tournament_path(tournament, tournament.encoded_title), data:{turbolinks: false}
   %li{class: (active==2) ? 'active' : ''}
     =link_to t('tournament_menu.games'), tournament_games_path(tournament)
   %li{class: (active==3) ? 'active' : ''}
     =link_to t('tournament_menu.players'), tournament_players_path(tournament)
   %li{class: (active==4) ? 'active' : ''}
-    =link_to tournament_photos_path(tournament), data:{no_turbolink:true} do
+    =link_to tournament_photos_path(tournament), data:{turbolinks: false} do
       フォトアルバム
       - if active!=4
         %span.label.label-warning New!

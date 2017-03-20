@@ -5,7 +5,7 @@
     / Show Acccount menu on SP view
     - if current_user
       %li
-        = link_to 'マイページ', user_path(current_user), class: 'visible-xs visible-sm'
+        = link_to 'マイページ', user_path(current_user), class: 'visible-xs visible-sm', 'data-turbolinks': false
       = menu_item t('signout'), destroy_user_session_path, method: :delete, class: 'visible-xs visible-sm'
     - else
       = menu_item t("layouts.sidebar.user_registration"), new_user_registration_path, class: 'visible-xs visible-sm'
@@ -15,7 +15,7 @@
   %ul.nav.navbar-nav.navbar-right.visible-md.visible-lg
     - if current_user
       %li
-        = link_to user_path(current_user) do
+        = link_to user_path(current_user), {'data-turbolinks': false} do
           = fa_icon('user')
           = current_user.name || current_user.email
       %li

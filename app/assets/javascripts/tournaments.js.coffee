@@ -84,6 +84,8 @@ $ ->
         photos = ''
         album_url = 'https://facebook.com/pg/the.tournament.jp/photos/?tab=album&album_id=' + gon.album_id
         $.each response.data, (index, obj) ->
+          return false if index >= 12
+
           start_div = end_div = ''
           if index%4 == 0
             start_div = '<div class="row" style="margin-bottom:15px;">'
